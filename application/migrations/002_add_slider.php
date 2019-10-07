@@ -13,6 +13,10 @@ class Migration_Add_slider extends CI_Migration {
                                 'unsigned' => TRUE,
                                 'auto_increment' => TRUE
                         ),
+                        'imagen' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '100',
+                        ),
                         'titulo' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
