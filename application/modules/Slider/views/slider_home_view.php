@@ -1,38 +1,42 @@
-       <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
+      <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
 
             <div class="swiper-container swiper-parent">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide dark" style="background-image: url('assets/images/slider/01.jpg');">
-                        <div class="container clearfix">
-                            <div class="slider-caption slider-caption-center">
-                                <h2 data-caption-animate="fadeInUp">BIENVENIDOS A NUESTRA EMPRESA</h2>
-                                <p data-caption-animate="fadeInUp" data-caption-delay="200">SEGUNDA LINEA DE REFUERZO</p>
+                    <?php foreach ($sliders as $a): ?>
+                            <div class="swiper-slide dark" style="background-image: url(<?php echo 'assets/images/slider/' . $a->imagen; ?>);">
+                                <div class="container clearfix">
+                                    <div class="slider-caption slider-caption-center">
+                                        <h2 data-caption-animate="fadeInUp"><?php echo $a->titulo; ?></h2>
+                                        <p data-caption-animate="fadeInUp" data-caption-delay="200"><?php echo $a->descripcion; ?></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide dark" style="background-image: url('assets/images/slider/02.jpg');">
+                    <?php endforeach; ?>
+
+
+<!--                     <div class="swiper-slide dark" style="background-image: url('assets/images/slider/sl2.jpg');">
                         <div class="container clearfix">
                             <div class="slider-caption slider-caption-center">
                                 <h2 data-caption-animate="fadeInUp">TITULARES DESTACADOS</h2>
                                 <p data-caption-animate="fadeInUp" data-caption-delay="200">SUBTITULOS REFORZANDO</p>
                             </div>
                         </div>
-                        <!--<div class="video-wrap">
+                        <div class="video-wrap">
                             <video poster="images/videos/explore-poster.jpg" preload="auto" loop autoplay muted>
                                 <source src='images/videos/explore.mp4' type='video/mp4' />
                                 <source src='images/videos/explore.webm' type='video/webm' />
                             </video>
                             <div class="video-overlay" style="background-color: rgba(0,0,0,0.55);"></div>
-                        </div>-->
-                    </div>
-                    <div class="swiper-slide" style="background-image: url('assets/images/slider/03.jpg'); background-position: center top;">
+                        </div>
+                   </div>
+                   <div class="swiper-slide" style="background-image: url('assets/images/slider/sl3.jpg'); background-position: center top;">
                         <div class="container clearfix">
                             <div class="slider-caption">
                                 <h2 data-caption-animate="fadeInUp">TODO EL TEXTO NECESARIO</h2>
                                 <p data-caption-animate="fadeInUp" data-caption-delay="200">Y MUCHO MAS AQUI</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
                 <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
