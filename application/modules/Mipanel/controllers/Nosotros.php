@@ -41,3 +41,4 @@ class Nosotros extends MX_Controller {
     $this->template->load('index', 'nosotros_form_view', $this->data);   
   }
 
+}

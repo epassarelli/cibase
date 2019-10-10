@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Slider extends MX_Controller {
-
-  var $data;
+class Empresa extends MX_Controller {
 
   function __construct() {
     parent::__construct();
@@ -20,29 +18,27 @@ class Slider extends MX_Controller {
       case 'production':
           $this->output->enable_profiler(FALSE);
           break;
-      } 
-
-    $this->load->model('slider/Slider_model');     
+      }      
   }
 
-  // Listado del ABM de slider 
+  // Listado del ABM de empresa 
   public function index(){      
-    $this->data['sliders'] = $this->Slider_model->get_All();
-    $this->template->load('index', 'slider_abm_view', $this->data);  
+
+    $this->template->load('index', 'empresa_abm_view', $this->data);  
   }
 
 
-  // Alta de un slider
+  // Alta de un empresa
   public function insertar(){
 
-    $this->template->load('index', 'slider_form_view', $this->data);   
+    $this->template->load('index', 'empresa_form_view', $this->data);   
   }
 
 
-  // Editar un slider 
-  public function editar($slider_id){
+  // Editar un empresa 
+  public function editar($empresa_id){
 
-    $this->template->load('index', 'slider_form_view', $this->data);   
+    $this->template->load('index', 'empresa_form_view', $this->data);   
   }
 
 }
