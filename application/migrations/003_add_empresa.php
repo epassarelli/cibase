@@ -13,13 +13,38 @@ class Migration_Add_empresa extends CI_Migration {
                                 'unsigned' => TRUE,
                                 'auto_increment' => TRUE
                         ),
-                        'logo' => array(
+                        'razonsocial' => array(
                                 'type' => 'VARCHAR',
-                                'constraint' => '100',
+                                'constraint' => '200',
                         ),
                         'direcion' => array(
                                 'type' => 'VARCHAR',
+                                'constraint' => '200',
+                        ),
+                        'cpostal' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '10',
+                                'null' => TRUE,
+                        ),
+                        'localidad' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'provincia' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'pais' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'cordenadas' => array(
+                                'type' => 'VARCHAR',
                                 'constraint' => '100',
+                                'null' => TRUE,
                         ),
                         'telefono' => array(
                                 'type' => 'VARCHAR',
@@ -31,13 +56,23 @@ class Migration_Add_empresa extends CI_Migration {
                                 'constraint' => '150',
                                 'null' => TRUE,
                         ),
+                        'facebook' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'instagram' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
                 ));
                 $this->dbforge->add_key('id', TRUE);
-                $this->dbforge->create_table('slider');
+                $this->dbforge->create_table('empresa');
         }
 
         public function down()
         {
-                $this->dbforge->drop_table('slider');
+                $this->dbforge->drop_table('empresa');
         }
 }

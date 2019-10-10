@@ -17,27 +17,66 @@ class Migration_Add_nosotros extends CI_Migration {
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),
-                        'quienesbajada' => array(
+                        'quienestitulo' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '150',
                                 'null' => TRUE,
                         ),
-                        'quienesdescripcion' => array(
-                                'type' => 'INT',
-                                'constraint' => 1,
+                        'quienessubtitulo' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
                                 'null' => TRUE,
                         ),
-
-
-                        // Lo mismo para mision y vision
-
+                        'quienestexto' => array(
+                                'type' => 'TEXT',
+                                'constraint' => '',
+                                'null' => TRUE,
+                        ),
+                        'nosotrosfoto' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '100',
+                        ),
+                        'nosotrostitulo' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'nosotrossubtitulo' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'nosotrostexto' => array(
+                                'type' => 'TEXT',
+                                'constraint' => '',
+                                'null' => TRUE,
+                        ),
+                        'visionfoto' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '100',
+                        ),
+                        'visiontitulo' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'visionsubtitulo' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => '150',
+                                'null' => TRUE,
+                        ),
+                        'visiontexto' => array(
+                                'type' => 'TEXT',
+                                'constraint' => '',
+                                'null' => TRUE,
+                        ),
                 ));
                 $this->dbforge->add_key('id', TRUE);
-                $this->dbforge->create_table('slider');
+                $this->dbforge->create_table('nosotros');
         }
 
         public function down()
         {
-                $this->dbforge->drop_table('slider');
+                $this->dbforge->drop_table('nosotros');
         }
 }
