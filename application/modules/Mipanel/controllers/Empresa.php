@@ -2,10 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Empresa extends MX_Controller {
 
+  var $data;
+
   function __construct() {
     parent::__construct();
     if (!$this->ion_auth->logged_in()) {
-        redirect('auth/login');
+        redirect('login');
     }
 
     switch (ENVIRONMENT){
@@ -24,21 +26,21 @@ class Empresa extends MX_Controller {
   // Listado del ABM de empresa 
   public function index(){      
 
-    $this->template->load('index', 'empresa_abm_view', $this->data);  
+    $this->template->load('layout_back', 'empresa_abm_view', $this->data);  
   }
 
 
   // Alta de un empresa
   public function insertar(){
 
-    $this->template->load('index', 'empresa_form_view', $this->data);   
+    $this->template->load('layout_back', 'empresa_form_view', $this->data);   
   }
 
 
   // Editar un empresa 
   public function editar($empresa_id){
 
-    $this->template->load('index', 'empresa_form_view', $this->data);   
+    $this->template->load('layout_back', 'empresa_form_view', $this->data);   
   }
 
 }

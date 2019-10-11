@@ -19,7 +19,7 @@ class Login extends CI_Controller {
         }
         else {
             if ($this->ion_auth->login($this->input->post('username'), $this->input->post('passwd'))) {
-                redirect('Home');
+                redirect('Mipanel');
             }
             else {
                 $this->session->set_flashdata('message', $this->ion_auth->errors());
@@ -30,7 +30,7 @@ class Login extends CI_Controller {
 
     public function logout() {
         if ($this->ion_auth->logout()) {
-            redirect('Login');
+            redirect('/');
         }
     }
 

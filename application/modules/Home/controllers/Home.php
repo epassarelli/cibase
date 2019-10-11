@@ -1,19 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends MX_Controller {
 
-    var $data;
+    public function index()
+    {
+        $this->load->library('migration');
 
-    function __construct() {
-        parent::__construct();
+        if ($this->migration->current() === FALSE)
+        {
+            show_error($this->migration->error_string());
+        }       
 
-        if (!$this->ion_auth->logged_in()) {
-            redirect('Login');
-        }
-
+        $this->load->view('home_view');
     }
 
-	public function index() {
-        $this->template->load('index', 'home', $this->data);
-    }
 }

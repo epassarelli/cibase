@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Nosotros extends MX_Controller {
+  
+  var $data;
 
   function __construct() {
     parent::__construct();
@@ -24,21 +26,21 @@ class Nosotros extends MX_Controller {
   // Listado del ABM de slider 
   public function index(){      
 
-    $this->template->load('index', 'nosotros_abm_view', $this->data);  
+    $this->template->load('layout_back', 'nosotros_abm_view', $this->data);  
   }
 
 
   // Alta de un slider
   public function insertar(){
 
-    $this->template->load('index', 'nosotros_form_view', $this->data);   
+    $this->template->load('layout_back', 'nosotros_form_view', $this->data);   
   }
 
 
   // Editar un slider 
   public function editar($slider_id){
 
-    $this->template->load('index', 'nosotros_form_view', $this->data);   
+    $this->template->load('layout_back', 'nosotros_form_view', $this->data);   
   }
 
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>Demo | Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -36,9 +36,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>A</b>D</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg"><b>Admin</b>Demo</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -51,8 +51,10 @@
         </a>
 
         <div class="navbar-custom-menu">
+            <!--
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
+                <!-- Messages: style can be found in dropdown.less
+                
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -61,9 +63,9 @@
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
                         <li>
-                            <!-- inner menu: contains the actual data -->
+                            <!-- inner menu: contains the actual data
                             <ul class="menu">
-                                <li><!-- start message -->
+                                <li><!-- start message
                                     <a href="#">
                                         <div class="pull-left">
                                             <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
@@ -75,13 +77,13 @@
                                         <p>Why not buy a new awesome theme?</p>
                                     </a>
                                 </li>
-                                <!-- end message -->
+                                <!-- end message
                             </ul>
                         </li>
                         <li class="footer"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
-                <!-- Notifications: style can be found in dropdown.less -->
+                <!-- Notifications: style can be found in dropdown.less
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
@@ -90,7 +92,7 @@
                     <ul class="dropdown-menu">
                         <li class="header">You have 10 notifications</li>
                         <li>
-                            <!-- inner menu: contains the actual data -->
+                            <!-- inner menu: contains the actual data
                             <ul class="menu">
                                 <li>
                                     <a href="#">
@@ -102,7 +104,7 @@
                         <li class="footer"><a href="#">View all</a></li>
                     </ul>
                 </li>
-                <!-- Tasks: style can be found in dropdown.less -->
+                <!-- Tasks: style can be found in dropdown.less
                 <li class="dropdown tasks-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
@@ -111,9 +113,9 @@
                     <ul class="dropdown-menu">
                         <li class="header">You have 9 tasks</li>
                         <li>
-                            <!-- inner menu: contains the actual data -->
+                            <!-- inner menu: contains the actual data
                             <ul class="menu">
-                                <li><!-- Task item -->
+                                <li><!-- Task item
                                     <a href="#">
                                         <h3>
                                             Design some buttons
@@ -126,7 +128,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                <!-- end task item -->
+                                <!-- end task item
                             </ul>
                         </li>
                         <li class="footer">
@@ -134,14 +136,14 @@
                         </li>
                     </ul>
                 </li>
-                <!-- User Account: style can be found in dropdown.less -->
+                <!-- User Account: style can be found in dropdown.less
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <span class="hidden-xs">Alexander Pierce</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <!-- User image -->
+                        <!-- User image
                         <li class="user-header">
                             <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
@@ -150,7 +152,7 @@
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
-                        <!-- Menu Body -->
+                        <!-- Menu Body
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-4 text-center">
@@ -163,9 +165,9 @@
                                     <a href="#">Friends</a>
                                 </div>
                             </div>
-                            <!-- /.row -->
+                            <!-- /.row
                         </li>
-                        <!-- Menu Footer-->
+                        <!-- Menu Footer
                         <li class="user-footer">
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -176,11 +178,12 @@
                         </li>
                     </ul>
                 </li>
-                <!-- Control Sidebar Toggle Button -->
+                <!-- Control Sidebar Toggle Button
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
+            -->
         </div>
     </nav>
 </header>
@@ -194,7 +197,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Administrador</p>
@@ -205,14 +208,6 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Mi Menú</li>
-            <li>
-                <a href="<?php echo site_url('mipanel/users');?>">
-                    <i class="fa fa-fw fa-user"></i> <span>Users</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
             <li>
                 <a href="<?php echo site_url('mipanel/nosotros');?>">
                     <i class="fa fa-fw fa-user"></i> <span>Nosotros</span>
@@ -232,6 +227,14 @@
             <li>
                 <a href="<?php echo site_url('mipanel/slider');?>">
                     <i class="fa fa-fw fa-user"></i> <span>Slider</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('login/logout');?>">
+                    <i class="fa fa-fw fa-user"></i> <span>Cerrar sesion</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
