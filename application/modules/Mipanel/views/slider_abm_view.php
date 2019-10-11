@@ -12,61 +12,71 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
-<div class="col-xs-12">
-<div class="box">
-<div class="box-header">
-    <h3 class="box-title"></h3>
-</div>
-<!-- /.box-header -->
-<div class="box-body">
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
-    <th>Imagen</th>
-    <th>Titulo</th>
-    <th>Subtitulo</th>
-    <th>Action</th>
-</tr>
-</thead>
-<tbody>
-<?php
-    if ($sliders) {
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
 
-        foreach ($sliders as $s) {
-            ?>
-            <tr>
-                <td><?php echo $s->username;?></td>
-                <td><?php echo $s->email;?></td>
-                <td><?php echo $s->ip_address;?></td>
-                <td>
                     <p>
-                        <!-- <button type="button" class="btn bg-purple margin">.btn.bg-purple</button>
-                        <button type="button" class="btn bg-navy margin">.btn.bg-navy</button> -->
-                        <a href="<?php echo base_url()?>Users/change/<?php echo $s->id;?>"><button type="button" class="btn bg-orange margin">Change Password</button></a>
-                        <a href="<?php echo base_url()?>Users/edit/<?php echo $s->id;?>"><button type="button" class="btn bg-olive margin">Edit</button></a>
-                        <a href="<?php echo base_url()?>Users/delete/<?php echo $s->id;?>"><button type="button" class="btn bg-red margin">Delete</button></a>
+                        <a><button type="button" class="btn bg-blue btn-flat margin" data-toggle="modal" data-target="#FormSlide">Insertar</button></a>
                     </p>
-                </td>
-            </tr>
-<?php
-        }
-    }
-?>
-</tbody>
-</table>
 
-<p>
-    <a href="<?php echo base_url();?>Users/add"><button type="button" class="btn bg-maroon btn-flat margin">Add User</button></a>
-</p>
+                    <table id="sliderAbm" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Descripción</th>
+                                <th>Imagen</th>
+                                <th>Estado</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
 
-</div>
-<!-- /.box-body -->
-</div>
-<!-- /.box -->
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
 </section>
 <!-- /.content -->
+<div class="modal fade" id="FormSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Nuevo Slide</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Titulo</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Descripcion</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Imagen</label>
+                        <input type="file" id="exampleInputFile">
+                        <p class="help-block">Solo JPG 3000x3000</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Insertar</button>
+            </div>
+        </div>
+    </div>
+</div>
