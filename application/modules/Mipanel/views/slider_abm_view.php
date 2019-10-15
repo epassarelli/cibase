@@ -22,7 +22,7 @@
                 <div class="box-body">
 
                     <p>
-                        <a><button type="button" class="btn bg-blue btn-flat margin" data-toggle="modal" data-target="#FormSlide">Insertar</button></a>
+                        <a><button type="button" class="btn bg-blue btn-flat margin insertar" data-toggle="modal" data-target="#modalSlide">Insertar</button></a>
                     </p>
 
                     <table id="sliderAbm" class="table table-bordered">
@@ -49,34 +49,77 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
-<div class="modal fade" id="FormSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+<!-- --------------------- -->
+<!-- MODAL DE FORMULARIO -->
+<!-- --------------------- -->
+
+<div class="modal fade" id="modalSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Nuevo Slide</h4>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span> Slide</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="control-label">Titulo</label>
-                        <input type="text" class="form-control" id="recipient-name">
+            <div id="sent" class="col-3"></div>
+                <form action="<?php echo base_url('mipanel/slider/accion');?>" id="formSlider" method="post" enctype="multipart/form-data">
+                    <!-- DATOS DE CONDICIONES -->
+                    <input type="hidden" id="Opcion" name="Opcion" value="">
+                    <input type="hidden" id="Id" name="Id" value="">
+                    <div class="form-group has-feedback">
+                        <label for="Titulo" class="control-label">Titulo</label>
+                        <input type="text" class="form-control" id="Titulo" name="Titulo" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Descripcion</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                    <div class="form-group has-feedback">
+                        <label for="Descripcion" class="control-label">Descripcion</label>
+                        <textarea class="form-control" id="Descripcion" name="Descripcion" value=""></textarea>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Imagen</label>
-                        <input type="file" id="exampleInputFile">
-                        <p class="help-block">Solo JPG 3000x3000</p>
+                    <div class="form-group has-feedback imagen">
+                        <label for="Imagen" class="control-label">Imagen</label>
+                        <div id="ocultaFile">
+                            <input type="file" id="File" name="File">
+                            <p class="help-block">Solo JPG 3000x3000</p>
+                        </div>
+                        <div id="showImagen"></div>
+                        <input type="hidden" id="Imagen" name="Imagen">
+
                     </div>
-                </form>
+                                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Insertar</button>
+                <button type="submit" class="btn btn-primary titulo"></button>
             </div>
+                </form>
         </div>
     </div>
 </div>
+
+<!-- --------------------- -->
+<!-- MODAL DE CONFIRMACION -->
+<!-- --------------------- -->
+
+<!-- Modal HTML -->
+<div id="modalConfirm" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>				
+				<h4 class="modal-title">Estas Seguro ?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Se perderan todos los datos del Slide seleccionado y no habra forma de recuperar la información</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>   
