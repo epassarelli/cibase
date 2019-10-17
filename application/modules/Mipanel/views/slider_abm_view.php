@@ -22,9 +22,8 @@
                 <div class="box-body">
 
                     <p>
-                        <a><button type="button" class="btn bg-blue btn-flat margin insertar" data-toggle="modal" data-target="#modalSlide">Insertar</button></a>
+                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSlide">Insertar </i></button>
                     </p>
-
                     <table id="sliderAbm" class="table table-bordered">
                         <thead>
                             <tr>

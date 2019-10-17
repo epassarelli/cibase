@@ -108,7 +108,13 @@ class Slider extends MX_Controller {
   public function deleteSlide()
   {
     $id = $this->input->post('Id');
+    $fileName = $this->input->post('FileName');
+
     $this->Slider_model->deleteSlider($id);
+
+    $deletefile = './assets/images/slider/' . $fileName;
+    unlink($deletefile);
+    
     echo json_encode(array('success' => TRUE));
   }
 

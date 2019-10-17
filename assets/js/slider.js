@@ -34,9 +34,9 @@ function listar(base) {
         rowCallback : function( row, data ) {
           console.log(data.estado)
           if ( data.estado == "1" ) {
-            $('td:eq(4)', row).html( "<button type='button' class='activo btn btn-success btn-sm' id='vergaa'>Estado</button>" );
+            $('td:eq(4)', row).html( "<button type='button' class='activo btn btn-success btn-sm' id='vergaa'>Activo</button>" );
           }else{
-            $('td:eq(4)', row).html( "<button type='button' class='activo btn btn-sm' id='vergaa'>Estado</button>" );
+            $('td:eq(4)', row).html( "<button type='button' class='activo btn btn-sm' id='vergaa'>Inactivo</button>" );
           }
         },
         columns: [
@@ -49,7 +49,7 @@ function listar(base) {
             },
             {
                 defaultContent:
-                    "<button type='button' class='editar btn btn-warning btn-sm'>Edit</button>	<button type='button' class='eliminar btn btn-danger btn-sm' data-toggle='modal' data-target='#modalEliminar' >Delet</button>"
+                    "<button type='button' class='editar btn btn-warning btn-sm'>Editar</button>	<button type='button' class='eliminar btn btn-danger btn-sm' data-toggle='modal' data-target='#modalEliminar' >Borrar</button>"
             }
         ],
         language: espanol
@@ -186,7 +186,7 @@ function listar(base) {
         $.ajax({
           type: "POST",
           url: UrlBase+'mipanel/slider/deleteSlide',
-          data: { Id: datos.id },
+          data: { Id: datos.id, FileName: datos.imagen },
           dataType: "json",
           success: function (response) {
             console.log(response)
@@ -220,10 +220,10 @@ function listar(base) {
                
               if(response.estado == "1"){
                 // alert('Activo');
-                me.addClass('btn-success');
+                me.addClass('btn-success').html('Activo');
               }else{
                 // alert('inactivo');
-                me.removeClass('btn-success');
+                me.removeClass('btn-success').html('Inactivo');
               }
 
               table.ajax.reload();
