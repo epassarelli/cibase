@@ -12,61 +12,113 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
-<div class="col-xs-12">
-<div class="box">
-<div class="box-header">
-    <h3 class="box-title"></h3>
-</div>
-<!-- /.box-header -->
-<div class="box-body">
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
-    <th>Imagen</th>
-    <th>Titulo</th>
-    <th>Subtitulo</th>
-    <th>Action</th>
-</tr>
-</thead>
-<tbody>
-<?php
-    if ($sliders) {
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
 
-        foreach ($sliders as $s) {
-            ?>
-            <tr>
-                <td><?php echo $s->username;?></td>
-                <td><?php echo $s->email;?></td>
-                <td><?php echo $s->ip_address;?></td>
-                <td>
                     <p>
-                        <!-- <button type="button" class="btn bg-purple margin">.btn.bg-purple</button>
-                        <button type="button" class="btn bg-navy margin">.btn.bg-navy</button> -->
-                        <a href="<?php echo base_url()?>Users/change/<?php echo $s->id;?>"><button type="button" class="btn bg-orange margin">Change Password</button></a>
-                        <a href="<?php echo base_url()?>Users/edit/<?php echo $s->id;?>"><button type="button" class="btn bg-olive margin">Edit</button></a>
-                        <a href="<?php echo base_url()?>Users/delete/<?php echo $s->id;?>"><button type="button" class="btn bg-red margin">Delete</button></a>
+                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSlide">Insertar </i></button>
                     </p>
-                </td>
-            </tr>
-<?php
-        }
-    }
-?>
-</tbody>
-</table>
+                    <table id="sliderAbm" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Descripción</th>
+                                <th>Imagen</th>
+                                <th>Estado</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
 
-<p>
-    <a href="<?php echo base_url();?>Users/add"><button type="button" class="btn bg-maroon btn-flat margin">Add User</button></a>
-</p>
-
-</div>
-<!-- /.box-body -->
-</div>
-<!-- /.box -->
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
 </section>
 <!-- /.content -->
+
+<!-- --------------------- -->
+<!-- MODAL DE FORMULARIO -->
+<!-- --------------------- -->
+
+<div class="modal fade" id="modalSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span> Slide</h4>
+            </div>
+            <div class="modal-body">
+            <div id="sent" class="col-3"></div>
+                <form action="<?php echo base_url('mipanel/slider/accion');?>" id="formSlider" method="post" enctype="multipart/form-data">
+                    <!-- DATOS DE CONDICIONES -->
+                    <input type="hidden" id="Opcion" name="Opcion" value="">
+                    <input type="hidden" id="Id" name="Id" value="">
+                    <div class="form-group has-feedback">
+                        <label for="Titulo" class="control-label">Titulo</label>
+                        <input type="text" class="form-control" id="Titulo" name="Titulo" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="Descripcion" class="control-label">Descripcion</label>
+                        <textarea class="form-control" id="Descripcion" name="Descripcion" value=""></textarea>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <div class="form-group has-feedback imagen">
+                        <label for="Imagen" class="control-label">Imagen</label>
+                        <div id="ocultaFile">
+                            <input type="file" id="File" name="File">
+                            <p class="help-block">Solo JPG 3000x3000</p>
+                        </div>
+                        <div id="showImagen"></div>
+                        <input type="hidden" id="Imagen" name="Imagen">
+
+                    </div>
+                                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary titulo"></button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+<!-- --------------------- -->
+<!-- MODAL DE CONFIRMACION -->
+<!-- --------------------- -->
+
+<!-- Modal HTML -->
+<div id="modalConfirm" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>				
+				<h4 class="modal-title">Estas Seguro ?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Se perderan todos los datos del Slide seleccionado y no habra forma de recuperar la información</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>   
