@@ -5,15 +5,18 @@ class Nosotros extends MX_Controller {
 
  	public function __construct() {
          parent::__construct();
-         $this->load->model('Slider_model');
+         $this->load->model('Nosotros_model');
     }
 
 	
-	// Carga el slider para el front
+	// Carga el Nosotros para el front
 
 	public function index(){
-	    $sliders  = $this->Slider_model->get_All();
-		$data['sliders']  = $sliders;
+	    $data['seccion'] = 'nosotros';
+	    $nosotros  = $this->Nosotros_model->get_All();
+		if(count($nosotros) > 0){
+			$data['nosotros'] = $nosotros;
+		}	
 		$this->load->view('nosotros_home_view',$data);
 
 	}

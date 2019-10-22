@@ -10,11 +10,13 @@ class Slider extends MX_Controller {
 
 	
 	// Carga el slider para el front
-
 	public function index(){
-	    $sliders  = $this->Slider_model->get_All();
-		$data['sliders']  = $sliders;
-		$this->load->view('slider_home_view',$data);
+		$data['seccion'] = 'slider';
+		$sliders  = $this->Slider_model->get_All();
+		if(count($sliders) > 0){
+			$data['sliders'] = $sliders;
+		}		
+		$this->load->view('slider_home_view', $data);
 
 	}
 
