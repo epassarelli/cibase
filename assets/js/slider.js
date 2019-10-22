@@ -183,25 +183,56 @@ function listar(base,Toast) {
 		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
       var datos = table.row($(this).parents("tr")).data();
-      // Abrimos modal de confirmacion
-      $("#modalConfirm").modal("show");
-      //Al confirmar eliminamos de la base de datos 
-      $('#confirmar').click(function (e) { 
-        // Ejecutamos la accion y la enviamos al servidor 
-        $.ajax({
-          type: "POST",
-          url: UrlBase+'mipanel/slider/deleteSlide',
-          data: { Id: datos.id, FileName: datos.imagen },
-          dataType: "json",
-          success: function (response) {
-            console.log(response)
-            if (response.success == true) {
-              $("#modalConfirm").modal("hide");
-              table.ajax.reload();
-            }
-          }//success
-        });//ajax  
-      });//confirmacion
+
+      //Configuracion de botones del alert con clase de bootstrap
+      const swalButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success btn-sm',
+          cancelButton: 'btn btn-danger btn-sm'
+        },
+        buttonsStyling: false
+      })
+
+      // Abrimos alerta de confirmacion
+      swalButtons.fire({
+        title: 'Estas Seguro ?',
+        text: "No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar esto!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          // Ejecutamos la accion y la enviamos al servidor 
+            $.ajax({
+              type: "POST",
+              url: UrlBase+'mipanel/slider/deleteSlide',
+              data: { Id: datos.id, FileName: datos.imagen },
+              dataType: "json",
+              success: function (response) {
+                console.log(response)
+                if (response.success == true) {
+                 swalButtons.fire(
+                    'Eliminado!',
+                    'Su archivo ha sido eliminado.',
+                    'success'
+                  );
+                  table.ajax.reload();
+                }
+              }//success
+            });//ajax  
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalButtons.fire(
+            'Cancelado',
+            'Tu archivo está seguro',
+            'error'
+          )
+        }
+      })
 
     });//eliminar
   }//funcion
