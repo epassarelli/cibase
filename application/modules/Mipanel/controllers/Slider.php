@@ -28,7 +28,8 @@ class Slider extends MX_Controller {
 
   // Listado del ABM de slider
   public function index(){
-    $this->data['files_js'] = array('slider.js?v='.rand());
+    $this->data['files_css'] = array('slider.css','sweetalert2.min.css');
+    $this->data['files_js'] = array('slider.js?v='.rand(),'sweetalert2.min.js');
     $this->template->load('layout_back', 'slider_abm_view', $this->data);
   }
 

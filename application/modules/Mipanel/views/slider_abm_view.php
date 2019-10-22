@@ -9,7 +9,6 @@
         <li class="active">Slider</li>
     </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -22,7 +21,7 @@
                 <div class="box-body">
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSlide">Insertar </i></button>
+                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSlide"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
                     <table id="sliderAbm" class="table table-bordered">
                         <thead>

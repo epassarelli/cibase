@@ -3,8 +3,17 @@ $(document).ready(function () {
   // Url Dinamico
     UrlBase = $('#url').val();
 
+//Configuramos las alerts
+  const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+
   // Carga de tabla
-    listar(UrlBase);
+    listar(UrlBase,Toast);
 
   // Reseteamos el form y asignamos el valor de la opcion
     $(".insertar").click(function() {
@@ -17,6 +26,8 @@ $(document).ready(function () {
       $('#Imagen').val(null) // Reiniciamos el valor del file para validacion
     });
 
+    
+
 });
 
 /////////////////////////////////////////////
@@ -24,7 +35,7 @@ $(document).ready(function () {
 ////////////////////////////////////////////
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
-function listar(base) {
+function listar(base,Toast) {
     var table = $("#sliderAbm").DataTable({
         destroy: true,
         ajax: {
@@ -34,9 +45,10 @@ function listar(base) {
         rowCallback : function( row, data ) {
           console.log(data.estado)
           if ( data.estado == "1" ) {
-            $('td:eq(4)', row).html( "<i type='button' class='fa  fa-toggle-on'></i><button type='button' class='activo btn btn-success btn-sm' id='vergaa'>Activo</button>" );
+            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(4)', row).html( "<i type='button' class='fa  fa-toggle-off'></i><button type='button' class='activo btn btn-sm' id='vergaa'>Inactivo</button>" );
+            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+
           }
         },
         columns: [
@@ -49,21 +61,21 @@ function listar(base) {
             },
             {
                 defaultContent:
-                    "<button type='button' class='editar btn btn-warning btn-sm'>Editar</button>	<button type='button' class='eliminar btn btn-danger btn-sm' data-toggle='modal' data-target='#modalEliminar' >Borrar</button>"
+                    "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
             }
         ],
         language: espanol
     });
 
-    submit(table) //Accion de Insertar o Editar
+    submit(table,Toast) //Accion de Insertar o Editar
     Edit("#sliderAbm tbody", table); //Tomar datos para la Edicion
     deleteSlide("#sliderAbm tbody", table); //Eliminar un slide
-    cambioEstado("#sliderAbm tbody", table); //Cambiar estado
+    cambioEstado("#sliderAbm tbody", table,Toast); //Cambiar estado
 
  }
 
 // Funcion de Enviar datos al servidor para insertar o editar datos
- function submit(table) {
+ function submit(table,Toast) {
     $("#formSlider").submit(function(e) {
       e.preventDefault(); // evitamos que redireccione el formulario
 
@@ -91,24 +103,17 @@ function listar(base) {
 
           if (response.success == true) {
             
-            //Mostramos mensaje
-                $("#sent")
-                .append(
-                    '<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>    Guardado ! </div>'
-                )
-                .hide()
-                .fadeIn(1000);
+            //Cerramos el modal
+              $("#modalSlide").modal("hide"); 
             //Eliminamos las clases de los errores
                 $(".form-group")
                 .removeClass("has-error has-success")
-                $('.text-danger').remove()
-            //Ocultamos el mensaje
-                setTimeout(function() {
-                $("#sent").fadeOut(1000);
-                $("div.alert.alert-success").remove();
-                //Ocultamos modal
-                $("#modalSlide").modal("hide");
-                }, 2000);
+                $('.text-danger').remove()    
+            // Mostramos el mensaje de cargado
+            Toast.fire({
+              type: 'success',
+              title: 'Slide Cargado con Exito !',
+            })
             //Reseteamos form
             me[0].reset();
             //Recargamos la tabla
@@ -146,7 +151,7 @@ function listar(base) {
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
  function Edit(body, table) {
    //Tomando desde el boton de edicion
-		$(body).on("click", "button.editar", function() {
+		$(body).on("click", "a.editar", function() {
       //Guardamos los datos que tomamos del datatable
       var datos = table.row($(this).parents("tr")).data();
       // Removemos las posibles clases de validacion que pueda tener el fomr
@@ -175,7 +180,7 @@ function listar(base) {
  // Funcion para eliminar un row
  function deleteSlide(body, table) { 
     //Tomando desde el boton de edicion
-		$(body).on("click", "button.eliminar", function() {
+		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
       var datos = table.row($(this).parents("tr")).data();
       // Abrimos modal de confirmacion
@@ -202,9 +207,9 @@ function listar(base) {
   }//funcion
 
 //Funcion para cambiar estado
- function cambioEstado(body,table) { 
+ function cambioEstado(body,table,Toast) { 
     // Mostrar un alert con el dato de la row
-    $(body).on("click", "button.activo", function () {
+    $(body).on("click", "a.activo", function () {
       var me = $(this);
       var datos = table.row($(this).parents("tr")).data();
         
@@ -220,10 +225,16 @@ function listar(base) {
                
               if(response.estado == "1"){
                 // alert('Activo');
-                me.addClass('btn-success').html('Activo');
+                Toast.fire({
+                  type: 'success',
+                  title: 'Slide Activado',
+                })
               }else{
                 // alert('inactivo');
-                me.removeClass('btn-success').html('Inactivo');
+                Toast.fire({
+                  type: 'error',
+                  title: 'Slide Desactivado',
+                })
               }
 
               table.ajax.reload();
@@ -250,6 +261,4 @@ function listar(base) {
         sNext: "Siguiente",
         sPrevious: "Anterior"
     }
- };
-
- 
+ }
