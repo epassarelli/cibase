@@ -12,8 +12,8 @@ class Servicios extends MX_Controller {
 	// Carga el Servicios para el front
 	public function index(){
 		$data['seccion'] = 'servicios';
-		//$data['servicios']  = $this->Servicios_model->get_All($estado);
-		$this->load->view('servicios_home_1_view', $data);
+		$data['servicios']  = $this->Servicios_model->get_All(1);
+		$this->load->view('servicios_home_2_view', $data);
 	}
 
 
