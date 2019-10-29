@@ -9,7 +9,14 @@ public function __construct() {
 
 public function get_All(){
     $query = $this->db->get('nosotros');
-    return $query->result();
+    return $query->row();
+}
+
+public function update($data,$id)
+{
+	$this->db->where('id',$id)
+            ->update('nosotros',$data);
+    return TRUE;
 }
 
 

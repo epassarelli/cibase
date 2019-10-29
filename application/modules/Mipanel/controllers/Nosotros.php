@@ -10,9 +10,11 @@ class Nosotros extends MX_Controller {
         redirect('auth/login');
     }
 
+    $this->load->model('nosotros/Nosotros_model');
+
     switch (ENVIRONMENT){
       case 'development':
-          $this->output->enable_profiler(TRUE);
+          $this->output->enable_profiler(FALSE);
           break;           
       case 'testing':
           $this->output->enable_profiler(TRUE);
@@ -25,22 +27,99 @@ class Nosotros extends MX_Controller {
 
   // Listado del ABM de slider 
   public function index(){      
-
-    $this->template->load('layout_back', 'nosotros_abm_view', $this->data);  
+    $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $this->data['files_js'] = array('nosotros.js?v='.rand(),'sweetalert2.min.js');
+    // $this->data['nosotros'] = $this->Nosotros_model->get_All();
+    $this->template->load('layout_back', 'nosotros_back_view', $this->data);  
   }
 
+public function listar()
+{
+     $nosotros = $this->Nosotros_model->get_All();
+      echo json_encode($nosotros);
+}
 
-  // Alta de un slider
-  public function insertar(){
+public function accion()
+{
+        
 
-    $this->template->load('layout_back', 'nosotros_form_view', $this->data);   
-  }
+      $data = array('success' => false, 'messages' => array());
+      
+      $this->form_validation->set_rules('Fileqs', 'Imagen Quienes somos', 'required');
+      $this->form_validation->set_rules('TituloQs', 'Titulo Quienes somos', 'trim|required');
+      $this->form_validation->set_rules('SubtituloQs', 'Subtitulo Quienes somos', 'trim|required');
+      $this->form_validation->set_rules('TextoQs', 'Texto Quienes somos', 'trim|required');
+
+      $this->form_validation->set_rules('Filem', 'Imagen Mision', 'required');
+      $this->form_validation->set_rules('TituloM', 'Titulo Mision', 'trim|required');
+      $this->form_validation->set_rules('SubtituloM', 'Subtitulo Mision', 'trim|required');
+      $this->form_validation->set_rules('TextoM', 'Texto Mision', 'trim|required');
+
+      $this->form_validation->set_rules('Filev', 'Imagen Vision', 'required');
+      $this->form_validation->set_rules('TituloV', 'Titulo Vision', 'trim|required');
+      $this->form_validation->set_rules('SubtituloV', 'Subtitulo Vision', 'trim|required');
+      $this->form_validation->set_rules('TextoV', 'Texto Vision', 'trim|required');
+
+      $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
-  // Editar un slider 
-  public function editar($slider_id){
+      if ($this->form_validation->run() == TRUE) {
+        
+        //Cargamos las imagenes en el servidor
+          $result1 = $this->upload('FileQs');
+          $result2 = $this->upload('FileM');
+          $result3 = $this->upload('FileV');
 
-    $this->template->load('layout_back', 'nosotros_form_view', $this->data);   
-  }
+          //Tomamos los valores
+          //Quienes somos
+          $nosotros['quienestitulo'] = $this->input->post('TituloQs');
+          $nosotros['quienessubtitulo'] = $this->input->post('SubtituloQs');
+          $nosotros['quienestexto'] = $this->input->post('TextoQs');
+          $nosotros['quienesfoto'] = (isset($result1["file_name"])) ? $result1["file_name"] : $this->input->post('Fileqs') ;
+          // Mision
+          $nosotros['nosotrostitulo'] = $this->input->post('TituloM');
+          $nosotros['nosotrossubtitulo'] = $this->input->post('SubtituloM');
+          $nosotros['nosotrostexto'] = $this->input->post('TextoM');
+          $nosotros['nosotrosfoto'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('Filem') ;
+          // Vision
+          $nosotros['visiontitulo'] = $this->input->post('TituloV');
+          $nosotros['visionsubtitulo'] = $this->input->post('SubtituloV');
+          $nosotros['visiontexto'] = $this->input->post('TextoV');
+          $nosotros['visionfoto'] = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('Filev') ;
+          // Ingresamos en la base de Datos
+          $data['success'] = $this->Nosotros_model->update($nosotros,1);
+        
+      } else {
+        foreach ($_POST as $key => $value) {
+              $data['messages'][$key] = form_error($key);
+          }
+      }
+      echo json_encode($data);
+}
+
+
+    // Preguntar configuracion de carga de imagenes 
+  function upload($input)
+    {
+      
+      $config['upload_path']          = 'assets/images/nosotros';
+      $config['allowed_types']        = 'gif|jpg|png';
+      // $config['max_size']             = 100;
+      // $config['max_width']            = 1024;
+      // $config['max_height']           = 768;
+
+      $this->upload->initialize($config);
+
+      if (!$this->upload->do_upload($input))
+      {
+              $error = array('error' => $this->upload->display_errors());
+              return $error;
+      }
+      else
+      {
+              $data = $this->upload->data();
+              return $data;
+      }
+    }
 
 }
