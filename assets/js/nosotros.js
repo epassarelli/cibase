@@ -8,6 +8,7 @@ var fileS1 = $('#FileQs'), fileS2 = $('#FileM'), fileS3 = $('#FileV'),
 	inpIS1 = $('.FileQs'), inpIS2 = $('.FileM'), inpIS3 = $('.FileV'),
 	inpIt1 = $('#FileQs'), inpIt2 = $('#FileM'), inpIt3 = $('#FileV'),
 	fileId1 = '#FileQs', fileId2 = '#FileM', fileId3 = '#FileV',
+	inptDelete1 = $('#Fileqs'), inptDelete2 = $('#Filem'), inptDelete3 = $('#Filev'),
 	UrlBase = $('#url').val();
 // Ocultamos los imputs files
     $('.file').hide()
@@ -16,9 +17,9 @@ var fileS1 = $('#FileQs'), fileS2 = $('#FileM'), fileS3 = $('#FileV'),
     fileOpen(imgS2, fileS2)
     fileOpen(imgS3, fileS3)
 // Mostramos las imagenes seleccionadas
-	filePreview(fileId1,imgS1,UrlBase,inpIS1,inpIt1);
-	filePreview(fileId2,imgS2,UrlBase,inpIS2,inpIt2);
-	filePreview(fileId3,imgS3,UrlBase,inpIS3,inpIt3);
+	filePreview(fileId1,imgS1,UrlBase,inpIS1,fileS1,UrlBase,inptDelete1);
+	filePreview(fileId2,imgS2,UrlBase,inpIS2,fileS2,UrlBase,inptDelete2);
+	filePreview(fileId3,imgS3,UrlBase,inpIS3,fileS3,UrlBase,inptDelete3);
 // Listar datos
 	get_All(UrlBase)
 // Funcion de editar la informacion
@@ -34,23 +35,39 @@ function fileOpen(idI, idF) {
 }// Fin fileOpen
 
 //Funcion para mostrar imagen seleccionada en otra de referencia
-function filePreview(input, idI, UrlBase,inpIS,inpIt) {
+function filePreview(input, idI, UrlBase,inpIS,inpIt,UrlBase,nameDelete) {
+	//Cuando cambie el valor del fichero
 	$(input).change(function () {
+		// obtener nombre del mismo
+		var fileAdd = nombre(inpIt.val())
+		//Obtenemos el nombre anterior para borrarlo en el server
+		var fileDelete = nameDelete.val()
 	    if (this.files && this.files[0]) {
 	        var reader = new FileReader();
 	        reader.onload = function (e) {
 				idI.prop('src',e.target.result).fadeIn();
-        		inpIS.val(inpIt.val())
+        		inpIS.val(fileAdd)
+        		deleteImg(UrlBase, fileDelete)
 	        }
 	        reader.readAsDataURL(this.files[0]);
 	    }else{
+        		deleteImg(UrlBase, fileDelete)
 				idI.prop('src',UrlBase+"assets/images/400x300.jpg").fadeIn();
         		inpIS.val('')
+        		// deleteImg(UrlBase, fileName)
 
 		}// fin condicional
+
 	});//cierre Change
 }// Fin filePreview
 
+//Funcion para obtener nombre del fichero
+function nombre(fic) {
+  fic = fic.split('\\');
+   return fic[fic.length-1];
+}// fin nombre
+
+//Funcion para asignar los valores a los imputs
 function get_All(UrlBase) {
 	$.ajax({  
         url: UrlBase+'mipanel/nosotros/listar',
@@ -65,6 +82,34 @@ function get_All(UrlBase) {
           }  // success
         });  //Ajax  
 }// Fin get_Alll
+
+// Funcion para borrar la imagen del directorio
+function deleteImg(UrlBase, fileName) {
+	$.ajax({  
+        url: UrlBase+'mipanel/nosotros/deleteImg',
+        method:"POST", 
+        type: "JSON", 
+        data: { FileName : fileName},
+        //respuesta del envio
+        success: function(response) {
+          //Convertimos en Json el String
+        response = JSON.parse(response)
+
+          if (response.success == true) {
+          	// Mostramos el mensaje de cargado
+            Swal.fire({
+              type: 'error',
+              title: 'Imagen Eliminada !',
+              text: 'La imagen fue eliminada del directorio del servidor.'
+            })
+          	// console.log('Imagen Eliminada')
+          }else{
+          	// console.log('No se encontro imagen')
+          }
+
+          }  // success
+        });  //Ajax  
+}// Fin deleteImg
 
 //Funcion para modificar la informacion en la base
 function editar(UrlBase) {

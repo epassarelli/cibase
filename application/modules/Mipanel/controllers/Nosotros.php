@@ -39,6 +39,27 @@ public function listar()
       echo json_encode($nosotros);
 }
 
+public function deleteImg()
+{
+    $fileName = $this->input->post('FileName');
+    $deletefile = './assets/images/nosotros/' . $fileName;
+    $directory = './assets/images/nosotros/';
+    $ficheros  = scandir($directory);
+    
+    // recorremos los ficheros a ver si existe en la carpeta
+    foreach ($ficheros as $img) {
+      if ($img === $fileName) {
+        unlink($deletefile);
+        $data['success'] = TRUE;
+        break;
+      }else{
+         $data['success'] = FALSE;
+      }
+    }
+
+    echo json_encode($data);
+}
+
 public function accion()
 {
         
