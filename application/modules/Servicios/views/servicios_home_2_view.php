@@ -1,4 +1,4 @@
-<section id="section-services" class="page-section full-screen section dark nopadding nomargin noborder ohidden" style="background-color: rgb(34, 34, 34); height: 907px;">
+<section id="servicios" class="page-section full-screen section dark nopadding nomargin noborder ohidden" style="background-color: rgb(34, 34, 34); height: 907px;">
 	<div class="vertical-middle" style="position: absolute; top: 50%; width: 100%; padding-top: 0px; padding-bottom: 0px; margin-top: -310.5px;">
 		<div class="container clearfix">
 
@@ -35,45 +35,8 @@
 				?>
 
 
-			<?php else: ?>
-
-				<div class="col_one_third">
-					<div class="feature-box fbox-plain">
-						<div class="fbox-icon">
-							<a href="#"><i class="icon-ok"></i></a>
-						</div>
-						<h3>Servicio 1</h3>
-						<p>Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.</p>
-					</div>
-				</div>
-
-				<div class="col_one_third">
-					<div class="feature-box fbox-plain">
-						<div class="fbox-icon">
-							<a href="#"><i class="icon-ok"></i></a>
-						</div>
-						<h3>Servicio 2</h3>
-						<p>Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.</p>
-					</div>
-				</div>
-
-				<div class="col_one_third col_last">
-					<div class="feature-box fbox-plain">
-						<div class="fbox-icon">
-							<a href="#"><i class="icon-ok"></i></a>
-						</div>
-						<h3>Servicio 3</h3>
-						<p>Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.</p>
-					</div>
-				</div>
-
-				<div class="clear"></div>
-
 			<?php endif; ?>	
 
-
-
-			<div class="clear"></div>
 
 		</div>
 	</div>

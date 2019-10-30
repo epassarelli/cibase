@@ -1,10 +1,10 @@
 <!-- Site Content
 ============================================= -->
-<section id="nosotros">
+<section id="nosotros" style="padding: 75px 0;">
 
     <div class="content-wrap">
 
-<div class="container clearfix" id="cabanas">
+    <div class="container clearfix" id="cabanas">
 
     <div class="heading-block center bottommargin-lg">
         <h2>Acerca de nosotros</h2>
@@ -16,7 +16,7 @@
         <div class="feature-box media-box">
             <?php if($nosotros->quienesfoto !== ''): ?>
             <div class="fbox-media">
-                <a href="#"><img src="<?php echo site_url('assets/nosotros/images') . $nosotros->quienesfoto; ?>" alt="Quienes"></a>
+                <a href="#"><img src="<?php echo site_url('assets/images/nosotros/') . $nosotros->quienesfoto; ?>" alt="Quienes"></a>
             </div>
             <?php endif; ?>
             <div class="fbox-desc">
@@ -30,7 +30,7 @@
         <div class="feature-box media-box">
             <?php if($nosotros->nosotrosfoto !== ''): ?>
             <div class="fbox-media">
-                 <a href="#"><img src="<?php echo site_url('assets/nosotros/images') . $nosotros->nosotrosfoto; ?>" alt="Mision"></a>
+                 <a href="#"><img src="<?php echo site_url('assets/images/nosotros/') . $nosotros->nosotrosfoto; ?>" alt="Mision"></a>
             </div>
             <?php endif; ?>
             <div class="fbox-desc">
@@ -44,7 +44,7 @@
         <div class="feature-box media-box">
             <?php if($nosotros->visionfoto !== ''): ?>
             <div class="fbox-media">
-               <a href="#"><img src="<?php echo site_url('assets/nosotros/images') . $nosotros->visionfoto; ?>" alt="Vision"></a>
+               <a href="#"><img src="<?php echo site_url('assets/images/nosotros/') . $nosotros->visionfoto; ?>" alt="Vision"></a>
             </div>
             <?php endif; ?>
             <div class="fbox-desc">
