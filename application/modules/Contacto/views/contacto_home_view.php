@@ -1,5 +1,5 @@
-<div style="margin-top: 150px; background: #f9f9f9; width: 100%">
-         <div class="container clearfix" id="contacto">
+<div style="padding-top: 150px; background: #f9f9f9; width: 100%" id="contacto">
+         <div class="container clearfix">
             <div class="heading-block center">
                 <h3>Contacto</h3>
             </div>
