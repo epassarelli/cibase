@@ -1,6 +1,5 @@
-$(document).ready(function () {
-    
-  // Url Dinamico
+jQuery(document).ready(function($) {
+	  // Url Dinamico
     UrlBase = $('#url').val();
 
 //Configuramos las alerts
@@ -15,18 +14,14 @@ $(document).ready(function () {
   // Carga de tabla
     listar(UrlBase,Toast);
 
-  // Reseteamos el form y asignamos el valor de la opcion
-    $(".insertar").click(function() {
-      $('.titulo').html('Insertar');   // Titulo del form   
-      $("#formSlider").trigger("reset"); // Reseteams el form
-      $("#Opcion").val("insertar"); // Asignamos la accion
-      $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
-      $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
-      $('#ocultaFile').show() // Mostramos el input file
-      $('#Imagen').val(null) // Reiniciamos el valor del file para validacion
-    });
-
-    
+ // Reseteamos el form y asignamos el valor de la opcion
+  $(".insertar").click(function() {
+	  $('.titulo').html('Insertar');   // Titulo del form   
+	  $("#formServicio").trigger("reset"); // Reseteams el form
+	  $("#Opcion").val("insertar"); // Asignamos la accion
+	  $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
+	  $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
+  });
 
 });
 
@@ -36,19 +31,19 @@ $(document).ready(function () {
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
-    var table = $("#sliderAbm").DataTable({
+    var table = $("#serviciosAbm").DataTable({
         destroy: true,
         responsive: true,
         ajax: {
-            url: base + "mipanel/slider/getSliders",
+            url: base + "mipanel/servicios/getServicios",
             type: "jsonp"
         },
         rowCallback : function( row, data ) {
           console.log(data.estado)
           if ( data.estado == "1" ) {
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
         },
@@ -56,10 +51,7 @@ function listar(base,Toast) {
             { data: "id" },
             { data: "titulo" },
             { data: "descripcion" },
-            { data: "imagen" },
-            {
-              data: "estado"
-            },
+            {data: "estado" },
             {
                 defaultContent:
                     "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
@@ -69,21 +61,16 @@ function listar(base,Toast) {
     });
 
     submit(table,Toast) //Accion de Insertar o Editar
-    Edit("#sliderAbm tbody", table); //Tomar datos para la Edicion
-    deleteSlide("#sliderAbm tbody", table); //Eliminar un slide
-    cambioEstado("#sliderAbm tbody", table,Toast); //Cambiar estado
+    Edit("#serviciosAbm tbody", table); //Tomar datos para la Edicion
+    deleteServicio("#serviciosAbm tbody", table); //Eliminar un slide
+    cambioEstado("#serviciosAbm tbody", table,Toast); //Cambiar estado
 
  }
 
 // Funcion de Enviar datos al servidor para insertar o editar datos
  function submit(table,Toast) {
-    $("#formSlider").submit(function(e) {
+    $("#formServicios").submit(function(e) {
       e.preventDefault(); // evitamos que redireccione el formulario
-
-      // Asignamos el valor a input oculto para la validacion de la imagen
-      if ($('#File').val().length > 0) {
-        $('#Imagen').val($('#File').val())
-      }
 
       // Variable del fomr
       var me = $(this);
@@ -105,7 +92,7 @@ function listar(base,Toast) {
           if (response.success == true) {
             
             //Cerramos el modal
-              $("#modalSlide").modal("hide"); 
+              $("#modalServicio").modal("hide"); 
             //Eliminamos las clases de los errores
                 $(".form-group")
                 .removeClass("has-error has-success")
@@ -113,7 +100,7 @@ function listar(base,Toast) {
             // Mostramos el mensaje de cargado
             Toast.fire({
               type: 'success',
-              title: 'Slide Cargado con Exito !',
+              title: 'Servicio Cargado con Exito !',
             })
             //Reseteamos form
             me[0].reset();
@@ -173,13 +160,12 @@ function listar(base,Toast) {
       $('#showImagen').addClass('has-error')
       .append('<img src="'+UrlBase+'assets/images/slider/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile" /> <p class="help-block editFile">'+datos.imagen+'</p>').show();
       //Abrimos el modal
-			$("#modalSlide").modal("show");
-    });//click
-    
+			$("#modalServicio").modal("show");
+    });//click 
  }//funcion
 
- // Funcion para eliminar un row
- function deleteSlide(body, table) { 
+  // Funcion para eliminar un row
+ function deleteServicio(body, table) { 
     //Tomando desde el boton de edicion
 		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
@@ -208,7 +194,7 @@ function listar(base,Toast) {
           // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
               type: "POST",
-              url: UrlBase+'mipanel/slider/deleteSlide',
+              url: UrlBase+'mipanel/servicios/deleteServicio',
               data: { Id: datos.id, FileName: datos.imagen },
               dataType: "json",
               success: function (response) {
@@ -234,11 +220,10 @@ function listar(base,Toast) {
           )
         }
       })
-
     });//eliminar
   }//funcion
 
-//Funcion para cambiar estado
+  //Funcion para cambiar estado
  function cambioEstado(body,table,Toast) { 
     // Mostrar un alert con el dato de la row
     $(body).on("click", "a.activo", function () {
@@ -248,7 +233,7 @@ function listar(base,Toast) {
          // Ejecutamos la accion y la enviamos al servidor 
          $.ajax({
           type: "POST",
-          url: UrlBase+'mipanel/slider/cambioEstado',
+          url: UrlBase+'mipanel/servicios/cambioEstado',
           data: { Estado: datos.estado, Id: datos.id },
           dataType: "json",
           success: function (response) {
@@ -259,13 +244,13 @@ function listar(base,Toast) {
                 // alert('Activo');
                 Toast.fire({
                   type: 'success',
-                  title: 'Slide Activado',
+                  title: 'Servicio Activado',
                 })
               }else{
                 // alert('inactivo');
                 Toast.fire({
                   type: 'error',
-                  title: 'Slide Desactivado',
+                  title: 'Servicio Desactivado',
                 })
               }
 
@@ -275,7 +260,7 @@ function listar(base,Toast) {
         });//ajax
     });
   }
-
+ 
  // Declaramos el idioma del Datatable
  let espanol = {
     sProcessing: "Procesando...",

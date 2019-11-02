@@ -48,7 +48,7 @@ public function deleteImg()
     
     // recorremos los ficheros a ver si existe en la carpeta
     foreach ($ficheros as $img) {
-      if ($img === $fileName) {
+      if ($img === $fileName && $img != '400x300.jpg') {
         unlink($deletefile);
         $data['success'] = TRUE;
         break;

@@ -85,8 +85,24 @@
         <ul class="sidebar-menu">
             <li class="header">Mi Menú</li>
             <li>
+                <a href="<?php echo site_url('mipanel/slider');?>">
+                    <i class="fa fa-fw fa-picture-o"></i> <span>Slider</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo site_url('mipanel/nosotros');?>">
-                    <i class="fa fa-fw fa-user"></i> <span>Nosotros</span>
+                    <i class="fa fa-fw fa-cubes"></i> <span>Nosotros</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/servicios');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Servicios</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -94,15 +110,7 @@
             </li>
             <li>
                 <a href="<?php echo site_url('mipanel/empresa');?>">
-                    <i class="fa fa-fw fa-user"></i> <span>Empresa</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/slider');?>">
-                    <i class="fa fa-fw fa-user"></i> <span>Slider</span>
+                    <i class="fa fa-fw fa-industry"></i> <span>Empresa</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -110,7 +118,7 @@
             </li>
             <li>
                 <a href="<?php echo site_url('login/logout');?>">
-                    <i class="fa fa-fw fa-user"></i> <span>Cerrar sesion</span>
+                    <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
