@@ -1,76 +1,118 @@
 <section class="content-header">
     <h1>
-        Users
-        <small>List of users</small>
+        Empresa
+        <small>Datos de la empresa</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <!-- <li><a href="#">Tables</a></li> -->
-        <li class="active">Users</li>
+        <li class="active">Empresa</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
-<div class="col-xs-12">
-<div class="box">
-<div class="box-header">
-    <h3 class="box-title"></h3>
-</div>
-<!-- /.box-header -->
-<div class="box-body">
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>IP Adress(s)</th>
-    <th>Company</th>
-    <th>Last Login</th>
-    <th>Action</th>
-</tr>
-</thead>
-<tbody>
-<?php
-    if ($users) {
-
-        foreach ($users as $t) {
-            ?>
-            <tr>
-                <td><?php echo $t->username;?></td>
-                <td><?php echo $t->email;?></td>
-                <td><?php echo $t->ip_address;?></td>
-                <td><?php echo $t->company;?></td>
-                <td><?php echo $t->last_login;?></td>
-                <td>
-                    <p>
-                        <!-- <button type="button" class="btn bg-purple margin">.btn.bg-purple</button>
-                        <button type="button" class="btn bg-navy margin">.btn.bg-navy</button> -->
-                        <a href="<?php echo base_url()?>Users/change/<?php echo $t->id;?>"><button type="button" class="btn bg-orange margin">Change Password</button></a>
-                        <a href="<?php echo base_url()?>Users/edit/<?php echo $t->id;?>"><button type="button" class="btn bg-olive margin">Edit</button></a>
-                        <a href="<?php echo base_url()?>Users/delete/<?php echo $t->id;?>"><button type="button" class="btn bg-red margin">Delete</button></a>
-                    </p>
-                </td>
-            </tr>
-<?php
-        }
-    }
-?>
-</tbody>
-</table>
-
-<p>
-    <a href="<?php echo base_url();?>Users/add"><button type="button" class="btn bg-maroon btn-flat margin">Add User</button></a>
-</p>
-
-</div>
-<!-- /.box-body -->
-</div>
-<!-- /.box -->
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                <form method="post" id="formEmpresa" action="<?php echo site_url('mipanel/empresa/accion') ?>">
+                    <div class="row">
+                    <div class="form-group has-feedback col-lg-12">
+                        <h3>Nombre</h3>
+                    </div>
+                    <div class="form-group has-feedback col-lg-6">
+                        <label for="Nombre">Razon Social</label>
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre de la empresa">
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-lg-12">
+                            <h3>Dirección</h3>
+                        </div>
+                    <div class="form-group has-feedback col-lg-3">
+                        <label for="Pais">Pais</label>
+                        <input type="text" class="form-control" id="Pais" name="Pais" placeholder="País">
+                        <!-- <select class="form-control" name="Pais">
+                          <option>Argentina</option>
+                          <option>Brasil</option>
+                          <option>Peru</option>
+                          <option>Chile</option>
+                          <option>Venezuela</option>
+                        </select> -->
+                    </div>
+                    <div class="form-group has-feedback col-lg-3">
+                        <label for="Provincia">Provincia</label>
+                        <input type="text" class="form-control" id="Provincia" name="Provincia" placeholder="Provincia">
+                        <!-- <select class="form-control" name="Provincia">
+                          <option>Buenos Aires</option>
+                          <option>Ramos Mejia</option>
+                          <option>Vicente Lopez</option>
+                          <option>Moron</option>
+                          <option>Castelar</option>
+                        </select> -->
+                    </div>
+                    <div class="form-group has-feedback col-lg-3">
+                        <label for="Localidad">Localidad</label>
+                        <input type="text" class="form-control" id="Localidad" name="Localidad" placeholder="Localidad">
+                        <!-- <select class="form-control" name="Localidad">
+                          <option>Buenos Aires</option>
+                          <option>Ramos Mejia</option>
+                          <option>Vicente Lopez</option>
+                          <option>Moron</option>
+                          <option>Castelar</option>
+                        </select> -->
+                    </div>
+                    <div class="form-group has-feedback col-lg-3">
+                        <label for="CodigoP">Codigo Postal</label>
+                        <input type="text" class="form-control" id="CodigoP" name="CodigoP" placeholder="Codigo Postal">
+                    </div>
+                    <div class="form-group has-feedback col-lg-8">
+                        <label for="Direccion">Dirección</label>
+                        <input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Calle / Av.  Casa / Dpto.">
+                    </div>
+                    <div class="form-group has-feedback col-lg-4">
+                        <label for="Coordenadas">Coordenadas</label>
+                        <input type="text" class="form-control" id="Coordenadas" name="Coordenadas" placeholder="00°00'00.0'' N    0°00'00.0''E">
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-lg-12">
+                            <h3>Contacto</h3>
+                        </div>
+                        <div class="form-group has-feedback col-lg-3">
+                            <label for="Telefono1">Telefono</label>
+                            <input type="text" class="form-control" id="Telefono1" name="Telefono1" placeholder="(011) 0000000000">
+                        </div>
+                        <div class="form-group has-feedback col-lg-3">
+                            <label for="Telefono2">Telefono Alternativo</label>
+                            <input type="text" class="form-control" id="Telefono2" placeholder="(011) 0000000000">
+                        </div>
+                        <div class="form-group has-feedback col-lg-5">
+                            <label for="Correo">Email</label>
+                            <input type="email" class="form-control" id="Correo" name="Correo" placeholder="cibase@example.com">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-lg-12">
+                            <h3>Sociales</h3>
+                        </div>
+                        <div class="form-group has-feedback col-lg-3">
+                            <label for="facebook">Facebook</label>
+                            <input type="text" class="form-control" id="Facebook" name="Facebook" placeholder="cibase">
+                        </div>
+                        <div class="form-group has-feedback col-lg-3">
+                            <label for="Instagram">Instagram</label>
+                            <input type="text" class="form-control" id="Instagram" name="Instagram" placeholder="@cibase">
+                        </div>
+                    </div>
+                     <div class="form-group col-lg-3">
+                        <button type="submit" class="btn btn-primary">Guardar Contenido</button>
+                        </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- /.content -->
