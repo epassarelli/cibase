@@ -2,8 +2,26 @@
 
 class Home extends MX_Controller {
 
-    public function index() {      
-        $this->load->view('home_view');
+  public function __construct() {
+      parent::__construct();
+        
+      switch (ENVIRONMENT){
+        case 'development':
+            $this->output->enable_profiler(TRUE);
+            break;           
+        case 'testing':
+            $this->output->enable_profiler(TRUE);
+            break;
+        case 'production':
+            $this->output->enable_profiler(FALSE);
+            break;
+        }          
+        //$this->load->model('Nosotros_model');
+    }
+
+  public function index() {      
+      $data['view'] = 'home_view';
+      $this->load->view('layout_'.$this->config->item('theme').'_view',$data);
     }
 
 }
