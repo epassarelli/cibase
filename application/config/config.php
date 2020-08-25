@@ -521,22 +521,3 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-
-
-/*
-|--------------------------------------------------------------------------
-| Configuraciones generales
-|--------------------------------------------------------------------------
-|
-|
-*/
-
-$config['theme'] = 'avada'; // avada, porto
-$config['landing'] = FALSE; // TRUE, FALSE
-$config['modulos'] = array (
-    "slider"  => array("titulo" => "Slider", "slug" => "slider", "menu" => FALSE),
-    "nosotros"  => array("titulo" => "Nosotros", "slug" => "nosotros", "menu" => TRUE),
-    "servicios" => array("titulo" => "Servicios", "slug" => "servicios", "menu" => TRUE),
-    "clientes"  => array("titulo" => "Clientes", "slug" => "clientes", "menu" => TRUE),
-    "contacto"  => array("titulo" => "Contacto", "slug" => "contacto", "menu" => TRUE)
-);
