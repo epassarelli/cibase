@@ -26,7 +26,7 @@
               # code...
               if($m['menu']){
                 $preSlug = ($this->config->item('landing')) ? '#' : site_url();
-                echo "<li><a href='" . $preSlug . '/' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
               }
           }
 
