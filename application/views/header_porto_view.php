@@ -2,13 +2,15 @@
 	<div class="header-body">
 		<div class="header-container container">
 			<div class="header-row">
+				
 				<div class="header-column">
 					<div class="header-logo">
 						<a href="index.html">
-							<img alt="Porto" width="111" height="54" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="img/logo.png">
+							<img alt="Porto" width="150" height="60" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="<?php echo site_url('assets/images/logo.png'); ?>">
 						</a>
 					</div>
 				</div>
+
 				<div class="header-column">
 					<div class="header-row">
 						<div class="header-nav header-nav-stripe">
@@ -24,48 +26,18 @@
 								
 								<nav>
 									<ul class="nav nav-pills" id="mainNav">
-										<li>
-											<a href="<?php
-														
-														echo site_url(); 
-														?>">
-												Home
-											</a>
-										</li>
 
-										<li>
-											<a href="#">
-												Nosotros
-											</a>
-										</li>
+				          <?php			          
+				          // Mientras haya módulos recorro y agrego items
+				          foreach ($this->config->item('modulos') as $m) {
+				              # code...
+				              if($m['menu']){
+				                $preSlug = ($this->config->item('landing')) ? '#' : site_url();
+				                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+				              }
+				          	}
+				          ?>
 
-										<li>
-											<a href="#">
-												Servicios
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												Productos
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												Contacto
-											</a>
-										</li>
-
-										<li class="dropdown">
-											<a class="dropdown-toggle" href="#">
-												Dropdown
-											</a>
-											<ul class="dropdown-menu">
-												<li><a href="contact-us.html">Contact Us - Basic</a></li>
-												<li><a href="contact-us-advanced.php">Contact Us - Advanced</a></li>
-											</ul>
-										</li>
 									</ul>
 								</nav>
 								

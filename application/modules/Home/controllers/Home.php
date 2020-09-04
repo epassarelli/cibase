@@ -20,7 +20,9 @@ class Home extends MX_Controller {
 	
 	// Carga el Nosotros para el front
 	public function index(){
-    $data['view'] = 'home_view';
+    $data['landing']  = $this->config->item('landing');
+    $data['modulos']  = $this->config->item('modulos');
+    $data['view']     = 'home_view';
 		$this->load->view('layout_'.$this->config->item('theme').'_view', $data);
 	}
 

@@ -11,8 +11,12 @@
       <!-- Logo
       ============================================= -->
       <div id="logo">
-          <a href="index.html" class="standard-logo" data-dark-logo="assets/images/generic-logo.png"><img src="assets/images/generic-logo.png" alt="Generic Logo"></a>
-          <a href="index.html" class="retina-logo" data-dark-logo="images/generic-logo@2x.png"><img src="images/generic-logo@2x.png" alt="Logo"></a>
+          <a href="<?php echo site_url(); ?>" class="standard-logo" data-dark-logo="<?php echo site_url('assets/images/logo.png'); ?>">
+            <img src="<?php echo site_url('assets/images/logo.png'); ?>" alt="Logo">
+          </a>
+          <a href="<?php echo site_url(); ?>" class="retina-logo" data-dark-logo="<?php echo site_url('assets/images/logo@2x.png'); ?>">
+            <img src="<?php echo site_url('assets/images/logo@2x.png'); ?>" alt="Logo">
+          </a>
       </div><!-- #logo end -->
 
       <!-- Primary Navigation
@@ -25,8 +29,8 @@
           foreach ($this->config->item('modulos') as $m) {
               # code...
               if($m['menu']){
-                $preSlug = ($this->config->item('landing')) ? '#' : site_url();
-                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+                $preSlug = ($this->config->item('landing')) ? '#' : '';
+                echo "<li><a href='" . site_url() . $preSlug . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
               }
           }
 

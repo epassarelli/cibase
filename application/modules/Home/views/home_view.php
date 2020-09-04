@@ -1,9 +1,15 @@
-<?php if($this->config->item('landing')): ?>
+<?php 
+	
+	if($landing): 
 
-<h1>LANDING PAGE del THEME <?php echo $this->config->item('theme'); ?></h1>
+		foreach ($modulos as $m) {
+			# code...
+			//echo "<h1>" . $m['titulo'] . "</h1>";
+			$modulo = $m['slug'] . '/partial';
+			echo Modules::run($modulo);
+		}
 
-<?php else: ?>
-
-<h1>Cargo la HOME del sitio con secciones</h1>
-
-<?php endif; ?>
+	else:
+		echo "<h1>Cargo la HOME del sitio con secciones</h1>";
+	endif;
+?>

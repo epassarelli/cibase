@@ -531,13 +531,38 @@ $config['proxy_ips'] = '';
 | Theme, landing, modulos activos
 */
 
-$config['theme'] 	= 'avada'; // avada, porto
+$config['theme'] 	= 'porto'; // avada, porto
 $config['landing'] 	= TRUE; // TRUE, FALSE
 $config['idiomas'] 	= ('es'); // es, en, pt, fr
 $config['modulos'] 	= array (
-    "slider"  => array("titulo" => "Slider", "slug" => "slider", "menu" => FALSE),
-    "nosotros"  => array("titulo" => "Nosotros", "slug" => "nosotros", "menu" => TRUE),
-    "servicios"  => array("titulo" => "Servicios", "slug" => "servicios", "menu" => TRUE),
-	"clientes"  => array("titulo" => "Clientes", "slug" => "clientes", "menu" => FALSE),
-	"contacto"  => array("titulo" => "Contacto", "slug" => "contacto", "menu" => FALSE),
+    "slider"    => array(
+    	"titulo" => "Slider", 
+    	"slug" => "slider", 
+    	"menu" => FALSE, 
+    	"nro" => '1'
+    ),
+    "nosotros"  => array(
+    	"titulo" => "Nosotros", 
+    	"slug" => "nosotros", 
+    	"menu" => TRUE, 
+    	"nro" => '1'
+    ),
+    "servicios" => array(
+    	"titulo" => "Servicios", 
+    	"slug" => "servicios", 
+    	"menu" => TRUE, 
+    	"nro" => '2'
+    ),
+	"clientes"  => array(
+		"titulo" => "Clientes", 
+		"slug" => "clientes", 
+		"menu" => FALSE, 
+		"nro" => '1'
+	),
+	"contacto"  => array(
+		"titulo" => "Contacto", 
+		"slug" => "contacto", 
+		"menu" => TRUE, 
+		"nro" => '1'
+	)
 );
