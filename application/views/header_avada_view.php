@@ -29,8 +29,8 @@
           foreach ($this->config->item('modulos') as $m) {
               # code...
               if($m['menu']){
-                $preSlug = ($this->config->item('landing')) ? '#' : '';
-                echo "<li><a href='" . site_url() . $preSlug . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+                $preSlug = ($this->config->item('landing')) ? '#' : site_url();
+                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
               }
           }
 

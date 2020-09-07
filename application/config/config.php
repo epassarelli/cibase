@@ -529,10 +529,12 @@ $config['proxy_ips'] = '';
 |--------------------------------------------------------------------------
 |
 | Theme, landing, modulos activos
+| 
+| 
 */
 
-$config['theme'] 	= 'porto'; // avada, porto
-$config['landing'] 	= TRUE; // TRUE, FALSE
+$config['theme'] 	= 'avada'; // avada, porto
+$config['landing'] 	= FALSE; // TRUE, FALSE
 $config['idiomas'] 	= ('es'); // es, en, pt, fr
 $config['modulos'] 	= array (
     "slider"    => array(

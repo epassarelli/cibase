@@ -21,9 +21,13 @@ class Servicios extends MX_Controller {
 	
 	// Carga el Servicios para el front
 	public function index(){
-		$data['seccion'] = 'servicios';
+		$data['seccion']    = 'servicios';
 		$data['servicios']  = $this->Servicios_model->get_All(1);
-		$this->load->view('servicios_home_2_view', $data);
+    
+    $modulos = $this->config->item('modulos');
+    
+    $data['view']       = 'servicios_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['nro'];    
+    $this->load->view('layout_'.$this->config->item('theme').'_view', $data);
 	}
 
 	// Carga el Servicios para el front
