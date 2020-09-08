@@ -52,15 +52,11 @@
 
         <?php echo $this->load->view('header_avada_view', '', FALSE); ?>
 
-        <!-- Content
-        ============================================= -->
-        <section id="content">
 
-            <div class="content-wrap">
               
                 <?php echo $this->load->view($view); ?>
 
-            </div>
+            <!-- </div> -->
 
         </section><!-- #content end -->
 

@@ -38,8 +38,12 @@ class Slider extends MX_Controller {
 		if(count($sliders) > 0){
 			$data['sliders'] = $sliders;
 		}		
-		$this->load->view('slider_home_view', $data);
+		//$this->load->view('slider_home_view', $data);
 
+
+	    $modulos = $this->config->item('modulos');
+	    $viewTheme = 'slider_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+		$this->load->view($viewTheme, $data);
 	}
 
 }

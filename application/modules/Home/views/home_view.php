@@ -10,6 +10,8 @@
 		}
 
 	else:
+		
 		echo "<h1>Cargo la HOME del sitio con secciones</h1>";
+		
 	endif;
 ?>

@@ -22,18 +22,24 @@ class Nosotros extends MX_Controller {
 	
 	// Carga el Nosotros para el front
 	public function index(){
-	    $data['seccion'] = 'nosotros';
-	    $data['nosotros']  = $this->Nosotros_model->get_All();
+    $data['seccion'] = 'nosotros';
+    $data['nosotros']  = $this->Nosotros_model->get_All();
 
-		$this->load->view('nosotros_home_view',$data);
+    $modulos = $this->config->item('modulos');
+    
+    $data['view']       = 'nosotros_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
+    $this->load->view('layout_'.$this->config->item('theme').'_view', $data);
 	}
 
 	// Carga el Nosotros para el front
 	public function partial(){
-	    $data['seccion'] = 'nosotros';
-	    $data['nosotros']  = $this->Nosotros_model->get_All();
+    $data['seccion'] = 'nosotros';
+    $data['nosotros']  = $this->Nosotros_model->get_All();
 
-		$this->load->view('nosotros_home_view',$data);
+    $modulos = $this->config->item('modulos');
+
+    $viewTheme = 'nosotros_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+    $this->load->view($viewTheme, $data);
 	}
 
 }
