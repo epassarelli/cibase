@@ -13,61 +13,25 @@ class Migration_Add_nosotros extends CI_Migration {
                                 'unsigned' => TRUE,
                                 'auto_increment' => TRUE
                         ),
-                        'quienesfoto' => array(
+                        'imagen' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),
-                        'quienestitulo' => array(
-                                'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
-                        ),
-                        'quienessubtitulo' => array(
-                                'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
-                        ),
-                        'quienestexto' => array(
-                                'type' => 'TEXT',
-                                'constraint' => '',
-                                'null' => TRUE,
-                        ),
-                        'nosotrosfoto' => array(
+                        'titulo' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),
-                        'nosotrostitulo' => array(
-                                'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
-                        ),
-                        'nosotrossubtitulo' => array(
-                                'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
-                        ),
-                        'nosotrostexto' => array(
-                                'type' => 'TEXT',
-                                'constraint' => '',
-                                'null' => TRUE,
-                        ),
-                        'visionfoto' => array(
+                        'subtitulo' => array(
                                 'type' => 'VARCHAR',
                                 'constraint' => '100',
                         ),
-                        'visiontitulo' => array(
+                        'descripcion' => array(
                                 'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
+                                'constraint' => '150'
                         ),
-                        'visionsubtitulo' => array(
-                                'type' => 'VARCHAR',
-                                'constraint' => '150',
-                                'null' => TRUE,
-                        ),
-                        'visiontexto' => array(
-                                'type' => 'TEXT',
-                                'constraint' => '',
+                        'estado' => array(
+                                'type' => 'INT',
+                                'constraint' => 1,
                                 'null' => TRUE,
                         ),
                 ));

@@ -81,19 +81,24 @@ class Install extends MX_Controller {
 
         // Insertar un registro para nosotros
         $nosotros = [
-                        'id' => 1,
-                        'quienesfoto'       => '400x300.jpg',
-                        'quienestitulo'     => 'QUIENES SOMOS',
-                        'quienessubtitulo'  => 'Bajada de quienes somos',
-                        'quienestexto'      => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
-                        'nosotrosfoto'      => '400x300.jpg',
-                        'nosotrostitulo'    => 'NUESTRA MISION',
-                        'nosotrossubtitulo' => 'Bajada de nuestra mision',
-                        'nosotrostexto'     => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
-                        'visionfoto'        => '400x300.jpg',
-                        'visiontitulo'      => 'NUESTRA VISION',
-                        'visionsubtitulo'   => 'Bajada de nuestra vision',
-                        'visiontexto'       => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500'
+                        ['id' => 1,
+                        'imagen'       => '400x300.jpg',
+                        'titulo'     => 'QUIENES SOMOS',
+                        'subtitulo'  => 'Bajada de quienes somos',
+                        'descripcion'      => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
+                        'estado' => 1 ],
+                        ['id' => 2,
+                        'imagen'       => '400x300.jpg',
+                        'titulo'    => 'NUESTRA MISION',
+                        'subtitulo' => 'Bajada de nuestra mision',
+                        'descripcion'     => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
+                        'estado' => 1],
+                        ['id' => 3,
+                        'imagen'       => '400x300.jpg',
+                        'titulo'      => 'NUESTRA VISION',
+                        'subtitulo'   => 'Bajada de nuestra vision',
+                        'descripcion'       => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
+                        'estado' => 1]
                 ];
 
         $this->Install_model->insertarNosotros($nosotros);        

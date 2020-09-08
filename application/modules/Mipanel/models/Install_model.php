@@ -23,7 +23,7 @@ class Install_model extends CI_Model {
 
     // Insertar un registro para nosotros
     public function insertarNosotros($data){
-		$this->db->insert('nosotros', $data);	
+		$this->db->insert_batch('nosotros', $data);	
     }       
 
     // Insertar los slides
