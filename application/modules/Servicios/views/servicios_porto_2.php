@@ -1,3 +1,5 @@
+<section class="section m-none" id="servicios">
+	<div class="container">
 <div class="row pt-3">
 						<div class="col-lg-4 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="300" style="animation-delay: 300ms;">
 							<div class="feature-box feature-box-style-2">
@@ -68,3 +70,7 @@
 							</div>
 						</div>
 </div>
+
+
+</div>
+</section>

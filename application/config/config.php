@@ -533,7 +533,7 @@ $config['proxy_ips'] = '';
 | 
 */
 
-$config['theme'] 	= 'avada'; // avada, porto
+$config['theme'] 	= 'porto'; // avada, porto
 $config['landing'] 	= TRUE; // TRUE, FALSE
 $config['idiomas'] 	= ('es'); // es, en, pt, fr
 $config['modulos'] 	= array (
