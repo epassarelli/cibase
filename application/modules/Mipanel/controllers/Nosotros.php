@@ -29,15 +29,15 @@ class Nosotros extends MX_Controller {
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
     $this->data['files_js'] = array('nosotros.js?v='.rand(),'sweetalert2.min.js');
-    // $this->data['nosotros'] = $this->Nosotros_model->get_All();
-    $this->template->load('layout_back', 'nosotros_back_view', $this->data);  
+    $this->template->load('layout_back', 'nosotros_abm_view', $this->data);  
   }
 
-public function listar()
-{
-     $nosotros = $this->Nosotros_model->get_All();
-      echo json_encode($nosotros);
-}
+  // Datos del ABM
+  public function getNosotros()
+  {
+    $data['data'] = $this->Nosotros_model->get_AllBackend();
+    echo json_encode($data);
+  }
 
 public function deleteImg()
 {
@@ -60,67 +60,106 @@ public function deleteImg()
     echo json_encode($data);
 }
 
-public function accion()
-{
-        
-
+ public function accion()
+  {
       $data = array('success' => false, 'messages' => array());
-      
-      $this->form_validation->set_rules('Fileqs', 'Imagen Quienes somos', 'required');
-      $this->form_validation->set_rules('TituloQs', 'Titulo Quienes somos', 'trim|required');
-      $this->form_validation->set_rules('SubtituloQs', 'Subtitulo Quienes somos', 'trim|required');
-      $this->form_validation->set_rules('TextoQs', 'Texto Quienes somos', 'trim|required');
 
-      $this->form_validation->set_rules('Filem', 'Imagen Mision', 'required');
-      $this->form_validation->set_rules('TituloM', 'Titulo Mision', 'trim|required');
-      $this->form_validation->set_rules('SubtituloM', 'Subtitulo Mision', 'trim|required');
-      $this->form_validation->set_rules('TextoM', 'Texto Mision', 'trim|required');
-
-      $this->form_validation->set_rules('Filev', 'Imagen Vision', 'required');
-      $this->form_validation->set_rules('TituloV', 'Titulo Vision', 'trim|required');
-      $this->form_validation->set_rules('SubtituloV', 'Subtitulo Vision', 'trim|required');
-      $this->form_validation->set_rules('TextoV', 'Texto Vision', 'trim|required');
-
+      $this->form_validation->set_rules('Titulo', 'Titulo', 'required');
+      $this->form_validation->set_rules('SubTitulo', 'SubTitulo', 'required');
+      $this->form_validation->set_rules('Descripcion', 'Descripcion', 'required');
+      $this->form_validation->set_rules('Imagen', 'Imagen', 'required');
       $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
-
       if ($this->form_validation->run() == TRUE) {
-        
-        //Cargamos las imagenes en el servidor
-          $result1 = $this->upload('FileQs');
-          $result2 = $this->upload('FileM');
-          $result3 = $this->upload('FileV');
-
+          
+          //Cargamos la imagen en el servidor
+          if(isset($_FILES["File"]["name"])){ $result = $this->upload();}
+          
           //Tomamos los valores
-          //Quienes somos
-          $nosotros['quienestitulo'] = $this->input->post('TituloQs');
-          $nosotros['quienessubtitulo'] = $this->input->post('SubtituloQs');
-          $nosotros['quienestexto'] = $this->input->post('TextoQs');
-          $nosotros['quienesfoto'] = (isset($result1["file_name"])) ? $result1["file_name"] : $this->input->post('Fileqs') ;
-          // Mision
-          $nosotros['nosotrostitulo'] = $this->input->post('TituloM');
-          $nosotros['nosotrossubtitulo'] = $this->input->post('SubtituloM');
-          $nosotros['nosotrostexto'] = $this->input->post('TextoM');
-          $nosotros['nosotrosfoto'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('Filem') ;
-          // Vision
-          $nosotros['visiontitulo'] = $this->input->post('TituloV');
-          $nosotros['visionsubtitulo'] = $this->input->post('SubtituloV');
-          $nosotros['visiontexto'] = $this->input->post('TextoV');
-          $nosotros['visionfoto'] = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('Filev') ;
-          // Ingresamos en la base de Datos
-          $data['success'] = $this->Nosotros_model->update($nosotros,1);
-        
+          $opcion = $this->input->post('Opcion');
+          $nosotros['id'] = $this->input->post('Id');
+          $nosotros['titulo'] = $this->input->post('Titulo');
+          $nosotros['subtitulo'] = $this->input->post('SubTitulo');
+          $nosotros['descripcion'] = $this->input->post('Descripcion');
+          $nosotros['imagen'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Imagen') ;
+          // Pasar el switch
+          switch ($opcion) {
+
+              case 'insertar':
+                  $data['success'] = $this->setNosotros($nosotros);
+              break;
+
+              case 'editar':
+                  $data['success'] = $this->updateNosotros($nosotros);
+              break;
+          }
+         
       } else {
-        foreach ($_POST as $key => $value) {
+          foreach ($_POST as $key => $value) {
               $data['messages'][$key] = form_error($key);
           }
       }
+
       echo json_encode($data);
-}
+
+  }
+
+    // Alta de un nosotros
+  public function setNosotros($data){
+    
+      $nosotros['titulo'] = $data['titulo'];
+      $nosotros['subtitulo'] = $data['subtitulo'];
+      $nosotros['descripcion'] = $data['descripcion'];
+      $nosotros['estado'] = 1;
+      $nosotros['imagen'] = $data['imagen'];
+
+
+      $this->Nosotros_model->setNosotros($nosotros);
+
+      return TRUE;
+  }
+
+  // Editar un nosotros
+  public function updateNosotros($data){
+
+      $nosotros['titulo'] = $data['titulo'];
+      $nosotros['subtitulo'] = $data['subtitulo'];
+      $nosotros['descripcion'] = $data['descripcion'];
+      $nosotros['imagen'] = $data['imagen'];
+
+      $this->Nosotros_model->updateNosotros($data['id'], $nosotros);
+
+      return TRUE;
+
+  }
+
+  //Eliminando un registro de la tabla de nosotros
+  public function deleteNosotros()
+  {
+    $id = $this->input->post('Id');
+    $fileName = $this->input->post('FileName');
+
+    $this->Nosotros_model->deleteNosotros($id);
+
+
+    $deletefile = './assets/images/nosotros/' . $fileName;
+    unlink($deletefile);
+    
+    echo json_encode(array('success' => TRUE));
+
+  }
+
+    public function cambioEstado()
+  {
+    $estado = $this->input->post('Estado');
+    $id = $this->input->post('Id');
+    $estadoNuevo = $this->Nosotros_model->cambioEstado($id,$estado);
+    echo json_encode(array('success' => TRUE,'estado' => $estadoNuevo));
+  }
 
 
     // Preguntar configuracion de carga de imagenes 
-  function upload($input)
+  function upload()
     {
       
       $config['upload_path']          = 'assets/images/nosotros';
@@ -131,7 +170,7 @@ public function accion()
 
       $this->upload->initialize($config);
 
-      if (!$this->upload->do_upload($input))
+      if (!$this->upload->do_upload('File'))
       {
               $error = array('error' => $this->upload->display_errors());
               return $error;

@@ -1,124 +1,98 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-// Url Dinamico
-	UrlBase = $('#url').val();
-//Declaramos Variables
-var fileS1 = $('#FileQs'), fileS2 = $('#FileM'), fileS3 = $('#FileV'), 
-	imgS1 = $('#imagen1F'), imgS2 = $('#imagen2F'), imgS3 = $('#imagen3F'),
-	inpIS1 = $('.FileQs'), inpIS2 = $('.FileM'), inpIS3 = $('.FileV'),
-	inpIt1 = $('#FileQs'), inpIt2 = $('#FileM'), inpIt3 = $('#FileV'),
-	fileId1 = '#FileQs', fileId2 = '#FileM', fileId3 = '#FileV',
-	inptDelete1 = $('#Fileqs'), inptDelete2 = $('#Filem'), inptDelete3 = $('#Filev'),
-	UrlBase = $('#url').val();
-// Ocultamos los imputs files
-    $('.file').hide()
-// Simulamos los open file desde las imagenes
-    fileOpen(imgS1, fileS1)
-    fileOpen(imgS2, fileS2)
-    fileOpen(imgS3, fileS3)
-// Mostramos las imagenes seleccionadas
-	filePreview(fileId1,imgS1,UrlBase,inpIS1,fileS1,UrlBase,inptDelete1);
-	filePreview(fileId2,imgS2,UrlBase,inpIS2,fileS2,UrlBase,inptDelete2);
-	filePreview(fileId3,imgS3,UrlBase,inpIS3,fileS3,UrlBase,inptDelete3);
-// Listar datos
-	get_All(UrlBase)
-// Funcion de editar la informacion
-	editar(UrlBase)
-	
+  // Url Dinamico
+    UrlBase = $('#url').val();
+
+//Configuramos las alerts
+  const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+
+  // Carga de tabla
+    listar(UrlBase,Toast);
+
+  // Reseteamos el form y asignamos el valor de la opcion
+    $(".insertar").click(function() {
+      $('.titulo').html('Insertar');   // Titulo del form   
+      $("#formNosotros").trigger("reset"); // Reseteams el form
+      $("#Opcion").val("insertar"); // Asignamos la accion
+      $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
+      $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
+      $('#ocultaFile').show() // Mostramos el input file
+      $('#Imagen').val(null) // Reiniciamos el valor del file para validacion
+    });
+
+    
+
 });
 
-// Simulando el open del file desde la imagen
-function fileOpen(idI, idF) {
-	idI.on('click', function() {
-		idF.click()
-	});//cierre de Click
-}// Fin fileOpen
+/////////////////////////////////////////////
+///////////Funciones de la tabla////////////
+////////////////////////////////////////////
 
-//Funcion para mostrar imagen seleccionada en otra de referencia
-function filePreview(input, idI, UrlBase,inpIS,inpIt,UrlBase,nameDelete) {
-	//Cuando cambie el valor del fichero
-	$(input).change(function () {
-		// obtener nombre del mismo
-		var fileAdd = nombre(inpIt.val())
-		//Obtenemos el nombre anterior para borrarlo en el server
-		var fileDelete = nameDelete.val()
-	    if (this.files && this.files[0]) {
-	        var reader = new FileReader();
-	        reader.onload = function (e) {
-				idI.prop('src',e.target.result).fadeIn();
-        		inpIS.val(fileAdd)
-        		deleteImg(UrlBase, fileDelete)
-	        }
-	        reader.readAsDataURL(this.files[0]);
-	    }else{
-        		deleteImg(UrlBase, fileDelete)
-				idI.prop('src',UrlBase+"assets/images/400x300.jpg").fadeIn();
-        		inpIS.val('')
-        		// deleteImg(UrlBase, fileName)
-
-		}// fin condicional
-
-	});//cierre Change
-}// Fin filePreview
-
-//Funcion para obtener nombre del fichero
-function nombre(fic) {
-  fic = fic.split('\\');
-   return fic[fic.length-1];
-}// fin nombre
-
-//Funcion para asignar los valores a los imputs
-function get_All(UrlBase) {
-	$.ajax({  
-        url: UrlBase+'mipanel/nosotros/listar',
-        method:"POST", 
-        type: "JSON", 
-        //respuesta del envio
-        success: function(response) {
-          //Convertimos en Json el String
-        response = JSON.parse(response)
-        	// asignamos los valores a los imputs
-        	data(UrlBase,response)
-          }  // success
-        });  //Ajax  
-}// Fin get_Alll
-
-// Funcion para borrar la imagen del directorio
-function deleteImg(UrlBase, fileName) {
-	$.ajax({  
-        url: UrlBase+'mipanel/nosotros/deleteImg',
-        method:"POST", 
-        type: "JSON", 
-        data: { FileName : fileName},
-        //respuesta del envio
-        success: function(response) {
-          //Convertimos en Json el String
-        response = JSON.parse(response)
-
-          if (response.success == true) {
-          	// Mostramos el mensaje de cargado
-            Swal.fire({
-              type: 'error',
-              title: 'Imagen Eliminada !',
-              text: 'La imagen fue eliminada del directorio del servidor.'
-            })
-          	// console.log('Imagen Eliminada')
+// Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
+function listar(base,Toast) {
+    var table = $("#nosotrosAbm").DataTable({
+        destroy: true,
+        responsive: true,
+        ajax: {
+            url: base + "mipanel/nosotros/getNosotros",
+            type: "jsonp"
+        },
+        rowCallback : function( row, data ) {
+          console.log(data.estado)
+          if ( data.estado == "1" ) {
+            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-          	// console.log('No se encontro imagen')
+            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+
           }
+        },
+        columns: [
+            { data: "id" },
+            { data: "titulo" },
+            { data: "subtitulo" },
+            { data: "descripcion" },
+            { data: "imagen" },
+            {
+              data: "estado"
+            },
+            {
+                defaultContent:
+                    "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
+            }
+        ],
+        language: espanol
+    });
 
-          }  // success
-        });  //Ajax  
-}// Fin deleteImg
+    submit(table,Toast) //Accion de Insertar o Editar
+    Edit("#nosotrosAbm tbody", table); //Tomar datos para la Edicion
+    deleteNosotros("#nosotrosAbm tbody", table); //Eliminar un slide
+    cambioEstado("#nosotrosAbm tbody", table,Toast); //Cambiar estado
 
-//Funcion para modificar la informacion en la base
-function editar(UrlBase) {
-	$('#formNosotros').submit(function(e) {
+ }
+
+// Funcion de Enviar datos al servidor para insertar o editar datos
+ function submit(table,Toast) {
+    $("#formNosotros").submit(function(e) {
       e.preventDefault(); // evitamos que redireccione el formulario
-		
-		var me = $(this);
 
-		$.ajax({  
+      // Asignamos el valor a input oculto para la validacion de la imagen
+      console.log($('#File').val().length);
+
+      if ($('#File').val().length > 0) {
+        $('#Imagen').val($('#File').val())
+      }
+
+      // Variable del fomr
+      var me = $(this);
+
+      // Envio asincrono
+      $.ajax({  
         url: me.attr("action"),
         method:"POST",  
         //ESte tipo se usa cuando se envian archivos
@@ -133,18 +107,21 @@ function editar(UrlBase) {
 
           if (response.success == true) {
             
+            //Cerramos el modal
+              $("#modalNosotros").modal("hide"); 
             //Eliminamos las clases de los errores
                 $(".form-group")
                 .removeClass("has-error has-success")
                 $('.text-danger').remove()    
             // Mostramos el mensaje de cargado
-            Swal.fire({
+            Toast.fire({
               type: 'success',
               title: 'Cargado con Exito !',
             })
-            
-            // Cargamos los datos en los inputs
-            get_All(UrlBase)
+            //Reseteamos form
+            me[0].reset();
+            //Recargamos la tabla
+            table.ajax.reload();
 
           } else {
 
@@ -170,27 +147,154 @@ function editar(UrlBase) {
               }); // Each
             }// else
           }  // success
-        });  //Ajax  
-	}); //submit
-}// Fin Editar
+        });  //Ajax   
+    });//submit
 
-//Funcion para asignar los datos a los imputs
-function data(UrlBase,response) {
-	//asignamos los valores a los imputs
-	$('#Fileqs').val(response.quienesfoto)
-	$('#TituloQs').val(response.quienestitulo)
-	$('#SubtituloQs').val(response.quienessubtitulo)
-	$('#TextoQs').val(response.quienestexto)
-	$('#Filem').val(response.nosotrosfoto)
-	$('#TituloM').val(response.nosotrostitulo)
-	$('#SubtituloM').val(response.nosotrossubtitulo)
-	$('#TextoM').val(response.nosotrostexto)
-	$('#Filev').val(response.visionfoto)
-	$('#TituloV').val(response.visiontitulo)
-	$('#SubtituloV').val(response.visionsubtitulo)
-	$('#TextoV').val(response.visiontexto)
-	//colocamos las imagenes
-	$('#imagen1F').prop('src',UrlBase+"assets/images/nosotros/"+response.quienesfoto).fadeIn();
-	$('#imagen2F').prop('src',UrlBase+"assets/images/nosotros/"+response.nosotrosfoto).fadeIn();
-	$('#imagen3F').prop('src',UrlBase+"assets/images/nosotros/"+response.visionfoto).fadeIn();
-}
+  }//funcion
+
+// Funcion para tomar los datos de la edicion y asignarlos a los imputs
+ function Edit(body, table) {
+   //Tomando desde el boton de edicion
+		$(body).on("click", "a.editar", function() {
+      //Guardamos los datos que tomamos del datatable
+      var datos = table.row($(this).parents("tr")).data();
+      // Removemos las posibles clases de validacion que pueda tener el fomr
+      $('.form-group').removeClass('has-error has-success')
+      $('.text-danger, .editFile').remove()
+			// Asignamos titulo al form y al boton
+      $('.titulo').html('Editar')
+      // Asignamos las accion que realiza el metodo del servidor
+      $("#Opcion").val("editar");
+      //Asignamos los valores de cada input para que se muestren en el form
+			var id = $("#Id").val(datos.id),
+          titulo = $("#Titulo").val(datos.titulo),
+				  subtitulo = $("#SubTitulo").val(datos.subtitulo),
+				  descripcion = $("#Descripcion").val(datos.descripcion),
+          imagen = $("#Imagen").val(datos.imagen);
+      // Ocultamos el input file en la edicion
+      $('#ocultaFile').hide();
+      // Mostramos el nombre y la imagen del slide a editar
+      $('#showImagen').addClass('has-error')
+      .append('<img src="'+UrlBase+'assets/images/nosotros/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile" /> <p class="help-block editFile">'+datos.imagen+'</p>').show();
+      //Abrimos el modal
+			$("#modalNosotros").modal("show");
+    });//click
+    
+ }//funcion
+
+ // Funcion para eliminar un row
+ function deleteNosotros(body, table) { 
+    //Tomando desde el boton de edicion
+		$(body).on("click", "a.eliminar", function() {
+      // Obtenemos los datos del row
+      var datos = table.row($(this).parents("tr")).data();
+
+      //Configuracion de botones del alert con clase de bootstrap
+      const swalButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+
+      // Abrimos alerta de confirmacion
+      swalButtons.fire({
+        title: 'Estas Seguro ?',
+        text: "No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar esto!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          // Ejecutamos la accion y la enviamos al servidor 
+            $.ajax({
+              type: "POST",
+              url: UrlBase+'mipanel/nosotros/deleteNosotros',
+              data: { Id: datos.id, FileName: datos.imagen },
+              dataType: "json",
+              success: function (response) {
+                console.log(response)
+                if (response.success == true) {
+                 swalButtons.fire(
+                    'Eliminado!',
+                    'Su archivo ha sido eliminado.',
+                    'success'
+                  );
+                  table.ajax.reload();
+                }
+              }//success
+            });//ajax  
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalButtons.fire(
+            'Cancelado',
+            'Tu archivo está seguro',
+            'error'
+          )
+        }
+      })
+
+    });//eliminar
+  }//funcion
+
+//Funcion para cambiar estado
+ function cambioEstado(body,table,Toast) { 
+    // Mostrar un alert con el dato de la row
+    $(body).on("click", "a.activo", function () {
+      var me = $(this);
+      var datos = table.row($(this).parents("tr")).data();
+        
+         // Ejecutamos la accion y la enviamos al servidor 
+         $.ajax({
+          type: "POST",
+          url: UrlBase+'mipanel/nosotros/cambioEstado',
+          data: { Estado: datos.estado, Id: datos.id },
+          dataType: "json",
+          success: function (response) {
+            console.log(response)
+            if (response.success == true) {
+               
+              if(response.estado == "1"){
+                // alert('Activo');
+                Toast.fire({
+                  type: 'success',
+                  title: 'Elemento Activado',
+                })
+              }else{
+                // alert('inactivo');
+                Toast.fire({
+                  type: 'error',
+                  title: 'Elemento Desactivado',
+                })
+              }
+
+              table.ajax.reload();
+            }
+          }//success
+        });//ajax
+    });
+  }
+
+ // Declaramos el idioma del Datatable
+ let espanol = {
+    sProcessing: "Procesando...",
+    sLengthMenu: "Mostrar _MENU_ resultados",
+    sZeroRecords: "No se encontraron resultados",
+    sEmptyTable: "Ningún dato disponible en esta tabla",
+    sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
+    sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
+    sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+    sSearch: "Buscar:",
+    sLoadingRecords: "Cargando...",
+    oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior"
+    }
+ }
