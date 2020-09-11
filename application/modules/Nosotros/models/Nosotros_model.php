@@ -8,6 +8,7 @@ public function __construct() {
 
 
 public function get_All(){
+    $this->db->where('estado', 1);
     $query = $this->db->get('nosotros');
     return $query->result();
 }
