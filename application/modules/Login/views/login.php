@@ -37,7 +37,7 @@
     <p class="login-box-msg">Iniciar sesion</p>
     <?php echo validation_errors(); ?>
     <?php echo $this->session->flashdata('message');?>
-    <?php echo form_open('Login');?>
+    <?php echo form_open('login');?>
       <div class="form-group has-feedback">
         <input type="username" class="form-control" placeholder="Username" name="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
