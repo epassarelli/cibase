@@ -1,11 +1,10 @@
 <?php 
-	
+	//var_dump($secciones);
 	if($landing): 
 
-		foreach ($modulos as $m) {
+		foreach ($secciones as $s) {
 			# code...
-			//echo "<h1>" . $m['titulo'] . "</h1>";
-			$modulo = $m['slug'] . '/partial';
+			$modulo = $s['slug'] . '/partial';
 			echo Modules::run($modulo);
 		}
 

@@ -27,10 +27,11 @@
           <?php 
           
           // Mientras haya módulos recorro y agrego items
-          foreach ($this->config->item('modulos') as $m) {
+          foreach ($secciones as $m) {
+            $preSlug = ($landing) ? '#' : site_url();
               # code...
               if($m['menu']){
-                $preSlug = ($this->config->item('landing')) ? '#' : site_url();
+                $preSlug = ($landing) ? '#' : site_url();
                 echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
               }
           }

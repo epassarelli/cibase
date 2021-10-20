@@ -17,11 +17,13 @@
 							<button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
 								<i class="fa fa-bars"></i>
 							</button>
+							<!-- Si Existen Redes sociales las listo
 							<ul class="header-social-icons social-icons hidden-xs">
 								<li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
 								<li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 								<li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
+							</ul> 
+							-->
 							<div class="header-nav-main header-nav-main-square header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
 								
 								<nav>
@@ -29,10 +31,11 @@
 
 				          <?php			          
 				          // Mientras haya módulos recorro y agrego items
-				          foreach ($this->config->item('modulos') as $m) {
+									foreach ($secciones as $m) {
+									$preSlug = ($landing) ? '#' : site_url();
 				              # code...
 				              if($m['menu']){
-				                $preSlug = ($this->config->item('landing')) ? '#' : site_url();
+												$preSlug = ($landing) ? '#' : site_url();
 				                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
 				              }
 				          	}
