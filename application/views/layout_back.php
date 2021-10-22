@@ -117,6 +117,16 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo site_url('mipanel/sitios');?>">
+                    <i class="fa fa-fw fa-clone"></i> <span>Sitios</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+
+            <li>
                 <a href="<?php echo site_url('login/logout');?>">
                     <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
                     <span class="pull-right-container">
