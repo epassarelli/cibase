@@ -160,11 +160,12 @@
 
                     <div class="form-group has-feedback imagen">
                         <label for="Logo" class="control-label">Logo</label>
-                        <div id="ocultaFile">
-                            <input type="file" id="File" name="File">
+                        <div id="ocultaFile" >
+                            <input type="file" id="File" name="File" >
                             <p class="help-block">Solo JPG 3000x3000</p>
                         </div>
-                        <div id="showImagen"></div>
+                        <div id="showImagen">
+                        </div>
                         <input type="hidden" id="Logo" name="Logo">
                     </div>                    
 
