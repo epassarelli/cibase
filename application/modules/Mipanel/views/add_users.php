@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Users
-        <small>Add User</small>
+        Usuarios
+        <small>Agregar un usuario</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Home');?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('Users');?>">Users</a></li>
-        <li class="active">Add User</li>
+        <li><a href="<?php echo site_url('mipanel/users');?>">Usuarios</a></li>
+        <li class="active">Agregar un usuario</li>
     </ol>
 </section>
 
@@ -72,6 +72,7 @@
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="<?php echo site_url('mipanel/users');?>" class="btn btn-default">Volver al listado</a>
             </div>
         <?php echo form_close(); ?>
     </div>

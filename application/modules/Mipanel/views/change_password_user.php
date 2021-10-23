@@ -36,6 +36,7 @@
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="<?php echo site_url('mipanel/users');?>" class="btn btn-default">Volver al listado</a>
             </div>
         <?php echo form_close(); ?>
     </div>

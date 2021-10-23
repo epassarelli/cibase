@@ -7,7 +7,7 @@ class Users extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->ion_auth->logged_in() OR !$this->ion_auth->is_admin()) {
+        if (!$this->ion_auth->logged_in() ) { //OR !$this->ion_auth->is_admin()) {
             redirect('login');
         }
 
@@ -16,7 +16,7 @@ class Users extends CI_Controller {
 	public function index() {
 
         $this->data['users'] = $this->ion_auth->users()->result();
-        $this->template->load('index', 'list_users', $this->data);
+        $this->template->load('layout_back', 'list_users', $this->data);
     }
 
     public function add() {
@@ -38,7 +38,7 @@ class Users extends CI_Controller {
             }
 
             $this->data['group'] = $arr;
-            $this->template->load('index', 'add_users', $this->data);
+            $this->template->load('layout_back', 'add_users', $this->data);
         }
         else {
             $additional_data = parseForm($this->input->post(), 'xx_');
@@ -74,7 +74,7 @@ class Users extends CI_Controller {
                 $this->data['t'] = $this->ion_auth->user($id)->row();
                 $this->data['group_id'] = $this->db->select('group_id')->from('users_groups')->where('user_id', $id)->get()->row()->group_id;
 
-                $this->template->load('index', 'add_users', $this->data);
+                $this->template->load('layout_back', 'add_users', $this->data);
             }
             else {
                 $data = array();
@@ -98,7 +98,7 @@ class Users extends CI_Controller {
             $this->form_validation->set_rules('db_password', 'Password', 'required|max_length[255]');
 
             if ($this->form_validation->run() === FALSE) {
-                $this->template->load('index', 'change_password_user');
+                $this->template->load('layout_back', 'change_password_user');
             }
             else {
                 $id = base64_decode($this->input->post('aWQ='));
