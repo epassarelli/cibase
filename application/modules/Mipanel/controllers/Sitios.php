@@ -7,7 +7,7 @@ class Sitios  extends MX_Controller {
   function __construct() {
     parent::__construct();
     if (!$this->ion_auth->logged_in()) {
-        redirect('auth/login');
+        redirect('login');
     }
 
     $this->load->model('sitios/Sitios_model');
@@ -118,7 +118,8 @@ public function accion()
     if ($this->form_validation->run() == TRUE) {
         
         //Cargamos la imagen en el servidor
-        if(isset($_FILES["File"]["name"])){ $result = $this->upload();}
+        if(isset($_FILES["File"]["name"]))
+            { $result = $this->upload();}
         
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
@@ -140,7 +141,7 @@ public function accion()
         $sitios['facebook'] = $this->input->post('Facebook');
         $sitios['instagram'] = $this->input->post('Instagram');
         
-        $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Logo') ;
+        $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : '' ;
        // $sitios['icon'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Icon') ;
        // $sitios['qr']   = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Qr') ;
 
@@ -186,8 +187,8 @@ public function accion()
       $sitios['facebook']    = $data['facebook'];
       $sitios['instagram']   = $data['instagram'];
       $sitios['logo']        = $data['logo'];
-      $sitios['icon']        = $data['icon'];
-      $sitios['qr']          = $data['qr'];
+      //$sitios['icon']        = $data['icon'];
+      //$sitios['qr']          = $data['qr'];
       $this->Sitios_model->setSitios($sitios);
       return TRUE;
   }
@@ -212,8 +213,8 @@ public function accion()
     $sitios['facebook']    = $data['facebook'];
     $sitios['instagram']   = $data['instagram'];
     $sitios['logo']        = $data['logo'];
-    $sitios['icon']        = $data['icon'];
-    $sitios['qr']          = $data['qr'];
+    //$sitios['icon']        = $data['icon'];
+    //$sitios['qr']          = $data['qr'];
       
     $this->Sitios_model->updateSitios($data['id'], $sitios);
 
@@ -245,7 +246,7 @@ public function accion()
   function upload()
     {
       
-      $config['upload_path']          = 'assets/images/sitios';
+      $config['upload_path']          = 'assets/uploads';
       $config['allowed_types']        = 'gif|jpg|png';
       // $config['max_size']             = 100;
       // $config['max_width']            = 1024;

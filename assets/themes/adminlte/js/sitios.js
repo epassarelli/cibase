@@ -88,8 +88,10 @@ function submit(table,Toast) {
     if ($('#File').val().length > 0) {
       $('#Logo').val($('#File').val())
     }
+    
 
-    // Variable del fomr
+    
+   // Variable del fomr
     var me = $(this);
 
     // Envio asincrono
@@ -190,9 +192,9 @@ function submit(table,Toast) {
           qr = $("#Qr").val(datos.qr);
       // Ocultamos el input file en la edicion
       $('#ocultaFile').hide();
-      // Mostramos el nombre y la imagen del slide a editar
+       // Mostramos el nombre y la imagen del slide a editar
       $('#showImagen').addClass('has-error')
-      .append('<img src="'+UrlBase+'assets/images/sitios/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile" /> <p class="help-block editFile">'+datos.imagen+'</p>').show();
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile" /> <p class="help-block editFile">'+datos.logo+'</p>').show();
       //Abrimos el modal
 			$("#modalSitios").modal("show");
     });//click
