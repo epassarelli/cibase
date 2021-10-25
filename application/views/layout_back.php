@@ -42,9 +42,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>D</span>
+        <span class="logo-mini"><b>CI</b>B</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>Demo</span>
+        <span class="logo-lg"><b>CI</b>Basic</span>
     </a>
     
     <!-- Header Navbar: style can be found in header.less -->
@@ -83,10 +83,47 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">Mi Menú</li>
+            <li class="header">Admin. Central</li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gears"></i>
+                <span>Admin. Central</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                    <a href="<?php echo site_url('mipanel/sitios');?>">
+                    <i class="fa fa-sitemap"></i> Sitios
+                </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/users');?>">
+                        <i class="fa fa-fw fa-users"></i> Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/secciones');?>">
+                        <i class="fa fa-fw fa-gears"></i> Secciones
+                    </a>
+                </li>
+              </ul>
+            </li>
+
+                      
+            <li>
+                <a href="<?php echo site_url('mipanel/empresa');?>">
+                    <i class="fa fa-fw fa-industry"></i> <span>Datos generales</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
             <li>
                 <a href="<?php echo site_url('mipanel/slider');?>">
-                    <i class="fa fa-fw fa-picture-o"></i> <span>Slider</span>
+                    <i class="fa fa-fw fa-picture-o"></i> <span>Sliders</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -94,7 +131,7 @@
             </li>
             <li>
                 <a href="<?php echo site_url('mipanel/nosotros');?>">
-                    <i class="fa fa-fw fa-cubes"></i> <span>Nosotros</span>
+                    <i class="fa fa-fw fa-users"></i> <span>Nosotros</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -108,14 +145,30 @@
                     </span>
                 </a>
             </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/empresa');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Empresa</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>E-Commerce</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                    <a href="<?php echo site_url('mipanel/carrito/dashboard');?>">
+                    <i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
+                <li><a href="<?php echo site_url('mipanel/carrito/dashboard');?>">
+                    <i class="fa fa-tag"></i> Categorias</a>
+                </li>
+                <li><a href="<?php echo site_url('mipanel/carrito/dashboard');?>">
+                    <i class="fa fa-cubes"></i> Productos</a>
+                </li>
+              </ul>
             </li>
+
+
             <li>
                 <a href="<?php echo site_url('login/logout');?>">
                     <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>

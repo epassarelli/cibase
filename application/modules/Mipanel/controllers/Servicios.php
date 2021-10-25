@@ -11,7 +11,7 @@ public function __construct()
 	parent::__construct();
 // Redireccionamos por si no esta logueado
 	if (!$this->ion_auth->logged_in()) {
-        redirect('auth/login');
+        redirect('login');
     }
 // Cargamos los modelos
 	$this->load->model('servicios/Servicios_model');

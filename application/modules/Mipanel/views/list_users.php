@@ -1,12 +1,12 @@
 <section class="content-header">
     <h1>
-        Users
-        <small>List of users</small>
+        Usuarios
+        <small>Listado de usuarios</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <!-- <li><a href="#">Tables</a></li> -->
-        <li class="active">Users</li>
+        <li class="active">Usuarios</li>
     </ol>
 </section>
 
@@ -26,8 +26,8 @@
     <th>Username</th>
     <th>Email</th>
     <th>IP Adress(s)</th>
-    <th>Company</th>
-    <th>Last Login</th>
+    <th>Compania</th>
+    <th>Ultimo Login</th>
     <th>Action</th>
 </tr>
 </thead>
@@ -47,9 +47,9 @@
                     <p>
                         <!-- <button type="button" class="btn bg-purple margin">.btn.bg-purple</button>
                         <button type="button" class="btn bg-navy margin">.btn.bg-navy</button> -->
-                        <a href="<?php echo base_url()?>Users/change/<?php echo $t->id;?>"><button type="button" class="btn bg-orange margin">Change Password</button></a>
-                        <a href="<?php echo base_url()?>Users/edit/<?php echo $t->id;?>"><button type="button" class="btn bg-olive margin">Edit</button></a>
-                        <a href="<?php echo base_url()?>Users/delete/<?php echo $t->id;?>"><button type="button" class="btn bg-red margin">Delete</button></a>
+                        <a href="<?php echo base_url()?>mipanel/users/change/<?php echo $t->id;?>"><button type="button" class="btn bg-orange margin">Cambiar Password</button></a>
+                        <a href="<?php echo base_url()?>mipanel/users/edit/<?php echo $t->id;?>"><button type="button" class="btn bg-olive margin">Editar</button></a>
+                        <a href="<?php echo base_url()?>mipanel/users/delete/<?php echo $t->id;?>"><button type="button" class="btn bg-red margin">Borrar</button></a>
                     </p>
                 </td>
             </tr>
@@ -61,7 +61,7 @@
 </table>
 
 <p>
-    <a href="<?php echo base_url();?>Users/add"><button type="button" class="btn bg-maroon btn-flat margin">Add User</button></a>
+    <a href="<?php echo base_url();?>mipanel/users/add"><button type="button" class="btn bg-maroon btn-flat margin">Agregar Usuario</button></a>
 </p>
 
 </div>
