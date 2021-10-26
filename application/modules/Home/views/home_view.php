@@ -3,9 +3,18 @@
 	if($landing): 
 
 		foreach ($secciones as $s) {
-			# code...
-			$modulo = $s['slug'] . '/partial';
-			echo Modules::run($modulo);
+			
+			# Seteo el módulo que va a cargar con su partial
+			$modulo = $s['modulo'] . '/partial';
+			
+			// Seteo los parametros que voy a pasar al Módulo en cuestion
+			$seccion_id = $s['id'];
+			$slug 	= $s['slug'];
+			$titulo = $s['titulo']; 
+			$bajada = $s['bajada'];
+			$bloque = $s['bloqueNumero'];
+
+			echo Modules::run($modulo, $seccion_id, $slug, $titulo, $bajada, $bloque);
 		}
 
 	else:

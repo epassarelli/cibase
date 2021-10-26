@@ -31,11 +31,14 @@ class Servicios extends MX_Controller {
 	}
 
 	// Carga el Servicios para el front
-	public function partial(){
-		$data['seccion'] = 'servicios';
-		$data['servicios']  = $this->Servicios_model->get_All(1);
+  public function partial($seccion_id, $slug, $titulo, $bajada, $bloque){
+    $data['slug']   = $slug;
+		$data['titulo'] = $titulo;
+    $data['bajada'] = $bajada;
+		$data['servicios']  = $this->Servicios_model->get_By($seccion_id);
+    //var_dump($data);
     $modulos = $this->config->item('modulos');
-    $viewTheme = 'servicios_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+    $viewTheme = 'servicios_' . $this->config->item('theme') . '_' . $bloque;
 		$this->load->view($viewTheme, $data);
 	}
 

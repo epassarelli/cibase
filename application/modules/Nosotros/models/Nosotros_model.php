@@ -7,7 +7,8 @@ public function __construct() {
 }  
 
 
-public function get_All(){
+public function get_By($seccion_id){
+    $this->db->where('seccion_id', $seccion_id);
     $this->db->where('estado', 1);
     $query = $this->db->get('nosotros');
     return $query->result();

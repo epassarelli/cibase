@@ -32,13 +32,15 @@ class Nosotros extends MX_Controller {
 	}
 
 	// Carga el Nosotros para el front
-	public function partial(){
-    $data['seccion'] = 'nosotros';
-    $data['nosotros']  = $this->Nosotros_model->get_All();
+  public function partial($seccion_id, $slug, $titulo, $bajada, $bloque){
+    $data['slug']   = $slug;
+    $data['titulo'] = $titulo;
+    $data['bajada'] = $bajada;
+    $data['nosotros']  = $this->Nosotros_model->get_By($seccion_id);
 
     $modulos = $this->config->item('modulos');
 
-    $viewTheme = 'nosotros_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+    $viewTheme = 'nosotros_' . $this->config->item('theme') . '_' . $bloque;
     $this->load->view($viewTheme, $data);
 	}
 

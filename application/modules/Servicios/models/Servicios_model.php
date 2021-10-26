@@ -6,6 +6,12 @@ public function __construct() {
     parent::__construct();
 }  
 
+public function get_By($seccion_id){
+    $this->db->where('seccion_id', $seccion_id);
+    $this->db->where('estado', 1);
+    $query = $this->db->get('servicios');
+    return $query->result();
+}
 
 public function get_All($estado=''){   
     if($estado !== ''){

@@ -18,6 +18,7 @@ public function getInfoSitio($url){
 
 // Retorna las secciones activas si las tiene
 public function getSeccionesActivas($sitio_id){
+    $this->db->select('se.id, se.titulo, se.bajada, se.slug, se.modulo, se.menu, se.orden, se.bloqueNumero');
     $this->db->from('secciones se');
     $this->db->join('sitios si', 'se.sitio_id = si.id');
     $this->db->where('se.sitio_id', $sitio_id);
