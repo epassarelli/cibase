@@ -53,6 +53,5 @@ public function cambioEstado($id,$estado)
 // }
 
 
-
 }
 ?>

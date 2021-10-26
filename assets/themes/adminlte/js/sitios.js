@@ -23,15 +23,81 @@ $(document).ready(function () {
       $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
       $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
       $('#ocultaFile').show() // Mostramos el input file
+      $('#ocultaFile1').show() // Mostramos el input file
+      $('#ocultaFile2').show() // Mostramos el input file
       $('#Logo').val(null) // Reiniciamos el valor del file para validacion
       $('#Icon').val(null) // Reiniciamos el valor del file para validacion
       $('#Qr').val(null) // Reiniciamos el valor del file para validacion
-
     });
 
-    
-
 });
+
+
+
+// En edicion hace click sobre la imagen la cambia
+$('#showImagen').click(function()  {
+   $('#File').click();  
+});
+
+$('#showImagen1').click(function()  {
+  $('#File1').click();  
+});
+
+$('#showImagen2').click(function()  {
+  $('#File2').click();  
+ 
+});
+
+
+$('#File').change(function() {
+ var archi = document.getElementById("File").value.split('\\');
+ var nomarchi = archi[archi.length-1] 
+ var ima = UrlBase+'assets/uploads/'+nomarchi;
+  $("#nim1").text(nomarchi);
+  readURL(this);
+});
+
+$('#File1').change(function() {
+  var archi = document.getElementById("File1").value.split('\\');
+  var nomarchi = archi[archi.length-1] 
+  var ima = UrlBase+'assets/uploads/'+nomarchi;
+   $("#nim2").text(nomarchi);
+   readURL(this);
+ });
+ 
+
+ $('#File2').change(function() {
+  var archi = document.getElementById("File2").value.split('\\');
+  var nomarchi = archi[archi.length-1] 
+  var ima = UrlBase+'assets/uploads/'+nomarchi;
+   $("#nim3").text(nomarchi);
+   readURL(this);
+ });
+ 
+
+
+function readURL(input) {
+  console.log(input.name);
+  if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
+    var reader = new FileReader(); //Leemos el contenido
+    reader.onload = function(e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
+      if (input.name === 'File') {
+          $('#im1').attr('src', e.target.result);
+      }else{
+        if (input.name === 'File1') {
+            $('#im2').attr('src', e.target.result);
+        }else{
+          $('#im3').attr('src', e.target.result);
+        }
+      } 
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+
+
+
 
 /////////////////////////////////////////////
 ///////////Funciones de la tabla////////////
@@ -89,6 +155,13 @@ function submit(table,Toast) {
       $('#Logo').val($('#File').val())
     }
     
+    if ($('#File1').val().length > 0) {
+      $('#Icon').val($('#File1').val())
+    }
+
+    if ($('#File2').val().length > 0) {
+      $('#Qr').val($('#File2').val())
+    }
 
     
    // Variable del fomr
@@ -188,18 +261,31 @@ function submit(table,Toast) {
           facebook = $("#Facebook").val(datos.facebook),
           instagram = $("#Instagram").val(datos.instagram),
           logo = $("#Logo").val(datos.logo),
-          icon = $("#Icon").val(datos.Icon),
+          icon = $("#Icon").val(datos.icon),
           qr = $("#Qr").val(datos.qr);
+
       // Ocultamos el input file en la edicion
       $('#ocultaFile').hide();
+      $('#ocultaFile1').hide();
+      $('#ocultaFile2').hide();
+
        // Mostramos el nombre y la imagen del slide a editar
       $('#showImagen').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile" /> <p class="help-block editFile">'+datos.logo+'</p>').show();
-      //Abrimos el modal
-			$("#modalSitios").modal("show");
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
+      $('#showImagen1').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.icon+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
+      $('#showImagen2').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.qr+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
+
+        //Abrimos el modal
+
+        //Abrimos el modal
+      $("#modalSitios").modal("show");
     });//click
     
+
  }//funcion
+
 
  // Funcion para eliminar un row
  function deleteSitios(body, table) { 

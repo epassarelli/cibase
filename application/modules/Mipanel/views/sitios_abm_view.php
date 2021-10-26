@@ -169,6 +169,28 @@
                         <input type="hidden" id="Logo" name="Logo">
                     </div>                    
 
+                    <div class="form-group has-feedback imagen">
+                        <label for="Icon" class="control-label">Icono</label>
+                        <div id="ocultaFile1">
+                            <input type="file" id="File1" name="File1" >
+                            <p class="help-block">Solo JPG 3000x3000</p>
+                        </div>
+                        <div id="showImagen1">
+                        </div>
+                        <input type="hidden" id="Icon" name="Icon">
+                    </div>                    
+
+                    <div class="form-group has-feedback imagen">
+                        <label for="Qr" class="control-label">Qr</label>
+                        <div id="ocultaFile2">
+                            <input type="file" id="File2" name="File2" >
+                            <p class="help-block">Solo JPG 3000x3000</p>
+                        </div>
+                        <div id="showImagen2">
+                        </div>
+                        <input type="hidden" id="Qr" name="Qr">
+                    </div>                    
+
                 
             </div>
             <div class="modal-footer">

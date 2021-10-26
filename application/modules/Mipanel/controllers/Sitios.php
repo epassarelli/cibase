@@ -42,8 +42,8 @@ class Sitios  extends MX_Controller {
 public function deleteImg()
 {
     $fileName = $this->input->post('FileName');
-    $deletefile = './assets/images/sitios/' . $fileName;
-    $directory = './assets/images/sitios/';
+    $deletefile = './assets/uploads/' . $fileName;
+    $directory = './assets/uploads/';
     $ficheros  = scandir($directory);
     
     // recorremos los ficheros a ver si existe en la carpeta
@@ -66,50 +66,50 @@ public function accion()
     $data = array('success' => false, 'messages' => array());
 
     $this->form_validation->set_rules('Nombre','Nombre', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));
+    'max_length' => '{field} no puede exceder {param} caracteres -'));
     
     $this->form_validation->set_rules('Url','Url', array('required','max_length[100]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Theme_id','Tema', array('required','numeric'),  array('required'   => '{field} es obligatorio',
-                                      'numeric' => '{field} solo acepta valores numericos'));    
+     'numeric' => '{field} solo acepta valores numericos'));    
     
     $this->form_validation->set_rules('Landing','Landing Page', array('required','numeric'),  array('required'   => '{field} es obligatorio',
-                                      'numeric' => '{field} solo acepta valores numericos'));    
+     'numeric' => '{field} solo acepta valores numericos'));    
               
     $this->form_validation->set_rules('Razonsocial','Razon Social', array('required','max_length[200]'),  array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
   
     $this->form_validation->set_rules('Direccion','Direccion',  array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
                           
     $this->form_validation->set_rules('Cpostal','Codigo Postal', array('required','max_length[10]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Localidad','Localidad', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Provincia','Provincia', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Pais','Pais', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('UrlGMap','Coordenadas de Google Maps',  array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
                   
     
     $this->form_validation->set_rules('Telefono','Telefonos',  array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Correo','Correo',array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+       'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
     $this->form_validation->set_rules('Facebook','Facebook',array('required','max_length[150]'),  array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));
+      'max_length' => '{field} no puede exceder {param} caracteres -'));
     
     $this->form_validation->set_rules('Instagram','Instagram',array('required','max_length[150]'),   array('required'   => '{field} es obligatorio',
-                                      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
                                           
        
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
@@ -119,8 +119,27 @@ public function accion()
         
         //Cargamos la imagen en el servidor
         if(isset($_FILES["File"]["name"]))
-            { $result = $this->upload();}
+            { $result = $this->upload('File');}
         
+        if(isset($_FILES["File1"]["name"]))
+            { $result2 = $this->upload('File1');}      
+            
+        if(isset($_FILES["File2"]["name"]))
+            { $result3 = $this->upload('File2');}      
+            
+
+           ///para ver respuesta en el navegador        
+           $data['f0']   = $this->input->post('Logo');
+           $data['f1']   = $this->input->post('Icon');
+           $data['f2']   = $this->input->post('Qr');
+           $data['result']   = $result;
+           $data['result2'] = $result2;
+           $data['result3'] = $result3;
+           $data['file']   = $_FILES;
+           ////// debugging
+
+
+            
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
         $sitios['id'] = $this->input->post('Id');
@@ -141,9 +160,9 @@ public function accion()
         $sitios['facebook'] = $this->input->post('Facebook');
         $sitios['instagram'] = $this->input->post('Instagram');
         
-        $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : '' ;
-       // $sitios['icon'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Icon') ;
-       // $sitios['qr']   = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Qr') ;
+        $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Logo') ;
+        $sitios['icon'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('Icon') ;
+        $sitios['qr']   = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('Qr') ;
 
 
         // Pasar el switch
@@ -187,8 +206,10 @@ public function accion()
       $sitios['facebook']    = $data['facebook'];
       $sitios['instagram']   = $data['instagram'];
       $sitios['logo']        = $data['logo'];
-      //$sitios['icon']        = $data['icon'];
-      //$sitios['qr']          = $data['qr'];
+      $sitios['icon']        = $data['icon'];
+      $sitios['qr']          = $data['qr'];
+
+
       $this->Sitios_model->setSitios($sitios);
       return TRUE;
   }
@@ -213,8 +234,8 @@ public function accion()
     $sitios['facebook']    = $data['facebook'];
     $sitios['instagram']   = $data['instagram'];
     $sitios['logo']        = $data['logo'];
-    //$sitios['icon']        = $data['icon'];
-    //$sitios['qr']          = $data['qr'];
+    $sitios['icon']        = $data['icon'];
+    $sitios['qr']          = $data['qr'];
       
     $this->Sitios_model->updateSitios($data['id'], $sitios);
 
@@ -243,7 +264,7 @@ public function accion()
 
 
     // Preguntar configuracion de carga de imagenes 
-  function upload()
+  function upload($archivo)
     {
       
       $config['upload_path']          = 'assets/uploads';
@@ -253,8 +274,10 @@ public function accion()
       // $config['max_height']           = 768;
 
       $this->upload->initialize($config);
-
-      if (!$this->upload->do_upload('File'))
+      
+      
+      //if (!$this->upload->do_upload('File'))
+      if (!$this->upload->do_upload($archivo))      
       {
               $error = array('error' => $this->upload->display_errors());
               return $error;
@@ -264,6 +287,9 @@ public function accion()
               $data = $this->upload->data();
               return $data;
       }
+
+   
+
     }
 
 }
