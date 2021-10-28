@@ -229,13 +229,12 @@ function submit(table,Toast) {
           table.ajax.reload();
 
         } else {
-
+         
           //Recorremos los mensajes y los asignamos a cada input
           $.each(response.messages, function(key, value) {
             
               //Declaramos los id
             var element = $("#" + key);
-            
             //Asignamos las clases a los inputs
             /*Seleccionamos los grupos de imputs que llevaran las clases de error */
             element.closest('div.form-group') 
@@ -248,6 +247,7 @@ function submit(table,Toast) {
 
             //Mostramos los mensajes de error
             element.after(value);
+            
  
             }); // Each
           }// else

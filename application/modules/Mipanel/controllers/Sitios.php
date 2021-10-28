@@ -189,21 +189,21 @@ public function accion()
         }
         if (!$valid_logo) {
             //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-            $data['messages']['File']  = '<p class="text-danger">Archivo no valido</p>';
+            $data['messages']['Logo']  = '<p class="text-danger">Archivo no valido</p>';
         }else {
-          $data['messages']['File']  = '';
+          $data['messages']['Logo']  = '';
         }
         if (!$valid_icon ) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['File1']  = '<p class="text-danger">Archivo no valido</p>';
+          $data['messages']['Icon']  = '<p class="text-danger">Archivo no valido</p>';
         }else{
-          $data['messages']['File1']  = '';
+          $data['messages']['Icon']  = '';
         }
         if (!$valid_qr) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['File2']  = '<p class="text-danger">Archivo no valido</p>';
+          $data['messages']['Qr']  = '<p class="text-danger">Archivo no valido</p>';
         }else{
-          $data['messages']['File2']  = '';
+          $data['messages']['Qr']  = '';
         }
 
     }
