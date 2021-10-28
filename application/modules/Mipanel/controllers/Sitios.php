@@ -11,6 +11,7 @@ class Sitios  extends MX_Controller {
     }
 
     $this->load->model('sitios/Sitios_model');
+    
 
     switch (ENVIRONMENT){
       case 'development':
@@ -71,74 +72,79 @@ public function accion()
     $this->form_validation->set_rules('Url','Url', array('required','max_length[100]'), array('required'   => '{field} es obligatorio',
      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
-    $this->form_validation->set_rules('Theme_id','Tema', array('required','numeric'),  array('required'   => '{field} es obligatorio',
-     'numeric' => '{field} solo acepta valores numericos'));    
+    $this->form_validation->set_rules('Theme_id','Tema', array('is_natural_no_zero'),  array('is_natural_no_zero'   => 
+    'Debe seleccionar un tema'));    
     
-    $this->form_validation->set_rules('Landing','Landing Page', array('required','numeric'),  array('required'   => '{field} es obligatorio',
-     'numeric' => '{field} solo acepta valores numericos'));    
-              
     $this->form_validation->set_rules('Razonsocial','Razon Social', array('required','max_length[200]'),  array('required'   => '{field} es obligatorio',
      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
   
-    $this->form_validation->set_rules('Direccion','Direccion',  array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-                          
-    $this->form_validation->set_rules('Cpostal','Codigo Postal', array('required','max_length[10]'), array('required'   => '{field} es obligatorio',
-     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
-    $this->form_validation->set_rules('Localidad','Localidad', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
-    $this->form_validation->set_rules('Provincia','Provincia', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
-    $this->form_validation->set_rules('Pais','Pais', array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
-    $this->form_validation->set_rules('UrlGMap','Coordenadas de Google Maps',  array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-                  
-    
-    $this->form_validation->set_rules('Telefono','Telefonos',  array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
     $this->form_validation->set_rules('Correo','Correo',array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
        'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
     
-    $this->form_validation->set_rules('Facebook','Facebook',array('required','max_length[150]'),  array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));
-    
-    $this->form_validation->set_rules('Instagram','Instagram',array('required','max_length[150]'),   array('required'   => '{field} es obligatorio',
-      'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-                                          
-       
+ 
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
-    if ($this->form_validation->run() == TRUE) {
-        
+                                          
         //Cargamos la imagen en el servidor
-        if(isset($_FILES["File"]["name"]))
-            { $result = $this->upload('File');}
+        $result = null;
+        $result2 = null;
+        $result3 = null;
+
+        $valid_logo = TRUE;
+//        if(isset($_FILES["File"]["name"]) and $this->input->post('Logo') != '')
+          if($_FILES["File"]["name"] !='' )
+          {     
+              $result = $this->upload('File','jpg');
+              if (isset($result['error'])) {
+                  $valid_logo = FALSE;
+              }else{
+                $valid_logo = TRUE;
+              }
+            }
+
+        $valid_icon = TRUE;
+//        if(isset($_FILES["File1"]["name"]) and $this->input->post('Icon') != '')
+          if($_FILES["File1"]["name"] !='' )           
+          { 
+              $result2 = $this->upload('File1','ico');
+              if (isset($result2['error']))  {
+                  $valid_icon = FALSE;
+              }else{
+                $valid_icon = TRUE;
+              }
+            }
+    
+        $valid_qr = TRUE;
+//        if(isset($_FILES["File2"]["name"]) and $this->input->post('Qr') != '')
+          if($_FILES["File2"]["name"] !='' )
+          { 
+              $result3 = $this->upload('File2','jpg');
+              if (isset($result3['error'])) {
+                  $valid_qr = FALSE;
+              }else{
+                $valid_qr = TRUE;
+              }
+            }
         
-        if(isset($_FILES["File1"]["name"]))
-            { $result2 = $this->upload('File1');}      
-            
-        if(isset($_FILES["File2"]["name"]))
-            { $result3 = $this->upload('File2');}      
-            
+ 
+   ///para ver respuesta en el navegador        
+   $data['f0']   = $this->input->post('Logo');
+   $data['f1']   = $this->input->post('Icon');
+   $data['f2']   = $this->input->post('Qr');
+   $data['result']   = $result;
+   $data['result2']  = $result2;
+   $data['result3']  = $result3;
+   $data['file']   = $_FILES;
+   $data['valid_logo']   = $valid_logo;
+   $data['valid_qr']     = $valid_qr;
+   $data['valid_icon']   = $valid_icon;
+   ////// debugging
 
-           ///para ver respuesta en el navegador        
-           $data['f0']   = $this->input->post('Logo');
-           $data['f1']   = $this->input->post('Icon');
-           $data['f2']   = $this->input->post('Qr');
-           $data['result']   = $result;
-           $data['result2'] = $result2;
-           $data['result3'] = $result3;
-           $data['file']   = $_FILES;
-           ////// debugging
+ 
 
 
+    if ($this->form_validation->run() == TRUE && $valid_logo && $valid_icon && $valid_qr) {
             
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
@@ -181,6 +187,25 @@ public function accion()
         foreach ($_POST as $key => $value) {
             $data['messages'][$key] = form_error($key);
         }
+        if (!$valid_logo) {
+            //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
+            $data['messages']['File']  = '<p class="text-danger">Archivo no valido</p>';
+        }else {
+          $data['messages']['File']  = '';
+        }
+        if (!$valid_icon ) {
+          //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
+          $data['messages']['File1']  = '<p class="text-danger">Archivo no valido</p>';
+        }else{
+          $data['messages']['File1']  = '';
+        }
+        if (!$valid_qr) {
+          //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
+          $data['messages']['File2']  = '<p class="text-danger">Archivo no valido</p>';
+        }else{
+          $data['messages']['File2']  = '';
+        }
+
     }
 
     echo json_encode($data);
@@ -264,17 +289,17 @@ public function accion()
 
 
     // Preguntar configuracion de carga de imagenes 
-  function upload($archivo)
+  function upload($archivo,$tipos)
     {
       
       $config['upload_path']          = 'assets/uploads';
-      $config['allowed_types']        = 'gif|jpg|png';
+      $config['allowed_types']        = $tipos ;   //'gif|jpg|png'
+    
       // $config['max_size']             = 100;
       // $config['max_width']            = 1024;
       // $config['max_height']           = 768;
 
       $this->upload->initialize($config);
-      
       
       //if (!$this->upload->do_upload('File'))
       if (!$this->upload->do_upload($archivo))      

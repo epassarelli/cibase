@@ -82,16 +82,24 @@
 
                     <div class="form-group has-feedback">
                         <label for="Theme_id" class="control-label">Tema</label>
-                        <input type="numeric" class="form-control" id="Theme_id" name="Theme_id" value="">
+                        <select id="Theme_id" name="Theme_id" class="form-control">
+                                    <option value=0>Seleccione un Tema</option>
+                                    <option value=1>Avada</option>
+                                    <option value=2>Porto</option>  
+                        </select>               
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
+                    
                     <div class="form-group has-feedback">
-                        <label for="Landing" class="control-label">Landing Page</label>
-                        <input type="numeric" class="form-control" id="Landing" name="Landing" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <input type="hidden" class="form-control" id="Landing" name="Landing" value="">
+                        <div class='text-left'>
+                            <label class="control-label">Landing Page</label>
+                            <a class='activo'><i class='fa fa-toggle-off fa-2x text-green llave_landing' id='llave_landing'></i></a>
+                        </div>
                     </div>
 
+                    
                     <div class="form-group has-feedback">
                         <label for="Razonsocial" class="control-label">Razon Social</label>
                         <input type="text" class="form-control" id="Razonsocial" name="Razonsocial" value="">
@@ -161,7 +169,8 @@
                     <div class="form-group has-feedback imagen">
                         <label for="Logo" class="control-label">Logo</label>
                         <div id="ocultaFile" >
-                            <input type="file" id="File" name="File" >
+                            <input type="file" id="File" name="File">
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <p class="help-block">Solo JPG 3000x3000</p>
                         </div>
                         <div id="showImagen">
@@ -173,7 +182,7 @@
                         <label for="Icon" class="control-label">Icono</label>
                         <div id="ocultaFile1">
                             <input type="file" id="File1" name="File1" >
-                            <p class="help-block">Solo JPG 3000x3000</p>
+                            <p class="help-block">Solo ICO</p>
                         </div>
                         <div id="showImagen1">
                         </div>

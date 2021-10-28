@@ -28,10 +28,27 @@ $(document).ready(function () {
       $('#Logo').val(null) // Reiniciamos el valor del file para validacion
       $('#Icon').val(null) // Reiniciamos el valor del file para validacion
       $('#Qr').val(null) // Reiniciamos el valor del file para validacion
+      $('#Landing').val(0) // Reiniciamos el valor del file para validacion
     });
 
 });
 
+
+
+
+//cambio estado llave landing formulario alta y edicion 
+$('#llave_landing').click(function()  {
+  var valor_llave =  $('#Landing').val();
+  if (valor_llave==0) {
+    $('#Landing').val(1);
+    $('.llave_landing').removeClass('fa-toggle-off')
+    $('.llave_landing').addClass('fa-toggle-on')
+  }else{
+    $('#Landing').val(0);
+    $('.llave_landing').removeClass('fa-toggle-on')
+    $('.llave_landing').addClass('fa-toggle-off')
+  }
+});
 
 
 // En edicion hace click sobre la imagen la cambia
@@ -50,12 +67,24 @@ $('#showImagen2').click(function()  {
 
 
 $('#File').change(function() {
- var archi = document.getElementById("File").value.split('\\');
- var nomarchi = archi[archi.length-1] 
- var ima = UrlBase+'assets/uploads/'+nomarchi;
-  $("#nim1").text(nomarchi);
-  readURL(this);
-});
+
+  ////utilizado para validad tipo de archivo seleccionado en js
+  //var fileInput = document.getElementById('File');
+  //var filePath = fileInput.value;
+  //var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+  //if(!allowedExtensions.exec(filePath)){
+  //    alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+  //    //fileInput.value = '';
+  //    return false;
+  // }
+  var archi = document.getElementById("File").value.split('\\');
+  var nomarchi = archi[archi.length-1] 
+  var ima = UrlBase+'assets/uploads/'+nomarchi;
+   $("#nim1").text(nomarchi);
+   readURL(this);
+ });
+ 
+
 
 $('#File1').change(function() {
   var archi = document.getElementById("File1").value.split('\\');
@@ -77,7 +106,6 @@ $('#File1').change(function() {
 
 
 function readURL(input) {
-  console.log(input.name);
   if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
     var reader = new FileReader(); //Leemos el contenido
     reader.onload = function(e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
@@ -102,6 +130,7 @@ function readURL(input) {
 /////////////////////////////////////////////
 ///////////Funciones de la tabla////////////
 ////////////////////////////////////////////
+
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
@@ -276,9 +305,16 @@ function submit(table,Toast) {
         .append('<img src="'+UrlBase+'assets/uploads/'+datos.icon+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
       $('#showImagen2').addClass('has-error')
         .append('<img src="'+UrlBase+'assets/uploads/'+datos.qr+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
-
-        //Abrimos el modal
-
+      
+      // dibujamos la posicion de la llave 
+      if (datos.landing==1) {
+          $('.llave_landing').removeClass('fa-toggle-off');
+          $('.llave_landing').addClass('fa-toggle-on');
+        }else{
+          $('.llave_landing').removeClass('fa-toggle-on');
+          $('.llave_landing').addClass('fa-toggle-off');
+        }
+    
         //Abrimos el modal
       $("#modalSitios").modal("show");
     });//click
