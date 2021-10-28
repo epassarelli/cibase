@@ -12,6 +12,7 @@ class Sitios  extends MX_Controller {
 
     $this->load->model('../models/Sitios_model');
     
+    
 
     switch (ENVIRONMENT){
       case 'development':
