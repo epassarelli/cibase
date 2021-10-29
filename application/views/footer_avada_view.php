@@ -68,6 +68,15 @@
                         <i class="icon-linkedin"></i>
                     </a> -->
                 </div>
+                <div>
+                    <?php if($this->session->userdata('qr') !== ''): ?>
+
+                        <img src="<?php echo site_url('assets/uploads/').$this->session->userdata('qr'); ?>" alt="QR">
+
+                    <?php endif; ?>
+
+
+                </div>
             </div>
 
         </div>

@@ -24,17 +24,19 @@ class Contacto extends MX_Controller {
     
     $modulos = $this->config->item('modulos');
     
-    $data['view']       = 'contacto_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
-    $this->load->view('layout_'.$this->config->item('theme').'_view', $data);
+    $data['view']       = 'contacto_' . $this->session->userdata('theme') . '_1';    
+    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
 
 	}
 
-	public function partial(){
-    $data['seccion'] = 'contacto';
+  public function partial($seccion_id, $slug, $titulo, $bajada, $bloque){
+    $data['slug']   = $slug;
+    $data['titulo'] = $titulo;
+    $data['bajada'] = $bajada;
 
     $modulos = $this->config->item('modulos');
     
-    $viewTheme = 'contacto_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+    $viewTheme = 'contacto_' . $this->session->userdata('theme') . '_' . $bloque;
     $this->load->view($viewTheme, $data);
 	}
 

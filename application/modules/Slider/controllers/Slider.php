@@ -32,17 +32,18 @@ class Slider extends MX_Controller {
 	}
 
 	// Carga el slider para el front
-	public function partial(){
-		$data['seccion'] = 'slider';
+  public function partial($seccion_id, $slug, $titulo, $bajada, $bloque){
+		$data['seccion'] = $titulo;
 		$sliders  = $this->Slider_model->get_All();
 		if(count($sliders) > 0){
 			$data['sliders'] = $sliders;
+			//var_dump($sliders);
 		}		
 		//$this->load->view('slider_home_view', $data);
 
 
-	    $modulos = $this->config->item('modulos');
-	    $viewTheme = 'slider_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];
+	    // $modulos = $this->config->item('modulos');
+	    $viewTheme = 'slider_' . $this->session->userdata('theme') . '_' . $bloque;
 		$this->load->view($viewTheme, $data);
 	}
 
