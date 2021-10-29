@@ -27,8 +27,8 @@ class Nosotros extends MX_Controller {
 
     $modulos = $this->config->item('modulos');
     
-    $data['view']       = 'nosotros_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
-    $this->load->view('layout_'.$this->config->item('theme').'_view', $data);
+    $data['view']       = 'nosotros_' . $this->session->userdata('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
+    $this->load->view('layout_'. $this->session->userdata('theme').'_view', $data);
 	}
 
 	// Carga el Nosotros para el front
@@ -40,7 +40,7 @@ class Nosotros extends MX_Controller {
 
     $modulos = $this->config->item('modulos');
 
-    $viewTheme = 'nosotros_' . $this->config->item('theme') . '_' . $bloque;
+    $viewTheme = 'nosotros_' . $this->session->userdata('theme') . '_' . $bloque;
     $this->load->view($viewTheme, $data);
 	}
 

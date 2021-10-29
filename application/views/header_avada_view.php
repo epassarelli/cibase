@@ -12,12 +12,18 @@
       <!-- Logo
       ============================================= -->
       <div id="logo">
+          
           <a href="<?php echo site_url(); ?>" class="standard-logo" data-dark-logo="<?php echo site_url('assets/images/logo.png'); ?>">
-            <img src="<?php echo site_url('assets/images/logo.png'); ?>" alt="Logo">
+              <?php if($this->session->userdata('logo') !== ''): ?>
+                <img src="<?php echo site_url('assets/uploads/').$this->session->userdata('logo'); ?>" alt="Logo">
+              <?php else: ?>
+                <img src="<?php echo site_url('assets/images/logo.png'); ?>" alt="Logo">
+              <?php endif; ?>           
           </a>
-          <a href="<?php echo site_url(); ?>" class="retina-logo" data-dark-logo="<?php echo site_url('assets/images/logo@2x.png'); ?>">
+
+<!--           <a href="<?php echo site_url(); ?>" class="retina-logo" data-dark-logo="<?php echo site_url('assets/images/logo@2x.png'); ?>">
             <img src="<?php echo site_url('assets/images/logo@2x.png'); ?>" alt="Logo">
-          </a>
+          </a> -->
       </div><!-- #logo end -->
 
       <!-- Primary Navigation

@@ -23,6 +23,7 @@ public function getSeccionesActivas($sitio_id){
     $this->db->join('sitios si', 'se.sitio_id = si.id');
     $this->db->where('se.sitio_id', $sitio_id);
     $this->db->where('se.estado', 1);
+    $this->db->order_by('se.orden', 'ASC');
     
     $query = $this->db->get();
     return $query->result_array();

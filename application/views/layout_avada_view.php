@@ -34,12 +34,17 @@
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/include/rs-plugin/css/settings.css" media="screen" />
 
-    <link rel="icon" type="image/png" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/images/favicon.png" />
+      <?php if($this->session->userdata('icon') !== ''): ?>
+        <link rel="icon" type="image/png" href="<?php echo site_url('assets/uploads/'.$this->session->userdata('icon')); ?>" />
+      <?php else: ?>
+        <link rel="icon" type="image/png" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/images/favicon.png" />
+      <?php endif; ?> 
+    
  
 
     <!-- Document Title
     ============================================= -->
-    <title>Producto Base</title>
+    <title><?php echo $this->session->userdata('nombre'); ?></title>
 
   
 </head>

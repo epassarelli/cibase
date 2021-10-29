@@ -26,8 +26,8 @@ class Servicios extends MX_Controller {
     
     $modulos = $this->config->item('modulos');
     
-    $data['view']       = 'servicios_' . $this->config->item('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
-    $this->load->view('layout_'.$this->config->item('theme').'_view', $data);
+    $data['view']       = 'servicios_' . $this->session->userdata('theme') . '_' . $modulos[$data['seccion']]['themeNumero'];    
+    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
 	}
 
 	// Carga el Servicios para el front
@@ -38,7 +38,7 @@ class Servicios extends MX_Controller {
 		$data['servicios']  = $this->Servicios_model->get_By($seccion_id);
     //var_dump($data);
     $modulos = $this->config->item('modulos');
-    $viewTheme = 'servicios_' . $this->config->item('theme') . '_' . $bloque;
+    $viewTheme = 'servicios_' . $this->session->userdata('theme') . '_' . $bloque;
 		$this->load->view($viewTheme, $data);
 	}
 
