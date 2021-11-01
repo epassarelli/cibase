@@ -29,8 +29,8 @@
                 <th>Sitio</th>
                 <th>Titulo</th>
                 <th>Modulo</th>
-                <th></th>
-                <th></th>
+                <th>Activo</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -61,15 +61,32 @@
 
             <div class="modal-body">
                 <div id="sent" class="col-3"></div>
-                <form action="<?php echo base_url('mipanel/nosotros/accion');?>" id="formSecciones" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('mipanel/secciones/accion');?>" id="formSecciones" method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                     <input type="hidden" id="Opcion" name="Opcion" value="">
                     <input type="hidden" id="Id" name="Id" value="">
 
                     <div class="form-group has-feedback">
                         <label for="Modulo" class="control-label">Modulo</label>
-                        <?php $attrModulo = array('class'=>'form-control'); ?>
-                        <?php echo form_dropdown('Modulo', $modulos,'',$attrModulo); ?>
+                        <?php //$attrModulo = array('class'=>'form-control'); ?>
+                        <?php //echo form_dropdown('Modulo', $modulos,'',$attrModulo); ?>
+                        <select name="Modulo" id="Modulo" class="form-control">
+                                    <option value="nosotros" selected>Nosotros</option>
+                                    <option value="servicios" >Servicios</option>
+                        </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="Sitio_id" class="control-label">Sitio</label>
+                        <select name="Sitio_id" id="Sitio_id" class="form-control" > <!-- onchange="llenar_bloque()"-->
+                                 <?php 
+                                    echo '<option value="0">Seleccione un sitio</option>'; 
+                                    foreach ($sitios as $registro) {
+                                       echo '<option value="' .$registro->id. '">' . $registro->url . '  </option>';  
+                                    }
+                                  ?> 
+                        </select>               
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
@@ -89,25 +106,29 @@
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
-
                     <div class="form-group has-feedback">
-                        <label for="Menu" class="control-label">Menu</label>
-                        <input type="text" class="form-control" id="Menu" name="Menu" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <input type="hidden" class="form-control" id="Menu" name="Menu" value="">
+                        <div class='text-left'>
+                            <label class="control-label">Menu</label>
+                            <a class='activo'><i class='fa fa-toggle-off fa-2x text-green llave_menu' id='llave_menu'></i></a>
+                        </div>
                     </div>
+
+
                     <div class="form-group has-feedback">
                         <label for="Orden" class="control-label">Orden</label>
                         <input type="text" class="form-control" id="Orden" name="Orden" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group has-feedback">
+
+                    
+                 <!--   <div class="form-group has-feedback">
                         <label for="Bloque" class="control-label">Bloque</label>
-                        <input type="text" class="form-control" id="Bloque" name="Bloque" value="">
+                        <select name="Bloque" id="Bloque" class="form-control">
+                                <option value="0">Seleccione un Bloque</option>'; 
+                        </select>               
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>                    
-
-
-
+                    </div> -->
 
                                 
             </div>
