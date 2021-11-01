@@ -14,7 +14,8 @@ public function get_All(){
 }
 
 public function get_AllBackend(){
-    $this->db->select('se.id, si.nombre as sitio, se.titulo, se.modulo, se.estado')
+    $this->db->select('se.id, si.nombre as sitio, se.titulo, se.modulo, se.estado, se.sitio_id, se.bajada, se.slug, se.menu,
+                        se.orden, se.bloquenumero')
             ->from('secciones se')
             ->join('sitios si','se.sitio_id=si.id');
 

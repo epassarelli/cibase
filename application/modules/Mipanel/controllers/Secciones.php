@@ -11,6 +11,8 @@ class Secciones extends MX_Controller {
     }
 
     $this->load->model('Secciones_model');
+    $this->load->model('Sitios_model');
+    
 
     switch (ENVIRONMENT){
       case 'development':
@@ -30,6 +32,7 @@ class Secciones extends MX_Controller {
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
     $this->data['files_js'] = array('secciones.js?v='.rand(),'sweetalert2.min.js');
     $this->data['modulos'] = array('Nosotros', 'Servicios');
+    $this->data['sitios'] = $this->Sitios_model->get_AllBackend();
     $this->template->load('layout_back', 'secciones_abm_view', $this->data);  
   }
 
@@ -65,10 +68,28 @@ class Secciones extends MX_Controller {
   {
       $data = array('success' => false, 'messages' => array());
 
-      $this->form_validation->set_rules('Titulo', 'Titulo', 'required');
-      $this->form_validation->set_rules('SubTitulo', 'SubTitulo', 'required');
-      $this->form_validation->set_rules('Descripcion', 'Descripcion', 'required');
-      $this->form_validation->set_rules('Imagen', 'Imagen', 'required');
+      $this->form_validation->set_rules('Modulo','Modulo', array('required','max_length[45]'), array('required'   => '{field} es obligatorio',
+      'max_length' => '{field} no puede exceder {param} caracteres -'));
+      
+      $this->form_validation->set_rules('Sitio_id','Sitio', array('required'), 
+              array('required'   => '{field} es obligatorio -'));                                      
+      
+      $this->form_validation->set_rules('Titulo','Titulo', array('required','max_length[30]'),  
+            array('required'   => '{field} es obligatorio', 'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+    
+      $this->form_validation->set_rules('Slug','Slug',array('required','max_length[30]'), array('required'   => '{field} es obligatorio',
+         'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+      
+      $this->form_validation->set_rules('Bajada','Bajada',array('required','max_length[250]'), array('required'   => '{field} es obligatorio',
+         'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
+  
+      $this->form_validation->set_rules('Orden','Orden', array('is_natural_no_zero'),  array('is_natural_no_zero'   => 
+         'Debe asignar un orden'));    
+
+      $this->form_validation->set_rules('Bloque','Bloque', array('is_natural_no_zero'),  array('is_natural_no_zero'   => 
+         'Debe asignar unbloque'));    
+      
+   
       $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
       if ($this->form_validation->run() == TRUE) {
@@ -79,10 +100,22 @@ class Secciones extends MX_Controller {
           //Tomamos los valores
           $opcion = $this->input->post('Opcion');
           $seccion['id'] = $this->input->post('Id');
+          $seccion['sitio_id'] = $this->input->post('Sitio_id');
           $seccion['titulo'] = $this->input->post('Titulo');
-          $seccion['subtitulo'] = $this->input->post('SubTitulo');
-          $seccion['descripcion'] = $this->input->post('Descripcion');
-          $seccion['imagen'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Imagen') ;
+          $seccion['bajada'] = $this->input->post('Bajada');
+          $seccion['slug'] = $this->input->post('Slug');
+          $seccion['menu'] = $this->input->post('Menu');
+          $seccion['orden'] = $this->input->post('Orden');
+          $seccion['bloquenumero'] = 1; //$this->input->post('Bloque');
+          $seccion['modulo'] = $this->input->post('Modulo');
+          
+          $data['datos'] = $seccion;
+          $data['opcion'] = $opcion;
+
+
+
+
+
           // Pasar el switch
           switch ($opcion) {
 
@@ -108,11 +141,14 @@ class Secciones extends MX_Controller {
     // Alta de un nosotros
   public function setSecciones($data){
     
-      $seccion['titulo'] = $data['titulo'];
-      $seccion['subtitulo'] = $data['subtitulo'];
-      $seccion['descripcion'] = $data['descripcion'];
-      $seccion['estado'] = 1;
-      $seccion['imagen'] = $data['imagen'];
+      $seccion['sitio_id'] = $data['sitio_id'];
+      $seccion['titulo']   = $data['titulo'];
+      $seccion['bajada']   = $data['bajada'];
+      $seccion['slug']     = $data['slug'];
+      $seccion['menu']     = $data['menu'];
+      $seccion['orden']    = $data['orden'];
+      $seccion['bloquenumero'] = $data['bloquenumero'];
+      $seccion['modulo']   = $data['modulo'];
 
 
       $this->Secciones_model->setSecciones($seccion);
@@ -123,10 +159,14 @@ class Secciones extends MX_Controller {
   // Editar un seccion
   public function updateSecciones($data){
 
-      $seccion['titulo'] = $data['titulo'];
-      $seccion['subtitulo'] = $data['subtitulo'];
-      $seccion['descripcion'] = $data['descripcion'];
-      $seccion['imagen'] = $data['imagen'];
+    $seccion['sitio_id'] = $data['sitio_id'];
+    $seccion['titulo']   = $data['titulo'];
+    $seccion['bajada']   = $data['bajada'];
+    $seccion['slug']     = $data['slug'];
+    $seccion['menu']     = $data['menu'];
+    $seccion['orden']    = $data['orden'];
+    $seccion['bloquenumero'] = $data['bloquenumero'];
+    $seccion['modulo']   = $data['modulo'];
 
       $this->Secciones_model->updateSecciones($data['id'], $seccion);
 
@@ -140,11 +180,11 @@ class Secciones extends MX_Controller {
     $id = $this->input->post('Id');
     $fileName = $this->input->post('FileName');
 
-    $this->Nosotros_model->deleteNosotros($id);
+    $this->Secciones_model->deleteSecciones($id);
 
 
-    $deletefile = './assets/images/nosotros/' . $fileName;
-    unlink($deletefile);
+   // $deletefile = './assets/images/secciones/' . $fileName;
+   // unlink($deletefile);
     
     echo json_encode(array('success' => TRUE));
 
@@ -154,7 +194,7 @@ class Secciones extends MX_Controller {
   {
     $estado = $this->input->post('Estado');
     $id = $this->input->post('Id');
-    $estadoNuevo = $this->Nosotros_model->cambioEstado($id,$estado);
+    $estadoNuevo = $this->Secciones_model->cambioEstado($id,$estado);
     echo json_encode(array('success' => TRUE,'estado' => $estadoNuevo));
   }
 

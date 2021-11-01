@@ -10,7 +10,8 @@ class Sitios  extends MX_Controller {
         redirect('login');
     }
 
-    $this->load->model('sitios/Sitios_model');
+    $this->load->model('../models/Sitios_model');
+    
     
 
     switch (ENVIRONMENT){
