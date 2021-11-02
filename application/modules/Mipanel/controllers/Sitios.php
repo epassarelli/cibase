@@ -96,7 +96,7 @@ public function accion()
 //        if(isset($_FILES["File"]["name"]) and $this->input->post('Logo') != '')
           if($_FILES["File"]["name"] !='' )
           {     
-              $result = $this->upload('File','jpg');
+              $result = $this->upload('File','jpg|png');
               if (isset($result['error'])) {
                   $valid_logo = FALSE;
               }else{
@@ -108,7 +108,7 @@ public function accion()
 //        if(isset($_FILES["File1"]["name"]) and $this->input->post('Icon') != '')
           if($_FILES["File1"]["name"] !='' )           
           { 
-              $result2 = $this->upload('File1','ico');
+              $result2 = $this->upload('File1','ico|svg');
               if (isset($result2['error']))  {
                   $valid_icon = FALSE;
               }else{
@@ -120,7 +120,7 @@ public function accion()
 //        if(isset($_FILES["File2"]["name"]) and $this->input->post('Qr') != '')
           if($_FILES["File2"]["name"] !='' )
           { 
-              $result3 = $this->upload('File2','jpg');
+              $result3 = $this->upload('File2','jpg|png');
               if (isset($result3['error'])) {
                   $valid_qr = FALSE;
               }else{
