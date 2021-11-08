@@ -29,5 +29,34 @@ public function getSeccionesActivas($sitio_id){
     return $query->result_array();
 }
 
-
+// Retorna las secciones activas si las tiene
+public function getSeccionesBy($key, $value){
+    //$this->db->select('seccion_id, titulo, bajada, slug, modulo, menu, orden, bloqueNumero');
+    $this->db->from('secciones');
+    $this->db->where($key, $value);
+    $this->db->where('estado', 1);
+    
+    $query = $this->db->get();
+    return $query->result_array();
+}
+// Retorna las secciones activas si las tiene
+public function getBloquesBy($key, $value){
+    //$this->db->select('seccion_id, titulo, bajada, slug, modulo, menu, orden, bloqueNumero');
+    $this->db->from('bloques');
+    $this->db->where($key, $value);
+    $this->db->where('estado', 1);
+    
+    $query = $this->db->get();
+    return $query->result_array();
+}
+// Retorna las secciones activas si las tiene
+public function getComponentesBy($key, $value){
+    //$this->db->select('seccion_id, titulo, bajada, slug, modulo, menu, orden, bloqueNumero');
+    $this->db->from('componentes');
+    $this->db->where($key, $value);
+    $this->db->where('estado', 1);
+    
+    $query = $this->db->get();
+    return $query->result_array();
+}
 }
