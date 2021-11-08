@@ -1,4 +1,11 @@
 <?php 
+	// De ahora en mas en la pagina debo recorrer Bloques
+	// 
+	// Respeco al MENU
+	// SI es landing pongo los bloques
+	// SINO pongo las secciones
+
+
 	//var_dump($secciones);
 	if($landing): 
 

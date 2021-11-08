@@ -38,7 +38,7 @@ class Home extends MX_Controller {
         if($data['sitio']){
             
             // Traigo las secciones del sitio
-            $data['secciones'] = $this->Home_model->getSeccionesActivas($data['sitio']->id);
+            $data['secciones'] = $this->Home_model->getSeccionesActivas($data['sitio']->sitio_id);
             $data['landing']    = True;
 
             // Guardo todos los datos del sitio en session
