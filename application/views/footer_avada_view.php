@@ -12,13 +12,13 @@
                 <div class="copyrights-menu copyright-links clearfix">
                 <?php                     
                     // Mientras haya módulos recorro y agrego items
-                    foreach ($secciones as $m) {
-                        $preSlug = ($landing) ? '#' : site_url();
+                    foreach ($this->session->userdata('items') as $m) {
+                        $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
                         # code...
-                        if($m['menu']){
-                            $preSlug = ($landing) ? '#' : site_url();
-                            echo "<a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a>/";
-                        }
+                        //if($m['menu']){
+                            //$preSlug = ($landing) ? '#' : site_url();
+                        echo "<a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a>/";
+                        //}
                     }
                 ?> 
                 

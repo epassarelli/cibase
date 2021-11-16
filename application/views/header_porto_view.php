@@ -29,17 +29,18 @@
 								<nav>
 									<ul class="nav nav-pills" id="mainNav">
 
-				          <?php			          
-				          // Mientras haya módulos recorro y agrego items
-									foreach ($secciones as $m) {
-									$preSlug = ($landing) ? '#' : site_url();
-				              # code...
-				              if($m['menu']){
-												$preSlug = ($landing) ? '#' : site_url();
-				                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
-				              }
-				          	}
-				          ?>
+							          <?php
+							          echo Run::Modules('menu/main',$seccion_id);		          
+							          // Mientras haya módulos recorro y agrego items
+										foreach ($items as $m) {
+											$preSlug = ($landing) ? '#' : site_url();
+							              # code...
+							              if($m['menu']){
+											$preSlug = ($landing) ? '#' : site_url();
+							                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+							              }
+							          	}
+							          ?>
 
 									</ul>
 								</nav>

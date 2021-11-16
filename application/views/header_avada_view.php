@@ -21,9 +21,11 @@
               <?php endif; ?>           
           </a>
 
-<!--           <a href="<?php echo site_url(); ?>" class="retina-logo" data-dark-logo="<?php echo site_url('assets/images/logo@2x.png'); ?>">
+          <!--           
+          <a href="<?php echo site_url(); ?>" class="retina-logo" data-dark-logo="<?php echo site_url('assets/images/logo@2x.png'); ?>">
             <img src="<?php echo site_url('assets/images/logo@2x.png'); ?>" alt="Logo">
-          </a> -->
+          </a> 
+        -->
       </div><!-- #logo end -->
 
       <!-- Primary Navigation
@@ -31,15 +33,18 @@
       <nav id="primary-menu">
         <ul>
           <?php 
+          //echo Run::Modules('menu/main',$seccion_id);
           
           // Mientras haya módulos recorro y agrego items
-          foreach ($secciones as $m) {
-            $preSlug = ($landing) ? '#' : site_url();
+          foreach ($this->session->userdata('items') as $m) {
+            //var_dump($m);
+            //echo "<hr>";
+            $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
               # code...
-              if($m['menu']){
-                $preSlug = ($landing) ? '#' : site_url();
+              //if($m['menu']){
+                //$preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
                 echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
-              }
+              //}
           }
 
           ?>                      
