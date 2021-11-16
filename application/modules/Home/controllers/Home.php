@@ -31,74 +31,93 @@ class Home extends MX_Controller {
 	
 	// Carga el Nosotros para el front
 	public function index(){
+
+        //var_dump($this->session->userdata('items'));die();
         
-        $data['sitio'] = $this->Home_model->getInfoSitio(base_url());
+        // $data['sitio'] = $this->Home_model->getInfoSitio(base_url());
         
-        // Si encontré un sitio para esa url
-        if($data['sitio']){
+        // // Si encontré un sitio para esa url
+        // if($data['sitio']){
 
-            // Guardo todos los datos del sitio en session
-            foreach ($data['sitio'] as $key => $value) {
-                $this->session->set_userdata($key, $value);
-            }      
-            echo "<h4>Datos del sitio:</h4>";
-            var_dump($data['sitio']);
-            echo "<hr>";
-            // Traigo las secciones del sitio
-            $data['secciones'] = $this->Home_model->getSeccionesBy('sitio_id',$data['sitio']->sitio_id);
+        //     // Guardo todos los datos del sitio en session
+        //     foreach ($data['sitio'] as $key => $value) {
+        //         $this->session->set_userdata($key, $value);
+        //     }
 
-            foreach ($data['secciones'] as $seccion) {
-                echo "<h1>Seccion:</h1>";
-                // var_dump($seccion);
-                foreach ($seccion as $key => $value) {
-                    echo $key . ': ' . $value . '<br>';
-                }
-                echo "<hr>";
+
+            // echo "<h4>Datos del sitio:</h4>";
+            // var_dump($data['sitio']);
+            // echo "<hr>";
+            // // Traigo las secciones del sitio
+            // $data['secciones'] = $this->Home_model->getSeccionesBy('sitio_id',$data['sitio']->sitio_id);
+
+            // foreach ($data['secciones'] as $seccion) {
+            //     echo "<h1>Seccion:</h1>";
+            //     // var_dump($seccion);
+            //     foreach ($seccion as $key => $value) {
+            //         echo $key . ': ' . $value . '<br>';
+            //     }
+            //     echo "<hr>";
                 
-                $data['bloques'] = $this->Home_model->getBloquesBy('seccion_id', $seccion['seccion_id']);
-                //$this->session->set_userdata($key, $value);
+            //     $data['bloques'] = $this->Home_model->getBloquesBy('seccion_id', $seccion['seccion_id']);
+            //     //$this->session->set_userdata($key, $value);
                 
-                foreach ($data['bloques'] as $bloque) {
-                    echo "<h2>Bloque:</h2>";
-                    // var_dump($bloque);
-                    foreach ($bloque as $key => $value) {
-                        echo $key . ': ' . $value . '<br>';
-                    }
+            //     foreach ($data['bloques'] as $bloque) {
+            //         echo "<h2>Bloque:</h2>";
+            //         // var_dump($bloque);
+            //         foreach ($bloque as $key => $value) {
+            //             echo $key . ': ' . $value . '<br>';
+            //         }
 
-                    echo "<hr>";
+            //         echo "<hr>";
 
-                    $data['componentes'] = $this->Home_model->getComponentesBy('bloque_id', $bloque['bloque_id']);
-                    foreach ($data['componentes'] as $componente) {
-                        echo "<h3>Componente:</h3>";
-                        // var_dump($componente);
-                        foreach ($componente as $key => $value) {
-                            echo $key . ': ' . $value . '<br>';
-                        }
-                        echo "<hr>";
-                    }                    
-                }
-            } 
+            //         $data['componentes'] = $this->Home_model->getComponentesBy('bloque_id', $bloque['bloque_id']);
+            //         foreach ($data['componentes'] as $componente) {
+            //             echo "<h3>Componente:</h3>";
+            //             // var_dump($componente);
+            //             foreach ($componente as $key => $value) {
+            //                 echo $key . ': ' . $value . '<br>';
+            //             }
+            //             echo "<hr>";
+            //         }                    
+            //     }
+            // } 
 
-            var_dump('Fin contenido del sitio en Secciones, Bloques y Componentes');die();
-            $data['landing']    = True;
+            // var_dump('Fin del contenido del sitio en Secciones, Bloques y Componentes');die();
+            //$data['landing']    = True;
 
-         
+            // Traigo los datos de la seccion HOME
+            
 
             // Si hay secciones creadas y activas las traigo
-            if(count($data['secciones']) > 0){
-                $data['view']       = 'home_view';
-                $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
-            }
-            else{
-                // Sino muestro sitio en construcción   
-                $this->load->view('sitio_en_construccion.html');         
-            }
-        }
-        // Sino muestro sitio en construcción
-        else{
-            // Sino muestro sitio en construcción   
-            $this->load->view('sitio_en_construccion.html');               
-        }
+            // if(count($data['secciones']) > 0){
+            //     $data['view']       = 'home_view';
+            //     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+            // }
+            // else{
+            //     // Sino muestro sitio en construcción   
+            //     $this->load->view('sitio_en_construccion.html');         
+            // }
+            
+            $clase = $this->router->fetch_class();
+            $metodo = $this->router->fetch_method();
+            //echo '<br>' . $clase . ' - ' . $metodo;
+            //echo '<hr>';
+
+            //var_dump($data['sitio']);
+            //echo '<hr>';
+            //die();
+
+            //$data['seccion_id'] = $this->Secciones_model->getBy('slug', $clase);
+            $data['view']       = 'home_view';
+            $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+            
+        // }
+        // // Sino muestro sitio en construcción
+        // else{
+        //     // Sino muestro sitio en construcción   
+        //     $this->load->view('sitio_en_construccion.html');               
+        // }
 
 	}
 
