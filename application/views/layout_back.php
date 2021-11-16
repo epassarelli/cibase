@@ -154,6 +154,14 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo site_url('mipanel/admin/modulos');?>">
+                    <i class="fa fa-fw fa-industry"></i> <span>Módulos</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
                     <i class="fa fa-fw fa-industry"></i> <span>Usuarios</span>
                     <span class="pull-right-container">

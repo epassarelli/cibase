@@ -30,7 +30,7 @@ class Menu extends MX_Controller {
     if($this->uri->segment(1) !== 'mipanel'){
       
       // Si No existe ya la SESSION con los ITEMS
-      if($this->session->userdata('items')){
+      //if($this->session->userdata('items')){
         
         // Si se trata de una landing cargo los bloque seccion Home        
         //if($this->session->userdata('landing')){
@@ -49,7 +49,7 @@ class Menu extends MX_Controller {
           //echo "Items de secciones<hr>";
         //}
 
-      }
+      //}
     }
     //var_dump($items);
     //return $items;

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends MX_Controller {
 
 	public function __construct()
 	{
@@ -61,6 +61,15 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
+
+	public function modulos()
+	{
+		$crud = new grocery_CRUD();
+		$crud->set_table('modulos');
+		$crud->set_subject('módulo');
+		$output = $crud->render();
+		$this->_example_output($output);
+	}
 
 	public function nosotros()
 	{
@@ -196,7 +205,10 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('secciones');
 		$crud->set_subject('seccion');
-		//$crud->columns('nombre','titulo','bajada');
+		$crud->display_as('sitio_id','Sitio')
+		 	->display_as('modulo_id','Módulo');
+		$crud->columns('sitio_id','modulo_id','titulo','slug','menu','orden');
+		$crud->set_relation('modulo_id','modulos','modulo');
 		$crud->set_relation('sitio_id','sitios','nombre');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -220,7 +232,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('formatos');
 		$crud->set_subject('formato');
 		$crud->set_relation('theme_id','themes','theme');
-		$crud->set_field_upload('imagen','assets/uploads');
+		$crud->set_field_upload('imagen','assets/images/formatos');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
