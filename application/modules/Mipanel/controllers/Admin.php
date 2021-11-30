@@ -219,8 +219,9 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('bloques');
 		$crud->set_subject('bloque');
-		$crud->set_relation('formato_id','formatos','nombre');
+		
 		$crud->set_relation('seccion_id','secciones','Sitio {sitio_id} - {titulo}');
+		$crud->set_relation('formato_id','formatos','formato');
 		$crud->set_field_upload('imagen','assets/uploads');
 		$output = $crud->render();
 		$this->_example_output($output);
