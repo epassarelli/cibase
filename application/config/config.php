@@ -76,7 +76,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'spanish';
 
 /*
 |--------------------------------------------------------------------------
@@ -533,48 +533,4 @@ $config['proxy_ips'] = '';
 | 
 */
 
-$config['theme'] 	= 'avada'; // avada, porto
-$config['landing'] 	= TRUE; // TRUE, FALSE
-$config['idiomas'] 	= ('es'); // es, en, pt, fr
-$config['modulos'] 	= array (
-    "slider"    => array(
-    	"activo" => TRUE,
-    	"titulo" => "Slider", 
-    	"slug" => "slider", 
-    	"menu" => FALSE, 
-    	"themeNumero" => '1',
-    	"orden" => "1"
-    ),
-    "nosotros"  => array(
-    	"activo" => TRUE,
-    	"titulo" => "Nosotros", 
-    	"slug" => "nosotros", 
-    	"menu" => TRUE, 
-    	"themeNumero" => '1',
-    	"orden" => "2"
-    ),
-    "servicios" => array(
-    	"activo" => TRUE,
-    	"titulo" => "Servicios", 
-    	"slug" => "servicios", 
-    	"menu" => TRUE, 
-    	"themeNumero" => '2',
-    	"orden" => "3"
-    ),
-	"clientes"  => array(
-		"activo" => TRUE,
-		"titulo" => "Clientes", 
-		"slug" => "clientes", 
-		"menu" => FALSE, 
-		"themeNumero" => '1',
-		"orden" => "4"
-	),
-	"contacto"  => array(
-		"activo" => TRUE,
-		"titulo" => "Contacto", 
-		"slug" => "contacto", 
-		"menu" => TRUE, 
-		"themeNumero" => '1',
-		"orden" => "5"
-	)
-);
+$config['sitio_id'] 	= 1; // avada, porto
