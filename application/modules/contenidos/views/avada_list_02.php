@@ -1,19 +1,12 @@
-<!-- 
-Siempre me va a venir desde el controller
-------------------------------------------
-$bloque
-$componentes 
--->
-
-
-<!--==Index.html=== -->
 <div class="container clearfix">
 
     <?php 
+    // var_dump($bloque);
+    // var_dump($componentes);
     if(count($componentes) > 0): 
-        $i == 0;
+        $i = 0;
         foreach ($componentes as $comp):
-            $ii++;
+            $i++;
             $resto = $i % 3;
             ?>
 
@@ -22,8 +15,8 @@ $componentes
                     <div class="fbox-icon">
                         <a href="#"><?php echo $comp->icono; ?></i></a>
                     </div>
-                    <h3><?php echo $comp->text1; ?></h3>
-                    <p><?php echo $comp->text2; ?></p>
+                    <h3><?php echo $comp->texto1; ?></h3>
+                    <p><?php echo $comp->texto2; ?></p>
                 </div>
             </div>
 

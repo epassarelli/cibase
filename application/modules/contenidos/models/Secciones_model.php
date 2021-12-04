@@ -15,5 +15,11 @@ class Secciones_model extends CI_Model{
         return $query->result_array();
     }
 
+    public function getSeccionesPor($parametros){
+        $this->db->from('secciones');
+        $this->db->where($parametros);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }

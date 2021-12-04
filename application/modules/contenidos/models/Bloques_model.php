@@ -13,5 +13,12 @@ class Bloques_model extends CI_Model{
         return $query->result_array();
     }
 
+    public function getBloquesPor($parametros){
+        $this->db->from('bloques b')
+                    ->join('formatos f', 'f.formato_id = b.formato_id')
+                    ->where($parametros);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
