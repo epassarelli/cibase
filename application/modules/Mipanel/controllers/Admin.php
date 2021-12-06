@@ -115,6 +115,11 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('categias');
+
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitio_id',$this->config->item('sitio_id'));
+		}
+
 		$crud->set_subject('categoria');
 		$crud->set_relation('sitio_id','sitios','nombre');
 		$crud->set_relation('slide_id','slider','titulo');
@@ -141,6 +146,9 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('contactos');
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitio_id',$this->config->item('sitio_id'));
+		}
 		$crud->set_relation('sitio_id','sitios','nombre');	
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -173,6 +181,10 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('categorias');
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitio_id',$this->config->item('sitio_id'));
+		}
+
 		$crud->set_subject('categoria');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -182,6 +194,13 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('publicaciones');
+		$crud->set_relation('categoria_id', 'categorias', '{sitio_id}');
+		
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitio_id',$this->config->item('sitio_id'));
+		}
+
+
 		$crud->set_subject('publicacion');
 		$output = $crud->render();
 		$this->_example_output($output);
@@ -189,8 +208,16 @@ class Admin extends MX_Controller {
 
 	public function sitios()
 	{
+		
+		//echo 'Es admin ' . ($this->ion_auth->is_admin());
+		//echo 'Sitio ' . $this->config->item('sitio_id');
+		
 		$crud = new grocery_CRUD();
 		$crud->set_table('sitios');
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitios.sitio_id',$this->config->item('sitio_id'));
+		}
+
 		$crud->set_subject('sitio');
 		$crud->set_relation('theme_id','themes','theme');
 		$crud->set_field_upload('logo','assets/uploads');
@@ -202,8 +229,14 @@ class Admin extends MX_Controller {
 
 	public function secciones()
 	{
+
 		$crud = new grocery_CRUD();
 		$crud->set_table('secciones');
+	
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('secciones.sitio_id',$this->config->item('sitio_id'));
+		}
+
 		$crud->set_subject('seccion');
 		$crud->display_as('sitio_id','Sitio')
 		 	->display_as('modulo_id','Módulo');
@@ -219,13 +252,36 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('bloques');
 		$crud->set_subject('bloque');
+		$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
+		$crud->columns('sitio_id_callback','seccion_id','texto1','texto2','imagen','formato_id,estado');
+		$crud->display_as('sitio_id_callback','Sitio');
+		$crud->display_as('seccion_id','Seccion');
 		
+
+		$crud->callback_column('sitio_id_callback',array($this,'getSitio'));
+
+
+		if (($this->ion_auth->is_admin()) == 0) {
+			$crud->where('sitio_id',$this->config->item('sitio_id'));
+		}
+
+
 		$crud->set_relation('seccion_id','secciones','Sitio {sitio_id} - {titulo}');
 		$crud->set_relation('formato_id','formatos','formato');
+
 		$crud->set_field_upload('imagen','assets/uploads');
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
+
+	function getSitio($entorno,$row) {
+        $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
+        $result = $this->db->query($sql)->row();
+        $sitio_id = $result->sitio_id;              
+        return $sitio_id;
+	}   
+
+
 
 	public function formatos()
 	{
@@ -243,6 +299,14 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('componentes');
 		$crud->set_subject('componente');
+		
+		$crud->set_relation('bloque_id', 'bloques', '{seccion_id}');
+		
+		//$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
+		//if (($this->ion_auth->is_admin()) == 0) {
+		//	$crud->where('sitio_id',$this->config->item('sitio_id'));
+		//}
+
 		$crud->set_relation('bloque_id','bloques','texto1');
 		$crud->set_field_upload('imagen','assets/uploads');
 		$output = $crud->render();
