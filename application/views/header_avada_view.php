@@ -9,6 +9,12 @@
 
       <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
+      <?php //if($this->config->item('sitio_id') == 4): ?>
+
+        <!-- <h2>Claudia</h2> -->
+
+      <?php //else: ?>
+
       <!-- Logo
       ============================================= -->
       <div id="logo">
@@ -51,6 +57,8 @@
         </ul>
 
       </nav><!-- #primary-menu end -->
+
+    <?php //endif; ?>
 
     </div>
 

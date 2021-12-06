@@ -2,7 +2,7 @@
 
 class Publicaciones extends MX_Controller {
 
- 	public function __construct() {
+  public function __construct() {
         
     parent::__construct();
     
@@ -15,91 +15,50 @@ class Publicaciones extends MX_Controller {
     $this->load->model('Publicaciones_model');
   }
 
-
-  public function mostrar($value='')
+  public function index()
   {
+    $data['articulos'] = $this->Publicaciones_model->getArticulosPor($params);  
+    $data['view']      = 'publicaciones_list_'.$this->session->userdata('theme').'_1_view';
+    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+  }
+
+
+
+  public function mostrar($slugArticulo='')
+  {
+    $data['articulo'] = $this->Publicaciones_model->getArticuloBy('slug', $slugArticulo);
+
+    $data['relacionados'] = $this->Publicaciones_model->getArticuloRelacionados($idCategoria, $idArticulo);
+
     $data['view']       = 'publicaciones_single_'.$this->session->userdata('theme').'_1_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
-  public function categoria($value='')
+
+
+  public function categoria($slugCategoria='')
   {
+    $params = array(
+        'slug' => $slugCategoria
+    );    
+    $rsCats = $this->Publicaciones_model->getCategoriasPor($params);
+    $categoria = $rsCats[0];
+    $idCategoria = $categoria->categoria_id;
+    //var_dump($idCategoria);
+
+    $params2 = array(
+        'categoria_id' => $idCategoria,
+        //'estado' => 1 ¿ Por que no funciona si pongo estado?
+    );
+    $data['articulos'] = $this->Publicaciones_model->getArticulosPor($params2);
+    //var_dump($data['articulos']);die();
+    
+    //$articulo = $data['articulos'][0];
+    //var_dump($data['articulo']);die();
+    $data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria);
+
     $data['view']       = 'publicaciones_list_'.$this->session->userdata('theme').'_1_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
-
-	// Carga el Nosotros para el front
-	public function index(){
-        
-        $data['sitio'] = $this->Home_model->getInfoSitio(base_url());
-        
-        // Si encontré un sitio para esa url
-        if($data['sitio']){
-
-            // Guardo todos los datos del sitio en session
-            foreach ($data['sitio'] as $key => $value) {
-                $this->session->set_userdata($key, $value);
-            }      
-            echo "<h4>Datos del sitio:</h4>";
-            var_dump($data['sitio']);
-            echo "<hr>";
-            // Traigo las secciones del sitio
-            $data['secciones'] = $this->Home_model->getSeccionesBy('sitio_id',$data['sitio']->sitio_id);
-
-            foreach ($data['secciones'] as $seccion) {
-                echo "<h1>Seccion:</h1>";
-                // var_dump($seccion);
-                foreach ($seccion as $key => $value) {
-                    echo $key . ': ' . $value . '<br>';
-                }
-                echo "<hr>";
-                
-                $data['bloques'] = $this->Home_model->getBloquesBy('seccion_id', $seccion['seccion_id']);
-                //$this->session->set_userdata($key, $value);
-                
-                foreach ($data['bloques'] as $bloque) {
-                    echo "<h2>Bloque:</h2>";
-                    // var_dump($bloque);
-                    foreach ($bloque as $key => $value) {
-                        echo $key . ': ' . $value . '<br>';
-                    }
-
-                    echo "<hr>";
-
-                    $data['componentes'] = $this->Home_model->getComponentesBy('bloque_id', $bloque['bloque_id']);
-                    foreach ($data['componentes'] as $componente) {
-                        echo "<h3>Componente:</h3>";
-                        // var_dump($componente);
-                        foreach ($componente as $key => $value) {
-                            echo $key . ': ' . $value . '<br>';
-                        }
-                        echo "<hr>";
-                    }                    
-                }
-            } 
-
-            var_dump('Fin del contenido del sitio en Secciones, Bloques y Componentes');die();
-            $data['landing']    = True;
-
-         
-
-            // Si hay secciones creadas y activas las traigo
-            if(count($data['secciones']) > 0){
-                $data['view']       = 'home_view';
-                $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
-            }
-            else{
-                // Sino muestro sitio en construcción   
-                $this->load->view('sitio_en_construccion.html');         
-            }
-        }
-        // Sino muestro sitio en construcción
-        else{
-            // Sino muestro sitio en construcción   
-            $this->load->view('sitio_en_construccion.html');               
-        }
-
-	}
-
 
 }

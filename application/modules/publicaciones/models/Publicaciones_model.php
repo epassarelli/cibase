@@ -8,38 +8,38 @@ public function __construct(){
 }  
 
 // Retorna 1 o mas registros dependiendo del parametro
-public function getBy($key='',$value='')
-{
-    $this->db->from('publicaciones');
-    $this->db->where($key, $value);
-    $query = $this->db->get();
-    return $query->result();
-}
+public function getArticulosPor($parametros)
+    {
+        //$this->db->select('*');
+        $this->db->from('publicaciones');
+        //$this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
+        $this->db->where($parametros);
+        $query = $this->db->get();
+        // var_dump($this->db->last_query());
+        return $query->result();
+    }
 
+// Retorna 1 o mas registros dependiendo del parametro
+public function getCategoriasPor($parametros)
+    {
+        $this->db->select('*');
+        $this->db->from('categorias');
+        $this->db->where($parametros);
+        $query = $this->db->get();
+        // var_dump($this->db->last_query());
+        return $query->result();
+    }
 
-
-
-// Retorna toda la info del sitio
-public function getInfoSitio($url){
-    $this->db->from('sitios si');
-    $this->db->join('themes th', 'si.theme_id = th.theme_id');    
-    $this->db->like('si.url', $url);
-    $query = $this->db->get();
-    return $query->row();
-}
-
-// Retorna las secciones activas si las tiene
-public function getSeccionesActivas($sitio_id){
-    $this->db->select('se.seccion_id, se.titulo, se.bajada, se.slug, se.modulo, se.menu, se.orden, se.bloqueNumero');
-    $this->db->from('secciones se');
-    $this->db->join('sitios si', 'se.sitio_id = si.sitio_id');
-    $this->db->where('se.sitio_id', $sitio_id);
-    $this->db->where('se.estado', 1);
-    $this->db->order_by('se.orden', 'ASC');
-    
-    $query = $this->db->get();
-    return $query->result_array();
-}
-
+public function getOtrasCategorias($idCatActual)
+    {
+        # code...
+        $this->db->select('*');
+        $this->db->from('categorias');
+        // $this->db->where('idioma_id', $idIdioma);
+        // $this->db->where('modulo_id', $idModulo);
+        $this->db->where('categoria_id !=', $idCatActual);
+        $query = $this->db->get();
+        return $query->result();        
+    }
 
 }
