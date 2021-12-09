@@ -253,7 +253,7 @@ class Admin extends MX_Controller {
 		$crud->set_table('bloques');
 		$crud->set_subject('bloque');
 		$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
-		$crud->columns('sitio_id_callback','seccion_id','texto1','texto2','imagen','formato_id,estado');
+		$crud->columns('sitio_id_callback','seccion_id','texto1','texto2','imagen','formato_id','estado');
 		$crud->display_as('sitio_id_callback','Sitio');
 		$crud->display_as('seccion_id','Seccion');
 		
