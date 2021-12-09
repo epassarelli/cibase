@@ -30,16 +30,24 @@ public function getCategoriasPor($parametros)
         return $query->result();
     }
 
-public function getOtrasCategorias($idCatActual)
+public function getOtrasCategorias($idCatActual, $idIdioma)
     {
         # code...
         $this->db->select('*');
         $this->db->from('categorias');
-        // $this->db->where('idioma_id', $idIdioma);
-        // $this->db->where('modulo_id', $idModulo);
+        $this->db->where('idioma_id', $idIdioma);
+        $this->db->where('sitio_id', $this->config->item('sitio_id'));
         $this->db->where('categoria_id !=', $idCatActual);
         $query = $this->db->get();
         return $query->result();        
+    }
+
+public function getBySlug($slug)
+    {
+        $this->db->from('publicaciones');
+        $this->db->where('slug', $slug);
+        $query = $this->db->get();
+        return $query->row();
     }
 
 }

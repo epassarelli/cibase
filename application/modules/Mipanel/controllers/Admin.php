@@ -116,7 +116,7 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('categias');
 
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -146,7 +146,7 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('contactos');
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 		$crud->set_relation('sitio_id','sitios','nombre');	
@@ -181,7 +181,7 @@ class Admin extends MX_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('categorias');
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -196,7 +196,7 @@ class Admin extends MX_Controller {
 		$crud->set_table('publicaciones');
 		$crud->set_relation('categoria_id', 'categorias', '{sitio_id}');
 		
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -214,7 +214,7 @@ class Admin extends MX_Controller {
 		
 		$crud = new grocery_CRUD();
 		$crud->set_table('sitios');
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitios.sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -233,7 +233,7 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('secciones');
 	
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('secciones.sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -261,7 +261,7 @@ class Admin extends MX_Controller {
 		$crud->callback_column('sitio_id_callback',array($this,'getSitio'));
 
 
-		if (($this->ion_auth->is_admin()) == 0) {
+		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -303,7 +303,7 @@ class Admin extends MX_Controller {
 		$crud->set_relation('bloque_id', 'bloques', '{seccion_id}');
 		
 		//$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
-		//if (($this->ion_auth->is_admin()) == 0) {
+		//if ($this->ion_auth->is_admin()) {
 		//	$crud->where('sitio_id',$this->config->item('sitio_id'));
 		//}
 

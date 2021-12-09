@@ -24,11 +24,20 @@ class Publicaciones extends MX_Controller {
 
 
 
-  public function mostrar($slugArticulo='')
-  {
-    $data['articulo'] = $this->Publicaciones_model->getArticuloBy('slug', $slugArticulo);
+  public function mostrar($slugArticulo)
+  {   
+    $data['articulo'] = $this->Publicaciones_model->getBySlug($slugArticulo);
+    //var_dump($data['articulo']);die();
 
-    $data['relacionados'] = $this->Publicaciones_model->getArticuloRelacionados($idCategoria, $idArticulo);
+    $params = array(
+        'categoria_id' => $data['articulo']->categoria_id,
+        //'slug'  => $slug,
+        'publicacion_id !='  => $data['articulo']->publicacion_id, 
+        'estado' => 1
+    );   
+     
+    $data['relacionados'] = $this->Publicaciones_model->getArticulosPor($params);
+    //var_dump($data['articulo']);die();
 
     $data['view']       = 'publicaciones_single_'.$this->session->userdata('theme').'_1_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
@@ -55,7 +64,10 @@ class Publicaciones extends MX_Controller {
     
     //$articulo = $data['articulos'][0];
     //var_dump($data['articulo']);die();
-    $data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria);
+    $idIdioma = 1;
+    $data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria, $idIdioma);
+    //var_dump($data['otrasCategorias']);die();
+    //var_dump(count($data['otrasCategorias']));die();
 
     $data['view']       = 'publicaciones_list_'.$this->session->userdata('theme').'_1_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);

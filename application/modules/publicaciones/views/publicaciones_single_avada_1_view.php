@@ -19,13 +19,13 @@
             <!-- Entry Title
             ============================================= -->
             <div class="entry-title">
-                <h2>This is a Standard post with a Preview Image</h2>
+                <h2><?php echo $articulo->titulo; ?></h2>
             </div><!-- .entry-title end -->
 
             <!-- Entry Meta
             ============================================= -->
             <ul class="entry-meta clearfix">
-                <li><i class="icon-calendar3"></i> 10th July 2014</li>
+                <li><i class="icon-calendar3"></i> <?php echo $articulo->anio; ?></li>
                 <li><a href="#"><i class="icon-user"></i> admin</a></li>
                 <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
                 <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
@@ -42,19 +42,27 @@
             ============================================= -->
             <div class="entry-content notopmargin">
 
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-
-                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. <a href="#">Curabitur blandit tempus porttitor</a>. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
-
-                <blockquote><p>Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p></blockquote>
-
-                <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus.</p>
-
-
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-
-                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
+                <?php echo nl2br($articulo->resumen); ?>
+                <p></p>
                 <!-- Post Single - Content End -->
+
+                <!-- Portada
+                ============================================= -->
+                <div class="tagcloud clearfix bottommargin">
+                    <div class="row">
+                        <div class="col-md-3">
+                            
+                            <img src="<?php echo site_url('assets/uploads/claudia/publicaciones/') . $articulo->portada; ?>">
+                            
+                        </div>
+                        <div class="col-md-9">
+                            Datos como año, etc
+                        </div>    
+
+                    </div>
+                </div><!-- .portada end -->
+
+                <div class="clear"></div>
 
                 <!-- Tag Cloud
                 ============================================= -->
