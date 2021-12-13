@@ -133,8 +133,8 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('productos');
 		$crud->set_subject('producto');
-		$crud->set_relation('impuesto_id','slider','titulo');			
-		$crud->set_relation('presentacion_id','slider','titulo');	
+		$crud->set_relation('impuesto_id','impuestos','titulo');			
+		$crud->set_relation('presentacion_id','presentaciones','titulo');	
 		$crud->set_field_upload('imagen','assets/uploads');
 		$crud->set_field_upload('imagen2','assets/uploads');
 		$crud->set_field_upload('imagen3','assets/uploads');
