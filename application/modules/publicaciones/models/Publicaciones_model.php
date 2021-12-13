@@ -14,6 +14,7 @@ public function getArticulosPor($parametros)
         $this->db->from('publicaciones');
         //$this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
         $this->db->where($parametros);
+        $this->db->order_by('titulo', 'desc');
         $query = $this->db->get();
         // var_dump($this->db->last_query());
         return $query->result();

@@ -74,12 +74,12 @@
 
                           <div class="entry-c">
 
-                            <?php if(count($otrasCategorias) > 0): ?>
+                            <?php if(count($otrasCategorias)>0): ?>
 
                               <?php foreach ($otrasCategorias as $c): ?>
 
                                 <div class="entry-title">
-                                    <h4>- <a href="<?php echo site_url().$c->slug; ?>"><?php echo $c->nombre; ?></a></h4>
+                                    <h4><a href="<?php echo site_url().$c->slug; ?>"><?php echo $c->nombre; ?></a></h4>
                                     <br>
                                 </div>
 
