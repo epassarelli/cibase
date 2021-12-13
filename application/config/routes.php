@@ -29,6 +29,7 @@ switch ($this->config->item('sitio_id')) {
 	case 3:
 		$route['login'] = 'login';
 		$route['contacto'] = 'contacto';
+		$route['productos'] = 'productos';
 		$route['mipanel'] = 'mipanel';
 		$route['(:any)'] = 'contenidos/pagina/$1';
 		break;	
