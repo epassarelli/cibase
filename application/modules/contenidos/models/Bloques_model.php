@@ -14,7 +14,9 @@ class Bloques_model extends CI_Model{
     }
 
     public function getBloquesPor($parametros){
-        $this->db->from('bloques b')
+        
+        $this->db->select('b.texto1,b.texto2,b.imagen')
+                    ->from('bloques b')
                     ->join('formatos f', 'f.formato_id = b.formato_id')
                     ->where($parametros);
         $query = $this->db->get();
