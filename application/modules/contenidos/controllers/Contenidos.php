@@ -36,7 +36,7 @@ class Contenidos extends MX_Controller {
         );
 
         $secciones = $this->Secciones_model->getSeccionesPor($params);
-
+        //var_dump($secciones);die();
         if($secciones){
             
             $seccion = $secciones[0];
@@ -46,12 +46,13 @@ class Contenidos extends MX_Controller {
             );
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
+            var_dump($data['bloques']);die();
             
         }
         else{
             var_dump('NO Existe la seccion');
         }
-        $data['view']       = 'contenidos_view';
+        $data['view'] = 'contenidos_view';
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
     }
     

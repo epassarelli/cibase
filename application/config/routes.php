@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'contenidos';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -55,6 +55,8 @@ switch ($this->config->item('sitio_id')) {
 		
 		$route['conferencias/(:any)'] 			= 'publicaciones/mostrar/$1';
 		$route['conferencias'] 				= 'publicaciones/categoria/articulos';
+
+		$route['(:any)'] = 'contenidos/pagina/$1';
 
 		break;	
 		
