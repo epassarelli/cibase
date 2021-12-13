@@ -229,12 +229,16 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('productos');
 		$crud->set_subject('producto');
+		$crud->set_relation('sitio_id','sitios','sitio');	
 		$crud->set_relation('impuesto_id','impuestos','titulo');			
 		$crud->set_relation('presentacion_id','presentaciones','titulo');	
+
+		$crud->set_relation_n_n('categorias', 'productos_categorias', 'categorias', 'producto_id', 'categoria_id', 'categoria');
+
 		$crud->set_field_upload('imagen','assets/uploads/'.$this->config->item('sitio_id').'/productos');
 		$crud->set_field_upload('imagen2','assets/uploads/'.$this->config->item('sitio_id').'/productos');
 		$crud->set_field_upload('imagen3','assets/uploads/'.$this->config->item('sitio_id').'/productos');
-		$crud->set_relation_n_n('categorias', 'productos_categorias', 'categorias', 'producto_id', 'categoria_id', 'categoria');
+
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	

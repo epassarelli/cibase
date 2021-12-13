@@ -46,7 +46,7 @@ class Contenidos extends MX_Controller {
             );
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
-            var_dump($data['bloques']);die();
+            //var_dump($data['bloques']);die();
             
         }
         else{
