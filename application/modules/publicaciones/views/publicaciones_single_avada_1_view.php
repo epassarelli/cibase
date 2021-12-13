@@ -25,18 +25,19 @@
             <!-- Entry Meta
             ============================================= -->
             <ul class="entry-meta clearfix">
-                <li><i class="icon-calendar3"></i> <?php echo $articulo->anio; ?></li>
-                <li><a href="#"><i class="icon-user"></i> admin</a></li>
+                <li><i class="icon-calendar3"></i> 1999</li>
+                <li><a href="#"><i class="icon-user"></i> Claudia Hasanbegovic</a></li>
                 <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
-                <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
-                <li><a href="#"><i class="icon-camera-retro"></i></a></li>
+<!--                 <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
+                <li><a href="#"><i class="icon-camera-retro"></i></a></li> -->
             </ul><!-- .entry-meta end -->
 
             <!-- Entry Image
             ============================================= -->
-            <div class="entry-image">
+            <!-- <div class="entry-image">
                 <a href="#"><img src="images/blog/full/1.jpg" alt="Blog Single"></a>
-            </div><!-- .entry-image end -->
+            </div> -->
+            <!-- .entry-image end -->
 
             <!-- Entry Content
             ============================================= -->
@@ -56,7 +57,14 @@
                             
                         </div>
                         <div class="col-md-9">
-                            Datos como año, etc
+                            <p>
+                            Editorial: <?php echo $articulo->editorial; ?>
+                            <br>Editor: <?php echo $articulo->editor; ?>
+                            <br>ISBN: <?php echo $articulo->isbn; ?>
+                            <br>Páginas: <?php echo $articulo->paginas; ?>
+                            <br>Formato: <?php echo $articulo->formato; ?>
+                            </p>
+
                         </div>    
 
                     </div>
@@ -113,6 +121,76 @@
           </div><!-- .entry end -->
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+      <!-- Sidebar
+      ============================================= -->
+      <div class="sidebar nobottommargin col_last clearfix">
+          <div class="sidebar-widgets-wrap">
+
+            <div class="widget clearfix">
+
+                <h4>Relacionadas</h4>
+
+                <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
+
+                  <div class="tab-container">
+
+                    <div class="tab-content clearfix" id="tabs-1">
+                      <div id="popular-post-list-sidebar">
+
+                        <div class="spost clearfix">
+
+                          <div class="entry-c">
+
+                            <?php if(count($relacionados)>0): ?>
+
+                              <?php foreach ($relacionados as $r): ?>
+
+                                <div class="entry-title">
+                                    <h4><a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $r->slug; ?>"><?php echo $r->titulo; ?></a></h4>
+                                    <br>
+                                </div>
+
+                              <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+        </div>
+
+      </div><!-- .sidebar end -->
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 </section>

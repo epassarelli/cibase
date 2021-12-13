@@ -50,8 +50,8 @@ switch ($this->config->item('sitio_id')) {
 		$route['jurisprudencia-y-leyes/(:any)'] 			= 'publicaciones/mostrar/$1';
 		$route['jurisprudencia-y-leyes'] 	= 'publicaciones/categoria/jurisprudencia-y-leyes';
 		
-		$route['mujeres-en-el-mundo–reserva-en-argentina/(:any)'] 			= 'publicaciones/mostrar/$1';
-		$route['mujeres-en-el-mundo–reserva-en-argentina'] = 'publicaciones/categoria/mujeres-en-el-mundo';
+		$route['mujeres-en-el-mundo/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['mujeres-en-el-mundo'] = 'publicaciones/categoria/mujeres-en-el-mundo';
 		
 		$route['conferencias/(:any)'] 			= 'publicaciones/mostrar/$1';
 		$route['conferencias'] 				= 'publicaciones/categoria/articulos';

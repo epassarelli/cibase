@@ -16,7 +16,12 @@
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/animate.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/magnific-popup.css" type="text/css" />
 
+    <!-- <link rel="stylesheet" href="<?php echo site_url('assets/css/menu_claudia.css');?>" type="text/css" /> -->
+
+    
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/responsive.css" type="text/css" />
+    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -24,7 +29,8 @@
 
     <!-- External JavaScripts
     ============================================= -->
-    <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/plugins.js"></script>
 
     <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
@@ -40,7 +46,7 @@
         <link rel="icon" type="image/png" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/images/favicon.png" />
       <?php endif; ?> 
     
- 
+    <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script> 
 
     <!-- Document Title
     ============================================= -->
@@ -51,15 +57,23 @@
 
 <body class="stretched">
 
+
+
     <!-- Document Wrapper
     ============================================= -->
     <div id="wrapper" class="clearfix">
 
-        <?php echo $this->load->view('header_avada_view', '', FALSE); ?>
+        <?php if($this->config->item('sitio_id') == 4): ?>
 
+            <?php echo $this->load->view('claudia_menu_avada_view'); ?>
 
+        <?php else: ?>
+
+            <?php echo $this->load->view('header_avada_view', '', FALSE); ?>
+        
+        <?php endif; ?>
               
-                <?php echo $this->load->view($view); ?>
+        <?php echo $this->load->view($view); ?>
 
             <!-- </div> -->
 
