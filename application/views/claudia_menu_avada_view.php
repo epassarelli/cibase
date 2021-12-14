@@ -13,8 +13,8 @@ h1{
 }*/
 .contenedor {
     /* display:grid;
-    grid-template-columns:1200px;
-    width:90%; */
+    grid-template-columns:1200px;*/
+    width:100%; 
     /* margin:auto; */
     height:250px;
     margin-top:20px;
@@ -33,7 +33,7 @@ h1{
     */
    
 }
-.list-item1,.list-item2,.list-item3,.list-item4,.list-item5,.list-item6,.list-item7{
+.list-item1,.list-item2,.list-item3,.list-item4,.list-item5,.list-item6,.list-item7,.list-item8{
     float:left;
     width:16.6%;
     list-style:inside none;
@@ -64,34 +64,37 @@ h1{
 
 
 .ancho{
-    width:123px;
+    width:130px;
 }
 /* .traslado2{
     transform: translateX(155px);
     transition:.5s all ease-in-out;
 } */
 .item1{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/home.jpg'); ?>');
 }
 .item2{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto2.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/articulos.jpg'); ?>');
     /* border-left:3px solid transparent; */
 }
 .item3{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto3.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/libros.jpg'); ?>');
     /* border-left:3px solid transparent; */
 }
 .item4{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto4.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/entrevistas.jpg'); ?>');
 }
 .item5{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto5.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/conferencias.jpg'); ?>');
 }
 .item6{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto6.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/jurisprudencia-y-leyes.jpg'); ?>');
 }
 .item7{
-    background-image: url('<?php echo site_url('assets/images/claudia/menu/auto7.png'); ?>');
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/mujeres-en-el-mundo.jpg'); ?>');
+}
+.item8{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/contacto.jpg'); ?>');
 }
 @media only screen and (max-width:400px){
     h1{
@@ -149,7 +152,7 @@ h1{
     <!-- <div id="home" class="page-section" style="position:absolute;top:0;left:0;width:100%;height:100px;z-index:-2;"> -->
         
     
-<div class="container">
+<div class="container-fluid dark">
     <!-- <section id="slider" class="slider-parallax full-screen with-header swiper_wrapper clearfix"> -->
     
     <section id="menuclaudia">
@@ -160,9 +163,10 @@ h1{
                 <li class="list-item2"><a href="<?php echo site_url('articulos'); ?>" class="item2" onmouseover="agrandarItem2()"></a></li>
                 <li class="list-item3"><a href="<?php echo site_url('libros'); ?>" class="item3" onmouseover="agrandarItem3()"></a></li>
                 <li class="list-item4"><a href="<?php echo site_url('entrevistas'); ?>" class="item4" onmouseover="agrandarItem4()"></a></li>
-                <li class="list-item5"><a href="<?php echo site_url('jurisprudencia-y-leyes'); ?>" class="item5" onmouseover="agrandarItem5()"></a></li>
-                <li class="list-item6"><a href="<?php echo site_url('mujeres-en-el-mundo'); ?>" class="item6" onmouseover="agrandarItem6()"></a></li>
-                <li class="list-item7"><a href="<?php echo site_url('contacto'); ?>" class="item7" onmouseover="agrandarItem7()"></a></li>
+                <li class="list-item5"><a href="<?php echo site_url('conferencias'); ?>" class="item5" onmouseover="agrandarItem5()"></a></li>
+                <li class="list-item6"><a href="<?php echo site_url('jurisprudencia-y-leyes'); ?>" class="item6" onmouseover="agrandarItem6()"></a></li>
+                <li class="list-item7"><a href="<?php echo site_url('mujeres-en-el-mundo'); ?>" class="item7" onmouseover="agrandarItem7()"></a></li>
+                <li class="list-item8"><a href="<?php echo site_url('contacto'); ?>" class="item8" onmouseover="agrandarItem8()"></a></li>
                 <li><a href=""></a></li>
             </ul>
         </nav> 

@@ -72,7 +72,22 @@
             <?php echo $this->load->view('header_avada_view', '', FALSE); ?>
         
         <?php endif; ?>
-              
+        
+        <section id="page-title" class="page-title-dark">
+
+            <div class="container clearfix">
+                <h1><?php echo $title; ?></h1>
+                <span>A Short Page Title Tagline</span>
+                <ol class="breadcrumb">
+                    <li><a href="<?php echo site_url(); ?>">Home</a></li>
+                    <li><a href="#">Shortcodes</a></li>
+                    <li class="active">Page Titles</li>
+                </ol>
+            </div>
+
+        </section>
+
+
         <?php echo $this->load->view($view); ?>
 
             <!-- </div> -->

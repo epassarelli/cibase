@@ -149,9 +149,8 @@ class Admin extends MX_Controller {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
-
 		$crud->set_relation('seccion_id','secciones','Sitio {sitio_id} - {titulo}');
-		$crud->set_relation('formato_id','formatos','formato');
+		$crud->set_relation('formato_id','formatos','view');
 
 		$crud->set_field_upload('imagen','assets/uploads/'.$this->config->item('sitio_id').'/bloques');
 		$output = $crud->render();
@@ -188,8 +187,7 @@ class Admin extends MX_Controller {
 	public function publicaciones()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('publicaciones');
-		$crud->set_relation('categoria_id', 'categorias', '{sitio_id}');
-		
+		$crud->set_relation('categoria_id', 'categorias', 'categoria', array('categorias.sitio_id' => $this->config->item('sitio_id')));
 		if ($this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
@@ -233,7 +231,8 @@ class Admin extends MX_Controller {
 		$crud->set_relation('impuesto_id','impuestos','titulo');			
 		$crud->set_relation('presentacion_id','presentaciones','titulo');	
 
-		$crud->set_relation_n_n('categorias', 'productos_categorias', 'categorias', 'producto_id', 'categoria_id', 'categoria');
+		$crud->set_relation_n_n('categorias', 'productos_categorias', 'categorias', 'producto_id', 'categoria_id', 'categoria', array('categorias.sitio_id' => $this->config->item('sitio_id')));
+
 
 		$crud->set_field_upload('imagen','assets/uploads/'.$this->config->item('sitio_id').'/productos');
 		$crud->set_field_upload('imagen2','assets/uploads/'.$this->config->item('sitio_id').'/productos');
@@ -295,7 +294,7 @@ class Admin extends MX_Controller {
 
 
 
-	function getSitio($entorno,$row) {
+	public function getSitio($entorno,$row) {
         $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
         $result = $this->db->query($sql)->row();
         $sitio_id = $result->sitio_id;              
