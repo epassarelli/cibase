@@ -21,6 +21,7 @@ class Contacto extends MX_Controller {
 
 	public function index(){
     $data['seccion']    = 'contacto';
+    $data['title']    = 'Contacto';
     
     $modulos = $this->config->item('modulos');
     

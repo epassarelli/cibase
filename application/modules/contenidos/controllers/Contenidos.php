@@ -7,15 +7,15 @@ class Contenidos extends MX_Controller {
         parent::__construct();
         
         switch (ENVIRONMENT){
-        case 'development':
-            $this->output->enable_profiler(TRUE);
-            break;           
-        case 'testing':
-            $this->output->enable_profiler(TRUE);
-            break;
-        case 'production':
-            $this->output->enable_profiler(FALSE);
-            break;
+            case 'development':
+                $this->output->enable_profiler(TRUE);
+                break;           
+            case 'testing':
+                $this->output->enable_profiler(TRUE);
+                break;
+            case 'production':
+                $this->output->enable_profiler(FALSE);
+                break;
         }          
     
         $this->load->model(array('Secciones_model','Bloques_model','Componentes_model'));
@@ -23,20 +23,29 @@ class Contenidos extends MX_Controller {
 	
 	// Carga el Nosotros para el front
 	public function index(){
+        $data['title'] = 'Bienvenidas /os';
 
-	}
-
-
-    public function pagina($slug='')
-    {
+        switch ($this->session->userdata('site_lang')) {
+            case 'spanish':
+                $pagIncial = 'inicio';
+                break;
+            case 'english':
+                $pagIncial = 'home';
+                break;    
+            default:
+                $pagIncial = 'inicio';
+                break;
+        }
+        
+        
         $params = array(
             'sitio_id' => $this->config->item('sitio_id'),
-            'slug'  => $slug, 
+            'slug'  => $pagIncial, 
             'estado' => 1
         );
 
         $secciones = $this->Secciones_model->getSeccionesPor($params);
-        //var_dump($secciones);die();
+
         if($secciones){
             
             $seccion = $secciones[0];
@@ -46,7 +55,38 @@ class Contenidos extends MX_Controller {
             );
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
-            //var_dump($data['bloques']);die();
+            
+        }
+        else{
+            var_dump('NO Existe la seccion');
+        }
+        $data['view'] = 'contenidos_view';
+        $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+	}
+
+
+    public function pagina($slug=''){
+        
+        $params = array(
+            'sitio_id' => $this->config->item('sitio_id'),
+            'slug'  => $slug, 
+            'estado' => 1
+        );
+
+        $seccion = $this->Secciones_model->getOneBy('secciones', $campos='', $params, $orden='');
+        //$secciones = $this->Secciones_model->getSeccionesPor($params);
+
+        // if($secciones){
+        if($seccion){    
+            $data['title'] = $seccion->titulo;
+            //$seccion = $secciones[0];
+            $params2 = array(
+                'b.seccion_id' => $seccion->seccion_id,
+                'b.estado' => 1
+            );
+
+            $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
+            //$data['bloques']    = $this->Bloques_model-getAllBy('bloques', $campos='', $params1, $orden='');
             
         }
         else{
@@ -57,23 +97,18 @@ class Contenidos extends MX_Controller {
     }
     
 
-    public function bloque($bloque_id='', $vista='')
-    {
-        $params = array(
-            'bloque_id' => $bloque_id,
-        ); 
-        $bloques = $this->Bloques_model->getBloquesPor($params);
-        $bloque = $bloques[0];
+    public function bloque($bloque_id='', $vista=''){
 
-        $data['bloque'] = $bloque; 
+        $bloque = $this->Bloques_model->getBloque($bloque_id);
 
         $params2 = array(
             'bloque_id' => $bloque->bloque_id,
             'estado' => 1
         ); 
-
+        $data['bloque']     = $bloque;
+        // var_dump($data['bloque']);
         $data['componentes'] = $this->Componentes_model->getComponentesPor($params2);
-
+        // var_dump($data['componentes']);
         $this->load->view($vista, $data);
 
     }

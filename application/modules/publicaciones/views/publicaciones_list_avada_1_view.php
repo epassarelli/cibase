@@ -79,7 +79,7 @@
                               <?php foreach ($otrasCategorias as $c): ?>
 
                                 <div class="entry-title">
-                                    <h4><a href="<?php echo site_url().$c->slug; ?>"><?php echo $c->nombre; ?></a></h4>
+                                    <h4><a href="<?php echo site_url().$c->slug; ?>"><?php echo $c->categoria; ?></a></h4>
                                     <br>
                                 </div>
 

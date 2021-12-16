@@ -1,6 +1,6 @@
 <?php
 
-class Secciones_model extends CI_Model{
+class Secciones_model extends MY_Model{
 
   
     public function __construct(){
