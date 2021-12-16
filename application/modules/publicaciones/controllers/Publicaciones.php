@@ -34,7 +34,8 @@ class Publicaciones extends MX_Controller {
         //'slug'  => $slug,
         'publicacion_id !='  => $data['articulo']->publicacion_id, 
         'estado' => 1
-    );   
+    );  
+    $data['title'] = 'Publicacion'; 
      
     $data['relacionados'] = $this->Publicaciones_model->getArticulosPor($params);
     //var_dump($data['articulo']);die();
@@ -47,6 +48,8 @@ class Publicaciones extends MX_Controller {
 
   public function categoria($slugCategoria='')
   {
+    $data['title'] = 'Publicaciones';
+
     $params = array(
         'slug' => $slugCategoria
     );    
@@ -64,7 +67,13 @@ class Publicaciones extends MX_Controller {
     
     //$articulo = $data['articulos'][0];
     //var_dump($data['articulo']);die();
+    if($this->session->userdata('site_lang') == 'spanish'){
     $idIdioma = 1;
+    }
+    else{
+    $idIdioma = 2;        
+    }
+
     $data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria, $idIdioma);
     //var_dump($data['otrasCategorias']);die();
     //var_dump(count($data['otrasCategorias']));die();

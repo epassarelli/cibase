@@ -73,20 +73,35 @@
         
         <?php endif; ?>
         
-        <section id="page-title" class="page-title-dark">
+
+        <?php if(isset($title)): ?>
+        
+        <section id="page-title" >
 
             <div class="container clearfix">
                 <h1><?php echo $title; ?></h1>
-                <span>A Short Page Title Tagline</span>
+                <?php if($this->session->userdata('multiidioma') == 1): ?>
+                <span>
+                    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>contenidos/LanguageSwitcher/switchLang/'+this.value;">
+                        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+                        <option value="french" <?php if($this->session->userdata('site_lang') == 'french') echo 'selected="selected"'; ?>>French</option>
+                        <option value="german" <?php if($this->session->userdata('site_lang') == 'german') echo 'selected="selected"'; ?>>German</option>
+                        <option value="spanish" <?php if($this->session->userdata('site_lang') == 'spanish') echo 'selected="selected"'; ?>>Spanish</option>   
+                    </select>
+                </span>
+            <?php endif; ?>
+            
                 <ol class="breadcrumb">
                     <li><a href="<?php echo site_url(); ?>">Home</a></li>
                     <li><a href="#">Shortcodes</a></li>
                     <li class="active">Page Titles</li>
-                </ol>
+                 </ol>
+                <!-- <p><?php echo $this->lang->line('welcome_message'); ?></p> -->
             </div>
 
         </section>
 
+        <?php endif; ?>
 
         <?php echo $this->load->view($view); ?>
 

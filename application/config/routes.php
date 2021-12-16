@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'contenidos';
+$route['default_controller'] = 'contenidos'; // Por default carga una pagina con slug "home"
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -22,7 +22,6 @@ switch ($this->config->item('sitio_id')) {
 		$route['login'] = 'login';
 		$route['contacto'] = 'contacto';
 		$route['mipanel'] = 'mipanel';
-		$route['login'] = 'login';
 		$route['(:any)'] = 'contenidos/pagina/$1';
 		break;	
 
@@ -36,6 +35,7 @@ switch ($this->config->item('sitio_id')) {
 	case 4:
 		$route['login'] = 'login';
 		$route['contacto'] = 'contacto';
+		$route['contacto'] = 'contact';		
 		$route['mipanel'] = 'mipanel';
 		
 		$route['articulos/(:any)'] 			= 'publicaciones/mostrar/$1';
@@ -54,7 +54,25 @@ switch ($this->config->item('sitio_id')) {
 		$route['mujeres-en-el-mundo'] = 'publicaciones/categoria/mujeres-en-el-mundo';
 		
 		$route['conferencias/(:any)'] 			= 'publicaciones/mostrar/$1';
-		$route['conferencias'] 				= 'publicaciones/categoria/articulos';
+		$route['conferencias'] 				= 'publicaciones/categoria/conferencias';
+
+		$route['books/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['books'] 				= 'publicaciones/categoria/books';
+		
+		$route['articles/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['articles'] 					= 'publicaciones/categoria/articles';
+		
+		$route['interviews/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['interviews'] 				= 'publicaciones/categoria/interviews';
+		
+		$route['lawsbills-proposals/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['lawsbills-proposals'] 	= 'publicaciones/categoria/lawsbills-proposals';
+		
+		$route['women-in-the-world/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['women-in-the-world'] = 'publicaciones/categoria/women-in-the-world';
+		
+		$route['conference/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['conference'] 				= 'publicaciones/categoria/conference';
 
 		$route['(:any)'] = 'contenidos/pagina/$1';
 

@@ -39,6 +39,7 @@ public function getOtrasCategorias($idCatActual, $idIdioma)
         $this->db->where('idioma_id', $idIdioma);
         $this->db->where('sitio_id', $this->config->item('sitio_id'));
         $this->db->where('categoria_id !=', $idCatActual);
+        $this->db->where('estado', 1);
         $query = $this->db->get();
         return $query->result();        
     }

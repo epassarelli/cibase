@@ -54,8 +54,8 @@ class MY_Model extends CI_Model{
 
     $query = $this->db->get($tabla);
     //var_dump($query);
-    echo "<br>";
-    var_dump($this->db->last_query());
+    //echo "<br>";
+    //var_dump($this->db->last_query());
     return $query->row();
   }
 
