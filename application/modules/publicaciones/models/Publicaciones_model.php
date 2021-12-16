@@ -52,4 +52,16 @@ public function getBySlug($slug)
         return $query->row();
     }
 
+
+  function actualizarCategoria($tabla, $data, $id) {
+    $this->db->where('categoria_id', $id);
+    $this->db->update($tabla, $data);
+    return TRUE;
+  }
+
+  function actualizarPublicacion($tabla, $data, $id) {
+    $this->db->where('publicacion_id', $id);
+    $this->db->update($tabla, $data);
+    return TRUE;
+  }
 }
