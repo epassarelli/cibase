@@ -20,5 +20,16 @@ public function getProductos($parametros = '')
         return $query->result();
     }
 
+public function getCategorias($parametros = '')
+    {
+        $this->db->from('categorias');
+        $this->db->where('sitio_id',$this->config->item('sitio_id'));
+        $this->db->order_by('catpadre_id','orden');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
 
 }
