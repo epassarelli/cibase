@@ -92,8 +92,8 @@
             <?php endif; ?>
             
                 <ol class="breadcrumb">
-                    <li><a href="<?php echo site_url(); ?>">Home</a></li>
-                    <li><a href="#">Shortcodes</a></li>
+                    <li><a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/spanish'); ?>">Español</a></li>
+                    <li><a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/english'); ?>">Ingles</a></li>
                     <li class="active">Page Titles</li>
                  </ol>
                 <!-- <p><?php echo $this->lang->line('welcome_message'); ?></p> -->

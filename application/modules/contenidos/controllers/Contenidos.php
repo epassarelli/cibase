@@ -55,12 +55,12 @@ class Contenidos extends MX_Controller {
             );
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
-            
+            $data['view'] = 'contenidos_view';
         }
         else{
-            var_dump('NO Existe la seccion');
+            $data['view'] = '404'.$this->session->userdata('theme').'_view';
         }
-        $data['view'] = 'contenidos_view';
+
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
 	}
 
@@ -87,12 +87,12 @@ class Contenidos extends MX_Controller {
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
             //$data['bloques']    = $this->Bloques_model-getAllBy('bloques', $campos='', $params1, $orden='');
-            
+            $data['view'] = 'contenidos_view';
         }
         else{
-            var_dump('NO Existe la seccion');
+            $data['view'] = '404_'.$this->session->userdata('theme').'_view';
         }
-        $data['view'] = 'contenidos_view';
+        
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
     }
     
