@@ -32,7 +32,7 @@
                     <h4>Ooopps.! The Page you were looking for, couldn't be found.</h4>
                     <span>Try searching for the best match or browse the links below:</span>
 
-                    <?php ense: ?>
+                    <?php else: ?>
                     
                     <h4>Ooopps.! La página que está buscando no existe o fue dada de baja.</h4>
                     <span>Navegue por el sitio o bien comuniquese a través del formulario de contacto</span>
