@@ -36,7 +36,7 @@ switch ($this->config->item('sitio_id')) {
 	case 4:
 		$route['login'] = 'login';
 		$route['contacto'] = 'contacto';
-		$route['contacto'] = 'contact';		
+		$route['contact'] = 'contacto';		
 		$route['mipanel'] = 'mipanel';
 		
 		$route['articulos/(:any)'] 			= 'publicaciones/mostrar/$1';

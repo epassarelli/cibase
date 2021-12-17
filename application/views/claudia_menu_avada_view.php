@@ -81,6 +81,30 @@ switch ($this->session->userdata('site_lang')) {
     width:130px;
 }
 .item1{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item1.jpg'); ?>');
+}
+.item2{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item2.jpg'); ?>');
+}
+.item3{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item3.jpg'); ?>');
+}
+.item4{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item4.jpg'); ?>');
+}
+.item5{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item5.jpg'); ?>');
+}
+.item6{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item6.jpg'); ?>');
+}
+.item7{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item7.jpg'); ?>');
+}
+.item8{
+    background-image: url('<?php echo site_url('assets/images/claudia/menu/item8.jpg'); ?>');
+}
+/*.item1{
     background-image: url('<?php echo site_url('assets/images/claudia/menu/'.$menu['item1'].'.jpg'); ?>');
 }
 .item2{
@@ -103,7 +127,7 @@ switch ($this->session->userdata('site_lang')) {
 }
 .item8{
     background-image: url('<?php echo site_url('assets/images/claudia/menu/'.$menu['item8'].'.jpg'); ?>');
-}
+}*/
 @media only screen and (max-width:400px){
     h1{
         font-size:35px;

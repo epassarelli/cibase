@@ -25,11 +25,13 @@
             <!-- Entry Meta
             ============================================= -->
             <ul class="entry-meta clearfix">
+                <!--
                 <li><i class="icon-calendar3"></i> 1999</li>
                 <li><a href="#"><i class="icon-user"></i> Claudia Hasanbegovic</a></li>
                 <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
-<!--                 <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
-                <li><a href="#"><i class="icon-camera-retro"></i></a></li> -->
+                <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
+                <li><a href="#"><i class="icon-camera-retro"></i></a></li> 
+                -->
             </ul><!-- .entry-meta end -->
 
             <!-- Entry Image
@@ -43,20 +45,20 @@
             ============================================= -->
             <div class="entry-content notopmargin">
 
-                <?php echo nl2br($articulo->resumen); ?>
+                <?php echo $articulo->resumen; ?>
                 <p></p>
                 <!-- Post Single - Content End -->
 
                 <!-- Portada
                 ============================================= -->
-                <div class="tagcloud clearfix bottommargin">
+                <div class="ievent clearfix bottommargin">
                     <div class="row">
                         <div class="col-md-3">
                             
                             <img src="<?php echo site_url('assets/uploads/claudia/publicaciones/') . $articulo->portada; ?>">
                             
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <p>
                             Editorial: <?php echo $articulo->editorial; ?>
                             <br>Editor: <?php echo $articulo->editor; ?>
@@ -65,7 +67,17 @@
                             <br>Formato: <?php echo $articulo->formato; ?>
                             </p>
 
-                        </div>    
+
+
+                        </div>
+
+                        <div class="col-md-3">
+                            
+                            <?php if(strlen($articulo->publicacion)>5): ?>
+                                <a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/'.$articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i>Leer más</a>
+                            <?php endif; ?>
+                            
+                        </div>                            
 
                     </div>
                 </div><!-- .portada end -->
@@ -74,21 +86,22 @@
 
                 <!-- Tag Cloud
                 ============================================= -->
-                <div class="tagcloud clearfix bottommargin">
+                <!-- <div class="tagcloud clearfix bottommargin">
                     <a href="#">general</a>
                     <a href="#">information</a>
                     <a href="#">media</a>
                     <a href="#">press</a>
                     <a href="#">gallery</a>
                     <a href="#">illustration</a>
-                </div><!-- .tagcloud end -->
+                </div> -->
+                <!-- .tagcloud end -->
 
                 <div class="clear"></div>
 
                 <!-- Post Single - Share
                 ============================================= -->
                 <div class="si-share noborder clearfix">
-                    <span>Share this Post:</span>
+                    <span>Compartir publicación en:</span>
                     <div>
                         <a href="#" class="social-icon si-borderless si-facebook">
                             <i class="icon-facebook"></i>
