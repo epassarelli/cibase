@@ -75,6 +75,7 @@
 
 <!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
+
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -83,24 +84,28 @@
                 <img src="<?php echo site_url('assets/themes/adminlte/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Administrador</p>
+                <p><?php echo $this->session->userdata('username'); ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-<!--         Si es Admin traigo los Items de Administracion central + Todos los bloques
+        <!--         
+        Si es Admin traigo los Items de Administracion central + Todos los bloques
         Sino, traigo todas las secciones que tenga activas con sus contenidos propios (Aca la duda me surge si es por seccion o bloque) -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        
-        <?php //if ($this->ion_auth->is_admin()): ?>
 
-        
-        <?php //else: ?>
+        <?php //echo Modules::run('./menu/menubackend',$this->session->userdata('username')); ?>
 
-        
-        <?php //endif; ?>
 
-        <ul class="sidebar-menu">
-            <li class="header">Admin. Central</li>
+
+
+
+
+
+
+<ul class="sidebar-menu">
+    <li class="header">Admin. Central</li>
+        
+        <?php if ($this->ion_auth->is_admin()): ?>
 
                     
             <li>
@@ -178,8 +183,6 @@
                 </a>
             </li>                                                     
             
-
-            <li class="header">Admin. Carniza</li>
             <li>
                 <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
@@ -199,7 +202,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/categoriasprod');?>">
+                <a href="<?php echo site_url('mipanel/admin/categorias');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -225,11 +228,56 @@
                 </a>
             </li>
 
-
-            <li class="header">Admin. Claudia</li>
             <li>
-                <a href="<?php echo site_url('mipanel/admin/categoriaspub');?>">
+                <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+        <?php else: ?>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/categorias');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/productos');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Productos</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -254,6 +302,12 @@
                 </a>
             </li>
 
+        
+        <?php endif; ?>
+
+
+
+
             <li>
                 <a href="<?php echo site_url('login/logout');?>">
                     <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
@@ -263,6 +317,23 @@
                 </a>
             </li>
         </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     </section>
     <!-- /.sidebar -->
 </aside>

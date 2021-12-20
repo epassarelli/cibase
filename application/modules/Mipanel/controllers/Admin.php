@@ -8,15 +8,9 @@ class Admin extends MX_Controller {
 		$this->load->database();
 		$this->load->helper('url');
     switch (ENVIRONMENT){
-      case 'development':
-          $this->output->enable_profiler(TRUE);
-          break;           
-      case 'testing':
-          $this->output->enable_profiler(TRUE);
-          break;
-      case 'production':
-          $this->output->enable_profiler(FALSE);
-          break;
+      case 'development': $this->output->enable_profiler(TRUE);break;           
+      case 'testing': $this->output->enable_profiler(TRUE); break;
+      case 'production': $this->output->enable_profiler(FALSE); break;
       }   
 		$this->load->library('grocery_CRUD');
 	}
@@ -26,12 +20,9 @@ class Admin extends MX_Controller {
 		$this->load->view('layout_back.php',(array)$output);
 	}
 
-
-
 	public function index()	{
 		$this->_example_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
 	}
-
 
 /*********************************************************************
 *
@@ -41,7 +32,12 @@ class Admin extends MX_Controller {
 
 	public function sitios()	{		
 		$crud = new grocery_CRUD();
-		$crud->set_table('sitios');
+		$crud->set_table('sitios')
+					->columns('sitio_id', 'sitio', 'theme_id', 'landing', 'logo', 'icon', 'qr', 'activo')
+					->display_as('sitio_id', 'Cod')
+					->display_as('landing', 'Landing page')
+					->display_as('theme_id', 'Template');
+
 		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitios.sitio_id',$this->config->item('sitio_id'));
 		}
@@ -55,7 +51,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
 	public function themes()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('themes');
@@ -66,7 +61,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}
 
-
 	public function modulos()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('modulos');
@@ -75,7 +69,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}
 
-
 	public function roles()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('groups');
@@ -83,7 +76,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
 
 	public function usuarios()	{
 		$crud = new grocery_CRUD();
@@ -96,7 +88,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
 
 /*********************************************************************
 *
@@ -122,7 +113,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
 	public function formatos()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('formatos');
@@ -132,7 +122,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
 
 	public function bloques()	{
 		$crud = new grocery_CRUD();
@@ -145,7 +134,7 @@ class Admin extends MX_Controller {
 		
 		$crud->callback_column('sitio_id_callback',array($this,'getSitio'));
 
-		if ($this->ion_auth->is_admin()) {
+		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -157,7 +146,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
 	public function componentes()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('componentes');
@@ -166,7 +154,7 @@ class Admin extends MX_Controller {
 		$crud->set_relation('bloque_id', 'bloques', '{seccion_id}');
 		
 		//$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
-		//if ($this->ion_auth->is_admin()) {
+		//if (!$this->ion_auth->is_admin()) {
 		//	$crud->where('sitio_id',$this->config->item('sitio_id'));
 		//}
 
@@ -175,8 +163,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
-
 
 /*********************************************************************
 *
@@ -188,7 +174,7 @@ class Admin extends MX_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('publicaciones');
 		$crud->set_relation('categoria_id', 'categorias', 'categoria', array('categorias.sitio_id' => $this->config->item('sitio_id')));
-		if ($this->ion_auth->is_admin()) {
+		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 
@@ -196,8 +182,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
-
 
 /*********************************************************************
 *
@@ -213,7 +197,6 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
 	public function presentaciones()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('presentaciones');
@@ -221,7 +204,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
 
 	public function productos()	{
 		$crud = new grocery_CRUD();
@@ -241,7 +223,6 @@ class Admin extends MX_Controller {
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	
-
 
 /*********************************************************************
 *
@@ -268,15 +249,10 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
-
-
-
-
 	public function contactos()	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('contactos');
-		if ($this->ion_auth->is_admin()) {
+		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
 		$crud->set_relation('sitio_id','sitios','nombre');	
@@ -284,33 +260,14 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-
-
-
-
-
-
-
-
-
+// Funciones de callback
 
 	public function getSitio($entorno,$row) {
-        $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
-        $result = $this->db->query($sql)->row();
-        $sitio_id = $result->sitio_id;              
-        return $sitio_id;
+    $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
+    $result = $this->db->query($sql)->row();
+    $sitio_id = $result->sitio_id;              
+    return $sitio_id;
 	}   
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

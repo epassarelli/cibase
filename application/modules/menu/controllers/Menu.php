@@ -13,6 +13,10 @@ class Menu extends MX_Controller {
     $this->load->model('Menu_model');
   }
 
+  public function index()
+  {
+    // code...
+  }
 
   public function main($seccion_id=''){
     $landing = $this->session->userdata('landing');
@@ -26,6 +30,13 @@ class Menu extends MX_Controller {
     return $items;
   }
 
-
+  
+  public function menubackend($user)
+  {
+    var_dump('Al menos llego');die();
+    $data['user'] = $user;
+    $this->load->view('menu_backend_view', $data, FALSE);
+  }
+  
 
 }
