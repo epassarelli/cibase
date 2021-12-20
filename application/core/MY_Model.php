@@ -13,17 +13,26 @@ class MY_Model extends CI_Model{
   ###     $miOrden = 
   ### getBy('vi_edu', '','','') 
 
-  public function getAllBy($tabla, $campos='', $parametros='', $orden=''){
+  public function getAllBy($tabla, $campos='', $parametros='', $orden='',$whereor = 0){
     
     if($campos !== ''){
       $this->db->select($campos);
     }
 
-    if($parametros !== ''){
-      foreach ($parametros as $key => $value) {
-        (is_numeric($value)) ?  $this->db->where($key, intval($value)) : $this->db->like($key,$value);
+    if ($whereor = 0) { //si whereor es 0 el where es and
+      if($parametros !== ''){
+        foreach ($parametros as $key => $value) {
+          (is_numeric($value)) ?  $this->db->where($key, intval($value)) : $this->db->like($key,$value);
+        }
+      }
+    }else{
+      if($parametros !== ''){
+        foreach ($parametros as $key => $value) {
+          (is_numeric($value)) ?  $this->db->or_where($key, intval($value)) : $this->db->like($key,$value);
+        }
       }
     }
+    
 
     if($orden !== ''){
       $this->db->order_by($orden);

@@ -51,4 +51,23 @@ class Productos extends MX_Controller {
   }
 
 
+  
+  public function productos_categoriasp($categoria = 0)
+  {
+    
+    $data['categorias'] = $this->Productos_model->getCategorias();  
+    $parametros['catpadre_id'] = $categoria;
+    $parametros['categoria_id'] = $categoria;
+    $productos = $this->Productos_model->getAllBy('v_productos','',$parametros,'titulo',1);
+    $data['productos'] = $productos;
+
+    foreach ($data['categorias'] as $cat) {
+    //  echo '<h3>' . $cat->categoria_id . ' ' . $cat->catpadre_id . ' ' . $cat->categoria . '</h3>';
+    }
+    //die();
+
+    $data['view']       = 'productos_view';
+    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+  }
+
 }

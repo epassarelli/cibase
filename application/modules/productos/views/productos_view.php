@@ -1,4 +1,3 @@
-<?php  //echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' ?>
 
 <!-- Page Title
 ============================================= -->
@@ -26,9 +25,8 @@
 
             <!-- Shop
             ============================================= -->
-            <div id="shop" class="product-3 clearfix">
+          <div id="shop" class="product-3 clearfix">
             <?php  foreach ($productos as $prod) : ?>
-
                 <div class="product clearfix">
                     <div class="product-image">
                         <a href="#"><img src="<?php echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $prod->imagen  ?> " alt="<?php echo $prod->titulo ?>"></a>
@@ -49,13 +47,6 @@
                         <?php if ($prod->precioOF == 0) : ?>
                             <div class="product-price">$ <?php echo  $prod->precioLista ?></div>
                         <?php  endif ?>
-                        <!-- <div class="product-rating">
-                            <i class="icon-star3"></i>
-                            <i class="icon-star3"></i>
-                            <i class="icon-star3"></i>
-                            <i class="icon-star3"></i>
-                            <i class="icon-star-half-full"></i>
-                        </div> -->
                     </div>
                 </div>
             <?php endforeach;  ?>   
@@ -65,43 +56,31 @@
                     ============================================= -->
                     <div class="sidebar nobottommargin col_last">
                         <div class="sidebar-widgets-wrap">
-
                             <div class="widget widget_links clearfix">
-
                                 <h4>Categorías</h4>
-                                <ul>
-                                <?php foreach ($categorias as $cat) : ?>
-                                    <?php if ($cat->catpadre_id == null) : ?>
-                                        <li><a href="<?php echo base_url() . 'productos/productos_categorias/' . $cat->categoria_id  ?>"><?php echo $cat->categoria?></a></li>
-                                    <?php endif; ?>   
-                                <?php endforeach; ?>
-                                </ul>
+                                <?php 
+                                       foreach ($categorias as $cat) {
+                                            if ($cat->catpadre_id == null) {
+                                                echo '<ul>';
+                                                echo '<a href="'. base_url() . 'productos/productos_categoriasp/' . $cat->categoria_id . '">' . $cat->categoria  . '</a>';
+                                                    foreach ($categorias as $subcat) {
+                                                            $haysubcat = 0;
+                                                            if ($subcat->catpadre_id == $cat->categoria_id) { 
+                                                                $haysubcat=1;
+                                                                echo '<ul>';
+                                                                echo '<li><a href="'. base_url() . 'productos/productos_categorias/' . $subcat->categoria_id . '">' . $subcat->categoria  . '</a></li>';
+                                                            } 
+                                                            if ($haysubcat = 1) {
+                                                                echo '</ul>';
+                                                                $haysubcat=0;
+                                                            }
+                                                    }
+                                                echo '</ul>';
+                                            }        
+                                        }
+                                ?>
                             </div>
-
-                            <div class="widget clearfix">
-
-                                <h4>Combos</h4>
-                                <div id="post-list-footer">
-<!--foreach para prod cat=43 combos  -->
-                                    <div class="spost clearfix">
-                                        <div class="entry-image">
-                                            <a href="#"><img src="images/shop/small/1.jpg" alt="Image"></a>
-                                        </div>
-                                        <div class="entry-c">
-                                            <div class="entry-title">
-                                                <h4><a href="#">Combo</a></h4>
-                                            </div>
-                                            <ul class="entry-meta">
-                                                <li class="color">$29.99</li>
-                                                <!-- <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- .combos -->
-
-                    </div><!-- sidebar -->
-
-    </div>
+                        </div><!-- sidebar -->
+                    </div>
 </div>
 </section>
