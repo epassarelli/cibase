@@ -72,7 +72,7 @@
                                 <ul>
                                 <?php foreach ($categorias as $cat) : ?>
                                     <?php if ($cat->catpadre_id == null) : ?>
-                                        <li><a href="#"><?php echo $cat->categoria?></a></li>
+                                        <li><a href="<?php echo base_url() . 'productos/productos_categorias/' . $cat->categoria_id  ?>"><?php echo $cat->categoria?></a></li>
                                     <?php endif; ?>   
                                 <?php endforeach; ?>
                                 </ul>
