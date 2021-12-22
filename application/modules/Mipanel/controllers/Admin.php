@@ -172,11 +172,23 @@ class Admin extends MX_Controller {
 
 	public function publicaciones()	{
 		$crud = new grocery_CRUD();
-		$crud->set_table('publicaciones');
+		// $crud->set_table('publicaciones');
+
+		$crud->set_table('publicaciones')
+			//->columns('sitio', 'sitio', 'theme_id', 'landing', 'logo', 'icon', 'qr', 'activo')
+			->columns('titulo','portada', 'publicacion', 'categoria_id', 'estado')
+			// ->display_as('sitio_id', 'Sitio')
+			// ->display_as('modulo_id', 'Modulo')
+			->display_as('categoria_id', 'Categoria');
+
 		$crud->set_relation('categoria_id', 'categorias', 'categoria', array('categorias.sitio_id' => $this->config->item('sitio_id')));
+
 		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
+
+		$crud->set_field_upload('portada','assets/uploads/'.$this->config->item('sitio_id').'/publicaciones');
+		$crud->set_field_upload('publicacion','assets/uploads/'.$this->config->item('sitio_id').'/publicaciones');
 
 		$crud->set_subject('publicacion');
 		$output = $crud->render();
@@ -215,7 +227,6 @@ class Admin extends MX_Controller {
 
 		$crud->set_relation_n_n('categorias', 'productos_categorias', 'categorias', 'producto_id', 'categoria_id', 'categoria', array('categorias.sitio_id' => $this->config->item('sitio_id')));
 
-
 		$crud->set_field_upload('imagen','assets/uploads/'.$this->config->item('sitio_id').'/productos');
 		$crud->set_field_upload('imagen2','assets/uploads/'.$this->config->item('sitio_id').'/productos');
 		$crud->set_field_upload('imagen3','assets/uploads/'.$this->config->item('sitio_id').'/productos');
@@ -232,9 +243,15 @@ class Admin extends MX_Controller {
 
 	public function categorias()	{
 		$crud = new grocery_CRUD();
-		$crud->set_table('categorias');
+
+		$crud->set_table('categorias')
+					//->columns('sitio', 'sitio', 'theme_id', 'landing', 'logo', 'icon', 'qr', 'activo')
+					->columns('sitio_id','idioma_id','modulo_id', 'categoria', 'slug', 'estado')
+					->display_as('sitio_id', 'Sitio')
+					->display_as('modulo_id', 'Modulo')
+					->display_as('idioma_id', 'Idioma');
 		
-		$crud->set_relation('catpadre_id','categorias','nombre');
+		$crud->set_relation('catpadre_id','categorias','categoria');
 		$crud->set_relation('idioma_id','idiomas','idioma');
 		$crud->set_relation('sitio_id','sitios','sitio');
 		$crud->set_relation('modulo_id','modulos','modulo');
@@ -260,7 +277,11 @@ class Admin extends MX_Controller {
 		$this->_example_output($output);
 	}	
 
-// Funciones de callback
+/*********************************************************************
+*
+* Funciones de callback
+* 
+**********************************************************************/
 
 	public function getSitio($entorno,$row) {
     $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
