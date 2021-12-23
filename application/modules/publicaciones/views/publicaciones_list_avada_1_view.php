@@ -10,7 +10,7 @@
 
           <!-- Posts
           ============================================= -->
-          <div id="posts">
+          <div id="posts" class="small-thumbs">
 
           <?php if(count($articulos) > 0): ?>
               

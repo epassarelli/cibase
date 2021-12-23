@@ -61,7 +61,7 @@ switch ($this->session->userdata('site_lang')) {
     overflow: hidden;
     box-shadow: 0px 0px 2px 2px white;
 }
-.contenedor li a{
+.contenedor .claudia a{
     width:400px;
     height:218px;
     display:block;
@@ -142,7 +142,7 @@ switch ($this->session->userdata('site_lang')) {
         height:120px;
         padding:13px 0px 10px 0px;
     }
-    .contenedor li a{
+    .contenedor .claudia a{
         width:150px;
     }
     .traslado{
@@ -165,7 +165,7 @@ switch ($this->session->userdata('site_lang')) {
         padding-top: 5px;
         height:170px;
     }
-    .contenedor li a{
+    .contenedor .claudia a{
         width:200px;
         height:170px;
     }
@@ -182,14 +182,14 @@ switch ($this->session->userdata('site_lang')) {
 <header>
     <nav class="contenedor container-fluid">
         <ul class="contenedor-list"onmouseleave="agrandarItem1()">
-            <li class="list-item1"><a href="<?php echo site_url().$menu['item1']; ?>" class="item1" onmouseover="agrandarItem1()"></a></li>
-            <li class="list-item2"><a href="<?php echo site_url().$menu['item2']; ?>" class="item2" onmouseover="agrandarItem2()"></a></li>
-            <li class="list-item3"><a href="<?php echo site_url().$menu['item3']; ?>" class="item3" onmouseover="agrandarItem3()"></a></li>
-            <li class="list-item4"><a href="<?php echo site_url().$menu['item4']; ?>" class="item4" onmouseover="agrandarItem4()"></a></li>
-            <li class="list-item5"><a href="<?php echo site_url().$menu['item5']; ?>" class="item5" onmouseover="agrandarItem5()"></a></li>
-            <li class="list-item6"><a href="<?php echo site_url().$menu['item6']; ?>" class="item6" onmouseover="agrandarItem6()"></a></li>
-            <li class="list-item7"><a href="<?php echo site_url().$menu['item7']; ?>" class="item7" onmouseover="agrandarItem7()"></a></li>
-            <li class="list-item8"><a href="<?php echo site_url().$menu['item8']; ?>" class="item8" onmouseover="agrandarItem8()"></a></li>
+            <li class="list-item1 claudia"><a href="<?php echo site_url().$menu['item1']; ?>" class="item1" onmouseover="agrandarItem1()"></a></li>
+            <li class="list-item2 claudia"><a href="<?php echo site_url().$menu['item2']; ?>" class="item2" onmouseover="agrandarItem2()"></a></li>
+            <li class="list-item3 claudia"><a href="<?php echo site_url().$menu['item3']; ?>" class="item3" onmouseover="agrandarItem3()"></a></li>
+            <li class="list-item4 claudia"><a href="<?php echo site_url().$menu['item4']; ?>" class="item4" onmouseover="agrandarItem4()"></a></li>
+            <li class="list-item5 claudia"><a href="<?php echo site_url().$menu['item5']; ?>" class="item5" onmouseover="agrandarItem5()"></a></li>
+            <li class="list-item6 claudia"><a href="<?php echo site_url().$menu['item6']; ?>" class="item6" onmouseover="agrandarItem6()"></a></li>
+            <li class="list-item7 claudia"><a href="<?php echo site_url().$menu['item7']; ?>" class="item7" onmouseover="agrandarItem7()"></a></li>
+            <li class="list-item8 claudia"><a href="<?php echo site_url().$menu['item8']; ?>" class="item8" onmouseover="agrandarItem8()"></a></li>
             <li><a href=""></a></li>
         </ul>
     </nav> 

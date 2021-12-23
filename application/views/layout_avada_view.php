@@ -21,6 +21,7 @@
     
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/responsive.css" type="text/css" />
     
+    <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/colors.css" type="text/css" />    
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--[if lt IE 9]>
@@ -74,34 +75,17 @@
         <?php endif; ?>
         
 
-        <?php if(isset($title)): ?>
-        
-        <section id="page-title" >
-
-            <div class="container clearfix">
-                <h1><?php echo $title; ?></h1>
-                <?php if($this->session->userdata('multiidioma') == 1): ?>
-                <span>
-                    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>contenidos/LanguageSwitcher/switchLang/'+this.value;">
-                        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-                        <option value="french" <?php if($this->session->userdata('site_lang') == 'french') echo 'selected="selected"'; ?>>French</option>
-                        <option value="german" <?php if($this->session->userdata('site_lang') == 'german') echo 'selected="selected"'; ?>>German</option>
-                        <option value="spanish" <?php if($this->session->userdata('site_lang') == 'spanish') echo 'selected="selected"'; ?>>Spanish</option>   
-                    </select>
-                </span>
-            <?php endif; ?>
-            
-                <ol class="breadcrumb">
-                    <li><a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/spanish'); ?>">Español</a></li>
-                    <li><a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/english'); ?>">Ingles</a></li>
-                    <li class="active">Page Titles</li>
-                 </ol>
-                <!-- <p><?php echo $this->lang->line('welcome_message'); ?></p> -->
-            </div>
-
-        </section>
-
+        <?php if($this->config->item('sitio_id') == 4): ?>
+            <section id="page-title" class="page-title-mini">
+                <div class="container clearfix">
+                    <img width="24" height="16" src="<?php echo site_url('assets/images/banderas/argentina.png'); ?>"> 
+                    <a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/spanish'); ?>">Español</a> | 
+                    <img width="24" height="16" src="<?php echo site_url('assets/images/banderas/inglaterra.png'); ?>">
+                    <a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/english'); ?>">Ingles</a>
+                </div>
+            </section>
         <?php endif; ?>
+
 
         <?php echo $this->load->view($view); ?>
 
