@@ -45,6 +45,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
+
 <header class="main-header">
     <!-- Logo -->
     <a href="#" class="logo">
@@ -64,12 +65,26 @@
             <span class="icon-bar"></span>
         </a>
 
+        <!-- Menú a la derecha del encabezado -->
+        <!-- 
         <div class="navbar-custom-menu">
-            <!-- Menú a la derecha del encabezado -->
-        </div>
+            
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+        </div> 
+        -->
 
     </nav>
 </header>
+
+
+
+
+
+
 
 <!-- =============================================== -->
 
@@ -370,6 +385,10 @@
     </div>
     <strong>Copyright &copy; <?php echo date('Y',time()); ?> <a href="http://webpass.com.ar">Desarrollo Web</a>.</strong> Todos los derechos reservados.
 </footer>
+
+
+
+
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">

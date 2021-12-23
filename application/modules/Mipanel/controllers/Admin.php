@@ -7,11 +7,11 @@ class Admin extends MX_Controller {
 
 		$this->load->database();
 		$this->load->helper('url');
-    switch (ENVIRONMENT){
-      case 'development': $this->output->enable_profiler(TRUE);break;           
-      case 'testing': $this->output->enable_profiler(TRUE); break;
-      case 'production': $this->output->enable_profiler(FALSE); break;
-      }   
+	    switch (ENVIRONMENT){
+	      case 'development': $this->output->enable_profiler(TRUE);break;           
+	      case 'testing': $this->output->enable_profiler(TRUE); break;
+	      case 'production': $this->output->enable_profiler(FALSE); break;
+	    }   
 		$this->load->library('grocery_CRUD');
 	}
 
@@ -128,11 +128,11 @@ class Admin extends MX_Controller {
 		$crud->set_table('bloques');
 		$crud->set_subject('bloque');
 		$crud->set_relation('seccion_id', 'secciones', '{sitio_id}');
-		$crud->columns('sitio_id_callback','seccion_id','texto1','texto2','imagen','formato_id','estado');
+		$crud->columns('seccion_id','texto1','texto2','imagen','formato_id','estado');
 		$crud->display_as('sitio_id_callback','Sitio');
 		$crud->display_as('seccion_id','Seccion');
 		
-		$crud->callback_column('sitio_id_callback',array($this,'getSitio'));
+		//$crud->callback_column('sitio_id_callback',array($this,'getSitio'));
 
 		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
@@ -284,10 +284,11 @@ class Admin extends MX_Controller {
 **********************************************************************/
 
 	public function getSitio($entorno,$row) {
-    $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
-    $result = $this->db->query($sql)->row();
-    $sitio_id = $result->sitio_id;              
-    return $sitio_id;
+	    $sql = "SELECT sitio_id FROM secciones WHERE seccion_id = " . $row->seccion_id ;
+	    $result = $this->db->query($sql)->row();
+	    var_dump($result);
+	    $sitio_id = $result->sitio_id;              
+	    return $sitio_id;
 	}   
 
 
