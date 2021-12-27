@@ -16,12 +16,14 @@ class Contacto extends MX_Controller {
       case 'production':
           $this->output->enable_profiler(FALSE);
           break;
-      }          
+      }
+      $this->color1 = $this->config->item('color1');
   }
 
 	public function index(){
     $data['seccion']    = 'contacto';
     $data['title']    = 'Contacto';
+
     
     $modulos = $this->config->item('modulos');
     

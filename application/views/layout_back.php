@@ -254,68 +254,266 @@
 
         <?php else: ?>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+            <?php switch ($this->config->item('sitio_id')) {
+                case 1: ?>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/categorias');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <?php
+                    break;
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/productos');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Productos</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                case 2: 
+                ?>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/contactos');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/contactos');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <?php
+                    break;
+
+                case 3: 
+                ?>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/categorias');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/productos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Productos</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+
+                    <?php
+                    break;
+
+                case 4: 
+                ?>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <?php
+                    break;
+
+                case 5: 
+                ?>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
+                <?php
+                break;  
+
+                default:
+                    # code...
+                    break;
+            } 
+        ?>
 
         
         <?php endif; ?>

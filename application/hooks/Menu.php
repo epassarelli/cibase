@@ -9,9 +9,9 @@ class Menu extends MX_Controller {
     if(!$this->session->userdata('nombre1')){
       //echo "No existe la session del sitio<hr>";
       
-      $this->load->model('contenidos/Sitios_model');
-      $data['sitio'] = $this->Sitios_model->getInfoSitio(base_url());
-      //var_dump($data['sitio']);
+      $this->load->model('mipanel/Sitios_model');
+      $data['sitio'] = $this->Sitios_model->getInfoSitio();
+      // var_dump($data['sitio']);
       // Si encontré un sitio para esa url
       if($data['sitio']){
 

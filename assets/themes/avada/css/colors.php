@@ -9,7 +9,7 @@ header ("Content-Type:text/css");
  *
  ================================================================== */
 
-$color = "#FF0000"; // Change your Color Here
+$color = $color1; // Change your Color Here
 //$color = "#1ABC9C"
 /** ===============================================================
  *

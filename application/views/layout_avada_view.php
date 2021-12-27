@@ -21,7 +21,8 @@
     
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/responsive.css" type="text/css" />
     
-    <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/colors.css" type="text/css" />    
+
+    <?php //include_once 'assets/themes/'.$this->session->userdata('theme').'/css/colors.css'; ?>    
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--[if lt IE 9]>
@@ -58,6 +59,7 @@
 
 <body class="stretched">
 
+    <?php //var_dump($this->session->userdata()); ?>
 
 
     <!-- Document Wrapper
@@ -88,7 +90,11 @@
 
 
         <?php echo $this->load->view($view); ?>
-
+        <?php 
+        var_dump($this->color1); 
+        $color1 = $this->color1;
+        ?>
+        <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/colors.php" type="text/css" />
             <!-- </div> -->
 
         </section><!-- #content end -->

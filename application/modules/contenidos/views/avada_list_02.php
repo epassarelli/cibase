@@ -1,8 +1,6 @@
 <div class="container clearfix">
 
-    <?php 
-    // var_dump($bloque);
-    // var_dump($componentes);
+    <?php
     if(count($componentes) > 0): 
         $i = 0;
         foreach ($componentes as $comp):
@@ -13,7 +11,7 @@
             <div class="col_one_third <?php if($resto == 0){ echo " col_last"; } ?>">
                 <div class="feature-box fbox-small fbox-plain" data-animate="fadeIn">
                     <div class="fbox-icon">
-                        <a href="#"><?php echo $comp->icono; ?></i></a>
+                        <a href="#"><?php echo $comp->icono; ?></a>
                     </div>
                     <h3><?php echo $comp->texto1; ?></h3>
                     <p><?php echo $comp->texto2; ?></p>
