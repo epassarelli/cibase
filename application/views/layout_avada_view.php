@@ -21,8 +21,18 @@
     
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/responsive.css" type="text/css" />
     
-
-    <?php //include_once 'assets/themes/'.$this->session->userdata('theme').'/css/colors.css'; ?>    
+    <?php //$color1 = $this->session->userdata('color1'); ?>
+    <?php //require_once 'assets/themes/'.$this->session->userdata('theme').'/css/colors.php'; ?>
+    <?php switch ($this->config->item('sitio_id')) {
+        case 1: $colors = 'color'.$this->config->item('sitio_id').'.php'; break;
+        case 2: $colors = 'color'.$this->config->item('sitio_id').'.php'; break;
+        case 3: $colors = 'color'.$this->config->item('sitio_id').'.php'; break;
+        case 4: $colors = 'color'.$this->config->item('sitio_id').'.php'; break;
+        case 5: $colors = 'color'.$this->config->item('sitio_id').'.php'; break;       
+        default: $colors = 'colors.php'; break;
+    } ?>  
+    
+    <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme').'/css/'.$colors); ?>" type="text/css" />  
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--[if lt IE 9]>
@@ -90,12 +100,7 @@
 
 
         <?php echo $this->load->view($view); ?>
-        <?php 
-        var_dump($this->color1); 
-        $color1 = $this->color1;
-        ?>
-        <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/colors.php" type="text/css" />
-            <!-- </div> -->
+
 
         </section><!-- #content end -->
 

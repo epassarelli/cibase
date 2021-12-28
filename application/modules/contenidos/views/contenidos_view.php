@@ -7,7 +7,17 @@ if($bloques){
   //       var_dump($bloque);
   //       echo "<br>";
 		// var_dump($bloque->bloque_id .' - '. $bloque->view);
-		echo Modules::run('contenidos/bloque', $bloque->bloque_id, $bloque->view);
+		$vista = 'application/modules/contenidos/views/'.$bloque->view.'.php';
+		//var_dump($vista);
+		if(file_exists($vista)){
+			echo Modules::run('contenidos/bloque', $bloque->bloque_id, $bloque->view);
+		}
+		else{
+			echo "<hr>";
+			echo "<h1>No existe la vista del bloque ". $bloque->bloque_id . "</h1>";
+			echo "<hr>";
+		}
+		
 	}
 }
 else

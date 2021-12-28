@@ -9,8 +9,8 @@ header ('Content-Type: text/css; charset=utf-8');
  *
  ================================================================== */
 
-$color = $color1; // Change your Color Here
-//$color = "#1ABC9C"
+//$color = $color1; // Change your Color Here
+$color = "#8F00FF";
 /** ===============================================================
  *
  *      Do not Edit anything below this line if you do not know
