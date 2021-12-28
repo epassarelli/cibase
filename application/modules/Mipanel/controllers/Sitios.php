@@ -12,19 +12,18 @@ class Sitios  extends MX_Controller {
 
     $this->load->model('../models/Sitios_model');
     
-    
-
     switch (ENVIRONMENT){
       case 'development':
-          $this->output->enable_profiler(FALSE);
-          break;           
+      ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
+          break;          
       case 'testing':
-          $this->output->enable_profiler(TRUE);
+      ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
           break;
       case 'production':
-          $this->output->enable_profiler(FALSE);
+      ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(false);
           break;
-      }      
+      }    
+
   }
 
   // Listado del ABM de slider 
@@ -67,7 +66,7 @@ public function accion()
 {
     $data = array('success' => false, 'messages' => array());
 
-    $this->form_validation->set_rules('Nombre','Nombre', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
+    $this->form_validation->set_rules('Sitio','Sitio', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
     
     $this->form_validation->set_rules('Url','Url', array('required','max_length[100]'), array('required'   => '{field} es obligatorio',
@@ -93,8 +92,10 @@ public function accion()
         $result3 = null;
 
         $valid_logo = TRUE;
-//        if(isset($_FILES["File"]["name"]) and $this->input->post('Logo') != '')
-          if($_FILES["File"]["name"] !='' )
+ 
+        if(isset($_FILES["File"]["name"]) and $this->input->post('Logo') !== '')
+        {
+          if($_FILES["File"]["name"] !=='' )
           {     
               $result = $this->upload('File','jpg|png');
               if (isset($result['error'])) {
@@ -102,11 +103,17 @@ public function accion()
               }else{
                 $valid_logo = TRUE;
               }
-            }
+           }
+        }
+
+     
 
         $valid_icon = TRUE;
-//        if(isset($_FILES["File1"]["name"]) and $this->input->post('Icon') != '')
-          if($_FILES["File1"]["name"] !='' )           
+        
+
+        if(isset($_FILES["File1"]["name"]) and $this->input->post('Icon') !=='')
+        {
+          if($_FILES["File1"]["name"] !=='' )           
           { 
               $result2 = $this->upload('File1','ico|svg');
               if (isset($result2['error']))  {
@@ -114,11 +121,13 @@ public function accion()
               }else{
                 $valid_icon = TRUE;
               }
-            }
-    
+          }
+        }  
+
         $valid_qr = TRUE;
-//        if(isset($_FILES["File2"]["name"]) and $this->input->post('Qr') != '')
-          if($_FILES["File2"]["name"] !='' )
+        if(isset($_FILES["File2"]["name"]) and $this->input->post('Qr') !== '')
+        {
+          if($_FILES["File2"]["name"] !=='' )
           { 
               $result3 = $this->upload('File2','jpg|png');
               if (isset($result3['error'])) {
@@ -127,7 +136,7 @@ public function accion()
                 $valid_qr = TRUE;
               }
             }
-        
+          }           
  
    ///para ver respuesta en el navegador        
    $data['f0']   = $this->input->post('Logo');
@@ -141,16 +150,14 @@ public function accion()
    $data['valid_qr']     = $valid_qr;
    $data['valid_icon']   = $valid_icon;
    ////// debugging
+   
 
- 
-
-
-    if ($this->form_validation->run() == TRUE && $valid_logo && $valid_icon && $valid_qr) {
-            
+  if ($this->form_validation->run() == TRUE && $valid_logo && $valid_icon && $valid_qr) {
+         
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
-        $sitios['id'] = $this->input->post('Id');
-        $sitios['nombre'] =  $this->input->post('Nombre');
+        $sitios['sitio_id'] = $this->input->post('Id');
+        $sitios['sitio'] =  $this->input->post('Sitio');
         $sitios['url'] = $this->input->post('Url');
         $sitios['theme_id'] = $this->input->post('Theme_id');
         $sitios['landing'] = $this->input->post('Landing');
@@ -167,11 +174,13 @@ public function accion()
         $sitios['facebook'] = $this->input->post('Facebook');
         $sitios['instagram'] = $this->input->post('Instagram');
         
+        //$sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : "$this->input->post('Logo')" ;
+
         $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Logo') ;
         $sitios['icon'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('Icon') ;
         $sitios['qr']   = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('Qr') ;
-
-
+        
+       
         // Pasar el switch
         switch ($opcion) {
 
@@ -183,26 +192,28 @@ public function accion()
                 $data['success'] = $this->updateSitios($sitios);
             break;
         }
-       
+
+        
     } else {
         foreach ($_POST as $key => $value) {
             $data['messages'][$key] = form_error($key);
         }
+
         if (!$valid_logo) {
             //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-            $data['messages']['Logo']  = '<p class="text-danger">Archivo no valido</p>';
-        }else {
-          $data['messages']['Logo']  = '';
+            $data['messages']['Logo']  = '<p class="text-danger">Archivo no valido o tamaño excedido</p>';
+          }else {
+            $data['messages']['Logo']  = '';
         }
         if (!$valid_icon ) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['Icon']  = '<p class="text-danger">Archivo no valido</p>';
+          $data['messages']['Icon']  = '<p class="text-danger">Archivo no valido  o tamaño excedido</p>';
         }else{
           $data['messages']['Icon']  = '';
         }
         if (!$valid_qr) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['Qr']  = '<p class="text-danger">Archivo no valido</p>';
+          $data['messages']['Qr']  = '<p class="text-danger">Archivo no valido  o tamaño excedido </p>';
         }else{
           $data['messages']['Qr']  = '';
         }
@@ -215,7 +226,7 @@ public function accion()
 
   // Alta de un sitios
   public function setSitios($data){
-      $sitios['nombre']      = $data['nombre'];
+      $sitios['sitio']      = $data['sitio'];
       $sitios['url']         = $data['url'];
       $sitios['theme_id']    = $data['theme_id'];
       $sitios['landing']     = $data['landing'];
@@ -243,7 +254,7 @@ public function accion()
   // Editar un sitios
   public function updatesitios($data){
 
-    $sitios['nombre']      = $data['nombre'];
+    $sitios['sitio']      = $data['sitio'];
     $sitios['url']         = $data['url'];
     $sitios['theme_id']    = $data['theme_id'];
     $sitios['landing']     = $data['landing'];
@@ -263,7 +274,7 @@ public function accion()
     $sitios['icon']        = $data['icon'];
     $sitios['qr']          = $data['qr'];
       
-    $this->Sitios_model->updateSitios($data['id'], $sitios);
+    $this->Sitios_model->updateSitios($data['sitio_id'], $sitios);
 
     return TRUE;
 
@@ -273,9 +284,10 @@ public function accion()
   public function deleteSitios()
   {
     $id = $this->input->post('Id');
+   
     $fileName = $this->input->post('FileName');
     $this->Sitios_model->deleteSitios($id);
-    $deletefile = './assets/images/sitios/' . $fileName;
+    $deletefile = './assets/uploads/' . $id . '/' . $fileName;
     //unlink($deletefile);
     echo json_encode(array('success' => TRUE));
   }
@@ -293,7 +305,8 @@ public function accion()
   function upload($archivo,$tipos)
     {
       
-      $config['upload_path']          = 'assets/uploads';
+      $id = $this->input->post('Id');
+      $config['upload_path']          = 'assets/uploads/' . $id . '/';
       $config['allowed_types']        = $tipos ;   //'gif|jpg|png'
     
       // $config['max_size']             = 100;

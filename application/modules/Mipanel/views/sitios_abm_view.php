@@ -32,6 +32,7 @@
                                 <th>Razon Social</th>
                                 <th>Correo</th>
                                 <th>Estado</th>
+                                <th>Logo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -66,11 +67,12 @@
                     <!-- DATOS DE CONDICIONES -->
                     <input type="hidden" id="Opcion" name="Opcion" value="">
                     <input type="hidden" id="Id" name="Id" value="">
+
                    
                
                     <div class="form-group has-feedback">
-                        <label for="Nombre" class="control-label">Nombre</label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" value="">
+                        <label for="Sitio" class="control-label">Nombre</label>
+                        <input type="text" class="form-control" id="Sitio" name="Sitio" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                    
@@ -168,10 +170,12 @@
 
                     <div class="form-group has-feedback imagen">
                         <label for="Logo" class="control-label">Logo</label>
+                        <a id="deletelogoicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+
                         <div id="ocultaFile" >
                             <input type="file" id="File" name="File">
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <p class="help-block">Solo JPG 3000x3000</p>
+                            <p class="help-block">Tipos JPG/PNG</p>
                         </div>
                         <div id="showImagen">
                         </div>
@@ -180,9 +184,11 @@
 
                     <div class="form-group has-feedback imagen">
                         <label for="Icon" class="control-label">Icono</label>
+                        <a id="deleteiconicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+
                         <div id="ocultaFile1">
                             <input type="file" id="File1" name="File1" >
-                            <p class="help-block">Solo ICO</p>
+                            <p class="help-block">Tipos ICO/SVG</p>
                         </div>
                         <div id="showImagen1">
                         </div>
@@ -191,9 +197,10 @@
 
                     <div class="form-group has-feedback imagen">
                         <label for="Qr" class="control-label">Qr</label>
+                        <a id="deleteqricon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
                         <div id="ocultaFile2">
                             <input type="file" id="File2" name="File2" >
-                            <p class="help-block">Solo JPG 3000x3000</p>
+                            <p class="help-block">Tipos JPG/PNG</p>
                         </div>
                         <div id="showImagen2">
                         </div>

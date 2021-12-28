@@ -66,21 +66,42 @@ $('#showImagen2').click(function()  {
 });
 
 
-$('#File').change(function() {
+$('#deletelogoicon').click(function() {
+    $('#im1').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
+    $('#Logo').val('');
+    $('#File').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
+    $("#nim1").text('');
+    $('#deletelogoicon').hide()
+});
 
-  ////utilizado para validad tipo de archivo seleccionado en js
-  //var fileInput = document.getElementById('File');
-  //var filePath = fileInput.value;
-  //var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
-  //if(!allowedExtensions.exec(filePath)){
-  //    alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
-  //    //fileInput.value = '';
-  //    return false;
-  // }
-  var archi = document.getElementById("File").value.split('\\');
+$('#deleteiconicon').click(function() {
+  $('#im2').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
+  $('#Icono').val('');
+  $('#File1').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
+  $("#nim2").text('');
+  $('#deleteiconicon').hide()
+});
+
+
+$('#deleteqricon').click(function() {
+  $('#im3').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
+  $('#Qr').val('');
+  $('#File2').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
+  $("#nim3").text('');
+  $('#deleteqricon').hide()
+});
+
+
+
+$('#File').change(function() {
+  var archi = document.getElementById("File").value.split('\\'); //quito la ruta
   var nomarchi = archi[archi.length-1] 
-  var ima = UrlBase+'assets/uploads/'+nomarchi;
-   $("#nim1").text(nomarchi);
+  var sitio = $('#id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  $("#nim1").text(nomarchi);
+   if (archi !== '') {
+    $('#deletelogoicon').show()
+   }
    readURL(this);
  });
  
@@ -89,8 +110,13 @@ $('#File').change(function() {
 $('#File1').change(function() {
   var archi = document.getElementById("File1").value.split('\\');
   var nomarchi = archi[archi.length-1] 
-  var ima = UrlBase+'assets/uploads/'+nomarchi;
+  var sitio = $('#id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  
    $("#nim2").text(nomarchi);
+   if (archi !== '') {
+    $('#deleteiconicon').show()
+   }
    readURL(this);
  });
  
@@ -98,8 +124,12 @@ $('#File1').change(function() {
  $('#File2').change(function() {
   var archi = document.getElementById("File2").value.split('\\');
   var nomarchi = archi[archi.length-1] 
-  var ima = UrlBase+'assets/uploads/'+nomarchi;
-   $("#nim3").text(nomarchi);
+  var sitio = $('#id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  $("#nim3").text(nomarchi);
+   if (archi !== '') {
+    $('#deleteqricon').show()
+   }
    readURL(this);
  });
  
@@ -149,14 +179,19 @@ function listar(base,Toast) {
             $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
+          
+          //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
+          $('td:eq(6)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='img-thumbnail' />"); 
+          
         },
         columns: [
-            { data: "id" },
-            { data: "nombre" },
+            { data: "sitio_id" },
+            { data: "sitio" },
             { data: "url" },
             { data: "razonsocial" },
             { data: "correo" },
             { data: "activo"},
+            { data: "logo"},
             {
                 defaultContent:
                     "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
@@ -273,8 +308,8 @@ function submit(table,Toast) {
       // Asignamos las accion que realiza el metodo del servidor
       $("#Opcion").val("editar");
       //Asignamos los valores de cada input para que se muestren en el form
-			var id = $("#Id").val(datos.id),
-          nombre = $("#Nombre").val(datos.nombre),
+			var id = $("#Id").val(datos.sitio_id),
+          nombre = $("#Sitio").val(datos.sitio),
 				  url = $("#Url").val(datos.url),
 				  theme_id = $("#Theme_id").val(datos.theme_id),
           landing = $("#Landing").val(datos.landing),
@@ -298,14 +333,42 @@ function submit(table,Toast) {
       $('#ocultaFile1').hide();
       $('#ocultaFile2').hide();
 
+
        // Mostramos el nombre y la imagen del slide a editar
-      $('#showImagen').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
-      $('#showImagen1').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.icon+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
-      $('#showImagen2').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.qr+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
+       SitioId = $('#Id').val();
+             
+       if (datos.logo == '') {
+        $('#showImagen').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
+        $('#deletelogoicon').hide()
+      }else{
+        $('#deletelogoicon').show()
+        $('#showImagen').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId+'/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
+      }
+
+
+      if (datos.icon == '') {
+        $('#showImagen1').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
+        $('#deleteiconicon').hide()
+      }else {
+        $('#showImagen1').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId + '/' + datos.icon+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
+        $('#deleteiconicon').show()
+
+      }  
       
+      if (datos.qr == '') {
+        $('#showImagen2').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
+        $('#deleteqricon').hide()
+      }else{
+      $('#showImagen2').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId + '/'+datos.qr+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
+        $('#deleteqricon').show()
+
+      }
       // dibujamos la posicion de la llave 
       if (datos.landing==1) {
           $('.llave_landing').removeClass('fa-toggle-off');
@@ -329,7 +392,7 @@ function submit(table,Toast) {
 		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
       var datos = table.row($(this).parents("tr")).data();
-    
+          
       //Configuracion de botones del alert con clase de bootstrap
       const swalButtons = Swal.mixin({
         customClass: {
@@ -355,7 +418,7 @@ function submit(table,Toast) {
           $.ajax({
               type: "POST",
               url: UrlBase+'mipanel/sitios/deleteSitios',
-              data: { Id: datos.id, FileName: datos.imagen },
+              data: { Id: datos.sitio_id, FileName: datos.imagen },
               dataType: "json",
               success: function (response) {
                 if (response.success == true) {
@@ -390,12 +453,11 @@ function submit(table,Toast) {
     $(body).on("click", "a.activo", function () {
       var me = $(this);
       var datos = table.row($(this).parents("tr")).data();
-        
          // Ejecutamos la accion y la enviamos al servidor 
          $.ajax({
           type: "POST",
           url: UrlBase+'mipanel/sitios/cambioEstado',
-          data: { Estado: datos.activo, Id: datos.id },
+          data: { Estado: datos.activo, Id: datos.sitio_id },
           dataType: "json",
           success: function (response) {
             if (response.success == true) {

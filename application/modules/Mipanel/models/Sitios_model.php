@@ -34,14 +34,14 @@ public function setSitios($data)
 
 public function updateSitios($id,$data)
 {
-    $this->db->where('id',$id)
+    $this->db->where('sitio_id',$id)
             ->update('sitios',$data);
 }
 
 public function deleteSitios($id)
 {
     $this->db
-    ->where('id',$id)
+    ->where('sitio_id',$id)
     ->delete('sitios');
   
 }
@@ -49,7 +49,7 @@ public function deleteSitios($id)
 public function cambioEstado($id,$estado)
 {
     $data['activo'] = ($estado == 1) ? "0" : "1" ;
-    $this->db->where('id',$id)
+    $this->db->where('sitio_id',$id)
             ->update('sitios',$data);
     return $data['activo'];
 }
