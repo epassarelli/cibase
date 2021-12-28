@@ -66,7 +66,7 @@
         </a>
 
         <!-- Menú a la derecha del encabezado -->
-        <!-- 
+        <?php if ($this->ion_auth->is_admin()): ?>
         <div class="navbar-custom-menu">
             
             <ul class="nav navbar-nav">
@@ -75,7 +75,8 @@
               </li>
             </ul>
         </div> 
-        -->
+        <?php endif; ?>
+       
 
     </nav>
 </header>
@@ -124,16 +125,8 @@
 
                     
             <li>
-                <a href="<?php echo site_url('mipanel/admin/sitios');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Sitios</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
                 <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
+                    <i class="fa fa-fw fa-check"></i> <span>Secciones</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -142,7 +135,7 @@
             
             <li>
                 <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
+                    <i class="fa fa-fw fa-check"></i> <span>Bloques</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
@@ -150,53 +143,14 @@
             </li>
             <li>
                 <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
+                    <i class="fa fa-fw fa-check"></i> <span>Componentes</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
                 </a>
             </li>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/themes');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Themes</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li> 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/formatos');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Formatos</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/modulos');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Módulos</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Usuarios</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/roles');?>">
-                    <i class="fa fa-fw fa-industry"></i> <span>Roles</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>                                                     
+                                                    
             
             <li>
                 <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
@@ -596,11 +550,12 @@
 
         <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
+    
     <!-- Tab panes -->
     <div class="tab-content">
         <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+         <div class="tab-pane" id="control-sidebar-home-tab">
+<!--            <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
                 <li>
                     <a href="javascript:void(0)">
@@ -646,10 +601,10 @@
                         </div>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+<!--             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class="control-sidebar-menu">
                 <li>
                     <a href="javascript:void(0)">
@@ -699,17 +654,76 @@
                         </div>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <!-- /.control-sidebar-menu -->
 
         </div>
         <!-- /.tab-pane -->
+
         <!-- Stats tab content -->
         <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
         <!-- /.tab-pane -->
         <!-- Settings tab content -->
         <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
+
+            <ul class="sidebar-menu">
+        
+            
+
+                    
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/sitios');?>">
+                    <i class="fa fa-fw fa-globe"></i> <span>Sitios</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/themes');?>">
+                    <i class="fa fa-fw fa-photo"></i> <span>Themes</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li> 
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/formatos');?>">
+                    <i class="fa fa-fw fa-gear"></i> <span>Formatos</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/modulos');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Módulos</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
+                    <i class="fa fa-fw fa-user"></i> <span>Usuarios</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/admin/roles');?>">
+                    <i class="fa fa-fw fa-users"></i> <span>Roles</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li> 
+
+        
+            </ul>
+<!--             <form method="post">
                 <h3 class="control-sidebar-heading">General Settings</h3>
 
                 <div class="form-group">
@@ -721,10 +735,10 @@
                     <p>
                         Some information about this general settings option
                     </p>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Allow mail redirect
                         <input type="checkbox" class="pull-right" checked>
@@ -733,10 +747,10 @@
                     <p>
                         Other sets of options are available
                     </p>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Expose author name in posts
                         <input type="checkbox" class="pull-right" checked>
@@ -745,33 +759,33 @@
                     <p>
                         Allow the user to show his name in blog posts
                     </p>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
 
-                <h3 class="control-sidebar-heading">Chat Settings</h3>
+<!--                 <h3 class="control-sidebar-heading">Chat Settings</h3>
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Show me as online
                         <input type="checkbox" class="pull-right" checked>
                     </label>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Turn off notifications
                         <input type="checkbox" class="pull-right">
                     </label>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
 
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Delete chat history
                         <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                     </label>
-                </div>
+                </div> -->
                 <!-- /.form-group -->
             </form>
         </div>
