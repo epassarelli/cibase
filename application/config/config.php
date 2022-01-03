@@ -538,4 +538,4 @@ $config['sitio_id'] 	= 2; // webpass
 // $config['sitio_id'] 	= 4; // claudia
 // $config['sitio_id'] 	= 5; // mutual
 
-$config['color1'] = '#FF0000';
+$config['color1'] = '#FF0000'; //rojo
