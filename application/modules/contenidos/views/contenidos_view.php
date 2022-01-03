@@ -3,9 +3,9 @@
 // echo "<h2>Seccion sin bloques</h2>";
 if($bloques){
 	foreach ($bloques as $bloque) {
-  //       echo 'Bloque dentro de la vista<br>';
-  //       var_dump($bloque);
-  //       echo "<br>";
+		// echo 'Bloque dentro de la vista<br>';
+		// var_dump($bloque);
+		// echo "<br>";
 		// var_dump($bloque->bloque_id .' - '. $bloque->view);
 		$vista = 'application/modules/contenidos/views/'.$bloque->view.'.php';
 		//var_dump($vista);

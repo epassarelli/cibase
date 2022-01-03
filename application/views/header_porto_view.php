@@ -29,17 +29,34 @@
 								<nav>
 									<ul class="nav nav-pills" id="mainNav">
 
+					          <?php 
+					          //echo Run::Modules('menu/main',$seccion_id);
+					          
+					          // Mientras haya módulos recorro y agrego items
+					          foreach ($this->session->userdata('items') as $m) {
+					            //var_dump($m);
+					            //echo "<hr>";
+					            $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
+					              # code...
+					              //if($m['menu']){
+					                //$preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
+					                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+					              //}
+					          }
+
+					          ?> 
+
 							          <?php
-							          echo Run::Modules('menu/main',$seccion_id);		          
-							          // Mientras haya módulos recorro y agrego items
-										foreach ($items as $m) {
-											$preSlug = ($landing) ? '#' : site_url();
-							              # code...
-							              if($m['menu']){
-											$preSlug = ($landing) ? '#' : site_url();
-							                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
-							              }
-							          	}
+							   //        echo Run::Modules('menu/main',$seccion_id);		          
+							   //        // Mientras haya módulos recorro y agrego items
+										// foreach ($items as $m) {
+										// 	$preSlug = ($landing) ? '#' : site_url();
+							   //            # code...
+							   //            if($m['menu']){
+										// 	$preSlug = ($landing) ? '#' : site_url();
+							   //              echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+							   //            }
+							   //        	}
 							          ?>
 
 									</ul>
