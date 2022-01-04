@@ -8,16 +8,17 @@ public function __construct(){
 }  
 
 // Retorna 1 o mas registros dependiendo del parametro
-public function getProductos($parametros = '')
+public function getProductos($categoria = 0)
     {
-        //$this->db->select('*');
-        $this->db->from('productos');
-        //$this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
-        $this->db->where('sitio_id',$this->config->item('sitio_id'));
-        $this->db->order_by('titulo', 'desc');
-        $query = $this->db->get();
-        // var_dump($this->db->last_query());
+        $sitio = $this->config->item('sitio_id');
+        if ($categoria  !== 0) {
+          $comando =  'SELECT * FROM v_productos WHERE (categoria_id = ' . $categoria . ' or catpadre_id = ' . $categoria . ') AND sitio_id = ' . $sitio . ' order by titulo desc';
+        }else{
+          $comando = 'SELECT * FROM v_productos WHERE sitio_id = ' . $sitio . ' order by titulo desc';
+        }    
+        $query = $this->db->query($comando);
         return $query->result();
+ 
     }
 
 public function getCategorias($parametros = '')

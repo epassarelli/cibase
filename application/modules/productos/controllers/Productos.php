@@ -18,56 +18,36 @@ class Productos extends MX_Controller {
   public function index()
   {
     
-    //$data['productos'] = $this->Productos_model->getProductos();  
     $data['categorias'] = $this->Productos_model->getCategorias();  
-    $productos = $this->Productos_model->getAllBy('v_productos','', '','categoria_id');
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
     $data['productos'] = $productos;
-
-    foreach ($data['categorias'] as $cat) {
-    //  echo '<h3>' . $cat->categoria_id . ' ' . $cat->catpadre_id . ' ' . $cat->categoria . '</h3>';
-    }
-    //die();
-
     $data['view']       = 'productos_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
+ 
 
-  public function productos_categorias($categoria = 0)
+  public function categorias($slug = '')
   {
+    $parametros['slug'] = $slug;
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
     
+    //obtengo id del slug
+    $row_categoria = $this->Productos_model->getOneBy('categorias', '', $parametros, '');
+   
+    $categoria = $row_categoria->categoria_id; 
     $data['categorias'] = $this->Productos_model->getCategorias();  
-    $parametros['categoria_id'] = $categoria;
-    $productos = $this->Productos_model->getAllBy('v_productos','',$parametros,'titulo');
+    $productos = $this->Productos_model->getProductos($categoria);
     $data['productos'] = $productos;
-
-    foreach ($data['categorias'] as $cat) {
-    //  echo '<h3>' . $cat->categoria_id . ' ' . $cat->catpadre_id . ' ' . $cat->categoria . '</h3>';
-    }
-    //die();
-
-    $data['view']       = 'productos_view';
-    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
-  }
-
-
   
-  public function productos_categoriasp($categoria = 0)
-  {
-    
-    $data['categorias'] = $this->Productos_model->getCategorias();  
-    $parametros['catpadre_id'] = $categoria;
-    $parametros['categoria_id'] = $categoria;
-    $productos = $this->Productos_model->getAllBy('v_productos','',$parametros,'titulo',1);
-    $data['productos'] = $productos;
 
-    foreach ($data['categorias'] as $cat) {
-    //  echo '<h3>' . $cat->categoria_id . ' ' . $cat->catpadre_id . ' ' . $cat->categoria . '</h3>';
-    }
-    //die();
 
     $data['view']       = 'productos_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
+
+
+
 
 }
