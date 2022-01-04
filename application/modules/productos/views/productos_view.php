@@ -32,7 +32,7 @@
                         <a href="#"><img src="<?php echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $prod->imagen  ?> " alt="<?php echo $prod->titulo ?>"></a>
                         <a href="#"><img src="<?php echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $prod->imagen2  ?>" alt="<?php echo $prod->titulo ?>"></a>
                         <?php if ($prod->precioOF != 0) : ?>
-                            <div class="sale-flash">50% Off*</div>
+                            <div class="sale-flash">Oferta</div>
                         <?php  endif ?>
                         <div class="product-overlay">
                             <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Agregar al carro</span></a>
@@ -62,13 +62,13 @@
                                        foreach ($categorias as $cat) {
                                             if ($cat->catpadre_id == null) {
                                                 echo '<ul>';
-                                                echo '<a href="'. base_url() . 'productos/productos_categoriasp/' . $cat->categoria_id . '">' . $cat->categoria  . '</a>';
+                                                echo '<a href="'. base_url() . 'productos/categorias/' . $cat->slug . '">' . $cat->categoria  . '</a>';
                                                     foreach ($categorias as $subcat) {
                                                             $haysubcat = 0;
                                                             if ($subcat->catpadre_id == $cat->categoria_id) { 
                                                                 $haysubcat=1;
                                                                 echo '<ul>';
-                                                                echo '<li><a href="'. base_url() . 'productos/productos_categorias/' . $subcat->categoria_id . '">' . $subcat->categoria  . '</a></li>';
+                                                                echo '<li><a href="'. base_url() . 'productos/categorias/' . $subcat->slug . '">' . $subcat->categoria  . '</a></li>';
                                                             } 
                                                             if ($haysubcat = 1) {
                                                                 echo '</ul>';
