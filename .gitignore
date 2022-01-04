@@ -19,4 +19,3 @@ application/logs/*
 /vendor/
 vendor/*
 /sql/
-/assets/uploads/
