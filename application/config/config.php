@@ -532,15 +532,10 @@ $config['proxy_ips'] = '';
 | 
 | 
 */
+// 1 - CIBASE
+// 2 - Webpass
+// 3 - Vitello
+// 4 - Claudia
+// 5 - Mutual
 
-<<<<<<< HEAD
-$config['sitio_id'] 	= 3; // webpass
-// $config['sitio_id'] 	= 3; // vittello
-=======
-//$config['sitio_id'] 	= 2; // webpass
- $config['sitio_id'] 	= 3; // vittello
->>>>>>> productos
-// $config['sitio_id'] 	= 4; // claudia
-// $config['sitio_id'] 	= 5; // mutual
-
-$config['color1'] = '#FF0000'; //rojo
+$config['sitio_id'] 	= 3; 
