@@ -21,7 +21,7 @@
           
           <a href="<?php echo site_url(); ?>" class="standard-logo" data-dark-logo="<?php echo site_url('assets/images/logo.png'); ?>">
               <?php if($this->session->userdata('logo') !== ''): ?>
-                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('logo')); ?>" alt="Logo">
+                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('logo')); ?>" alt="<?php echo $this->session->userdata('sitio'); ?>">
               <?php else: ?>
                 <img src="<?php echo site_url('assets/images/logo.png'); ?>" alt="Logo">
               <?php endif; ?>           

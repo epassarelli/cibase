@@ -5,9 +5,12 @@
 			<div class="row">
 				
 			<div class="col-md-1">
-					<a href="index.html" class="logo">
-						<img alt="Porto Website Template" class="img-responsive" src="<?php echo site_url('assets/images/logo.png'); ?>">
-					</a>
+					<?php if($this->session->userdata('qr') !== ''): ?>
+
+                        <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('qr')); ?>" alt="QR"  class="img-responsive">
+
+                    <?php endif; ?>
+
 				</div>
 				
 				<div class="col-md-7">
@@ -17,17 +20,17 @@
 				<div class="col-md-4">
 					<nav id="sub-menu">
 						<ul>
-							<?php			          
-							// Mientras haya módulos recorro y agrego items
-							foreach ($secciones as $m) {
-							$preSlug = ($landing) ? '#' : site_url();
-									# code...
-									if($m['menu']){
-										$preSlug = ($landing) ? '#' : site_url();
-										echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a></li>";
-									}
-								}
-							?>
+			                <?php                     
+			                    // Mientras haya módulos recorro y agrego items
+			                    foreach ($this->session->userdata('items') as $m) {
+			                        $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
+			                        # code...
+			                        //if($m['menu']){
+			                            //$preSlug = ($landing) ? '#' : site_url();
+			                        echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a> </li>";
+			                        //}
+			                    }
+			                ?> 
 						</ul>
 					</nav>
 				</div>

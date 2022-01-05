@@ -5,8 +5,8 @@
 				
 				<div class="header-column">
 					<div class="header-logo">
-						<a href="index.html">
-							<img alt="Porto" width="150" height="60" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="<?php echo site_url('assets/images/logo.png'); ?>">
+						<a href="<?php echo site_url(); ?>">
+							<img alt="<?php echo $this->session->userdata('sitio'); ?>" width="150" height="60" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('logo')); ?>">
 						</a>
 					</div>
 				</div>
@@ -30,34 +30,14 @@
 									<ul class="nav nav-pills" id="mainNav">
 
 					          <?php 
-					          //echo Run::Modules('menu/main',$seccion_id);
-					          
 					          // Mientras haya módulos recorro y agrego items
-					          foreach ($this->session->userdata('items') as $m) {
-					            //var_dump($m);
-					            //echo "<hr>";
+					          foreach ($this->session->userdata('items') as $m) 
+					          {
 					            $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
-					              # code...
-					              //if($m['menu']){
-					                //$preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
-					                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
-					              //}
+					            echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
 					          }
 
 					          ?> 
-
-							          <?php
-							   //        echo Run::Modules('menu/main',$seccion_id);		          
-							   //        // Mientras haya módulos recorro y agrego items
-										// foreach ($items as $m) {
-										// 	$preSlug = ($landing) ? '#' : site_url();
-							   //            # code...
-							   //            if($m['menu']){
-										// 	$preSlug = ($landing) ? '#' : site_url();
-							   //              echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
-							   //            }
-							   //        	}
-							          ?>
 
 									</ul>
 								</nav>
