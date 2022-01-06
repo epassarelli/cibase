@@ -1,7 +1,8 @@
+
 <section class="content-header">
     <h1>
-        Sitios
-        <small>Listado de sitios</small>
+        Productos
+        <small>Listado de Productos</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -60,118 +61,44 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span> Sitios</h4>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Productos</h4>
             </div>
             <div class="modal-body">
             <div id="sent" class="col-3"></div>
-                <form action="<?php echo base_url('mipanel/sitios/accion');?>" id="formSitios" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('mipanel/productos/accion');?>" id="formSitios" method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                     <input type="hidden" id="Opcion" name="Opcion" value="">
-                    <input type="hidden" id="Id" name="Id" value="">
-
+                    <input type="hidden" id="id" name="id" value="">
+                    <input type="hidden" id="sitio_id" name="sitio_id" value="">
                    
                
                     <div class="form-group has-feedback">
-                        <label for="Sitio" class="control-label">Nombre</label>
-                        <input type="text" class="form-control" id="Sitio" name="Sitio" value="">
+                        <label for="titulo" class="control-label">Titulo</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                    
                     <div class="form-group has-feedback">
-                        <label for="Url" class="control-label">Url</label>
-                        <input type="text" class="form-control" id="Url" name="Url" value="">
+                        <label for="descLarga" class="control-label">Descripcion Larga</label>
+                        <input type="text" class="form-control" id="descLarga" name="descLarga" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="Theme_id" class="control-label">Tema</label>
-                        <select id="Theme_id" name="Theme_id" class="form-control">
-                                    <option value=0>Seleccione un Tema</option>
-                                    <option value=1>Avada</option>
-                                    <option value=2>Porto</option>  
-                        </select>               
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    
-                    <div class="form-group has-feedback">
-                        <input type="hidden" class="form-control" id="Landing" name="Landing" value="">
-                        <div class='text-left'>
-                            <label class="control-label">Landing Page</label>
-                            <a class='activo'><i class='fa fa-toggle-off fa-2x text-green llave_landing' id='llave_landing'></i></a>
-                        </div>
-                    </div>
-
-                    
-                    <div class="form-group has-feedback">
-                        <label for="Razonsocial" class="control-label">Razon Social</label>
-                        <input type="text" class="form-control" id="Razonsocial" name="Razonsocial" value="">
+                        <label for="descCorta" class="control-label">Descripcion Corta</label>
+                        <input type="text" class="form-control" id="descCorta" name="descCorta" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="Direccion" class="control-label">Direccion</label>
-                        <input type="text" class="form-control" id="Direccion" name="Direccion" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Cpostal" class="control-label">Codigo Postal</label>
-                        <input type="text" class="form-control" id="Cpostal" name="Cpostal" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                    
-                    <div class="form-group has-feedback">
-                        <label for="Localidad" class="control-label">Localidad</label>
-                        <input type="text" class="form-control" id="Localidad" name="Localidad" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Provincia" class="control-label">Provincia</label>
-                        <input type="text" class="form-control" id="Provincia" name="Provincia" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Pais" class="control-label">Pais</label>
-                        <input type="text" class="form-control" id="Pais" name="Pais" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="UrlGMap" class="control-label">Url Google Maps</label>
-                        <input type="text" class="form-control" id="UrlGMap" name="UrlGMap" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                    
-                    <div class="form-group has-feedback">
-                        <label for="Telefono" class="control-label">Telefono</label>
-                        <input type="text" class="form-control" id="Telefono" name="Telefono" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Correo" class="control-label">Correo</label>
-                        <input type="text" class="form-control" id="Correo" name="Correo" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Facebook" class="control-label">Facebook</label>
-                        <input type="text" class="form-control" id="Facebook" name="Facebook" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-
-                    <div class="form-group has-feedback">
-                        <label for="Instagram" class="control-label">Instagram</label>
-                        <input type="text" class="form-control" id="Instagram" name="Instagram" value="">
+                        <label for="codigo" class="control-label">Codigo</label>
+                        <input type="text" class="form-control" id="codigo" name="codigo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback imagen">
-                        <label for="Logo" class="control-label">Logo</label>
-                        <a id="deletelogoicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+                        <label for="imagen" class="control-label">Imagen 1</label>
+                        <a id="deleteimagenicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
 
                         <div id="ocultaFile" >
                             <input type="file" id="File" name="File">
@@ -180,33 +107,132 @@
                         </div>
                         <div id="showImagen">
                         </div>
-                        <input type="hidden" id="Logo" name="Logo">
+                        <input type="hidden" id="imagen" name="imagen">
                     </div>                    
 
                     <div class="form-group has-feedback imagen">
-                        <label for="Icon" class="control-label">Icono</label>
-                        <a id="deleteiconicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+                        <label for="imagen2" class="control-label">Imagen 2</label>
+                        <a id="deleteimagen2con" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
 
                         <div id="ocultaFile1">
                             <input type="file" id="File1" name="File1" >
                             <p class="help-block">Tipos ICO/SVG</p>
                         </div>
-                        <div id="showImagen1">
+                        <div id="showImagen2">
                         </div>
-                        <input type="hidden" id="Icon" name="Icon">
+                        <input type="hidden" id="imagen2" name="imagen2">
                     </div>                    
 
                     <div class="form-group has-feedback imagen">
-                        <label for="Qr" class="control-label">Qr</label>
-                        <a id="deleteqricon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+                        <label for="imagen3" class="control-label">Imagen 3</label>
+                        <a id="deleteimagen3icon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
                         <div id="ocultaFile2">
                             <input type="file" id="File2" name="File2" >
                             <p class="help-block">Tipos JPG/PNG</p>
                         </div>
-                        <div id="showImagen2">
+                        <div id="showImagen3">
                         </div>
-                        <input type="hidden" id="Qr" name="Qr">
-                    </div>                    
+                        <input type="hidden" id="imagen3" name="imagen3">
+                    </div>                
+
+
+                    <div class="form-group has-feedback">
+                        <label for="precioLista" class="control-label">Precio de Lista</label>
+                        <input type="text" class="form-control" id="precioLista" name="precioLista" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="precioOF" class="control-label">Precio de Oferta</label>
+                        <input type="text" class="form-control" id="precioOF" name="precioOF" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="OfDesde" class="control-label">Oferta Valida desde</label>
+                        <input type="date" class="form-control" id="OfDesde" name="OfDesde" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="OfHasta" class="control-label">Oferta Valida desde</label>
+                        <input type="date" class="form-control" id="OfHasta" name="OfHasta" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="impuesto_id" class="control-label">Impuesto</label>
+                        <select id="impuesto_id" name="impuesto_id" class="form-control">
+                                  <?php 
+                                  echo  "<option value=0>Seleccione un Impuesto</option>";
+                                  foreach ($impuestos as $imp) {
+                                       if (set_value('impuesto_id',@$impuesto_id)==$imp->impuesto_id) { 
+                                            echo '<option value="' .$imp->impuesto_id. '"" selected>' . $imp->titulo . '  </option>';  
+                                        }else
+                                            echo '<option value="' .$imp->impuesto_id. '"">' . $imp->titulo . ' </option>';  
+                                    }
+                                  ?> 
+                                </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+
+                    <div class="form-group has-feedback">
+                        <label for="presentacion_id" class="control-label">Presentacion</label>
+                        <select id="presentacion_id" name="presentacion_id" class="form-control">
+                        <?php 
+                                  echo  "<option value=0>Seleccione una Presentacion</option>";
+                                  foreach ($presentaciones as $pres) {
+                                       if (set_value('presentacion_id',@$presentacion_id)==$pres->presentacion_id) { 
+                                            echo '<option value="' .$pres->presentacion_id. '"" selected>' . $pres->titulo . '  </option>';  
+                                        }else
+                                            echo '<option value="' .$pres->presentacion_id. '"">' . $pres->titulo . ' </option>';  
+                                    }
+                                  ?> 
+
+                        </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    
+
+                    <div class="form-group has-feedback">
+                        <input type="hidden" class="form-control" id="destacar_id" name="destacar_id" value="">
+                        <div class='text-left'>
+                            <label class="control-label">Destacar Producto</label>
+                            <a class='activo'><i class='fa fa-toggle-off fa-2x text-green llave_destacar' id='llave_destacar'></i></a>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="etiquetas" class="control-label">Etiquetas</label>
+                        <input type="text" class="form-control" id="etiquetas" name="etiquetas" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="peso" class="control-label">Peso</label>
+                        <input type="text" class="form-control" id="peso" name="peso" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="tamano" class="control-label">Tamaño</label>
+                        <input type="text" class="form-control" id="tamano" name="tamano" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    
+                    <div class="form-group has-feedback">
+                        <label for="link" class="control-label">Link</label>
+                        <input type="text" class="form-control" id="link" name="link" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label for="orden" class="control-label">Orden</label>
+                        <input type="text" class="form-control" id="orden" name="orden" value="">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
 
                 
             </div>

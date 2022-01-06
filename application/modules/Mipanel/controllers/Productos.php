@@ -11,6 +11,9 @@ class Productos  extends MX_Controller {
     }
 
     $this->load->model('../models/Productos_model');
+    $this->load->model('../models/Impuestos_model');
+    $this->load->model('../models/Presentaciones_model');
+    
     
     switch (ENVIRONMENT){
       case 'development':
@@ -30,6 +33,9 @@ class Productos  extends MX_Controller {
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
     $this->data['files_js'] = array('productos.js?v='.rand(),'sweetalert2.min.js');
+    $this->data['presentaciones'] = $this->Presentaciones_model->getAllBy('presentaciones','','','');
+    $this->data['impuestos'] = $this->Impuestos_model->getAllBy('impuestos','','','');
+    
     $this->template->load('layout_back', 'productos_abm_view', $this->data);  
   }
 
@@ -38,11 +44,22 @@ class Productos  extends MX_Controller {
   {
     
     $parametros['sitio_id'] = $this->config->item('sitio_id');
-    $data['data'] = $this->Productos_model->getAllBy('v_productos','',$parametros,'');
+    $data['data'] = $this->Productos_model->getAllBy('productos','',$parametros,'');
     echo json_encode($data);
   }
 
 
+  // Esta funcion la usamos para enviar datos
+  //completos del registro al js para su edicion
+  public function getProductoJson()
+  {
+    
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $parametros['id'] = $this->input->post('Id');
+    $data['data'] = $this->Productos_model->getOneBy('productos','',$parametros,'');
+    echo json_encode($data);
+  }
+ 
 
 
 
@@ -73,22 +90,9 @@ public function accion()
 {
     $data = array('success' => false, 'messages' => array());
 
-    $this->form_validation->set_rules('Sitio','Sitio', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
+    $this->form_validation->set_rules('titulo','Titulo', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
     
-    $this->form_validation->set_rules('Url','Url', array('required','max_length[100]'), array('required'   => '{field} es obligatorio',
-     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
-    $this->form_validation->set_rules('Theme_id','Tema', array('is_natural_no_zero'),  array('is_natural_no_zero'   => 
-    'Debe seleccionar un tema'));    
-    
-    $this->form_validation->set_rules('Razonsocial','Razon Social', array('required','max_length[200]'),  array('required'   => '{field} es obligatorio',
-     'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-  
-    $this->form_validation->set_rules('Correo','Correo',array('required','max_length[150]'), array('required'   => '{field} es obligatorio',
-       'max_length' => '{field} no puede exceder {param} caracteres -'));                                      
-    
- 
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
@@ -98,105 +102,102 @@ public function accion()
         $result2 = null;
         $result3 = null;
 
-        $valid_logo = TRUE;
+        $valid_imagen = TRUE;
  
-        if(isset($_FILES["File"]["name"]) and $this->input->post('Logo') !== '')
+        if(isset($_FILES["File"]["name"]) and $this->input->post('imagen') !== '')
         {
           if($_FILES["File"]["name"] !=='' )
           {     
               $result = $this->upload('File','jpg|png');
               if (isset($result['error'])) {
-                  $valid_logo = FALSE;
+                  $valid_imagen = FALSE;
               }else{
-                $valid_logo = TRUE;
+                $valid_imagen = TRUE;
               }
            }
         }
 
      
 
-        $valid_icon = TRUE;
+        $valid_imagen2 = TRUE;
         
 
-        if(isset($_FILES["File1"]["name"]) and $this->input->post('Icon') !=='')
+        if(isset($_FILES["File1"]["name"]) and $this->input->post('imagen2') !=='')
         {
           if($_FILES["File1"]["name"] !=='' )           
           { 
-              $result2 = $this->upload('File1','ico|svg');
+              $result2 = $this->upload('File1','jpg|png');
               if (isset($result2['error']))  {
-                  $valid_icon = FALSE;
+                  $valid_imagen2 = FALSE;
               }else{
-                $valid_icon = TRUE;
+                $valid_imagen2 = TRUE;
               }
           }
         }  
 
-        $valid_qr = TRUE;
-        if(isset($_FILES["File2"]["name"]) and $this->input->post('Qr') !== '')
+        $valid_imagen3 = TRUE;
+        if(isset($_FILES["File2"]["name"]) and $this->input->post('imagen3') !== '')
         {
           if($_FILES["File2"]["name"] !=='' )
           { 
               $result3 = $this->upload('File2','jpg|png');
               if (isset($result3['error'])) {
-                  $valid_qr = FALSE;
+                  $valid_imagen3 = FALSE;
               }else{
-                $valid_qr = TRUE;
+                $valid_imagen3 = TRUE;
               }
             }
           }           
  
    ///para ver respuesta en el navegador        
-   $data['f0']   = $this->input->post('Logo');
-   $data['f1']   = $this->input->post('Icon');
-   $data['f2']   = $this->input->post('Qr');
+   $data['f0']   = $this->input->post('imagen');
+   $data['f1']   = $this->input->post('imagen2');
+   $data['f2']   = $this->input->post('imagen3');
    $data['result']   = $result;
    $data['result2']  = $result2;
    $data['result3']  = $result3;
    $data['file']   = $_FILES;
-   $data['valid_logo']   = $valid_logo;
-   $data['valid_qr']     = $valid_qr;
-   $data['valid_icon']   = $valid_icon;
+   $data['valid_imagen']   = $valid_imagen;
+   $data['valid_imagen2']  = $valid_imagen2;
+   $data['valid_imagen3']  = $valid_imagen3;
    ////// debugging
    
 
-  if ($this->form_validation->run() == TRUE && $valid_logo && $valid_icon && $valid_qr) {
+  if ($this->form_validation->run() == TRUE && $valid_imagen && $valid_imagen2 && $valid_imagen3) {
          
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
-        $sitios['sitio_id'] = $this->input->post('Id');
-        $sitios['sitio'] =  $this->input->post('Sitio');
-        $sitios['url'] = $this->input->post('Url');
-        $sitios['theme_id'] = $this->input->post('Theme_id');
-        $sitios['landing'] = $this->input->post('Landing');
-        $sitios['activo'] = 0;
-        $sitios['razonsocial'] = $this->input->post('Razonsocial');
-        $sitios['direccion'] = $this->input->post('Direccion');
-        $sitios['cpostal'] = $this->input->post('Cpostal');
-        $sitios['localidad'] = $this->input->post('Localidad');
-        $sitios['provincia'] = $this->input->post('Provincia');
-        $sitios['pais'] = $this->input->post('Pais');
-        $sitios['urlGMap'] = $this->input->post('UrlGMap');
-        $sitios['telefono'] = $this->input->post('Telefono');
-        $sitios['correo'] = $this->input->post('Correo');
-        $sitios['facebook'] = $this->input->post('Facebook');
-        $sitios['instagram'] = $this->input->post('Instagram');
-        
-        //$sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : "$this->input->post('Logo')" ;
-
-        $sitios['logo'] = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('Logo') ;
-        $sitios['icon'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('Icon') ;
-        $sitios['qr']   = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('Qr') ;
-        
-       
+        $producto['id']        = $this->input->post('id');
+        $producto['sitio_id']  = $this->input->post('sitio_id');
+        $producto['titulo']    = $this->input->post('titulo');
+        $producto['codigo']    = $this->input->post('codigo');
+        $producto['descLarga'] = $this->input->post('descLarga');
+        $producto['descCorta'] = $this->input->post('descCorta');
+        $producto['imagen']    = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('imagen') ;
+        $producto['imagen2']   = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('imagen2') ;
+        $producto['imagen3']   = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('imagen3') ;
+        $producto['precioLista'] = $this->input->post('precioLista');
+        $producto['precioOF']    = $this->input->post('precioOF');
+        $producto['OfDesde'] = $this->input->post('OfDesde');        
+        $producto['OfHasta'] = $this->input->post('OfHasta');
+        $producto['impuesto_id'] = $this->input->post('impuesto_id');
+        $producto['presentacion_id'] = $this->input->post('presentacion_id');
+        $producto['destacar_id'] = $this->input->post('destacar_id');
+        $producto['etiquetas'] = $this->input->post('etiquetas');
+        $producto['peso'] = $this->input->post('peso');
+        $producto['tamano'] = $this->input->post('tamano');
+        $producto['link'] = $this->input->post('link');
+        $producto['orden'] = $this->input->post('orden');
+      
         // Pasar el switch
         switch ($opcion) {
 
             case 'insertar':
-                $data['success'] = $this->setSitios($sitios);
+                $data['success'] = $this->setProductos($producto);
             break;
 
             case 'editar':
-                $data['success'] = $this->updateSitios($sitios);
+                $data['success'] = $this->updateProductos($producto);
             break;
         }
 
@@ -206,23 +207,23 @@ public function accion()
             $data['messages'][$key] = form_error($key);
         }
 
-        if (!$valid_logo) {
+        if (!$valid_imagen) {
             //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-            $data['messages']['Logo']  = '<p class="text-danger">Archivo no valido o tamaño excedido</p>';
+            $data['messages']['imagen']  = '<p class="text-danger">Archivo no valido o tamaño excedido</p>';
           }else {
-            $data['messages']['Logo']  = '';
+            $data['messages']['imagen']  = '';
         }
-        if (!$valid_icon ) {
+        if (!$valid_imagen2 ) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['Icon']  = '<p class="text-danger">Archivo no valido  o tamaño excedido</p>';
+          $data['messages']['imagen2']  = '<p class="text-danger">Archivo no valido  o tamaño excedido</p>';
         }else{
-          $data['messages']['Icon']  = '';
+          $data['messages']['imagen2']  = '';
         }
-        if (!$valid_qr) {
+        if (!$valid_imagen3) {
           //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['Qr']  = '<p class="text-danger">Archivo no valido  o tamaño excedido </p>';
+          $data['messages']['imagen3']  = '<p class="text-danger">Archivo no valido  o tamaño excedido </p>';
         }else{
-          $data['messages']['Qr']  = '';
+          $data['messages']['imagen3']  = '';
         }
 
     }
@@ -232,69 +233,71 @@ public function accion()
 }
 
   // Alta de un sitios
-  public function setSitios($data){
-      $sitios['sitio']      = $data['sitio'];
-      $sitios['url']         = $data['url'];
-      $sitios['theme_id']    = $data['theme_id'];
-      $sitios['landing']     = $data['landing'];
-      $sitios['activo']      = $data['activo'];
-      $sitios['razonsocial'] = $data['razonsocial'];
-      $sitios['direccion']   = $data['direccion'];
-      $sitios['cpostal']     = $data['cpostal'];
-      $sitios['localidad']   = $data['localidad'];
-      $sitios['provincia']   = $data['provincia'];
-      $sitios['pais']        = $data['pais'];
-      $sitios['urlGMap']     = $data['urlGMap'];
-      $sitios['telefono']    = $data['telefono'];
-      $sitios['correo']      = $data['correo'];
-      $sitios['facebook']    = $data['facebook'];
-      $sitios['instagram']   = $data['instagram'];
-      $sitios['logo']        = $data['logo'];
-      $sitios['icon']        = $data['icon'];
-      $sitios['qr']          = $data['qr'];
+  public function setProductos($data){
+    $producto['titulo']      = $data['titulo'];
+    $producto['descLarga']   = $data['descLarga'];
+    $producto['codigo']   = $data['codigo'];
+    $producto['descCorta']   = $data['descCorta'];
+    $producto['imagen']      = $data['imagen'];
+    $producto['imagen2']     = $data['imagen2'];;
+    $producto['imagen3']     = $data['imagen3'];
+    $producto['precioLista'] = $data['precioLista'];
+    $producto['precioOF']    = $data['precioOF'];
+    $producto['OfDesde']     = $data['OfDesde'];        
+    $producto['OfHasta']     = $data['OfHasta'];
+    $producto['impuesto_id'] = $data['impuesto_id'];
+    $producto['presentacion_id'] = $data['presentacion_id'];
+    $producto['destacar_id'] = $data['destacar_id'];
+    $producto['etiquetas'] = $data['etiquetas'];
+    $producto['peso'] = $data['peso'];
+    $producto['tamano'] = $data['tamano'];
+    $producto['link'] = $data['link'];
+    $producto['orden'] = $data['orden'];
+    $producto['sitio_id'] = $this->config->item('sitio_id');
+    
 
 
-      $this->Sitios_model->setSitios($sitios);
+      $this->Productos_model->setProducto($producto);
       return TRUE;
   }
 
   // Editar un sitios
-  public function updatesitios($data){
+  public function updateProductos($data){
 
-    $sitios['sitio']      = $data['sitio'];
-    $sitios['url']         = $data['url'];
-    $sitios['theme_id']    = $data['theme_id'];
-    $sitios['landing']     = $data['landing'];
-    $sitios['activo']      = $data['activo'];
-    $sitios['razonsocial'] = $data['razonsocial'];
-    $sitios['direccion']   = $data['direccion'];
-    $sitios['cpostal']     = $data['cpostal'];
-    $sitios['localidad']   = $data['localidad'];
-    $sitios['provincia']   = $data['provincia'];
-    $sitios['pais']        = $data['pais'];
-    $sitios['urlGMap']     = $data['urlGMap'];
-    $sitios['telefono']    = $data['telefono'];
-    $sitios['correo']      = $data['correo'];
-    $sitios['facebook']    = $data['facebook'];
-    $sitios['instagram']   = $data['instagram'];
-    $sitios['logo']        = $data['logo'];
-    $sitios['icon']        = $data['icon'];
-    $sitios['qr']          = $data['qr'];
+    $producto['titulo']      = $data['titulo'];
+    $producto['descLarga']   = $data['descLarga'];
+    $producto['codigo']   = $data['codigo'];
+    $producto['descCorta']   = $data['descCorta'];
+    $producto['imagen']      = $data['imagen'];
+    $producto['imagen2']     = $data['imagen2'];;
+    $producto['imagen3']     = $data['imagen3'];
+    $producto['precioLista'] = $data['precioLista'];
+    $producto['precioOF']    = $data['precioOF'];
+    $producto['OfDesde']     = $data['OfDesde'];        
+    $producto['OfHasta']     = $data['OfHasta'];
+    $producto['impuesto_id'] = $data['impuesto_id'];
+    $producto['presentacion_id'] = $data['presentacion_id'];
+    $producto['destacar_id'] = $data['destacar_id'];
+    $producto['etiquetas'] = $data['etiquetas'];
+    $producto['peso'] = $data['peso'];
+    $producto['tamano'] = $data['tamano'];
+    $producto['link'] = $data['link'];
+    $producto['orden'] = $data['orden'];
       
-    $this->Sitios_model->updateSitios($data['sitio_id'], $sitios);
+    $this->Productos_model->update($data['id'], $producto);
 
     return TRUE;
 
   }
 
-  //Eliminando un registro de la tabla de sitios
-  public function deleteSitios()
+  //Eliminando un registro de la tabla de productos
+  public function deleteProducto()
   {
     $id = $this->input->post('Id');
    
-    $fileName = $this->input->post('FileName');
-    $this->Sitios_model->deleteSitios($id);
-    $deletefile = './assets/uploads/' . $id . '/' . $fileName;
+    //$fileName = $this->input->post('FileName');
+    $this->Productos_model->deleteProductos($id);
+    //$deletefile = './assets/uploads/' . $id . '/' . $fileName;
     //unlink($deletefile);
     echo json_encode(array('success' => TRUE));
   }
@@ -319,8 +322,8 @@ public function accion()
   function upload($archivo,$tipos)
     {
       
-      $id = $this->input->post('Id');
-      $config['upload_path']          = 'assets/uploads/' . $id . '/';
+      $sitio_id = $this->config->item('sitio_id');
+      $config['upload_path']          = 'assets/uploads/' . $sitio_id . '/productos/';
       $config['allowed_types']        = $tipos ;   //'gif|jpg|png'
     
       // $config['max_size']             = 100;

@@ -431,7 +431,7 @@ function submit(table,Toast) {
                 }
               }//success
             });//ajax  
-            console.log('ejecutamos 3'); 
+            //console.log('ejecutamos 3'); 
           } else if (
           /* Read more about handling dismissals below */
            result.dismiss === Swal.DismissReason.cancel
@@ -478,7 +478,7 @@ function submit(table,Toast) {
 
               table.ajax.reload();
             }
-          }//success
+          } //success         
         });//ajax
     });
   }
