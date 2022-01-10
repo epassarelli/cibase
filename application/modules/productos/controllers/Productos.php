@@ -22,7 +22,7 @@ class Productos extends MX_Controller {
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
     $data['productos'] = $productos;
-    $data['view']       = 'productos_view';
+    $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
@@ -43,7 +43,7 @@ class Productos extends MX_Controller {
   
 
 
-    $data['view']       = 'productos_view';
+    $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 

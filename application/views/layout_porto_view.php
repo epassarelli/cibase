@@ -39,8 +39,8 @@
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme.css">
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme-elements.css">
-<!-- 		<link rel="stylesheet" href="css/theme-blog.css">
-		<link rel="stylesheet" href="css/theme-shop.css"> -->
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme-blog.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme-shop.css">
 		
 		<!-- Demo CSS -->
 
