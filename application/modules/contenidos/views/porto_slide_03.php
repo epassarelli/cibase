@@ -10,7 +10,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Presentation</span>
 								<span class="thumb-info-type">Brand</span>
@@ -19,7 +19,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes//componentes/c5ac6-cliente04.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -27,10 +27,10 @@
 					</span>
 				</div>
 
-<!-- 				<div class="portfolio-item">
+				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-1.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-1.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Porto Watch</span>
 								<span class="thumb-info-type">Media</span>
@@ -39,7 +39,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-1.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-1.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -50,7 +50,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-2.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Identity</span>
 								<span class="thumb-info-type">Logo</span>
@@ -59,7 +59,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-2.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -70,7 +70,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-27.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Porto Screens</span>
 								<span class="thumb-info-type">Website</span>
@@ -79,7 +79,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-27.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -90,7 +90,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-4.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Three Bottles</span>
 								<span class="thumb-info-type">Logo</span>
@@ -99,7 +99,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-4.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -110,7 +110,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-5.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Company T-Shirt</span>
 								<span class="thumb-info-type">Brand</span>
@@ -119,7 +119,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-5.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -130,7 +130,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-6.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-6.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Mobile Mockup</span>
 								<span class="thumb-info-type">Website</span>
@@ -139,7 +139,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-6.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-6.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -150,7 +150,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-7.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-7.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Porto Label</span>
 								<span class="thumb-info-type">Media</span>
@@ -159,7 +159,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-7.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-7.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -170,7 +170,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-23.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-23.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Business Folders</span>
 								<span class="thumb-info-type">Logo</span>
@@ -179,7 +179,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-23.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-23.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -190,7 +190,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-24.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-24.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Tablet Screen</span>
 								<span class="thumb-info-type">Website</span>
@@ -199,7 +199,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-24.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-24.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -210,7 +210,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-25.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-25.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Black Watch</span>
 								<span class="thumb-info-type">Media</span>
@@ -219,7 +219,7 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-25.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-25.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
@@ -230,7 +230,7 @@
 				<div class="portfolio-item">
 					<span class="thumb-info thumb-info-lighten thumb-info-no-borders thumb-info-bottom-info thumb-info-centered-icons border-radius-0">
 						<span class="thumb-info-wrapper border-radius-0">
-							<img src="img/projects/project-26.jpg" class="img-fluid border-radius-0" alt="">
+							<img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-26.jpg" class="img-fluid border-radius-0" alt="">
 							<span class="thumb-info-title">
 								<span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">Monitor Mockup</span>
 								<span class="thumb-info-type">Website</span>
@@ -239,13 +239,16 @@
 								<a href="portfolio-single-wide-slider.html">
 									<span class="thumb-info-action-icon thumb-info-action-icon-primary"><i class="fas fa-link"></i></span>
 								</a>
-								<a href="img/projects/project-26.jpg" class="lightbox-portfolio">
+								<a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')); ?>/componentes/c5ac6-cliente04-26.jpg" class="lightbox-portfolio">
 									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-search text-dark"></i></span>
 								</a>
 							</span>
 						</span>
 					</span>
-				</div> -->
+				</div>
 
 			</div>
 		</div>
+	</div>
+</div>
+</div>
