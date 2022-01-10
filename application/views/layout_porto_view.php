@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 	<head>
 
 		<!-- Basic -->
 		<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">	
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-		<title>Porto - Responsive HTML5 Template 4.3.1</title>	
+		<title>3 Columns Right Sidebar | Porto - Responsive HTML5 Template 7.6.0</title>	
 
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
@@ -17,89 +17,88 @@
 		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
 		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
 
 		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/font-awesome/css/font-awesome.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/simple-line-icons/css/simple-line-icons.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/owl.carousel/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/owl.carousel/assets/owl.theme.default.min.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/magnific-popup/magnific-popup.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/fontawesome-free/css/all.min.css">
+<!-- 		<link rel="stylesheet" href="vendor/animate/animate.min.css">
+		<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.min.css">
+		<link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" href="vendor/bootstrap-star-rating/css/star-rating.min.css">
+		<link rel="stylesheet" href="vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css"> -->
 
 		<!-- Theme CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/theme.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/theme-elements.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/theme-blog.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/theme-shop.css">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/theme-animate.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme-elements.css">
+<!-- 		<link rel="stylesheet" href="css/theme-blog.css">
+		<link rel="stylesheet" href="css/theme-shop.css"> -->
+		
+		<!-- Demo CSS -->
 
-		<!-- Current Page CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/css/settings.css" media="screen">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/css/layers.css" media="screen">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/css/navigation.css" media="screen">
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/circle-flip-slideshow/css/component.css" media="screen">
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/skins/default.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/skins/default.css"> 
 
 		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/custom.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/custom.css">
 
 		<!-- Head Libs -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/modernizr/modernizr.js"></script>
+		<!-- <script src="vendor/modernizr/modernizr.min.js"></script> -->
 
 	</head>
 	<body>
-		
-		<div class="body">
-			
-			<?php echo $this->load->view('header_porto_view', '', FALSE); ?>
 
-			<div role="main" class="main">
+		<div class="body">
+
+			<?php echo $this->load->view('header_porto_view', '', FALSE); ?>
+			
+			<div role="main" class="main shop py-4">
 
 				<?php echo $this->load->view($view, '', FALSE); ?>
 
 			</div>
 
-			<?php echo $this->load->view('footer_porto_view', '', FALSE); ?>
+			<?php echo $this->load->view('footer_porto_view', '', FALSE); ?>	
 
 		</div>
 
 		<!-- Vendor -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery/jquery.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.appear/jquery.appear.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.easing/jquery.easing.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery-cookie/jquery-cookie.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/bootstrap/js/bootstrap.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/common/common.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.validation/jquery.validation.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.stellar/jquery.stellar.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.gmap/jquery.gmap.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/jquery.lazyload/jquery.lazyload.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/isotope/jquery.isotope.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/owl.carousel/owl.carousel.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/vide/vide.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery/jquery.min.js"></script>
+ 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.appear/jquery.appear.min.js"></script>
+<!--		<script src="vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="vendor/popper/umd/popper.min.js"></script> -->
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- 		<script src="vendor/common/common.min.js"></script>
+		<script src="vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="vendor/vide/jquery.vide.min.js"></script>
+		<script src="vendor/vivus/vivus.min.js"></script>
+		<script src="vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
+		<script src="vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script> -->
 		
 		<!-- Theme Base, Components and Settings -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/theme.js"></script>
-		
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.js"></script>
+
 		<!-- Current Page Vendor and Views -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/views/view.home.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/views/view.shop.js"></script>
 		
 		<!-- Theme Custom -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/custom.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/custom.js"></script>
 		
 		<!-- Theme Initialization Files -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/theme.init.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.init.js"></script>
 
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
