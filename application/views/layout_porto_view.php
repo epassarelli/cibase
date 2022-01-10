@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-		<title>3 Columns Right Sidebar | Porto - Responsive HTML5 Template 7.6.0</title>	
+		<title><?php if(isset($title)){ echo $title;}else{ echo "Sin titulo";} ?></title>	
 
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
@@ -25,13 +25,16 @@
 		<!-- Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/fontawesome-free/css/all.min.css">
-<!-- 		<link rel="stylesheet" href="vendor/animate/animate.min.css">
-		<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.min.css">
-		<link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.min.css">
-		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.min.css">
-		<link rel="stylesheet" href="vendor/bootstrap-star-rating/css/star-rating.min.css">
-		<link rel="stylesheet" href="vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css"> -->
+				
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/animate/animate.min.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/simple-line-icons/css/simple-line-icons.min.css">
+		
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/owl.carousel/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/owl.carousel/assets/owl.theme.default.min.css">
+		 
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/css/star-rating.min.css">
+		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css">
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/theme.css">
@@ -49,7 +52,7 @@
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/custom.css">
 
 		<!-- Head Libs -->
-		<!-- <script src="vendor/modernizr/modernizr.min.js"></script> -->
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/modernizr/modernizr.min.js"></script>
 
 	</head>
 	<body>
@@ -71,22 +74,22 @@
 		<!-- Vendor -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery/jquery.min.js"></script>
  		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.appear/jquery.appear.min.js"></script>
-<!--		<script src="vendor/jquery.easing/jquery.easing.min.js"></script>
-		<script src="vendor/jquery.cookie/jquery.cookie.min.js"></script>
-		<script src="vendor/popper/umd/popper.min.js"></script> -->
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/popper/umd/popper.min.js"></script>
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- 		<script src="vendor/common/common.min.js"></script>
-		<script src="vendor/jquery.validation/jquery.validate.min.js"></script>
-		<script src="vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="vendor/jquery.gmap/jquery.gmap.min.js"></script>
-		<script src="vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
-		<script src="vendor/isotope/jquery.isotope.min.js"></script>
-		<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
-		<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="vendor/vide/jquery.vide.min.js"></script>
-		<script src="vendor/vivus/vivus.min.js"></script>
-		<script src="vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
-		<script src="vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script> -->
+ 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/common/common.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/vide/jquery.vide.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/vivus/vivus.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.js"></script>
