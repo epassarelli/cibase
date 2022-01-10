@@ -62,7 +62,7 @@
                                        foreach ($categorias as $cat) {
                                             if ($cat->catpadre_id == null) {
                                                 echo '<ul>';
-                                                echo '<a href="'. base_url() . 'productos/categorias/' . $cat->slug . '">' . $cat->categoria  . '</a>';
+                                                echo '<li><a href="'. base_url() . 'productos/categorias/' . $cat->slug . '">' . $cat->categoria  . '</a>';
                                                     foreach ($categorias as $subcat) {
                                                             $haysubcat = 0;
                                                             if ($subcat->catpadre_id == $cat->categoria_id) { 
@@ -75,7 +75,7 @@
                                                                 $haysubcat=0;
                                                             }
                                                     }
-                                                echo '</ul>';
+                                                echo '</li></ul>';
                                             }        
                                         }
                                 ?>

@@ -15,9 +15,12 @@ $(document).ready(function () {
   // Carga de tabla
     listar(UrlBase,Toast);
 
-  // Reseteamos el form y asignamos el valor de la opcion
+
+
+
+    // Reseteamos el form y asignamos el valor de la opcion
     $(".insertar").click(function() {
-      $('.titulo').html('Insertar');   // Titulo del form   
+      $('.titulo').html('Agregar Productos');   // Titulo del form   
       $("#formSitios").trigger("reset"); // Reseteams el form
       $("#Opcion").val("insertar"); // Asignamos la accion
       $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
@@ -25,10 +28,10 @@ $(document).ready(function () {
       $('#ocultaFile').show() // Mostramos el input file
       $('#ocultaFile1').show() // Mostramos el input file
       $('#ocultaFile2').show() // Mostramos el input file
-      $('#Logo').val(null) // Reiniciamos el valor del file para validacion
-      $('#Icon').val(null) // Reiniciamos el valor del file para validacion
-      $('#Qr').val(null) // Reiniciamos el valor del file para validacion
-      $('#Landing').val(0) // Reiniciamos el valor del file para validacion
+      $('#imagen').val(null) // Reiniciamos el valor del file para validacion
+      $('#imagen2').val(null) // Reiniciamos el valor del file para validacion
+      $('#imagen3').val(null) // Reiniciamos el valor del file para validacion
+      $('#llave_destacar').val(0) // Reiniciamos el valor del file para validacion
     });
 
 });
@@ -37,16 +40,16 @@ $(document).ready(function () {
 
 
 //cambio estado llave landing formulario alta y edicion 
-$('#llave_landing').click(function()  {
-  var valor_llave =  $('#Landing').val();
+$('#llave_destacar').click(function()  {
+  var valor_llave =  $('#destacar_id').val();
   if (valor_llave==0) {
-    $('#Landing').val(1);
-    $('.llave_landing').removeClass('fa-toggle-off')
-    $('.llave_landing').addClass('fa-toggle-on')
+    $('#destacar_id').val(1);
+    $('.llave_destacar').removeClass('fa-toggle-off')
+    $('.llave_destacar').addClass('fa-toggle-on')
   }else{
-    $('#Landing').val(0);
-    $('.llave_landing').removeClass('fa-toggle-on')
-    $('.llave_landing').addClass('fa-toggle-off')
+    $('#destacar_id').val(0);
+    $('.llave_destacar').removeClass('fa-toggle-on')
+    $('.llave_destacar').addClass('fa-toggle-off')
   }
 });
 
@@ -56,39 +59,39 @@ $('#showImagen').click(function()  {
    $('#File').click();  
 });
 
-$('#showImagen1').click(function()  {
+$('#showImagen2').click(function()  {
   $('#File1').click();  
 });
 
-$('#showImagen2').click(function()  {
+$('#showImagen3').click(function()  {
   $('#File2').click();  
  
 });
 
 
-$('#deletelogoicon').click(function() {
+$('#deleteimagenicon').click(function() {
     $('#im1').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-    $('#Logo').val('');
+    $('#imagen').val('');
     $('#File').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
     $("#nim1").text('');
     $('#deletelogoicon').hide()
 });
 
-$('#deleteiconicon').click(function() {
+$('#deleteimagen2icon').click(function() {
   $('#im2').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-  $('#Icono').val('');
+  $('#imagen2').val('');
   $('#File1').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
   $("#nim2").text('');
-  $('#deleteiconicon').hide()
+  $('#deleteimagen2icon').hide()
 });
 
 
-$('#deleteqricon').click(function() {
+$('#deleteimagen3icon').click(function() {
   $('#im3').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-  $('#Qr').val('');
+  $('#imagen3').val('');
   $('#File2').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
   $("#nim3").text('');
-  $('#deleteqricon').hide()
+  $('#deleteimagen3icon').hide()
 });
 
 
@@ -96,11 +99,11 @@ $('#deleteqricon').click(function() {
 $('#File').change(function() {
   var archi = document.getElementById("File").value.split('\\'); //quito la ruta
   var nomarchi = archi[archi.length-1] 
-  var sitio = $('#id').value;
-  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  var sitio = $('#sitio_id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/productos/' + nomarchi;
   $("#nim1").text(nomarchi);
    if (archi !== '') {
-    $('#deletelogoicon').show()
+    $('#deleteimagenicon').show()
    }
    readURL(this);
  });
@@ -110,12 +113,12 @@ $('#File').change(function() {
 $('#File1').change(function() {
   var archi = document.getElementById("File1").value.split('\\');
   var nomarchi = archi[archi.length-1] 
-  var sitio = $('#id').value;
-  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  var sitio = $('#sitio_id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/productos/' + nomarchi;
   
    $("#nim2").text(nomarchi);
    if (archi !== '') {
-    $('#deleteiconicon').show()
+    $('#deleteimagen2icon').show()
    }
    readURL(this);
  });
@@ -124,11 +127,11 @@ $('#File1').change(function() {
  $('#File2').change(function() {
   var archi = document.getElementById("File2").value.split('\\');
   var nomarchi = archi[archi.length-1] 
-  var sitio = $('#id').value;
-  var ima = UrlBase+'assets/uploads/'+ sitio +'/' + nomarchi;
+  var sitio = $('#sitio_id').value;
+  var ima = UrlBase+'assets/uploads/'+ sitio +'/productos/' + nomarchi;
   $("#nim3").text(nomarchi);
    if (archi !== '') {
-    $('#deleteqricon').show()
+    $('#deleteimagn3icon').show()
    }
    readURL(this);
  });
@@ -164,34 +167,50 @@ function readURL(input) {
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
-    var table = $("#sitiosAbm").DataTable({
+    var table = $("#productosAbm").DataTable({
         destroy: true,
         responsive: true,
         ajax: {
-            url: base + "mipanel/sitios/getSitios",
+            url: base + "mipanel/productos/getProductos",
             type: "jsonp"
         },
         rowCallback : function( row, data ) {
           //console.log(data.estado)
-          if ( data.activo == "1" ) {
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+      
+          
+          if ( data.imagen !== null && data.imagen !== '' ) {
+            $('td:eq(2)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/productos/"+data.imagen + "' class='img-thumbnail' />"); 
           }else{
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(2)', row).html("<img src='" + base + "assets/uploads/Imagen-no-disponible.png' class='img-thumbnail' />"); 
+          }            
+          if ( data.imagen2 !== null && data.imagen2 !== '') {
+                    $('td:eq(3)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/productos/"+data.imagen2 + "' class='img-thumbnail' />"); 
+          }else{
+                    $('td:eq(3)', row).html("<img src='" + base + "assets/uploads/Imagen-no-disponible.png' class='img-thumbnail' />"); 
+          }            
+          if ( data.imagen3 !== null && data.imagen3 !== '') {
+                 $('td:eq(4)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/productos/"+data.imagen3 + "' class='img-thumbnail' />"); 
+          }else{
+                 $('td:eq(4)', row).html("<img src='" + base + "assets/uploads/Imagen-no-disponible.png' class='img-thumbnail' />"); 
+          }            
+          
+          if ( data.publicar == "1" ) {
+            $('td:eq(7)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='publicar'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+          }else{
+            $('td:eq(7)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='publicar'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
-          
-          //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
-          $('td:eq(6)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='img-thumbnail' />"); 
-          
         },
+
         columns: [
-            { data: "sitio_id" },
-            { data: "sitio" },
-            { data: "url" },
-            { data: "razonsocial" },
-            { data: "correo" },
-            { data: "activo"},
-            { data: "logo"},
+            { data: "id" },
+            { data: "titulo" },
+            { data: "imagen" },
+            { data: "imagen2" },
+            { data: "imagen3" },
+            { data: "precioLista", className: "text-right" },
+            { data: "precioOF", className: "text-right" },
+            { data: "publicar"},
             {
                 defaultContent:
                     "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
@@ -201,9 +220,11 @@ function listar(base,Toast) {
     });
 
     submit(table,Toast) //Accion de Insertar o Editar
-    Edit("#sitiosAbm tbody", table); //Tomar datos para la Edicion
-    deleteSitios("#sitiosAbm tbody", table); //Eliminar un slide
-    cambioEstado("#sitiosAbm tbody", table,Toast); //Cambiar estado
+    Edit("#productosAbm tbody", table); //Tomar datos para la Edicion
+    deleteSitios("#productosAbm tbody", table); //Eliminar un slide
+    
+    //Cambiar estado en datatable
+    cambioEstado("#productosAbm tbody", table,Toast); 
 
  }
 
@@ -216,15 +237,15 @@ function submit(table,Toast) {
 
     // Asignamos el valor a input oculto para la validacion de la imagen
     if ($('#File').val().length > 0) {
-      $('#Logo').val($('#File').val())
+      $('#imagen').val($('#File').val())
     }
     
     if ($('#File1').val().length > 0) {
-      $('#Icon').val($('#File1').val())
+      $('#imagen2').val($('#File1').val())
     }
 
     if ($('#File2').val().length > 0) {
-      $('#Qr').val($('#File2').val())
+      $('#imagen3').val($('#File2').val())
     }
 
     
@@ -243,7 +264,7 @@ function submit(table,Toast) {
       //respuesta del envio
       success: function(response) {
         //Convertimos en Json el String, en el caso de me.serialize() no hace falta
-      response = JSON.parse(response)
+        response = JSON.parse(response)
 
         if (response.success == true) {
           
@@ -307,26 +328,46 @@ function submit(table,Toast) {
       $('.titulo').html('Editar')
       // Asignamos las accion que realiza el metodo del servidor
       $("#Opcion").val("editar");
-      //Asignamos los valores de cada input para que se muestren en el form
-			var id = $("#Id").val(datos.sitio_id),
-          nombre = $("#Sitio").val(datos.sitio),
-				  url = $("#Url").val(datos.url),
-				  theme_id = $("#Theme_id").val(datos.theme_id),
-          landing = $("#Landing").val(datos.landing),
-          razonsocial = $("#Razonsocial").val(datos.razonsocial),
-          direccion = $("#Direccion").val(datos.direccion),
-          cpostal = $("#Cpostal").val(datos.cpostal),
-          localidad = $("#Localidad").val(datos.localidad),
-          provincia = $("#Provincia").val(datos.provincia),
-          pais = $("#Pais").val(datos.pais),
-          urlgmap = $("#UrlGMap").val(datos.urlGMap),
-          telefono = $("#Telefono").val(datos.telefono),
-          correo = $("#Correo").val(datos.correo),
-          facebook = $("#Facebook").val(datos.facebook),
-          instagram = $("#Instagram").val(datos.instagram),
-          logo = $("#Logo").val(datos.logo),
-          icon = $("#Icon").val(datos.icon),
-          qr = $("#Qr").val(datos.qr);
+      //hay que ir a buscar el registro a la tabla porque en el datatable
+      //no tenemos todos los campos 
+      $.ajax({
+        type: "POST",
+        url: UrlBase+'mipanel/productos/getProductoJson',
+        data: { Id: datos.id},
+        dataType: "json",
+        success: function (response) {
+            //Asignamos los valores de cada input para que se muestren en el form
+            $("#id").val(response['data'].id)
+            $("#sitio_id").val(response['data'].sitio_id)
+            $("#titulo").val(response['data'].titulo)
+            $("#link").val(response['data'].link)
+            $("#descLarga").val(response['data'].descLarga)
+            $("#descCorta").val(response['data'].descCorta)
+            $("#codigo").val(response['data'].codigo)
+            $("#imagen").val(response['data'].imagen)
+            $("#imagen2").val(response['data'].imagen2)
+            $("#imagen3").val(response['data'].imagen3)
+            $("#precioLista").val(response['data'].precioLista)
+            $("#precioOF").val(response['data'].precioOF)
+            $("#OfDesde").val(response['data'].OfDesde)
+            $("#OfHasta").val(response['data'].OfHasta)
+            $("#impuesto_id").val(response['data'].impuesto_id)
+            $("#presentacion_id").val(response['data'].presentacion_id)
+            $("#destacar_id").val(response['data'].destacar_id)
+            $("#etiquetas").val(response['data'].etiquetas)
+            $("#peso").val(response['data'].peso)
+            $("#tamano").val(response['data'].tamano)
+            $("#orden").val(response['data'].orden)
+        },//success
+            error: function(xhr, textStatus, error){
+            console.log(xhr.statusText);
+            console.log(textStatus);
+            console.log(error);
+        } //error 
+      });//ajax  
+
+      //console.log(datos);
+
 
       // Ocultamos el input file en la edicion
       $('#ocultaFile').hide();
@@ -335,47 +376,51 @@ function submit(table,Toast) {
 
 
        // Mostramos el nombre y la imagen del slide a editar
-       SitioId = $('#Id').val();
-             
-       if (datos.logo == '') {
+       if (datos.imagen == '' || datos.imagen == null) {
         $('#showImagen').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
-        $('#deletelogoicon').hide()
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.imagen+'</p>').show();
+        $('#deleteimagenicon').hide()
+        $('#nim1').hide()
+
       }else{
-        $('#deletelogoicon').show()
+        $('#deleteimagenicon').show()
         $('#showImagen').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId+'/'+datos.logo+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.logo+'</p>').show();
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id+'/productos/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.imagen+'</p>').show();
+        $('#nim1').show()
       }
 
 
-      if (datos.icon == '') {
-        $('#showImagen1').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
-        $('#deleteiconicon').hide()
-      }else {
-        $('#showImagen1').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId + '/' + datos.icon+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.icon+'</p>').show();
-        $('#deleteiconicon').show()
-
+      if (datos.imagen2 == '' || datos.imagen2 == null) {
+        $('#showImagen2').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.imagen2+'</p>').show();
+        $('#deleteimagen2icon').hide()
+        $('#nim2').hide()
+    }else {
+        $('#showImagen2').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id + '/productos/' + datos.imagen2+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.imagen2+'</p>').show();
+        $('#deleteimagen2icon').show()
+        $('#nim2').show()
       }  
       
-      if (datos.qr == '') {
-        $('#showImagen2').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
-        $('#deleteqricon').hide()
+      if (datos.imagen3 == '' || datos.imagen3 == null) {
+        $('#showImagen3').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.imagen3+'</p>').show();
+        $('#deleteimagen3icon').hide()
+        $('#nim3').hide()
       }else{
-      $('#showImagen2').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+SitioId + '/'+datos.qr+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.qr+'</p>').show();
-        $('#deleteqricon').show()
+      $('#showImagen3').addClass('has-error')
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id + '/productos/'+datos.imagen3+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.imagen3+'</p>').show();
+        $('#deleteimagen3icon').show()
+        $('#nim3').show()
 
       }
-      // dibujamos la posicion de la llave 
-      if (datos.landing==1) {
-          $('.llave_landing').removeClass('fa-toggle-off');
-          $('.llave_landing').addClass('fa-toggle-on');
+     // dibujamos la posicion de la llave 
+      if (datos.destacar_id==1) {
+          $('.llave_destacar_id').removeClass('fa-toggle-off');
+          $('.llave_destacar_id').addClass('fa-toggle-on');
         }else{
-          $('.llave_landing').removeClass('fa-toggle-on');
-          $('.llave_landing').addClass('fa-toggle-off');
+          $('.llave_destacar_id').removeClass('fa-toggle-on');
+          $('.llave_destacar_id').addClass('fa-toggle-off');
         }
     
         //Abrimos el modal
@@ -414,11 +459,14 @@ function submit(table,Toast) {
       }).then((result) => {
         if (result.value) {
           // Ejecutamos la accion y la enviamos al servidor 
-          console.log('ejecutamos');  
+          //console.log('ejecutamos');  
           $.ajax({
               type: "POST",
-              url: UrlBase+'mipanel/sitios/deleteSitios',
-              data: { Id: datos.sitio_id, FileName: datos.imagen },
+              url: UrlBase+'mipanel/productos/deleteProducto',
+              data: { Id: datos.id, 
+                      FileName: datos.imagen, 
+                      FileName2: datos.imagen2,
+                      FileName3: datos.imagen3},
               dataType: "json",
               success: function (response) {
                 if (response.success == true) {
@@ -450,19 +498,19 @@ function submit(table,Toast) {
 //Funcion para cambiar estado
  function cambioEstado(body,table,Toast) { 
     // Mostrar un alert con el dato de la row
-    $(body).on("click", "a.activo", function () {
+    $(body).on("click", "a.publicar", function () {
       var me = $(this);
       var datos = table.row($(this).parents("tr")).data();
          // Ejecutamos la accion y la enviamos al servidor 
          $.ajax({
           type: "POST",
-          url: UrlBase+'mipanel/sitios/cambioEstado',
-          data: { Estado: datos.activo, Id: datos.sitio_id },
+          url: UrlBase+'mipanel/productos/cambioEstado',
+          data: { Publicar: datos.publicar, Id: datos.id },
           dataType: "json",
           success: function (response) {
             if (response.success == true) {
                
-              if(response.activo == "1"){
+              if(response.publicar == "1"){
                 // alert('Activo');
                 Toast.fire({
                   type: 'success',
@@ -478,7 +526,7 @@ function submit(table,Toast) {
 
               table.ajax.reload();
             }
-          } //success         
+          }//success
         });//ajax
     });
   }
