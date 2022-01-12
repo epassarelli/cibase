@@ -47,7 +47,24 @@ class Productos extends MX_Controller {
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
+  
+  public function detalle($id='')
+  {
+    // Obtengo el producto con el ID que recibo
+    $parametros['producto_id'] = $id;
+    $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
 
+    $parametros2['producto_id'] = $producto->producto_id;
+    
+    // Obtengo la /s categoria /s del producto
+    //$catsProducto = $this->Productos_model->getAllBy('productos_categorias','', $parametros2,'categoria_id');
+    
+    // Obtengo todas las categorias para el sidebar
+    $categorias   = $this->Productos_model->getCategorias(); 
+    
+    $data['view']       = 'producto_'.$this->session->userdata('theme').'_view';
+    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);    
+  }
 
 
 }

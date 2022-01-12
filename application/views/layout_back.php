@@ -48,7 +48,7 @@
 
 <header class="main-header">
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="<?php echo site_url('mipanel'); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>CI</b>B</span>
         <!-- logo for regular state and mobile devices -->
@@ -119,39 +119,112 @@
 
 
 <ul class="sidebar-menu">
-    <li class="header">Admin. Central</li>
+    <li class="header">Administracion</li>
         
         <?php if ($this->ion_auth->is_admin()): ?>
 
-                    
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Secciones</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Bloques</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Componentes</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gear"></i> <span>Administracion</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+                <li>
+                  <a href="<?php echo site_url('mipanel/sitios');?>"><i class="fa fa-fw fa-globe"></i> <span>Sitios</span>
+                  <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
+                </li>
+                <li>
+                  <a href="<?php echo site_url('mipanel/admin/themes');?>"><i class="fa fa-fw fa-photo"></i> <span>Themes</span>
+                  <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
+                </li> 
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/formatos');?>">
+                        <i class="fa fa-fw fa-gear"></i> <span>Formatos</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/modulos');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Módulos</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
+                        <i class="fa fa-fw fa-user"></i> <span>Usuarios</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/roles');?>">
+                        <i class="fa fa-fw fa-users"></i> <span>Roles</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li> 
+              </ul>
             </li>
 
-                                                    
-            
+
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gear"></i> <span>Paginas</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Paginas</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Bloques de paginas</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Componentes de bloques</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+              </ul>
+            </li>
+
+
+
+
+
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gear"></i> <span>Productos</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
             <li>
                 <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
@@ -171,7 +244,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/categorias');?>">
+                <a href="<?php echo site_url('mipanel/admin/categorias/productos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -180,12 +253,45 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/productos');?>">
+                <a href="<?php echo site_url('mipanel/productos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Productos</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
                     </span>
                 </a>
+            </li>              
+        </ul>
+            </li>                                                    
+            
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gear"></i> <span>Publicaciones</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/categorias/publicaciones');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>                
+
+                <li>
+                    <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
+                        <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
+                        <span class="pull-right-container">
+                          <small class="label pull-right bg-green"></small>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
             </li>
 
             <li>
@@ -197,14 +303,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
-                    <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
-                    <span class="pull-right-container">
-                      <small class="label pull-right bg-green"></small>
-                    </span>
-                </a>
-            </li>
+
 
         <?php else: ?>
 
