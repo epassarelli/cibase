@@ -11,6 +11,7 @@ class Categorias  extends MX_Controller {
     }
 
     $this->load->model('../models/Categorias_model');
+    $this->load->model('../models/Idiomas_model');
     
     
     switch (ENVIRONMENT){
@@ -28,47 +29,83 @@ class Categorias  extends MX_Controller {
   }
 
   // Listado del ABM de slider 
-  public function index(){      
-    $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
-    $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
-    $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
-  }
+  //public function index(){      
+  //  $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
+  //  $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
+  //  $this->data['tipocat'] = 0;
+  //  $this->template->load('layout_back', 'mipanel_dashboard_view', $this->data); 
+  //}
 
 
   public function productos(){      
+    $tipocat=3;
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
     $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
-    $this->data['tipocat'] = 3;
+    $this->data['tipocat'] = $tipocat;
+    $this->data['cates'] = $this->getCates($tipocat);
+    $this->data['idiomas'] = $this->Idiomas_model->getAllBy('idiomas','','','');
     $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
   }
 
   public function publicaciones(){      
-      $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
-      $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
-      $this->data['tipocat'] = 9;
-      $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
-    }
+    $tipocat=2;
+    $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
+    $this->data['tipocat'] = $tipocat;
+    $this->data['cates'] = $this->getCates($tipocat);
+    $this->data['idiomas'] = $this->Idiomas_model->getAllBy('idiomas','','','');
+    $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
+  }
   
+  public function contactos(){      
+    $tipocat=1;  
+    $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
+    $this->data['tipocat'] = $tipocat;
+    $this->data['cates'] = $this->getCates($tipocat);
+    $this->data['idiomas'] = $this->Idiomas_model->getAllBy('idiomas','','','');
+    $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
+  }
 
+  public function contenidos(){
+    $tipocat=4;
+    $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $this->data['files_js'] = array('categorias.js?v='.rand(),'sweetalert2.min.js');
+    $this->data['tipocat'] = $tipocat;
+    $this->data['cates'] = $this->getCates($tipocat);
+    $this->data['idiomas'] = $this->Idiomas_model->getAllBy('idiomas','','','');
+    $this->template->load('layout_back', 'categorias_abm_view', $this->data); 
+  }
 
-  // Datos del ABM
-  public function getCategorias()
-  {
+  // Datos del ABM retorna json
+  public function getCategorias(){
+    $modulo_id = $this->input->get('modulo_id');
     $parametros['sitio_id'] = $this->config->item('sitio_id');
-    $parametros['modulo_id'] = $tipocat;
+    $parametros['modulo_id'] = $modulo_id;
     $data['data'] = $this->Categorias_model->getAllBy('categorias','',$parametros,'');
-    $data['pepe'] = $tipocat;
+    $data['modulo_id'] = $modulo_id;
     echo json_encode($data);
   }
+
+  
+// Datos del ABM retorna json
+public function getCates($modulo_id){
+  $parametros['sitio_id'] = $this->config->item('sitio_id');
+  $parametros['modulo_id'] = $modulo_id;
+  $cates = $this->Categorias_model->getAllBy('categorias','',$parametros,'');
+  return $cates;
+}
+
+
 
 
   // Esta funcion la usamos para enviar datos
   //completos del registro al js para su edicion
-  public function getProductoJson()
+  public function getCategoriaJson()
   {
     
     $parametros['sitio_id'] = $this->config->item('sitio_id');
-    $parametros['id'] = $this->input->post('Id');
+    $parametros['categoria_id'] = $this->input->post('Id');
     $data['data'] = $this->Categorias_model->getOneBy('categorias','',$parametros,'');
     echo json_encode($data);
   }
@@ -103,7 +140,7 @@ public function accion()
 {
     $data = array('success' => false, 'messages' => array());
 
-    $this->form_validation->set_rules('titulo','Titulo', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
+    $this->form_validation->set_rules('categoria','Categoria', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
     
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
@@ -112,9 +149,6 @@ public function accion()
                                           
         //Cargamos la imagen en el servidor
         $result = null;
-        $result2 = null;
-        $result3 = null;
-
         $valid_imagen = TRUE;
  
         if(isset($_FILES["File"]["name"]) and $this->input->post('imagen') !== '')
@@ -132,81 +166,39 @@ public function accion()
 
      
 
-        $valid_imagen2 = TRUE;
-        
-
-        if(isset($_FILES["File1"]["name"]) and $this->input->post('imagen2') !=='')
-        {
-          if($_FILES["File1"]["name"] !=='' )           
-          { 
-              $result2 = $this->upload('File1','jpg|png');
-              if (isset($result2['error']))  {
-                  $valid_imagen2 = FALSE;
-              }else{
-                $valid_imagen2 = TRUE;
-              }
-          }
-        }  
-
-        $valid_imagen3 = TRUE;
-        if(isset($_FILES["File2"]["name"]) and $this->input->post('imagen3') !== '')
-        {
-          if($_FILES["File2"]["name"] !=='' )
-          { 
-              $result3 = $this->upload('File2','jpg|png');
-              if (isset($result3['error'])) {
-                  $valid_imagen3 = FALSE;
-              }else{
-                $valid_imagen3 = TRUE;
-              }
-            }
-          }           
- 
    ///para ver respuesta en el navegador        
    $data['f0']   = $this->input->post('imagen');
-   $data['f1']   = $this->input->post('imagen2');
-   $data['f2']   = $this->input->post('imagen3');
    $data['result']   = $result;
-   $data['result2']  = $result2;
-   $data['result3']  = $result3;
    $data['file']   = $_FILES;
    $data['valid_imagen']   = $valid_imagen;
-   $data['valid_imagen2']  = $valid_imagen2;
-   $data['valid_imagen3']  = $valid_imagen3;
    ////// debugging
    
 
-  if ($this->form_validation->run() == TRUE && $valid_imagen && $valid_imagen2 && $valid_imagen3) {
+  if ($this->form_validation->run() == TRUE && $valid_imagen ) {
          
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
-        $categoria['id']        = $this->input->post('id');
+        $categoria['categoria_id']        = $this->input->post('categoria_id');
+        $categoria['catpadre_id']        = $this->input->post('catpadre_id');
         $categoria['sitio_id']  = $this->input->post('sitio_id');
-        $categoria['titulo']    = $this->input->post('titulo');
-        $categoria['codigo']    = $this->input->post('codigo');
-        $categoria['descLarga'] = $this->input->post('descLarga');
-        $categoria['descCorta'] = $this->input->post('descCorta');
-        $categoria['imagen']    = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('imagen') ;
-        $categoria['imagen2']   = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('imagen2') ;
-        $categoria['imagen3']   = (isset($result3["file_name"])) ? $result3["file_name"] : $this->input->post('imagen3') ;
-        $categoria['precioLista'] = $this->input->post('precioLista');
-        $categoria['precioOF']    = $this->input->post('precioOF');
-        $categoria['OfDesde'] = $this->input->post('OfDesde');        
-        $categoria['OfHasta'] = $this->input->post('OfHasta');
-        $categoria['impuesto_id'] = $this->input->post('impuesto_id');
-        $categoria['presentacion_id'] = $this->input->post('presentacion_id');
-        $categoria['destacar_id'] = $this->input->post('destacar_id');
-        $categoria['etiquetas'] = $this->input->post('etiquetas');
-        $categoria['peso'] = $this->input->post('peso');
-        $categoria['tamano'] = $this->input->post('tamano');
-        $categoria['link'] = $this->input->post('link');
+        $categoria['idioma_id']  = $this->input->post('idioma_id');
+        $categoria['categoria']  = $this->input->post('categoria');
+        $categoria['description']  = $this->input->post('description');
+        $categoria['slug']         = $this->input->post('slug');
+        $categoria['imagen']       =  (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('imagen') ;
+        $categoria['menu'] = $this->input->post('menu');
         $categoria['orden'] = $this->input->post('orden');
-      
+        $categoria['keywords'] = $this->input->post('keywords');
+        $categoria['modulo_id'] = $this->input->post('modulo_id');
+        //para saber el modulo_id si es alta
+        $categoria['tipocat'] = $this->input->post('tipocat'); 
+        
         // Pasar el switch
         switch ($opcion) {
 
             case 'insertar':
-                $data['success'] = $this->setCategorias($categoria);
+              $categoria['modulo_id'] = $categoria['tipocat'];
+              $data['success'] = $this->setCategorias($categoria);
             break;
 
             case 'editar':
@@ -226,19 +218,7 @@ public function accion()
           }else {
             $data['messages']['imagen']  = '';
         }
-        if (!$valid_imagen2 ) {
-          //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['imagen2']  = '<p class="text-danger">Archivo no valido  o tamaño excedido</p>';
-        }else{
-          $data['messages']['imagen2']  = '';
-        }
-        if (!$valid_imagen3) {
-          //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
-          $data['messages']['imagen3']  = '<p class="text-danger">Archivo no valido  o tamaño excedido </p>';
-        }else{
-          $data['messages']['imagen3']  = '';
-        }
-
+   
     }
 
     echo json_encode($data);
@@ -247,57 +227,38 @@ public function accion()
 
   // Alta de un sitios
   public function setCategorias($data){
-    $categoria['titulo']      = $data['titulo'];
-    $categoria['descLarga']   = $data['descLarga'];
-    $categoria['codigo']   = $data['codigo'];
-    $categoria['descCorta']   = $data['descCorta'];
-    $categoria['imagen']      = $data['imagen'];
-    $categoria['imagen2']     = $data['imagen2'];;
-    $categoria['imagen3']     = $data['imagen3'];
-    $categoria['precioLista'] = $data['precioLista'];
-    $categoria['precioOF']    = $data['precioOF'];
-    $categoria['OfDesde']     = $data['OfDesde'];        
-    $categoria['OfHasta']     = $data['OfHasta'];
-    $categoria['impuesto_id'] = $data['impuesto_id'];
-    $categoria['presentacion_id'] = $data['presentacion_id'];
-    $categoria['destacar_id'] = $data['destacar_id'];
-    $categoria['etiquetas'] = $data['etiquetas'];
-    $categoria['peso'] = $data['peso'];
-    $categoria['tamano'] = $data['tamano'];
-    $categoria['link'] = $data['link'];
-    $categoria['orden'] = $data['orden'];
-    $categoria['sitio_id'] = $this->config->item('sitio_id');
-    
+    $categoria['sitio_id']      = $this->config->item('sitio_id');
+    $categoria['catpadre_id']   = $data['catpadre_id'];
+    $categoria['idioma_id']     = $data['idioma_id'];
+    $categoria['categoria']     = $data['categoria'];
+    $categoria['description']   = $data['description'];
+    $categoria['slug']          = $data['slug'];
+    $categoria['imagen']        = (isset($result["file_name"])) ? $result["file_name"] : $data['imagen'];
+    $categoria['menu']          = $data['menu'];
+    $categoria['orden']         = $data['orden'];
+    $categoria['keywords']      = $data['keywords'];
+    $categoria['modulo_id']     = $data['modulo_id'];
 
-
-      $this->Categorias_model->setCategoria($categoria);
-      return TRUE;
+    $this->Categorias_model->setCategorias($categoria);
+    return TRUE;
   }
 
   // Editar un sitios
   public function updateCategorias($data){
 
-    $categoria['titulo']      = $data['titulo'];
-    $categoria['descLarga']   = $data['descLarga'];
-    $categoria['codigo']   = $data['codigo'];
-    $categoria['descCorta']   = $data['descCorta'];
-    $categoria['imagen']      = $data['imagen'];
-    $categoria['imagen2']     = $data['imagen2'];;
-    $categoria['imagen3']     = $data['imagen3'];
-    $categoria['precioLista'] = $data['precioLista'];
-    $categoria['precioOF']    = $data['precioOF'];
-    $categoria['OfDesde']     = $data['OfDesde'];        
-    $categoria['OfHasta']     = $data['OfHasta'];
-    $categoria['impuesto_id'] = $data['impuesto_id'];
-    $categoria['presentacion_id'] = $data['presentacion_id'];
-    $categoria['destacar_id'] = $data['destacar_id'];
-    $categoria['etiquetas'] = $data['etiquetas'];
-    $categoria['peso'] = $data['peso'];
-    $categoria['tamano'] = $data['tamano'];
-    $categoria['link'] = $data['link'];
-    $categoria['orden'] = $data['orden'];
+    $categoria['sitio_id']      = $this->config->item('sitio_id');
+    $categoria['catpadre_id']   = $data['catpadre_id'];
+    $categoria['idioma_id']     = $data['idioma_id'];
+    $categoria['categoria']     = $data['categoria'];
+    $categoria['description']   = $data['description'];
+    $categoria['slug']          = $data['slug'];
+    $categoria['imagen']        = (isset($result["file_name"])) ? $result["file_name"] : $data['imagen'];
+    $categoria['menu']          = $data['menu'];
+    $categoria['orden']         = $data['orden'];
+    $categoria['keywords']      = $data['keywords'];
+    $categoria['modulo_id']     = $data['modulo_id'];
       
-    $this->Productos_model->update($data['id'], $categoria);
+    $this->Categorias_model->update($data['categoria_id'], $categoria);
 
     return TRUE;
 
@@ -306,10 +267,10 @@ public function accion()
   //Eliminando un registro de la tabla de categorias
   public function deleteCategoria()
   {
-    $id = $this->input->post('Id');
+    $categoria_id = $this->input->post('Id');
    
     //$fileName = $this->input->post('FileName');
-    $this->Productos_model->deleteCategorias($id);
+    $this->Categorias_model->deleteCategorias($categoria_id);
     //$deletefile = './assets/uploads/' . $id . '/' . $fileName;
     //unlink($deletefile);
     echo json_encode(array('success' => TRUE));

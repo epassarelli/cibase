@@ -19,7 +19,7 @@ class MY_Model extends CI_Model{
       $this->db->select($campos);
     }
 
-    if ($whereor = 0) { //si whereor es 0 el where es and
+    if ($whereor == 0) { //si whereor es 0 el where es and
       if($parametros !== ''){
         foreach ($parametros as $key => $value) {
           (is_numeric($value)) ?  $this->db->where($key, intval($value)) : $this->db->like($key,$value);

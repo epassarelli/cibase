@@ -16,89 +16,47 @@ $(document).ready(function () {
     });
 
    
-  console.log(categoriatipo);
-  // Carga de tabla
-    listar(UrlBase,Toast,categoriatipo);
+    // Carga de tabla
+    listar(UrlBase,Toast);
 
 
 
 
     // Reseteamos el form y asignamos el valor de la opcion
     $(".insertar").click(function() {
-      $('.titulo').html('Agregar Productos');   // Titulo del form   
-      $("#formSitios").trigger("reset"); // Reseteams el form
+      $('.titulo').html('Agregar Categorias');   // Titulo del form   
+      $("#formCategorias").trigger("reset"); // Reseteams el form
       $("#Opcion").val("insertar"); // Asignamos la accion
       $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
       $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
       $('#ocultaFile').show() // Mostramos el input file
-      $('#ocultaFile1').show() // Mostramos el input file
-      $('#ocultaFile2').show() // Mostramos el input file
       $('#imagen').val(null) // Reiniciamos el valor del file para validacion
-      $('#imagen2').val(null) // Reiniciamos el valor del file para validacion
-      $('#imagen3').val(null) // Reiniciamos el valor del file para validacion
-      $('#llave_destacar').val(0) // Reiniciamos el valor del file para validacion
+      $('#llave_menu').val(0) // Reiniciamos el valor del file para validacion
+
     });
 
 });
 
-
-
-
 //cambio estado llave landing formulario alta y edicion 
-$('#llave_destacar').click(function()  {
-  var valor_llave =  $('#destacar_id').val();
+$('#llave_menu').click(function()  {
+  var valor_llave =  $('#menu').val();
   if (valor_llave==0) {
-    $('#destacar_id').val(1);
-    $('.llave_destacar').removeClass('fa-toggle-off')
-    $('.llave_destacar').addClass('fa-toggle-on')
+    $('#menu').val(1);
+    $('.llave_menu').removeClass('fa-toggle-off')
+    $('.llave_menu').addClass('fa-toggle-on')
   }else{
-    $('#destacar_id').val(0);
-    $('.llave_destacar').removeClass('fa-toggle-on')
-    $('.llave_destacar').addClass('fa-toggle-off')
+    $('#menu').val(0);
+    $('.llave_menu').removeClass('fa-toggle-on')
+    $('.llave_menu').addClass('fa-toggle-off')
   }
 });
+
 
 
 // En edicion hace click sobre la imagen la cambia
 $('#showImagen').click(function()  {
    $('#File').click();  
 });
-
-$('#showImagen2').click(function()  {
-  $('#File1').click();  
-});
-
-$('#showImagen3').click(function()  {
-  $('#File2').click();  
- 
-});
-
-
-$('#deleteimagenicon').click(function() {
-    $('#im1').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-    $('#imagen').val('');
-    $('#File').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
-    $("#nim1").text('');
-    $('#deletelogoicon').hide()
-});
-
-$('#deleteimagen2icon').click(function() {
-  $('#im2').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-  $('#imagen2').val('');
-  $('#File1').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
-  $("#nim2").text('');
-  $('#deleteimagen2icon').hide()
-});
-
-
-$('#deleteimagen3icon').click(function() {
-  $('#im3').attr('src',UrlBase+'assets/uploads/imagen-no-disponible.png');
-  $('#imagen3').val('');
-  $('#File2').val('');   //esto lo pongo para que sirva el mismo icono en el alta 
-  $("#nim3").text('');
-  $('#deleteimagen3icon').hide()
-});
-
 
 
 $('#File').change(function() {
@@ -114,33 +72,6 @@ $('#File').change(function() {
  });
  
 
-
-$('#File1').change(function() {
-  var archi = document.getElementById("File1").value.split('\\');
-  var nomarchi = archi[archi.length-1] 
-  var sitio = $('#sitio_id').value;
-  var ima = UrlBase+'assets/uploads/'+ sitio +'/productos/' + nomarchi;
-  
-   $("#nim2").text(nomarchi);
-   if (archi !== '') {
-    $('#deleteimagen2icon').show()
-   }
-   readURL(this);
- });
- 
-
- $('#File2').change(function() {
-  var archi = document.getElementById("File2").value.split('\\');
-  var nomarchi = archi[archi.length-1] 
-  var sitio = $('#sitio_id').value;
-  var ima = UrlBase+'assets/uploads/'+ sitio +'/productos/' + nomarchi;
-  $("#nim3").text(nomarchi);
-   if (archi !== '') {
-    $('#deleteimagn3icon').show()
-   }
-   readURL(this);
- });
- 
 
 
 function readURL(input) {
@@ -173,14 +104,15 @@ function readURL(input) {
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
 
-    var categoriatipo = $('#tipocat').val();
-  
+    var modulo_id = $('#tipocat').val();
+    //console.log('modulo_id',modulo_id)
+
     var table = $("#categoriasAbm").DataTable({
         destroy: true,
         responsive: true,
         ajax: {
-            url: base + "mipanel/categorias/getCategorias?modulo_id=" + categoriatipo,
-            type: "jsonp"
+            url: base + "mipanel/categorias/getCategorias?modulo_id=" + modulo_id,
+            type: "json"
         },
           rowCallback : function( row, data ) {
           //console.log(data.estado)
@@ -217,7 +149,7 @@ function listar(base,Toast) {
 
     submit(table,Toast) //Accion de Insertar o Editar
     Edit("#categoriasAbm tbody", table); //Tomar datos para la Edicion
-    deleteSitios("#categoriasAbm tbody", table); //Eliminar un slide
+    deleteCategorias("#categoriasAbm tbody", table); //Eliminar un slide
     
     //Cambiar estado en datatable
     cambioEstado("#categoriasAbm tbody", table,Toast); 
@@ -228,7 +160,7 @@ function listar(base,Toast) {
 
 // Funcion de Enviar datos al servidor para insertar o editar datos
 function submit(table,Toast) {
-  $("#formSitios").submit(function(e) {
+  $("#formCategorias").submit(function(e) {
     e.preventDefault(); // evitamos que redireccione el formulario
 
     // Asignamos el valor a input oculto para la validacion de la imagen
@@ -236,14 +168,6 @@ function submit(table,Toast) {
       $('#imagen').val($('#File').val())
     }
     
-    if ($('#File1').val().length > 0) {
-      $('#imagen2').val($('#File1').val())
-    }
-
-    if ($('#File2').val().length > 0) {
-      $('#imagen3').val($('#File2').val())
-    }
-
     
    // Variable del fomr
     var me = $(this);
@@ -265,7 +189,7 @@ function submit(table,Toast) {
         if (response.success == true) {
           
           //Cerramos el modal
-            $("#modalSitios").modal("hide"); 
+            $("#modalCategorias").modal("hide"); 
           //Eliminamos las clases de los errores
               $(".form-group")
               .removeClass("has-error has-success")
@@ -313,7 +237,8 @@ function submit(table,Toast) {
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
  function Edit(body, table) {
-   //Tomando desde el boton de edicion
+ 
+    //Tomando desde el boton de edicion
 		$(body).on("click", "a.editar", function() {
       //Guardamos los datos que tomamos del datatable
       var datos = table.row($(this).parents("tr")).data();
@@ -328,32 +253,22 @@ function submit(table,Toast) {
       //no tenemos todos los campos 
       $.ajax({
         type: "POST",
-        url: UrlBase+'mipanel/productos/getProductoJson',
-        data: { Id: datos.id},
+        url: UrlBase+'mipanel/categorias/getCategoriaJson',
+        data: { Id: datos.categoria_id},
         dataType: "json",
         success: function (response) {
             //Asignamos los valores de cada input para que se muestren en el form
-            $("#id").val(response['data'].id)
+            $("#categoria_id").val(response['data'].categoria_id)
             $("#sitio_id").val(response['data'].sitio_id)
-            $("#titulo").val(response['data'].titulo)
-            $("#link").val(response['data'].link)
-            $("#descLarga").val(response['data'].descLarga)
-            $("#descCorta").val(response['data'].descCorta)
-            $("#codigo").val(response['data'].codigo)
+            $("#idioma_id").val(response['data'].idioma_id)
+            $("#categoria").val(response['data'].categoria)
+            $("#description").val(response['data'].description)
+            $("#slug").val(response['data'].slug)
             $("#imagen").val(response['data'].imagen)
-            $("#imagen2").val(response['data'].imagen2)
-            $("#imagen3").val(response['data'].imagen3)
-            $("#precioLista").val(response['data'].precioLista)
-            $("#precioOF").val(response['data'].precioOF)
-            $("#OfDesde").val(response['data'].OfDesde)
-            $("#OfHasta").val(response['data'].OfHasta)
-            $("#impuesto_id").val(response['data'].impuesto_id)
-            $("#presentacion_id").val(response['data'].presentacion_id)
-            $("#destacar_id").val(response['data'].destacar_id)
-            $("#etiquetas").val(response['data'].etiquetas)
-            $("#peso").val(response['data'].peso)
-            $("#tamano").val(response['data'].tamano)
+            $("#menu").val(response['data'].menu)
             $("#orden").val(response['data'].orden)
+            $("#keywords").val(response['data'].keywords)
+            $("#modulo_id").val(response['data'].modulo_id)
         },//success
             error: function(xhr, textStatus, error){
             console.log(xhr.statusText);
@@ -367,9 +282,7 @@ function submit(table,Toast) {
 
       // Ocultamos el input file en la edicion
       $('#ocultaFile').hide();
-      $('#ocultaFile1').hide();
-      $('#ocultaFile2').hide();
-
+    
 
        // Mostramos el nombre y la imagen del slide a editar
        if (datos.imagen == '' || datos.imagen == null) {
@@ -381,54 +294,22 @@ function submit(table,Toast) {
       }else{
         $('#deleteimagenicon').show()
         $('#showImagen').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id+'/productos/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.imagen+'</p>').show();
+        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id+'/categorias/'+datos.imagen+'" width="300" height="225" class="img-thumbnail editFile im1" id="im1"/> <p class="help-block editFile" id="nim1">'+datos.imagen+'</p>').show();
         $('#nim1').show()
       }
 
+         //Abrimos el modal
+         $("#modalCategorias").modal("show");
 
-      if (datos.imagen2 == '' || datos.imagen2 == null) {
-        $('#showImagen2').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.imagen2+'</p>').show();
-        $('#deleteimagen2icon').hide()
-        $('#nim2').hide()
-    }else {
-        $('#showImagen2').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id + '/productos/' + datos.imagen2+'" width="300" height="225" class="img-thumbnail editFile im2" id="im2"/> <p class="help-block editFile" id="nim2">'+datos.imagen2+'</p>').show();
-        $('#deleteimagen2icon').show()
-        $('#nim2').show()
-      }  
-      
-      if (datos.imagen3 == '' || datos.imagen3 == null) {
-        $('#showImagen3').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/imagen-no-disponible.png" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.imagen3+'</p>').show();
-        $('#deleteimagen3icon').hide()
-        $('#nim3').hide()
-      }else{
-      $('#showImagen3').addClass('has-error')
-        .append('<img src="'+UrlBase+'assets/uploads/'+datos.sitio_id + '/productos/'+datos.imagen3+'" width="300" height="225" class="img-thumbnail editFile im3" id="im3"/> <p class="help-block editFile" id="nim3">'+datos.imagen3+'</p>').show();
-        $('#deleteimagen3icon').show()
-        $('#nim3').show()
-
-      }
-     // dibujamos la posicion de la llave 
-      if (datos.destacar_id==1) {
-          $('.llave_destacar_id').removeClass('fa-toggle-off');
-          $('.llave_destacar_id').addClass('fa-toggle-on');
-        }else{
-          $('.llave_destacar_id').removeClass('fa-toggle-on');
-          $('.llave_destacar_id').addClass('fa-toggle-off');
-        }
-    
-        //Abrimos el modal
-      $("#modalSitios").modal("show");
     });//click
     
+
 
  }//funcion
 
 
  // Funcion para eliminar un row
- function deleteSitios(body, table) { 
+ function deleteCategorias(body, table) { 
     //Tomando desde el boton de edicion
 		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
@@ -458,8 +339,8 @@ function submit(table,Toast) {
           //console.log('ejecutamos');  
           $.ajax({
               type: "POST",
-              url: UrlBase+'mipanel/productos/deleteProducto',
-              data: { Id: datos.id, 
+              url: UrlBase+'mipanel/categorias/deleteCategoria',
+              data: { Id: datos.categoria_id, 
                       FileName: datos.imagen, 
                       FileName2: datos.imagen2,
                       FileName3: datos.imagen3},

@@ -14,7 +14,7 @@ public function setCategorias($data)
 
 public function update($id,$data)
 {
-    $this->db->where('id',$id);
+    $this->db->where('categoria_id',$id);
     $this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->update('categorias', $data);
 }
@@ -22,7 +22,7 @@ public function update($id,$data)
 
 public function deleteCategorias($id)
 {
-    $this->db->where('id',$id);
+    $this->db->where('categoria_id',$id);
     $this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->delete('categorias');
 }
