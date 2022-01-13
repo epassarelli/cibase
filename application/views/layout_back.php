@@ -918,7 +918,8 @@
 <script src="<?php echo base_url()?>assets/themes/adminlte/js/demo.js"></script>
 <!-- page script -->
 <script>
-    $(function () {
+   
+   $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
             "paging": true,
@@ -931,6 +932,7 @@
     });
 </script>
 
+   
     <input type="hidden" id="url" value="<?php echo base_url();?>">
 
     <!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
