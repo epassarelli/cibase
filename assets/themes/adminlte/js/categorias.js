@@ -32,6 +32,7 @@ $(document).ready(function () {
       $('#ocultaFile').show() // Mostramos el input file
       $('#imagen').val(null) // Reiniciamos el valor del file para validacion
       $('#llave_menu').val(0) // Reiniciamos el valor del file para validacion
+      $('#catpadre_id').val(0) // Reiniciamos el valor del file para validacion
 
     });
 
@@ -259,6 +260,7 @@ function submit(table,Toast) {
         success: function (response) {
             //Asignamos los valores de cada input para que se muestren en el form
             $("#categoria_id").val(response['data'].categoria_id)
+            $("#catpadre_id").val(response['data'].catpadre_id)
             $("#sitio_id").val(response['data'].sitio_id)
             $("#idioma_id").val(response['data'].idioma_id)
             $("#categoria").val(response['data'].categoria)
