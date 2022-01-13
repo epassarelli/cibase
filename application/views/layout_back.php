@@ -244,7 +244,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/categorias/productos');?>">
+                <a href="<?php echo site_url('mipanel/categorias/productos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -274,7 +274,7 @@
               <ul class="treeview-menu" style="display: none;">
 
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/categorias/publicaciones');?>">
+                    <a href="<?php echo site_url('mipanel/categorias/publicaciones');?>">
                         <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>
