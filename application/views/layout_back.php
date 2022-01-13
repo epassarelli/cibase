@@ -136,6 +136,10 @@
                   <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
                 </li>
                 <li>
+                  <a href="<?php echo site_url('mipanel/parametros');?>"><i class="fa fa-fw fa-globe"></i> <span>Parametros</span>
+                  <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
+                </li>
+                <li>
                   <a href="<?php echo site_url('mipanel/admin/themes');?>"><i class="fa fa-fw fa-photo"></i> <span>Themes</span>
                   <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
                 </li> 
