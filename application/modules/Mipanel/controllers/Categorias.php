@@ -80,7 +80,9 @@ class Categorias  extends MX_Controller {
   // Datos del ABM retorna json
   public function getCategorias(){
     $modulo_id = $this->input->get('modulo_id');
-    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    if(!$this->ion_auth->is_admin()){
+      $parametros['sitio_id'] = $this->config->item('sitio_id');
+    }   
     $parametros['modulo_id'] = $modulo_id;
     $data['data'] = $this->Categorias_model->getAllBy('categorias','',$parametros,'');
     $data['modulo_id'] = $modulo_id;
