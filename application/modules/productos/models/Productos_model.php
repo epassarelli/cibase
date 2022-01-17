@@ -30,7 +30,15 @@ public function getCategorias($parametros = '')
         return $query->result();
     }
 
+public function getCatsDelProducto($id='')
+    {
+        $this->db->select('c.categoria, c.slug')
+                ->from('productos_categorias pc')
+                ->join('categorias c', 'pc.categoria_id = c.categoria_id')
+                ->where('pc.producto_id', $id);
 
-
+        $query = $this->db->get();
+        return $query->result();    
+    }
 
 }
