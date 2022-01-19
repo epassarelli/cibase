@@ -13,6 +13,7 @@ class Productos extends MX_Controller {
     }          
 
     $this->load->model('Productos_model');
+    $this->load->helper('Productos_helper');
   }
 
   public function index()
