@@ -74,6 +74,7 @@ function listar(base,Toast) {
             { data: "descripcion" },
             { data: "detalle" },
             { data: "default" },
+            { data: "valor"},
             { data: "relacionados" },
             {
                 defaultContent:

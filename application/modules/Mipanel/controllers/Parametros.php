@@ -38,7 +38,8 @@ class Parametros  extends MX_Controller {
   // Datos del ABM
   public function getParametros()
   {
-    $data['data'] = $this->Parametros_model->getAllBy('parametros','','','');
+    //$data['data'] = $this->Parametros_model->getAllBy('parametros','','','');
+    $data['data'] = $this->Parametros_model->getAll();
     echo json_encode($data);
   }
 

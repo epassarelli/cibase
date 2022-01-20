@@ -7,6 +7,24 @@ public function __construct() {
 }  
 
 
+public function getAll(){
+    $ssql = 'SELECT parametros.id,	
+    parametros.descripcion,
+    parametros.default,
+    parametros.detalle,
+    parametros.relacionados,
+    parametros_sitios.valor
+    FROM parametros
+    LEFT JOIN parametros_sitios ON parametros_sitios.parametro_id = parametros.id AND 
+      parametros_sitios.sitio_id = ' . $this->config->item('sitio_id');
+    
+    $query = $this->db->query($ssql);
+    return  $query->result();
+
+}
+
+
+
 public function setParametro($data)
 {
     $param['descripcion']  = $data['descripcion'];

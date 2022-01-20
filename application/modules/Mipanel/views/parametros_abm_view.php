@@ -31,6 +31,7 @@
                                 <th>Descripcion</th>
                                 <th>Detalle</th>
                                 <th>Default</th>
+                                <th>Valor</th>
                                 <th>Relacionados</th>
                                 <th>Action</th>
                             </tr>
