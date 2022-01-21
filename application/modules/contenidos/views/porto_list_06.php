@@ -2,11 +2,13 @@
 <section class="section bg-color-grey-scale-1 section-height-3 border-0 m-0">
 	<div class="container">
 		
+        <?php if(strlen($bloque->texto1) > 5): ?>
 		<div class="row">
 			<div class="col">
 				<h2 class="font-weight-normal text-center text-6 pb-3"><?php echo $bloque->texto1; ?></h2>
 			</div>
 		</div>
+        <?php endif; ?>
 		
 		<div class="row mb-lg-4">
         <?php

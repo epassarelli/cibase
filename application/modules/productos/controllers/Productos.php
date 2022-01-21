@@ -13,6 +13,7 @@ class Productos extends MX_Controller {
     }          
 
     $this->load->model('Productos_model');
+    $this->load->helper('Productos_helper');
   }
 
   public function index()
@@ -53,11 +54,13 @@ class Productos extends MX_Controller {
     // Obtengo el producto con el ID que recibo
     $parametros['id'] = $id;
     $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
+    
     if($producto){
       $data['producto'] = $producto;
-      $parametros2['id'] = $producto->id;
+
       // Obtengo la /s categoria /s del producto
-      //$catsProducto = $this->Productos_model->getAllBy('productos_categorias','', $parametros2,'categoria_id');      
+      $catsProducto = $this->Productos_model->getCatsDelProducto($producto->id);
+      $data['catsProducto'] = $catsProducto;     
     }  
     
     // Obtengo todas las categorias para el sidebar

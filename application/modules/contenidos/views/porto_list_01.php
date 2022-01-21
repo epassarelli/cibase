@@ -1,6 +1,14 @@
 <!-- =========index-classic-color====================== -->
 <div class="container">
 
+    <?php if(strlen($bloque->texto1) > 5): ?>
+    <div class="row">
+        <div class="col">
+            <h2 class="font-weight-normal text-center text-6 pb-3"><?php echo $bloque->texto1; ?></h2>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="row pt-3">
         <?php
         if(count($componentes) > 0): 
