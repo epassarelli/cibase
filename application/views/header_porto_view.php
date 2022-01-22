@@ -99,7 +99,7 @@
 								<a href="<?php echo site_url('productos/carrito'); ?>">
 									<img src="<?php echo site_url('assets/themes/porto76/img/icons/icon-cart-big.svg'); ?>" height="34" alt="" class="header-nav-top-icon-img">
 									<span class="cart-info">
-										<span class="cart-qty">0</span>
+										<span class="cart-qty"><?php echo $_SESSION['carrito'][0]['cantidad']?></span>
 									</span>
 								</a>
 								

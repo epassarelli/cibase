@@ -1,11 +1,18 @@
 <?php 
-session_start();
-if( (parametro(3) == 'S') && (!isset($_SESSION['carrito']))){
-    $_SESSION['carrito'] = array('sitio_id' => $this->config->item('sitio_id'));
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
 }
 
-$_SESSION['carrito'][] = array('sitio_id' => $this->config->item('sitio_id'));
 
+if (!isset($_SESSION['carrito'])) {
+    if (parametro(3) == 'S') { 
+        $_SESSION['carrito'] = array('sitio_id' => $this->config->item('sitio_id'));
+    }
+}
+
+ 
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
