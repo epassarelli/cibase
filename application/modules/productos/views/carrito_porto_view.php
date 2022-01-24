@@ -1,8 +1,6 @@
 
 <script>
 
-		
-
 
 		function cambiaCarro2(cantidad,id) {
 			if (cantidad > 0) {
@@ -311,7 +309,7 @@
 		</a>
 	</td>
 	<td class="product-name">
-		<a href="shop-product-sidebar-left.html"><?php echo $_SESSION['carrito'][$i]['titulo']; ?></a>
+	<a href="<?php echo site_url('productos/detalle/').$_SESSION['carrito'][$i]['codigo']; ?>"><?php echo $_SESSION['carrito'][$i]['titulo']; ?></a>
 	</td>
 	<td class="product-price">
 		<span class="amount">$<?php echo $_SESSION['carrito'][$i]['precio']; ?></span>

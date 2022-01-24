@@ -55,6 +55,7 @@ class Productos extends MX_Controller {
     $parametros['id'] = $id;
     $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
     
+
     if($producto){
       $data['producto'] = $producto;
 

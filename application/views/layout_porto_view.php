@@ -131,3 +131,5 @@ if (!isset($_SESSION['carrito'])) {
 
 	</body>
 </html>
+
+

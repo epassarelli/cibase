@@ -20,26 +20,22 @@ class Carrito extends MX_Controller {
 
   public function index()
   {
-    
-    // $data['productos'] = $this->Productos_model->getCategorias();  
-    // $parametros['sitio_id'] = $this->config->item('sitio_id');
-    // $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
-    // $data['productos'] = $productos;
+
     $data['view']       = 'carrito_'.$this->session->userdata('theme').'_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
 
   public function agregarCarrito() {
-       
        $producto_id = $this->input->post('producto_id');
        $cantidad = $this->input->post('cantidad');
+      
        $producto = $this->Productos_model->getProducto($producto_id);
        $totallastitem = 0;
        if (!isset($cantidad) or $cantidad == null) {
          $cantidad = 1;
        }
-       $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] +1;
+       $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
 
        ///// verificamos que existe para solo incrementar la cantidad
        $existe = 0;
@@ -48,7 +44,7 @@ class Carrito extends MX_Controller {
           if ($_SESSION['carrito'][$i]['tipo']=='item'){
             if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
                 $existe=1;
-                $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] +1;
+                $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] + $cantidad;
                 $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
 
                 $totallastitem = $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
