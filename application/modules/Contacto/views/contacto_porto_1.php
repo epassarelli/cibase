@@ -1,139 +1,1 @@
-<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-<div id="googlemaps" class="google-map"></div>
-
-<div class="container" id="contacto">
-
-	<div class="row">
-		<div class="col-md-6">
-
-			<div class="alert alert-success hidden" id="contactSuccess">
-				<strong>Success!</strong> Your message has been sent to us.
-			</div>
-
-			<div class="alert alert-danger hidden" id="contactError">
-				<strong>Error!</strong> There was an error sending your message.
-			</div>
-
-			<h2 class="mb-sm mt-sm"><strong>Contact</strong> Us</h2>
-			<form id="contactForm" action="php/contact-form.php" method="POST">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-6">
-							<label>Your name *</label>
-							<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
-						</div>
-						<div class="col-md-6">
-							<label>Your email address *</label>
-							<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-12">
-							<label>Subject</label>
-							<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-12">
-							<label>Message *</label>
-							<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" id="message" required></textarea>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="col-md-6">
-
-			<h4 class="heading-primary mt-lg">Get in <strong>Touch</strong></h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-			<hr>
-
-			<h4 class="heading-primary">The <strong>Office</strong></h4>
-			<ul class="list list-icons list-icons-style-3 mt-xlg">
-				<li><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</li>
-				<li><i class="fa fa-phone"></i> <strong>Phone:</strong> (123) 456-789</li>
-				<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></li>
-			</ul>
-
-			<hr>
-
-			<h4 class="heading-primary">Business <strong>Hours</strong></h4>
-			<ul class="list list-icons list-dark mt-xlg">
-				<li><i class="fa fa-clock-o"></i> Monday - Friday 9am to 5pm</li>
-				<li><i class="fa fa-clock-o"></i> Saturday - 9am to 2pm</li>
-				<li><i class="fa fa-clock-o"></i> Sunday - Closed</li>
-			</ul>
-
-		</div>
-
-	</div>
-
-</div>
-
-</div>
-
-		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script>
-
-			/*
-			Map Settings
-
-				Find the Latitude and Longitude of your address:
-					- http://universimmedia.pagesperso-orange.fr/geo/loc.htm
-					- http://www.findlatitudeandlongitude.com/find-address-from-latitude-and-longitude/
-
-			*/
-
-			// Map Markers
-			var mapMarkers = [{
-				address: "New York, NY 10017",
-				html: "<strong>New York Office</strong><br>New York, NY 10017",
-				icon: {
-					image: "img/pin.png",
-					iconsize: [26, 46],
-					iconanchor: [12, 46]
-				},
-				popup: true
-			}];
-
-			// Map Initial Location
-			var initLatitude = 40.75198;
-			var initLongitude = -73.96978;
-
-			// Map Extended Settings
-			var mapSettings = {
-				controls: {
-					draggable: (($.browser.mobile) ? false : true),
-					panControl: true,
-					zoomControl: true,
-					mapTypeControl: true,
-					scaleControl: true,
-					streetViewControl: true,
-					overviewMapControl: true
-				},
-				scrollwheel: false,
-				markers: mapMarkers,
-				latitude: initLatitude,
-				longitude: initLongitude,
-				zoom: 16
-			};
-
-			var map = $("#googlemaps").gMap(mapSettings);
-
-			// Map Center At
-			var mapCenterAt = function(options, e) {
-				e.preventDefault();
-				$("#googlemaps").gMap("centerAt", options);
-			}
-
-		</script>
+<div role="main" class="main">	<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->	<div id="googlemaps" class="google-map mt-0" style="height: 500px;"></div>	<div class="container">		<div class="row py-4">			<div class="col-lg-6">				<form id="contactForm" class="contact-form" action="php/contact-form.php" method="POST">					<div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">						<strong>Success!</strong> Your message has been sent to us.					</div>									<div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">						<strong>Error!</strong> There was an error sending your message.						<span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>					</div>										<div class="form-row">						<div class="form-group col-lg-6">							<label class="required font-weight-bold text-dark text-2">Nombre completo</label>							<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>						</div>						<div class="form-group col-lg-6">							<label class="required font-weight-bold text-dark text-2">Correo</label>							<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>						</div>					</div>					<div class="form-row">						<div class="form-group col">							<label class="font-weight-bold text-dark text-2">Asunto</label>							<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>						</div>					</div>					<div class="form-row">						<div class="form-group col">							<label class="required font-weight-bold text-dark text-2">Mensaje</label>							<textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>						</div>					</div>					<div class="form-row">						<div class="form-group col">							<input type="submit" value="Enviar" class="btn btn-primary btn-modern" data-loading-text="Loading...">						</div>					</div>				</form>			</div>			<div class="col-lg-6">				<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">					<h4 class="mt-2 mb-1">Datos de <strong>contacto</strong></h4>					<ul class="list list-icons list-icons-style-2 mt-2">						<li><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">Dirección:</strong> <?php echo $this->session->userdata('direccion'); ?></li>						<li><i class="fas fa-phone top-6"></i> <strong class="text-dark">Teléfono:</strong> (123) 456-789</li>						<li><i class="fas fa-envelope top-6"></i> <strong class="text-dark">Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></li>					</ul>				</div>				<!-- 				<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">					<h4 class="pt-5">Business <strong>Hours</strong></h4>					<ul class="list list-icons list-dark mt-2">						<li><i class="far fa-clock top-6"></i> Monday - Friday - 9am to 5pm</li>						<li><i class="far fa-clock top-6"></i> Saturday - 9am to 2pm</li>						<li><i class="far fa-clock top-6"></i> Sunday - Closed</li>					</ul>				</div>				-->				<!-- 				<h4 class="pt-5">Get in <strong>Touch</strong></h4>				<p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 				-->			</div>		</div>	</div></div><section class="call-to-action call-to-action-default with-button-arrow content-align-center call-to-action-in-footer">	<div class="container">		<div class="row">			<div class="col-md-9 col-lg-9">				<div class="call-to-action-content">					<h2 class="font-weight-normal text-6 mb-0">Porto is <strong class="font-weight-extra-bold">everything</strong> you need to create an <strong class="font-weight-extra-bold">awesome</strong> website!</h2>					<p class="mb-0">The <strong class="font-weight-extra-bold">Best</strong> HTML Site Template on ThemeForest</p>				</div>			</div>			<div class="col-md-3 col-lg-3">				<div class="call-to-action-btn">					<a href="http://themeforest.net/item/porto-responsive-html5-template/4106987" target="_blank" class="btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3">Get Started Now</a><span class="arrow hlb d-none d-md-block" data-appear-animation="rotateInUpLeft" style="top: -40px; left: 70%;"></span>				</div>			</div>		</div>	</div></section>
