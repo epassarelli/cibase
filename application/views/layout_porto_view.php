@@ -68,6 +68,17 @@ if (!isset($_SESSION['carrito'])) {
 		<!-- Head Libs -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/modernizr/modernizr.min.js"></script>
 
+		<?php if(isset($files_css)){
+		
+		foreach ($files_css as $file_css) {
+			# code...
+			echo "<script src='".site_url("assets/$file_css")."'></script>"; 
+		}
+	
+		}?>
+
+
+
 	</head>
 	<body>
 
@@ -129,7 +140,24 @@ if (!isset($_SESSION['carrito'])) {
 		</script>
 		 -->
 
-	</body>
+		 <input type="hidden" id="url" value="<?php echo base_url();?>">
+
+		<!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
+		<?php if(isset($files_js)){
+		
+			foreach ($files_js as $file_js) {
+				# code...
+				echo "<script src='".site_url("assets/$file_js")."'></script>"; 
+			}
+		
+		}?>
+
+		
+</body>
+
+
+
+
 </html>
 
 

@@ -1,59 +1,3 @@
-<script>
-function agregarCarro3(id) { 
-			// Url Dinamico
-			UrlBase = $('#url').val();
-			cantidaddet = document.getElementById('quantity').value;
-			
-
-			/*
-			const Toast = Swal.mixin({
-				toast: true,
-				position: 'top-end',
-				showConfirmButton: false,
-				timer: 3000
-				});
-			*/		
-			// Ejecutamos la accion y la enviamos al servidor 
-			
-			$.ajax({
-				url: UrlBase+'productos/carrito/agregarCarrito',
-				data: { producto_id: id,cantidad: cantidaddet },
-				type: 'POST',
-				dataType: 'json',
-				success: function (response) {
-					if (response.success == 'OK') {
-						document.getElementsByClassName('cart-qty')[0].textContent=response.items
-						alert('agregado ok');
-						//Toast.fire({type: 'success',
-						//	        title: 'Producto Agregado',
-						//		  })
-					}else{
-						alert('agregado fallo ');
-						//Toast.fire({type: 'error',
-						//			title: 'No se pudo agregar el producto',
-						//		   })
-					}
-			
-				}, //success         
-				error: function(response) {
-					alert('error al agregar');
-				},
-				 // código a ejecutar sin importar si la petición falló o no
-				 complete : function(xhr, status) {
-        			//alert('Petición realizada');
-    			}
-						
-			});//ajax
-			
-		} 
-
-
-
-	
-
-</script>
-
-
 <div role="main" class="main shop py-4">
 
 	<div class="container">
@@ -135,7 +79,7 @@ function agregarCarro3(id) {
 									<input type="text" class="input-text qty text" title="Qty" value="1" id="quantity" name="quantity" min="1" step="1">
 									<input type="button" class="plus" value="+">
 								</div>
-								<button href="#" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
+								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
 							</form>
 							<?php endif; ?>
 

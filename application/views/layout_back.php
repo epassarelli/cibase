@@ -945,11 +945,15 @@
         # code...
         echo "<script src='".site_url("assets/themes/adminlte/js/$file_js")."'></script>"; 
       }
-    } ?>
+    } 
+    ?>
+    
+    
+    
     <?php 
     if(isset($js_files)){ 
         foreach($js_files as $file): ?>
-        <script src="<?php echo $file; ?>"></script>
+            <script src="<?php echo $file; ?>"></script> 
     <?php endforeach; 
     }
     ?>
