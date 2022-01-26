@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	
     // Url Dinamico
-    UrlBase = $('#url').val();
+   // UrlBase = $('#url').val();
  
     // Carga de tabla
     calculaPie();
@@ -13,14 +13,6 @@ $(document).ready(function () {
 
         function agregarCarro(id) { 
 
-        
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-            });
-		
 			$.ajax({
 				url: UrlBase+'productos/carrito/agregarCarrito',
 				data: { producto_id: id,cantidad: 1 },
@@ -58,15 +50,7 @@ $(document).ready(function () {
         function agregarCarro3(id) { 
 			cantidaddet = document.getElementById('quantity').value;
 			
-
-			
-			const Toast = Swal.mixin({
-				toast: true,
-				position: 'top-end',
-				showConfirmButton: false,
-				timer: 3000
-				});
-					
+				
 			// Ejecutamos la accion y la enviamos al servidor 
 			
 			$.ajax({
@@ -102,12 +86,7 @@ $(document).ready(function () {
 		       
         function cambiaCarro2(cantidad,id,e) {
             if (cantidad > 0) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                    });
+              
 
                 // Ejecutamos la accion y la enviamos al servidor 
                     $.ajax({
@@ -133,8 +112,9 @@ $(document).ready(function () {
                     
                         }, //success         
                         error: function(response) {
-                            alert('error al cambiar');
-                        },
+                            Toast.fire({type: 'success',
+                            title: 'Error al cambiar',
+                          })                        },
                         // código a ejecutar sin importar si la petición falló o no
                         complete : function(xhr, status) {
                             //alert('Petición realizada');
@@ -148,13 +128,6 @@ $(document).ready(function () {
             
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
-            
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-                });
             		
             // Ejecutamos la accion y la enviamos al servidor 
             
@@ -196,13 +169,6 @@ $(document).ready(function () {
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
             
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-                });
-            		
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/agregarCarrito',
@@ -246,14 +212,6 @@ $(document).ready(function () {
            
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
-            
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-                });
-            		
             // Ejecutamos la accion y la enviamos al servidor 
             
             $.ajax({
@@ -295,13 +253,6 @@ $(document).ready(function () {
 
         function calculaPie() { 
             
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-                });
-            		
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/pieCarrito',

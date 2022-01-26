@@ -938,6 +938,24 @@
 
    
     <input type="hidden" id="url" value="<?php echo base_url();?>">
+    
+    <script>
+			 $(document).ready(function () {
+			 		UrlBase = $('#url').val();
+		 			
+					Toast =  Swal.mixin({
+						            toast: true,
+            						position: 'top-end',
+            						showConfirmButton: false,
+            						timer: 3000
+            		});
+		
+			});
+		</script>	
+
+
+
+
 
     <!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
     <?php if(isset($files_js)){

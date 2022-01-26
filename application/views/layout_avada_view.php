@@ -37,6 +37,16 @@ if (!isset($_SESSION['carrito'])) {
     
     <link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/css/responsive.css" type="text/css" />
     
+ 	<?php if(isset($files_css)){
+		
+		foreach ($files_css as $file_css) {
+			# code...
+			echo "<script src='".site_url("assets/$file_css")."'></script>"; 
+		}
+	
+		}?>
+
+
     <?php //$color1 = $this->session->userdata('color1'); ?>
     <?php //require_once 'assets/themes/'.$this->session->userdata('theme').'/css/colors.php'; ?>
     <?php switch ($this->config->item('sitio_id')) {
@@ -132,5 +142,37 @@ if (!isset($_SESSION['carrito'])) {
     ============================================= -->
     <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/functions.js"></script>
 
+    <input type="hidden" id="url" value="<?php echo base_url();?>">
+		 
+         <script>
+			 $(document).ready(function () {
+			 		UrlBase = $('#url').val();
+		 			
+					Toast =  Swal.mixin({
+						            toast: true,
+            						position: 'top-end',
+            						showConfirmButton: false,
+            						timer: 3000
+            		});
+		
+			});
+		</script>	
+
+
+
+		 
+
+		<!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
+		<?php if(isset($files_js)){
+		
+			foreach ($files_js as $file_js) {
+				# code...
+				echo "<script src='".site_url("assets/$file_js")."'></script>"; 
+			}
+		
+		}?>
+
+
 </body>
+
 </html>    

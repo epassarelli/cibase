@@ -5,11 +5,11 @@ class Carrito extends MX_Controller {
   public function __construct() {
         
     parent::__construct();
-    
+    /// PARAMETRO 2 = "S" Requiere registro
     if (parametro(2)== 'S') {
-      //
-      //debe ir al registro de clientes
-      //
+      if (!$this->ion_auth->logged_in()) {
+        redirect('login');
+      }
     }
     
     
@@ -148,9 +148,13 @@ class Carrito extends MX_Controller {
             $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $_SESSION['carrito'][$i]['cantidad'];
             
             /// calculo precio por cantidad
+            
             $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
+
             $parcial = $_SESSION['carrito'][$i]['totalitem'];
-         }  
+            //$$parcial = number_format($parcial1, 2, ',', '.');
+
+          }  
        }
     }
     
