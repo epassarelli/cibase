@@ -3,11 +3,15 @@ $(document).ready(function () {
     // Url Dinamico
     UrlBase = $('#url').val();
 
+    // Carga de tabla
+    calculaPie();
+
+
  });
 
 
 
-       function agregarCarro(id) { 
+        function agregarCarro(id) { 
 
         
         const Toast = Swal.mixin({
@@ -49,8 +53,7 @@ $(document).ready(function () {
 						
 			});//ajax
 			
-	} 
-
+ 	    } 
 
         function agregarCarro3(id) { 
 			cantidaddet = document.getElementById('quantity').value;
@@ -96,9 +99,7 @@ $(document).ready(function () {
 						
 			});//ajax
         }
-			
-
-        
+		       
         function cambiaCarro2(cantidad,id) {
             if (cantidad > 0) {
                 const Toast = Swal.mixin({
@@ -140,8 +141,8 @@ $(document).ready(function () {
                         }
                                 
                     });//ajax
-                    }	
-                }
+                }	
+        }
 
         function eliminaItemCarro2(id,e) { 
             
@@ -309,15 +310,14 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.success == 'OK') {
+                       if (document.getElementById('subtotal') != null) {
                         document.getElementById('subtotal').innerText=response.subtotal;
                         document.getElementById('envio').innerText=response.envio;
                         document.getElementById('total').innerText=response.total;						
-                       // Toast.fire({type: 'success',
-                       // 	        title: 'Producto Agregado',
-                       // 		  })
+                       }     
                     }else{
                         Toast.fire({type: 'error',
-                        			title: 'No se pudo agregar el producto',
+                        			title: 'Error de refresco',
                         		   })
                     }
             
