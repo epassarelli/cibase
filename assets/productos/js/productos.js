@@ -2,7 +2,7 @@ $(document).ready(function () {
 	
     // Url Dinamico
     UrlBase = $('#url').val();
-
+ 
     // Carga de tabla
     calculaPie();
 
@@ -100,7 +100,7 @@ $(document).ready(function () {
 			});//ajax
         }
 		       
-        function cambiaCarro2(cantidad,id) {
+        function cambiaCarro2(cantidad,id,e) {
             if (cantidad > 0) {
                 const Toast = Swal.mixin({
                     toast: true,
@@ -117,17 +117,17 @@ $(document).ready(function () {
                         dataType: 'json',
                         success: function (response) {
                             if (response.success == 'OK') {
-                                document.getElementsByClassName('cart-qty')[0].textContent=response.items
-                                
+                                document.getElementsByClassName('cart-qty')[0].textContent=response.items;
+                                var MyRow = e.closest('tr')[0].rowIndex-1;
+                                document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.parcial;                                
                                 calculaPie();
 
                                 Toast.fire({type: 'success',
-                                	        title: 'Producto Agregado',
+                                	        title: 'Producto Modificado',
                                 		  })
                             }else{
-                                alert('cambio fallo ');
                                 Toast.fire({type: 'error',
-                                			title: 'No se pudo agregar el producto',
+                                			title: 'No se pudo modificar el producto',
                                 		   })
                             }
                     

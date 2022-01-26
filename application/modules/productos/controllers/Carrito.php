@@ -131,6 +131,7 @@ class Carrito extends MX_Controller {
        
     $producto_id = $this->input->post('producto_id');
     $cantidad = $this->input->post('cantidad');
+    $parcial = 0;
 
     ///// verificamos que existe para decrementar cantidad
     $elementos = sizeof($_SESSION['carrito']);
@@ -148,11 +149,12 @@ class Carrito extends MX_Controller {
             
             /// calculo precio por cantidad
             $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
+            $parcial = $_SESSION['carrito'][$i]['totalitem'];
          }  
        }
     }
     
-    $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad']);
+    $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'parcial' => $parcial);
     echo json_encode($response);
   }
 
