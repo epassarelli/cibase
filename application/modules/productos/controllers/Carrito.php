@@ -5,6 +5,13 @@ class Carrito extends MX_Controller {
   public function __construct() {
         
     parent::__construct();
+    /// PARAMETRO 2 = "S" Requiere registro
+    if (parametro(2)== 'S') {
+      if (!$this->ion_auth->logged_in()) {
+        redirect('login');
+      }
+    }
+    
     
     /*
     switch (ENVIRONMENT){
@@ -16,30 +23,34 @@ class Carrito extends MX_Controller {
     $this->load->model('Carrito_model');
     $this->load->model('Productos_model');
     $this->load->helper('Productos_helper');
+
+
+
   }
 
   public function index()
   {
-    
-    // $data['productos'] = $this->Productos_model->getCategorias();  
-    // $parametros['sitio_id'] = $this->config->item('sitio_id');
-    // $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
-    // $data['productos'] = $productos;
+
     $data['view']       = 'carrito_'.$this->session->userdata('theme').'_view';
+
+    
+    $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
+    $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
+
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
 
   public function agregarCarrito() {
-       
        $producto_id = $this->input->post('producto_id');
        $cantidad = $this->input->post('cantidad');
+      
        $producto = $this->Productos_model->getProducto($producto_id);
        $totallastitem = 0;
        if (!isset($cantidad) or $cantidad == null) {
          $cantidad = 1;
        }
-       $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] +1;
+       $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
 
        ///// verificamos que existe para solo incrementar la cantidad
        $existe = 0;
@@ -48,7 +59,7 @@ class Carrito extends MX_Controller {
           if ($_SESSION['carrito'][$i]['tipo']=='item'){
             if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
                 $existe=1;
-                $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] +1;
+                $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] + $cantidad;
                 $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
 
                 $totallastitem = $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
@@ -120,6 +131,7 @@ class Carrito extends MX_Controller {
        
     $producto_id = $this->input->post('producto_id');
     $cantidad = $this->input->post('cantidad');
+    $parcial = 0;
 
     ///// verificamos que existe para decrementar cantidad
     $elementos = sizeof($_SESSION['carrito']);
@@ -136,12 +148,17 @@ class Carrito extends MX_Controller {
             $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $_SESSION['carrito'][$i]['cantidad'];
             
             /// calculo precio por cantidad
+            
             $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
-         }  
+
+            $parcial = $_SESSION['carrito'][$i]['totalitem'];
+            //$$parcial = number_format($parcial1, 2, ',', '.');
+
+          }  
        }
     }
     
-    $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad']);
+    $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'parcial' => $parcial);
     echo json_encode($response);
   }
 

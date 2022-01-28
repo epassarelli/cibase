@@ -938,6 +938,24 @@
 
    
     <input type="hidden" id="url" value="<?php echo base_url();?>">
+    
+    <script>
+			 $(document).ready(function () {
+			 		UrlBase = $('#url').val();
+		 			
+					Toast =  Swal.mixin({
+						            toast: true,
+            						position: 'top-end',
+            						showConfirmButton: false,
+            						timer: 3000
+            		});
+		
+			});
+		</script>	
+
+
+
+
 
     <!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
     <?php if(isset($files_js)){
@@ -945,11 +963,15 @@
         # code...
         echo "<script src='".site_url("assets/themes/adminlte/js/$file_js")."'></script>"; 
       }
-    } ?>
+    } 
+    ?>
+    
+    
+    
     <?php 
     if(isset($js_files)){ 
         foreach($js_files as $file): ?>
-        <script src="<?php echo $file; ?>"></script>
+            <script src="<?php echo $file; ?>"></script> 
     <?php endforeach; 
     }
     ?>

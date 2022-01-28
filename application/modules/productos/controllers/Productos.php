@@ -24,6 +24,10 @@ class Productos extends MX_Controller {
     $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
     $data['productos'] = $productos;
     $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
+    
+    $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
+    $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
+
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
@@ -55,6 +59,7 @@ class Productos extends MX_Controller {
     $parametros['id'] = $id;
     $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
     
+
     if($producto){
       $data['producto'] = $producto;
 
@@ -67,6 +72,11 @@ class Productos extends MX_Controller {
     $data['categorias'] = $this->Productos_model->getCategorias(); 
     
     $data['view']       = 'producto_'.$this->session->userdata('theme').'_view';
+
+    $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
+    $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
+
+    
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);    
   }
 

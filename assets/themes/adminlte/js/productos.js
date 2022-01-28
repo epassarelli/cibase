@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   // Url Dinamico
-    UrlBase = $('#url').val();
+  //  UrlBase = $('#url').val();
 
 //Configuramos las alerts
   const Toast = Swal.mixin({
