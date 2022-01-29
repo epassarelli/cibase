@@ -18,33 +18,50 @@ class Contacto extends MX_Controller {
           break;
       }
       $this->color1 = $this->config->item('color1');
+      $this->load->library(array('form_validation','my_form_validation'));
+      $this->load->model('Contacto_model');
+      $this->config->load('captcha');
+      $this->data_captcha_google = $this->config->item('data_captcha_google');
   }
-
-	public function indexOld(){
-    $data['seccion']    = 'contacto';
-    $data['title']    = 'Contacto';
-
-    
-    $modulos = $this->config->item('modulos');
-    
-    $data['view']       = 'contacto_' . $this->session->userdata('theme') . '_1';    
-    $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
-
-	}
 
 
   public function index(){
 
-    $this->load->library('form_validation');
-    
-    $this->form_validation->set_rules('name', 'Nombre', 'trim|required');
-    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');  
-    $this->form_validation->set_rules('subject', 'Asunto', 'required');
-    $this->form_validation->set_rules('message', 'Mensaje', 'required');  
+    $this->load->library(array('form_validation','my_form_validation'));
+    $this->form_validation->run($this);
+    $data['files_js'] = array('js/re-captcha-google.js');
+    if($this->input->post()){
+      $this->form_validation->set_rules(
+          'g-recaptcha',
+          'Google ReCaptcha V3',
+          'required|callback_valid_captcha', 
+          //esta regla de form validation llama a la funcion declarada abajo.
+          array(
+              'valid_captcha' => 'El campo {field} no pudo ser validado correctamente, recargue la página e intente nuevamente.',
+          ));
+      //$this->form_validation->set_rules('g-recaptcha', 'Google ReCaptcha V3', 'required|callback_valid_captcha');
+      $this->form_validation->set_rules('name', 'Nombre', 'trim|required');
+      $this->form_validation->set_rules('email', 'Email', 'required|valid_email');  
+      $this->form_validation->set_rules('subject', 'Asunto', 'required');
+      $this->form_validation->set_rules('message', 'Mensaje', 'required');         
+    }
 
     if($this->form_validation->run()){
-      $from = '';
-      $to = '';
+      
+      // Tomar los datos del Form
+      $contacto['name']     = $this->input->post('name');
+      $contacto['email']    = $this->input->post('email');
+      $contacto['subject']  = $this->input->post('subject');
+      $contacto['message']  = $this->input->post('message');
+      $contacto['sitio_id'] = $this->config->item('sitio_id');
+
+      // Guardar los datos en la BDD
+      $this->Contacto_model->insertar($contacto);
+
+      // Enviar un correo
+
+      $from = 'a';
+      $to = 'a';
 
       $this->load->library('email');
       $this->email->from($from, 'Contacto desde el portal Web');
@@ -65,16 +82,26 @@ class Contacto extends MX_Controller {
           // Insertamos el mensaje en la Base de Datos
           //$this->Contacto_model->insertar($nombre,$email,$asunto,$mensaje);
 
-          redirect('contacto/exitoso');
+          $message = array(
+            'message' => 'Se pudo enviar el correo exitosamente',
+            'alert' => 'success'
+          );
+          
+          redirect('contacto');
         }
         else
           {
           $data['breadcrumb'] = array(
                 'Inicio' => base_url()
-              );    
-          redirect('contacto');
+              );  
+          $message = array(
+            'message' => 'NOOO se envió el mail',
+            'alert' => 'danger'
+          );          
 
           }
+
+        $this->session->set_flashdata('message',$message);
       
     }
     else{
@@ -85,9 +112,25 @@ class Contacto extends MX_Controller {
       $data['breadcrumb'] = array(
               'Inicio' => base_url()
             );
+
+
+      if($this->input->post()){
+          $message = array(
+            'message' => 'No pasé la validacion',
+            'alert' => 'danger'
+          ); 
+        }
+        else{
+          $message = array(
+            'message' => 'Entro x 1ra vez',
+            'alert' => 'danger'
+          ); 
+        }
+      $this->session->set_flashdata('message',$message);
       $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
     }   
   }
+
 
 
   public function partial($seccion_id, $slug, $titulo, $bajada, $bloque){
@@ -100,5 +143,51 @@ class Contacto extends MX_Controller {
     $viewTheme = 'contacto_' . $this->session->userdata('theme') . '_' . $bloque;
     $this->load->view($viewTheme, $data);
 	}
+
+  
+  private function sendEmail($mailData){
+        // Load the email library
+        $this->load->library('email');
+        
+        // Mail config
+        $to           = 'recipient@gmail.com';
+        $from         = 'codexworld@gmail.com';
+        $fromName     = 'CodexWorld';
+        $mailSubject  = 'Contact Request Submitted by '.$mailData['name'];
+        
+        // Mail content
+        $mailContent  = '
+            <h2>Contact Request Submitted</h2>
+            <p><b>Name: </b>'.$mailData['name'].'</p>
+            <p><b>Email: </b>'.$mailData['email'].'</p>
+            <p><b>Subject: </b>'.$mailData['subject'].'</p>
+            <p><b>Message: </b>'.$mailData['message'].'</p>
+        ';
+            
+        $config['mailtype'] = 'html';
+        $this->email->initialize($config);
+        $this->email->to($to);
+        $this->email->from($from, $fromName);
+        $this->email->subject($mailSubject);
+        $this->email->message($mailContent);
+        
+        // Send email & return status
+        return $this->email->send()?true:false;
+    }
+
+
+
+  public function valid_captcha($captcha){ 
+        $recaptcha_response = $captcha;
+        $recaptcha = file_get_contents($this->data_captcha_google['site_verify'].'?secret='.$this->data_captcha_google['secret_key'].'&response=' . $recaptcha_response);
+        $recaptcha = json_decode($recaptcha);
+        
+        if (!$recaptcha->success) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 
 }

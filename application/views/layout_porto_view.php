@@ -77,7 +77,9 @@ if (!isset($_SESSION['carrito'])) {
 	
 		}?>
 
-
+  <!-- Google Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
+  <!--FIN Google Recaptcha -->
 
 	</head>
 	<body>

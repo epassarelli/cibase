@@ -68,6 +68,25 @@ class MY_Model extends CI_Model{
     return $query->row();
   }
 
+
+##########################################################
+### Inserta el registro y devuelve el ID del mismo
+
+  function insertar($data) {
+    $this->db->insert($this->table, $data);
+    return $this->db->insert_id();
+  }
+
+##########################################################
+### Actualiza el registro que coincida con el ID
+
+  function actualizar($data, $id) {
+    $this->db->where('id', $id);
+    $this->db->update($this->table, $data);
+    return TRUE;
+  }
+
+
 }
 
 /* End of file MY_Model.php */

@@ -83,6 +83,10 @@ if (!isset($_SESSION['carrito'])) {
       <?php else: ?>
         <link rel="icon" type="image/png" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/images/favicon.png" />
       <?php endif; ?> 
+
+  <!-- Google Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
+  <!--FIN Google Recaptcha -->
     
     <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script> 
 
