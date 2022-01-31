@@ -39,7 +39,8 @@ class Contenidos extends MX_Controller {
         
         
         $params = array(
-            'sitio_id' => $this->config->item('sitio_id'),
+            //'sitio_id' => $this->config->item('sitio_id'),
+            'sitio_id' => $this->session->userdata("idSitio"),
             'slug'  => $pagIncial, 
             'estado' => 1
         );
@@ -68,7 +69,8 @@ class Contenidos extends MX_Controller {
     public function pagina($slug=''){
         
         $params = array(
-            'sitio_id' => $this->config->item('sitio_id'),
+            //'sitio_id' => $this->config->item('sitio_id'),
+            'sitio_id' => $this->session->userdata("idSitio"),
             'slug'  => $slug, 
             'estado' => 1
         );

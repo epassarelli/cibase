@@ -25,34 +25,19 @@
 					</div>
 					
 					<!-- Menú TOP a la derecha  -->
-					<?php //if ($this->ion_auth->is_admin()): ?>
+					<?php if ($this->ion_auth->is_admin()): ?>
  					<div class="header-column justify-content-end">
 						<div class="header-row">
 							<nav class="header-nav-top">
 								<ul class="nav nav-pills">
+									<!-- 
 									<li class="nav-item nav-item-anim-icon d-none d-md-block">
 										<a class="nav-link pl-0" href="about-us.html"><i class="fas fa-angle-right"></i> About Us</a>
 									</li>
-									<li class="nav-item nav-item-anim-icon d-none d-md-block">
-										<a class="nav-link" href="contact-us.html"><i class="fas fa-angle-right"></i> Contact Us</a>
-									</li>
-								
-									<li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
-										<a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<img src="img/blank.gif" class="flag flag-us" alt="English" /> English
-											<i class="fas fa-angle-down"></i>
-										</a>
-
-										<div class="dropdown-menu" aria-labelledby="dropdownLanguage">
-											<a class="dropdown-item" href="#"><img src="img/blank.gif" class="flag flag-us" alt="English" /> English</a>
-											<a class="dropdown-item" href="#"><img src="img/blank.gif" class="flag flag-es" alt="English" /> Español</a>
-											<a class="dropdown-item" href="#"><img src="img/blank.gif" class="flag flag-fr" alt="English" /> Française</a>
-										</div> 
-										
-									</li>
+									-->
 
 									<li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
-										<a class="nav-link" href="#" role="button" id="dropdownSite" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->userdata('sitio_id');//echo $this->config->item('sitio_id');// ?>
+										<a class="nav-link" href="#" role="button" id="dropdownSite" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actual:  <?php echo $this->session->userdata('sitio'); ?>
 											<i class="fas fa-angle-down"></i>
 										</a>
 
@@ -69,7 +54,7 @@
 							</nav>
 						</div>
 					</div>
-					<?php //endif; ?>
+					<?php endif; ?>
 					<!-- FIN menu TOP a la derecha -->
 
 				</div>
@@ -118,39 +103,12 @@
 										<span class="cart-qty"><?php echo $_SESSION['carrito'][0]['cantidad']?></span>
 									</span>
 								</a>
-								
-								<!-- 
-								<div class="header-nav-features-dropdown" id="headerTopCartDropdown">
-									<ol class="mini-products-list">
-										<li class="item">
-											<a href="#" title="Camera X1000" class="product-image"><img src="img/products/product-1.jpg" alt="Camera X1000"></a>
-											<div class="product-details">
-												<p class="product-name">
-													<a href="#">Camara X1000 </a>
-												</p>
-												<p class="qty-price">
-													 1X <span class="price">$ 000</span>
-												</p>
-												<a href="#" title="Remover este Item" class="btn-remove"><i class="fas fa-times"></i></a>
-											</div>
-										</li>
-									</ol>
-									<div class="totals">
-										<span class="label">Total:</span>
-										<span class="price-total"><span class="price">$890</span></span>
-									</div>
-									<div class="actions">
-										<a class="btn btn-dark" href="#">View Cart</a>
-										<a class="btn btn-primary" href="#">Checkout</a>
-									</div>
-								</div> 
-								-->
 
 							</div>
 						</div>
 
 						<?php endif; ?>
-					<!-- FIN de Carrito en SESSION -->
+						<!-- FIN de Carrito en SESSION -->
 
 					</div>
 				</div>

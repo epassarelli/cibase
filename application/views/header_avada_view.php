@@ -1,7 +1,7 @@
 <!-- Header
 ============================================= -->
 <!-- <header id="header" class="transparent-header full-header" data-sticky-class="not-dark"> -->
-<header id="header" class="full-header">
+<header id="header" class="full-header dark">
 
   <div id="header-wrap">
 
@@ -49,19 +49,19 @@
               # code...
               //if($m['menu']){
                 //$preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
-                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a>";
+                echo "<li><a href='" . $preSlug . '' . $m['slug'] . "'><div>" . $m['titulo'] . "</div></a></li>";
               //}
           }
 
           ?>   
 
 
-          <li class="sub-menu"><a href="<?php echo site_url(); ?>" class="sf-with-ul"><div><?php echo $this->session->userdata('sitio'); ?></div></a>
-            <ul style="display: none;">                  
-              <li><a href="<?php echo site_url('contenidos/switchSite/1'); ?>"> Cibase</a></li>
-              <li><a href="<?php echo site_url('contenidos/switchSite/2'); ?>"> Webpass</a></li>
-              <li><a href="<?php echo site_url('contenidos/switchSite/3'); ?>"> Vitello</a></li>
-              <li><a href="<?php echo site_url('contenidos/switchSite/4'); ?>"> Claudia</a></li>
+          <li><a href="#"><div>Actual: <?php echo $this->session->userdata('sitio'); ?></div></a>
+            <ul>                  
+              <li><a href="<?php echo site_url('contenidos/switchSite/1'); ?>"><div> Cibase</div></a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/2'); ?>"><div> Webpass</div></a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/3'); ?>"><div> Vitello</div></a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/4'); ?>"><div> Claudia</div></a></li>
             </ul>
           </li>
 

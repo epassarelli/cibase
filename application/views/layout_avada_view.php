@@ -67,8 +67,8 @@ if (!isset($_SESSION['carrito'])) {
 
     <!-- External JavaScripts
     ============================================= -->
-    <!-- <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/plugins.js"></script>
 
     <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
@@ -88,7 +88,7 @@ if (!isset($_SESSION['carrito'])) {
   <script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
   <!--FIN Google Recaptcha -->
     
-    <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script> 
+    <!-- <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script>  -->
 
     <!-- Document Title
     ============================================= -->

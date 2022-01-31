@@ -3,26 +3,51 @@
 class Menu extends MX_Controller {  
 
 
-  public function cargarSitio()
+  public function cargarSitio($sitio_id)
   {
     $this->load->model('mipanel/Sitios_model');
     // Si No existe ya la SESSION del SITIO
     //if($this->session->userdata('sitio_id') !== 0){
-    if(!$this->session->has_userdata("sitio")){
-      $data['sitio'] = $this->Sitios_model->getInfoSitio();
+
+    if($this->session->has_userdata("idSitio")){
+      
+      $sitio_id = $this->session->userdata("idSitio");
+      //echo "Vengo de cambiar el sitio al: " . $sitio_id . "<hr>";
     }
     else{
-      if($this->session->flashdata('sitio_id') !== 0){
-        $data['sitio'] = $this->Sitios_model->getInfoSitio($this->session->flashdata('sitio_id'));
-      }
+      
+      $sitio_id = $this->config->item('sitio_id');
+      $this->session->set_userdata("idSitio", $sitio_id);
+      //echo "Ingreso por primera vez, estoy en: " . $sitio_id . " <hr>";
     }
+      
+    $data['sitio'] = $this->Sitios_model->getInfoSitio2($sitio_id);
 
+    //var_dump($data['sitio']);
+
+    // Si encontré un sitio para esa url
     if($data['sitio']){
       // Guardo todos los datos del sitio en session
       foreach ($data['sitio'] as $key => $value) {
           $this->session->set_userdata($key, $value);
       }
     }
+
+    // if(!$this->session->has_userdata("sitio")){
+    //   $data['sitio'] = $this->Sitios_model->getInfoSitio();
+    // }
+    // else{
+    //   if($this->session->flashdata('sitio_id') !== 0){
+    //     $data['sitio'] = $this->Sitios_model->getInfoSitio($sitio_id);
+    //   }
+    // }
+
+    // if($data['sitio']){
+    //   // Guardo todos los datos del sitio en session
+    //   foreach ($data['sitio'] as $key => $value) {
+    //       $this->session->set_userdata($key, $value);
+    //   }
+    // }
 
     //   if()
     //   echo "No existe la session para el sitio<hr>";
