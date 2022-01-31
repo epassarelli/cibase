@@ -25,7 +25,8 @@
 					</div>
 					
 					<!-- Menú TOP a la derecha  -->
-<!-- 					<div class="header-column justify-content-end">
+					<?php //if ($this->ion_auth->is_admin()): ?>
+ 					<div class="header-column justify-content-end">
 						<div class="header-row">
 							<nav class="header-nav-top">
 								<ul class="nav nav-pills">
@@ -49,11 +50,26 @@
 										</div> 
 										
 									</li>
+
+									<li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
+										<a class="nav-link" href="#" role="button" id="dropdownSite" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo $this->session->userdata('sitio_id');//echo $this->config->item('sitio_id');// ?>
+											<i class="fas fa-angle-down"></i>
+										</a>
+
+										<div class="dropdown-menu" aria-labelledby="dropdownSite">
+											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/1'); ?>"> Cibase</a>
+											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/2'); ?>"> Webpass</a>
+											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/3'); ?>"> Vitello</a>
+											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/4'); ?>"> Claudia</a>
+										</div>
+										
+									</li>
 									
 								</ul>
 							</nav>
 						</div>
-					</div> -->
+					</div>
+					<?php //endif; ?>
 					<!-- FIN menu TOP a la derecha -->
 
 				</div>

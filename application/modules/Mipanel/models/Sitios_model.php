@@ -7,6 +7,15 @@ public function __construct() {
 }  
 
     // Retorna toda la info del sitio
+    public function getInfoSitio2($idSitio){
+        $this->db->from('sitios si');
+        $this->db->join('themes th', 'si.theme_id = th.theme_id');    
+        $this->db->where('si.sitio_id', $idSitio);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    // Retorna toda la info del sitio
     public function getInfoSitio(){
         $this->db->from('sitios si');
         $this->db->join('themes th', 'si.theme_id = th.theme_id');    
@@ -14,7 +23,6 @@ public function __construct() {
         $query = $this->db->get();
         return $query->row();
     }
-
 
 public function get_All(){
     $this->db->where('estado', 1);

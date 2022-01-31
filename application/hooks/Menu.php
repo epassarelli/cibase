@@ -5,23 +5,49 @@ class Menu extends MX_Controller {
 
   public function cargarSitio()
   {
+    $this->load->model('mipanel/Sitios_model');
     // Si No existe ya la SESSION del SITIO
-    if(!$this->session->userdata('nombre1')){
-      //echo "No existe la session del sitio<hr>";
-      
-      $this->load->model('mipanel/Sitios_model');
+    //if($this->session->userdata('sitio_id') !== 0){
+    if(!$this->session->has_userdata("sitio")){
       $data['sitio'] = $this->Sitios_model->getInfoSitio();
-      // var_dump($data['sitio']);
-      // Si encontré un sitio para esa url
-      if($data['sitio']){
-
-          // Guardo todos los datos del sitio en session
-          foreach ($data['sitio'] as $key => $value) {
-              $this->session->set_userdata($key, $value);
-          }
-        }
     }
+    else{
+      if($this->session->flashdata('sitio_id') !== 0){
+        $data['sitio'] = $this->Sitios_model->getInfoSitio($this->session->flashdata('sitio_id'));
+      }
+    }
+
+    if($data['sitio']){
+      // Guardo todos los datos del sitio en session
+      foreach ($data['sitio'] as $key => $value) {
+          $this->session->set_userdata($key, $value);
+      }
+    }
+
+    //   if()
+    //   echo "No existe la session para el sitio<hr>";
+    //   echo $this->session->userdata('swhitchSite')."<hr>";
+      
+    //   $this->load->model('mipanel/Sitios_model');
+    //   $data['sitio'] = $this->Sitios_model->getInfoSitio($this->session->userdata('sitio_id'));
+    //   // var_dump($data['sitio']);
+    //   // Si encontré un sitio para esa url
+    //   if($data['sitio']){
+
+    //       // Guardo todos los datos del sitio en session
+    //       foreach ($data['sitio'] as $key => $value) {
+    //           $this->session->set_userdata($key, $value);
+    //       }
+    //     }
+    // }
+    // else{
+    //   echo "YA existe la session para el sitio<hr>";
+    //   echo $this->session->userdata('swhitchSite')."<hr>";
+    // }
+    
+    // $this->session->set_userdata('swhitchSite', 0);
   }
+
 
 
   public function armarMenu()

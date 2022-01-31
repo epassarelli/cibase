@@ -53,7 +53,20 @@
               //}
           }
 
-          ?>                      
+          ?>   
+
+
+          <li class="sub-menu"><a href="<?php echo site_url(); ?>" class="sf-with-ul"><div><?php echo $this->session->userdata('sitio'); ?></div></a>
+            <ul style="display: none;">                  
+              <li><a href="<?php echo site_url('contenidos/switchSite/1'); ?>"> Cibase</a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/2'); ?>"> Webpass</a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/3'); ?>"> Vitello</a></li>
+              <li><a href="<?php echo site_url('contenidos/switchSite/4'); ?>"> Claudia</a></li>
+            </ul>
+          </li>
+
+
+
         </ul>
 
       </nav><!-- #primary-menu end -->
