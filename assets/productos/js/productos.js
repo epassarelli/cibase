@@ -252,7 +252,6 @@ $(document).ready(function () {
         } 
 
         function calculaPie() { 
-            
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/pieCarrito',
