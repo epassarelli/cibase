@@ -241,10 +241,10 @@ class Carrito extends MX_Controller {
 
   public function checkout() {
     
-    $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
+    $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js','localidades/js/localidades.js?v='.rand());
     $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
     $data['provincias'] = $this->Provincias_model->getAllBy('provincias','', '','nombre');
-    $parametros['provincia_id'] = 86;
+    $parametros['provincia_id'] = 6;
     $data['localidades'] = $this->Localidades_model->getAllBy('localidades','', $parametros,'nombre');
     $data['view']       = $this->session->userdata('theme').'-shop-checkout';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
