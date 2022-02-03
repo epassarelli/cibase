@@ -49,19 +49,22 @@ class Contacto extends MX_Controller {
     if($this->form_validation->run()){
       
       // Tomar los datos del Form
-      $contacto['name']     = $this->input->post('name');
-      $contacto['email']    = $this->input->post('email');
-      $contacto['subject']  = $this->input->post('subject');
-      $contacto['message']  = $this->input->post('message');
-      $contacto['sitio_id'] = $this->config->item('sitio_id');
+      $contacto['fecha']    =  date('Y-m-d',time());
+      $contacto['nombre']   = $this->input->post('name');
+      $contacto['correo']   = $this->input->post('email');
+      $contacto['asunto']   = $this->input->post('subject');
+      $contacto['mensaje']  = $this->input->post('message');
+      $contacto['sitio_id'] = $this->session->userdata('sitio_id');
+
+      var_dump($contacto);
 
       // Guardar los datos en la BDD
       $this->Contacto_model->insertar($contacto);
 
       // Enviar un correo
 
-      $from = 'a';
-      $to = 'a';
+      $from = 'info@'.$this->session->userdata('url');
+      $to = $this->session->userdata('correo');
 
       $this->load->library('email');
       $this->email->from($from, 'Contacto desde el portal Web');
@@ -74,10 +77,7 @@ class Contacto extends MX_Controller {
               
         // Send email
         if($this->email->send())
-        {
-          $data['breadcrumb'] = array(
-                'Inicio' => base_url()
-              );    
+        {  
           
           // Insertamos el mensaje en la Base de Datos
           //$this->Contacto_model->insertar($nombre,$email,$asunto,$mensaje);
@@ -105,14 +105,8 @@ class Contacto extends MX_Controller {
       
     }
     else{
-      $data['title']        = "Contacto";
-      
-      $data['view']       = 'contacto_' . $this->session->userdata('theme') . '_1'; 
-
-      $data['breadcrumb'] = array(
-              'Inicio' => base_url()
-            );
-
+      $data['title']    = "Contacto";      
+      $data['view']     = 'contacto_' . $this->session->userdata('theme') . '_1'; 
 
       if($this->input->post()){
           $message = array(
