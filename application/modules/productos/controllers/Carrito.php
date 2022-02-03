@@ -281,7 +281,7 @@ class Carrito extends MX_Controller {
           array('greater_than'   => 'Debe ingresar un localidad'));
     }
   
-   if ($this->form_validation->run() == true) {
+   if ($this->form_validation->run() == true ) {
     
       $subtotal = 0;
       $total = 0;
@@ -296,6 +296,10 @@ class Carrito extends MX_Controller {
          }  
       }
   
+      if ($subtotal == 0) {
+        redirect('productos');
+      }
+      
       $costoenvio  = parametro(3);
   
       if ($costoenvio == 0 or $costoenvio == null) {

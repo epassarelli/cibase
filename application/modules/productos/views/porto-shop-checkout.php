@@ -171,13 +171,13 @@
 															<a href="shop-product-sidebar-left.html">Lomo</a>
 														</td>
 														<td class="product-price">
-															<span class="amount">$899</span>
+															<span class="amount">$0</span>
 														</td>
 														<td class="product-quantity">
 															1
 														</td>
 														<td class="product-subtotal">
-															<span class="amount">899</span>
+															<span class="amount">0</span>
 														</td>
 													</tr>
 													<tr class="cart_table_item">
@@ -190,13 +190,13 @@
 															<a href="shop-product-sidebar-left.html">Provoleta</a>
 														</td>
 														<td class="product-price">
-															<span class="amount">$372</span>
+															<span class="amount">$0</span>
 														</td>
 														<td class="product-quantity">
 															1
 														</td>
 														<td class="product-subtotal">
-															<span class="amount">$372</span>
+															<span class="amount">$0</span>
 														</td>
 													</tr>
 													
@@ -213,7 +213,7 @@
 															<strong class="text-dark">Subtotal Carrito</strong>
 														</th>
 														<td>
-															<strong class="text-dark"><span class="amount">$1271</span></strong>
+															<strong class="text-dark"><span class="amount">$0</span></strong>
 														</td>
 													</tr>
 													<tr class="shipping">
@@ -229,7 +229,7 @@
 															<strong class="text-dark"> Total Pedido</strong>
 														</th>
 														<td>
-															<strong class="text-dark"><span class="amount">$1271</span></strong>
+															<strong class="text-dark"><span class="amount">$0</span></strong>
 														</td>
 													</tr>
 												</tbody>
@@ -253,7 +253,7 @@
 											<strong class="text-dark">Subtotal Carrito</strong>
 										</th>
 										<td>
-											<strong id="subtotal" class="text-dark"><span class="amount">$1271</span></strong>
+											<strong id="subtotal" class="text-dark"><span class="amount">$0</span></strong>
 										</td>
 									</tr>
 									<tr class="shipping">
@@ -269,7 +269,7 @@
 											<strong class="text-dark">Total del Pedido</strong>
 										</th>
 										<td>
-											<strong id="total" class="text-dark"><span class="amount">$1271</span></strong>
+											<strong id="total" class="text-dark"><span class="amount">$0</span></strong>
 										</td>
 									</tr>
 								</tbody>
