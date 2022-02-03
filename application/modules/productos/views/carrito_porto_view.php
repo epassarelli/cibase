@@ -171,7 +171,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="actions-continue">
-							<button type="submit" class="btn btn-primary btn-modern text-uppercase">Proceed to Checkout <i class="fas fa-angle-right ml-1"></i></button>
+							<a href="<?php echo base_url('productos/carrito/checkout')?>" class="btn btn-primary btn-modern text-uppercase">Continuar Compra <i class="fas fa-angle-right ml-1"></i></a>
 						</div>
 					</div>
 				</div>

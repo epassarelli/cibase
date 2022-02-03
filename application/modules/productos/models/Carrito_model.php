@@ -8,4 +8,19 @@ public function __construct(){
 }  
 
 
+
+public function grabapedido($data)
+{
+    $this->db->insert('pedidos', $data);
+    $pedido_id =  $this->db->insert_id();
+    return $pedido_id;    
+}
+
+
+
+public function grabaitem($data)
+{
+    $this->db->insert('pedidos_items', $data);
+}
+
 }
