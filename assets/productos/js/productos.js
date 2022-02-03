@@ -208,8 +208,6 @@ $(document).ready(function () {
 
         function quitarCarro2(id,e) { 
 
-            alert(xx);
-           
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
             // Ejecutamos la accion y la enviamos al servidor 
