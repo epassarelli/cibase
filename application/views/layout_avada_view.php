@@ -67,8 +67,8 @@ if (!isset($_SESSION['carrito'])) {
 
     <!-- External JavaScripts
     ============================================= -->
-    <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <!-- <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/jquery.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/js/plugins.js"></script>
 
     <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
@@ -84,11 +84,13 @@ if (!isset($_SESSION['carrito'])) {
         <link rel="icon" type="image/png" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/images/favicon.png" />
       <?php endif; ?> 
 
-  <!-- Google Recaptcha -->
-  <script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
-  <!--FIN Google Recaptcha -->
-    
-    <!-- <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script>  -->
+    <!-- Google Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
+    <!--FIN Google Recaptcha -->
+
+    <?php //if($this->session->userdata('sitio_id') == 4 ): ?>
+        <!-- <script type="text/javascript" src="<?php echo site_url('assets/js/menu_claudia.js'); ?>"></script> -->
+    <?php //endif; ?>
 
     <!-- Document Title
     ============================================= -->
@@ -99,31 +101,40 @@ if (!isset($_SESSION['carrito'])) {
 
 <body class="stretched">
 
-    <?php //var_dump($this->session->userdata()); ?>
-
-
     <!-- Document Wrapper
     ============================================= -->
     <div id="wrapper" class="clearfix">
 
         <?php if($this->config->item('sitio_id') == 4): ?>
 
-            <?php echo $this->load->view('claudia_menu_avada_view'); ?>
+            <?php echo $this->load->view('claudia_menu2_avada_view'); ?>
 
         <?php else: ?>
 
             <?php echo $this->load->view('header_avada_view', '', FALSE); ?>
         
         <?php endif; ?>
-        
+       
 
         <?php if($this->config->item('sitio_id') == 4): ?>
-            <section id="page-title" class="page-title-mini">
+            <section id="page-title" class="page-title-mini idiomaClaudia">
                 <div class="container clearfix">
-                    <img width="24" height="16" src="<?php echo site_url('assets/images/banderas/argentina.png'); ?>"> 
-                    <a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/spanish'); ?>">Español</a> | 
-                    <img width="24" height="16" src="<?php echo site_url('assets/images/banderas/inglaterra.png'); ?>">
-                    <a href="<?php echo site_url('contenidos/LanguageSwitcher/switchLang/english'); ?>">Ingles</a>
+                  <h1>Claudia Hasanbegovic</h1>
+                  <ol class="breadcrumb">
+                  <?php 
+                    switch ($this->session->userdata('site_lang')) {
+                        case 'spanish':
+                            echo "<li><img width='24' height='16' src='".site_url('assets/images/banderas/inglaterra.png')."'><a href='".site_url('contenidos/LanguageSwitcher/switchLang/english')."'> Switch to english</a></li>";
+                            break;
+                        case 'english':
+                            echo "<li><img width='24' height='16' src='".site_url('assets/images/banderas/argentina.png')."''><a href='".site_url('contenidos/LanguageSwitcher/switchLang/spanish')."'> Cambiar a español</a></li>";
+                            break;    
+                        default:
+                            echo "<li><img width='24' height='16' src='".site_url('assets/images/banderas/inglaterra.png')."'><a href='".site_url('contenidos/LanguageSwitcher/switchLang/english')."'> Switch to english</a></li>";
+                            break;
+                    }
+                   ?>
+                   </ol>                     
                 </div>
             </section>
         <?php endif; ?>

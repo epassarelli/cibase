@@ -78,7 +78,7 @@ switch ($this->session->userdata('site_lang')) {
     transition:.5s all ease-in-out;
 }
 .ancho{
-    width:130px;
+    width:115px;
 }
 .item1{
     background-image: url('<?php echo site_url('assets/images/claudia/menu/item1.jpg'); ?>');

@@ -8,6 +8,10 @@
       ============================================= -->
       <div class="postcontent nobottommargin clearfix">
 
+        <div class="fancy-title title-double-border">
+            <h1><?php echo $categoria; ?></h1>
+        </div>
+
           <!-- Posts
           ============================================= -->
           <div id="posts" class="small-thumbs">
@@ -16,7 +20,7 @@
               
             <?php foreach ($articulos as $art): ?>  
 
-              <div class="entry clearfix">
+              <div class="entry clearfix bounceInRight animated">
                 <!--
                 <div class="entry-image">
                     <a href="images/blog/full/17.jpg" data-lightbox="image"><img class="image_fade" src="images/blog/standard/17.jpg" alt="Standard Post with Image"></a>
@@ -56,54 +60,9 @@
 
       <!-- Sidebar
       ============================================= -->
-      <div class="sidebar nobottommargin col_last clearfix">
-          <div class="sidebar-widgets-wrap">
+      <?php $this->load->view('publicaciones_sidebar_'.$this->session->userdata('theme').'_view'); ?>
 
-            <div class="widget clearfix">
-
-                <h4>Otras categorias</h4>
-
-                <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
-
-                  <div class="tab-container">
-
-                    <div class="tab-content clearfix" id="tabs-1">
-                      <div id="popular-post-list-sidebar">
-
-                        <div class="spost clearfix">
-
-                          <div class="entry-c">
-
-                            <?php if(count($otrasCategorias)>0): ?>
-
-                              <?php foreach ($otrasCategorias as $c): ?>
-
-                                <div class="entry-title">
-                                    <h4><a href="<?php echo site_url().$c->slug; ?>"><?php echo $c->categoria; ?></a></h4>
-                                    <br>
-                                </div>
-
-                              <?php endforeach; ?>
-
-                            <?php endif; ?>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-        </div>
-
-      </div><!-- .sidebar end -->
+      <!-- .sidebar end -->
 
     </div>
 
