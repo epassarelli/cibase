@@ -69,11 +69,11 @@ class Publicaciones extends MX_Controller {
     
     //$articulo = $data['articulos'][0];
     //var_dump($data['articulo']);die();
-    if($this->session->userdata('site_lang') == 'spanish'){
-    $idIdioma = 1;
+    if($this->session->userdata('site_lang') == 'english'){
+    $idIdioma = 2;
     }
     else{
-    $idIdioma = 2;        
+    $idIdioma = 1;        
     }
 
     $params3 = array(

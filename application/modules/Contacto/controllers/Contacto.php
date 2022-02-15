@@ -26,7 +26,7 @@ class Contacto extends MX_Controller {
 
 
   public function index(){
-
+    $data['titulo'] = 'Contacto';
     $this->load->library(array('form_validation','my_form_validation'));
     $this->form_validation->run($this);
     $data['files_js'] = array('js/re-captcha-google.js');
