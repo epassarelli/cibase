@@ -19,9 +19,10 @@ class Menu extends MX_Controller {
   }
 
   public function main($seccion_id=''){
-    $landing = $this->session->userdata('landing');
+    //$landing = $this->session->userdata('landing');
+
     
-    if($landing){
+    if($this->session->userdata('landing')){
       $items = $this->Menu_model->getBloques($seccion_id);
     }else{
       $items = $this->Menu_model->getSecciones();

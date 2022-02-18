@@ -116,7 +116,7 @@ if (!isset($_SESSION['carrito'])) {
         <?php endif; ?>
        
 
-        <?php if($this->config->item('sitio_id') == 4): ?>
+        <?php if(parametro(6) == 'S'): // Pregunto si es multiidioma ?>
             <section id="page-title" class="page-title-mini idiomaClaudia">
                 <div class="container clearfix">
                   <h1>Claudia Hasanbegovic</h1>
