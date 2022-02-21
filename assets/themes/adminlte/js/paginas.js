@@ -72,34 +72,36 @@ function listar(base,Toast) {
         },
         rowCallback : function( row, data ) {
           //console.log(data.estado)
-          $('td:eq(1)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' />"); 
+          $('td:eq(5)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' /> - " + data.sitio ); 
 
           if ( data.menu == "1" ) {
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
 
           if ( data.estado == "1" ) {
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
           
           //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
-          $('td:eq(6)', row).html("<img src='" + base + "assets/images/banderas/" + data.flag + "'width='24' height='16' />"); 
+          $('td:eq(4)', row).html("<img src='" + base + "assets/images/banderas/" + data.flag + "'width='24' height='16' />"); 
           
         },
         columns: [
             { data: "seccion_id" },
-            { data: "sitio_id" },
+            
             { data: "titulo" },
             { data: "slug" },
             { data: "menu" },
-            { data: "estado"},
             { data: "idioma_id"},
+            { data: "sitio_id" },
+            { data: "estado"},
+            
             {
                 defaultContent:
                     "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"

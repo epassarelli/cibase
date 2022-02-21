@@ -1,12 +1,12 @@
 <section class="content-header">
     <h1>
         Backend
-        <small>Listado de bloques</small>
+        <small>Listado de componentes</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <!-- <li><a href="#">Tables</a></li> -->
-        <li class="active">Bloques</li>
+        <li class="active">componentes</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -23,15 +23,16 @@
                     <p>
                         <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSitios"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
-                    <table id="bloquesAbm" class="table table-bordered">
+                    <table id="componentesAbm" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th width="30">Cod</th>
-                                <th>Sitio</th>
-                                <th>Pagina</th>
+                                <th>Texto 1</th>
+                                <th>Texto 2</th>
                                 <th>Bloque</th>                            
-                                <th width="250">Formato</th>
-                                <th width="30">Pubicado</th>
+                                <th>Pagina</th>
+                                <th>Sitio</th>
+                                <th>Publicado?</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

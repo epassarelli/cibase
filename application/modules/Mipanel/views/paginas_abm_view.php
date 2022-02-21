@@ -26,13 +26,13 @@
                     <table id="paginasAbm" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Cod</th>
-                                <th>Sitio</th>
+                                <th width="30">Cod</th>                               
                                 <th>Titulo</th>
                                 <th>Slug</th>
-                                <th>En menu?</th>
-                                <th>Pubicada?</th>
-                                <th>Idioma</th>
+                                <th width="30">En menu?</th>
+                                <th width="30">Idioma</th>
+                                <th>Sitio</th>
+                                <th width="30">Pubicada?</th>                                
                                 <th>Action</th>
                             </tr>
                         </thead>

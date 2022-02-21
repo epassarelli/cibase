@@ -63,43 +63,42 @@ $('#llave_landing').click(function()  {
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
-    var table = $("#paginasAbm").DataTable({
+    var table = $("#componentesAbm").DataTable({
         destroy: true,
         responsive: true,
         ajax: {
-            url: base + "mipanel/paginas/getPaginas",
+            url: base + "mipanel/componentes/getComponentes",
             type: "jsonp"
         },
         rowCallback : function( row, data ) {
-          //console.log(data.estado)
-          $('td:eq(1)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' />"); 
+          // //console.log(data.estado)
+          // $('td:eq(1)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' />"); 
 
-          if ( data.menu == "1" ) {
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
-          }else{
-            $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
-
-          }
+          // if ( data.menu == "1" ) {
+          //   $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+          // }else{
+          //   $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" );
+          // }
 
           if ( data.estado == "1" ) {
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           }
           
-          //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
-          $('td:eq(6)', row).html("<img src='" + base + "assets/images/banderas/" + data.flag + "'width='24' height='16' />"); 
+          // //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
+          // $('td:eq(6)', row).html("<img src='" + base + "assets/images/banderas/" + data.flag + "'width='24' height='16' />"); 
           
         },
         columns: [
+            { data: "componente_id" },
+            { data: "texto1" },
+            { data: "texto2" },
+            { data: "bloque_id" },
             { data: "seccion_id" },
-            { data: "sitio_id" },
-            { data: "titulo" },
-            { data: "slug" },
-            { data: "menu" },
+            { data: "sitio_id"},
             { data: "estado"},
-            { data: "idioma_id"},
             {
                 defaultContent:
                     "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
@@ -109,9 +108,9 @@ function listar(base,Toast) {
     });
 
     submit(table,Toast) //Accion de Insertar o Editar
-    Edit("#paginasAbm tbody", table); //Tomar datos para la Edicion
-    deleteSitios("#paginasAbm tbody", table); //Eliminar un slide
-    cambioEstado("#paginasAbm tbody", table,Toast); //Cambiar estado
+    // Edit("#paginasAbm tbody", table); //Tomar datos para la Edicion
+    // deleteSitios("#paginasAbm tbody", table); //Eliminar un slide
+    // cambioEstado("#paginasAbm tbody", table,Toast); //Cambiar estado
 
  }
 
