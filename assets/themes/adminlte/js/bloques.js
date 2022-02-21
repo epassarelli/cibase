@@ -80,7 +80,7 @@ function listar(base,Toast) {
           //   $('td:eq(4)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
 
           // }
-          $('td:eq(4)', row).html("<img src='" + base + "assets/images/formatos/" + data.imagen + "'width='240' height='100' />"); 
+          $('td:eq(4)', row).html("<img src='" + base + "assets/images/formatos/" + data.imagen + "'width='240' height='100' alt='" + data.imagen + "' />"); 
 
           if ( data.estado == "1" ) {
             $('td:eq(5)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
