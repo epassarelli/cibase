@@ -56,7 +56,7 @@ class Contacto extends MX_Controller {
       $contacto['mensaje']  = $this->input->post('message');
       $contacto['sitio_id'] = $this->session->userdata('sitio_id');
 
-      var_dump($contacto);
+      //var_dump($contacto);
 
       // Guardar los datos en la BDD
       $this->Contacto_model->insertar($contacto);
@@ -83,7 +83,7 @@ class Contacto extends MX_Controller {
           //$this->Contacto_model->insertar($nombre,$email,$asunto,$mensaje);
 
           $message = array(
-            'message' => 'Se pudo enviar el correo exitosamente',
+            'message' => 'Se envió el correo exitosamente',
             'alert' => 'success'
           );
           
@@ -95,7 +95,7 @@ class Contacto extends MX_Controller {
                 'Inicio' => base_url()
               );  
           $message = array(
-            'message' => 'NOOO se envió el mail',
+            'message' => 'NO se pudo enviar el correo. Comuníquese con el administrador del sitio',
             'alert' => 'danger'
           );          
 
@@ -110,17 +110,18 @@ class Contacto extends MX_Controller {
 
       if($this->input->post()){
           $message = array(
-            'message' => 'No pasé la validacion',
+            'message' => 'Revise los datos obligatorios',
             'alert' => 'danger'
-          ); 
+          );
+          $this->session->set_flashdata('message',$message); 
         }
-        else{
-          $message = array(
-            'message' => 'Entro x 1ra vez',
-            'alert' => 'danger'
-          ); 
-        }
-      $this->session->set_flashdata('message',$message);
+        // else{
+        //   $message = array(
+        //     'message' => 'Entro x 1ra vez',
+        //     'alert' => 'danger'
+        //   ); 
+        // }
+      //$this->session->set_flashdata('message',$message);
       $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
     }   
   }
