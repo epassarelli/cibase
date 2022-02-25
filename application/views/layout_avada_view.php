@@ -119,7 +119,7 @@ if (!isset($_SESSION['carrito'])) {
         <?php if(parametro(6) == 'S'): // Pregunto si es multiidioma ?>
             <section id="page-title" class="page-title-mini idiomaClaudia">
                 <div class="container clearfix">
-                  <h1>Claudia Hasanbegovic</h1>
+                  <h1>DRA. Claudia Hasanbegovic (PH.D.)</h1>
                   <ol class="breadcrumb">
                   <?php 
                     switch ($this->session->userdata('site_lang')) {
