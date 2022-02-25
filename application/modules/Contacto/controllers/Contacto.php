@@ -21,6 +21,7 @@ class Contacto extends MX_Controller {
       $this->load->library(array('form_validation','my_form_validation'));
       $this->load->model('Contacto_model');
       $this->config->load('captcha');
+      $this->lang->load('contact', $this->session->userdata('site_lang'));
       $this->data_captcha_google = $this->config->item('data_captcha_google');
   }
 
