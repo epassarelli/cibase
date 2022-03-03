@@ -2,7 +2,7 @@
 
 // Fields
 $lang['contact'] 		= 'Contact';
-$lang['name'] 		= 'Nombre';
+$lang['name'] 		= 'Name';
 $lang['email'] 		= 'Email';
 $lang['subject'] 	= 'Subject';
 $lang['message'] 	= 'Message';
