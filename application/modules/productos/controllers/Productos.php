@@ -18,7 +18,7 @@ class Productos extends MX_Controller {
 
   public function index()
   {
-    
+    $data['title'] = 'Productos';
     $data['categorias'] = $this->Productos_model->getCategorias();  
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
@@ -37,7 +37,7 @@ class Productos extends MX_Controller {
   {
     $parametros['slug'] = $slug;
     $parametros['sitio_id'] = $this->config->item('sitio_id');
-    
+    $data['title'] = 'Productos / Categoria';
     //obtengo id del slug
     $row_categoria = $this->Productos_model->getOneBy('categorias', '', $parametros, '');
    
@@ -55,6 +55,7 @@ class Productos extends MX_Controller {
   
   public function detalle($id='')
   {
+    $data['title'] = 'Productos';
     // Obtengo el producto con el ID que recibo
     $parametros['id'] = $id;
     $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
