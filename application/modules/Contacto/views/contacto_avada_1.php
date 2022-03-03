@@ -10,7 +10,7 @@
     <div <?php if($this->session->userdata('urlGMap') !== ''){ echo 'class="col_half"';} ?>>
 
         <div class="fancy-title title-dotted-border">
-            <h3>Mandanos un email</h3>
+            <h3><?php echo $this->lang->line('get_in_touch'); ?></h3>
         </div>
 
         <div id="contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
@@ -20,24 +20,24 @@
             <div class="form-process"></div>
 
             <div class="col_one_third">
-                <label for="template-contactform-name">Nombre <small>*</small></label>
+                <label for="template-contactform-name"><?php echo $this->lang->line('name'); ?> <small>*</small></label>
                 <input type="text" id="name" name="name" value="" class="sm-form-control required" aria-required="true">
             </div>
 
             <div class="col_one_third">
-                <label for="template-contactform-email">Email <small>*</small></label>
+                <label for="template-contactform-email"><?php echo $this->lang->line('email'); ?> <small>*</small></label>
                 <input type="email" id="email" name="email" value="" class="required email sm-form-control" aria-required="true">
             </div>
 
             <!-- <div class="col_one_third col_last">
-                <label for="template-contactform-phone">Teléfono</label>
+                <label for="template-contactform-phone"><?php echo $this->lang->line('phone'); ?></label>
                 <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control">
             </div> -->
 
             <div class="clear"></div>
 
             <div class="col_two_third">
-                <label for="subject">Asunto <small>*</small></label>
+                <label for="subject"><?php echo $this->lang->line('subject'); ?> <small>*</small></label>
                 <input type="text" id="subject" name="subject" value="" class="required sm-form-control" />
             </div>
 
@@ -57,7 +57,7 @@
             <div class="clear"></div>
 
             <div class="col_full">
-                <label for="template-contactform-message">Mensaje <small>*</small></label>
+                <label for="template-contactform-message"><?php echo $this->lang->line('message'); ?> <small>*</small></label>
                 <textarea class="required sm-form-control" id="message" name="message" rows="6" cols="30" aria-required="true"></textarea>
             </div>
 
@@ -66,7 +66,7 @@
             </div>
 
             <div class="col_full">
-                <button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Enviar</button>
+                <button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin"><?php echo $this->lang->line('send_message'); ?></button>
             </div>
 
         </form>

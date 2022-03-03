@@ -86,9 +86,21 @@ if (!isset($_SESSION['carrito'])) {
 
 		<div class="body">
 
-			<?php echo $this->load->view('header_porto_view', '', FALSE); ?>
+			<?php //echo $this->load->view('header_porto_view', '', FALSE); ?>
+
+			<?php 
+				if($this->config->item('header') !== ''){
+					$this->load->view($this->config->item('header'));
+				}
+			?>
 			
 			<div role="main" class="main shop py-4">
+
+				<?php 
+					if($this->config->item('page_header') !== ''){
+						$this->load->view($this->config->item('page_header'));
+					}
+				?>
 
 				<?php echo $this->load->view($view, '', FALSE); ?>
 
@@ -117,6 +129,10 @@ if (!isset($_SESSION['carrito'])) {
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/vivus/vivus.min.js"></script>
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
+
+		<!-- Current Page Vendor and Views -->
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.js"></script>

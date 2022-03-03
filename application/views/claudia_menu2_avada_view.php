@@ -18,8 +18,8 @@ switch ($this->session->userdata('site_lang')) {
                 'item2'=>'books',
                 'item3'=>'articles',
                 'item4'=>'interviews',
-                'item5'=>'conference',
-                'item6'=>'lawsbills-proposals',
+                'item5'=>'conferences',
+                'item6'=>'LAWS-&-CASE-LAW',
                 'item7'=>'women-in-the-world',
                 'item8'=>'contact'
                 );
