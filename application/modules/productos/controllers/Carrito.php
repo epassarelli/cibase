@@ -39,7 +39,7 @@ class Carrito extends MX_Controller {
 
   public function index()
   {
-
+    $data['title'] = 'Carrito';
     $data['view']       = 'carrito_'.$this->session->userdata('theme').'_view';
 
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
@@ -253,7 +253,7 @@ class Carrito extends MX_Controller {
 
    
   public function checkout_validation()  {
-       
+       $data['title'] = 'Productos';
    $this->form_validation->set_rules('nombre','Nombre',array('required'),
                   array('required'   => 'Debe ingresar un nombre'));
   

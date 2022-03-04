@@ -23,8 +23,8 @@ if (!isset($_SESSION['carrito'])) {
 		<title><?php if(isset($title)){ echo $title;}else{ echo "Sin titulo";} ?></title>	
 
 		<meta name="keywords" content="HTML5 Template" />
-		<meta name="description" content="Porto - Responsive HTML5 Template">
-		<meta name="author" content="okler.net">
+		<meta name="description" content="">
+		<meta name="author" content="webpass.com.ar">
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -60,7 +60,7 @@ if (!isset($_SESSION['carrito'])) {
 
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/skins/default.css"> 
+		<link href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme').'76/css/skins/default_sitio_'.$this->config->item('sitio_id').'.css');?>" rel="stylesheet" > 
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/custom.css">

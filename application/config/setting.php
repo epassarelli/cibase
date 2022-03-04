@@ -26,9 +26,10 @@ $config['sitio_id'] 	= 3;
 |
 | 'porto/header_classic'
 | 'porto/header_overview'
+| 'porto/header_shop'
 */
 
-$config['header'] 	= 'porto/header_overview'; 
+$config['header'] 	= 'porto/header_classic'; 
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,6 @@ $config['facebook'] 	= 'https://www.facebook.com/fundacionequifem/';
 $config['twitter'] 		= 'https://twitter.com/ClaudiaHasan1'; 
 $config['instagram'] 	= 'https://www.instagram.com/fundacionequifem/'; 
 $config['linkedin'] 	= ''; 
+
+$config['logoAncho'] 	= 244;
+$config['logoAlto'] 	= 76;
