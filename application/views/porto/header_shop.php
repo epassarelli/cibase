@@ -93,7 +93,7 @@
 					<div class="header-row">
 						<div class="header-logo">
 							<a href="<?php echo site_url(); ?>">
-								<img alt="Porto" width="190" height="60" data-sticky-width="150" data-sticky-height="50" data-sticky-top="90" src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('logo')); ?>">
+								<img alt="<?php echo "Logo de ". $this->session->userdata('logo'); ?>" width="190" height="60" data-sticky-width="150" data-sticky-height="50" data-sticky-top="90" src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('logo')); ?>">
 							</a>
 						</div>
 					</div>

@@ -29,25 +29,25 @@
 <form method="post" action="<?php echo  base_url('productos/carrito/checkout_validation') ?>"id="frmBillingAddress">
 <div class="form-row">
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Nombre</label>
-	<input type="text" value="<?php echo set_value('nombre',@$nombre); ?>" class="form-control" name="nombre" id="nombre">
+	<label class="font-weight-bold text-dark text-2">Nombre *</label>
+	<input type="text" value="<?php echo set_value('nombre',@$nombre); ?>" class="form-control" name="nombre" id="nombre" required>
 	<?php if (!empty(form_error('nombre'))): ?> <?php  echo  form_error('nombre') ;?> <?php endif;?>
 </div>
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Apellido</label>
-	<input type="text" value="<?php echo set_value('apellido',@$apellido); ?>" class="form-control" id="apellido" name="apellido">
+	<label class="font-weight-bold text-dark text-2">Apellido *</label>
+	<input type="text" value="<?php echo set_value('apellido',@$apellido); ?>" class="form-control" id="apellido" name="apellido" required>
 	<?php if (!empty(form_error('apellido'))): ?> <?php  echo  form_error('apellido') ;?> <?php endif;?>
 </div>
 </div>
 <div class="form-row">
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Email</label>
-	<input type="text" value="<?php echo set_value('email',@$email); ?>" class="form-control" id="email" name="email">
+	<label class="font-weight-bold text-dark text-2">Email *</label>
+	<input type="text" value="<?php echo set_value('email',@$email); ?>" class="form-control" id="email" name="email" required>
 	<?php if (!empty(form_error('email'))): ?> <?php  echo  form_error('email') ;?> <?php endif;?>
 </div>
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Teléfono</label>
-	<input type="text" value="<?php echo set_value('telefono',@$telefono); ?>" class="form-control"  id="telefono" name="telefono">
+	<label class="font-weight-bold text-dark text-2">Teléfono *</label>
+	<input type="text" value="<?php echo set_value('telefono',@$telefono); ?>" class="form-control"  id="telefono" name="telefono" required>
 	<?php if (!empty(form_error('telefono'))): ?> <?php  echo  form_error('telefono') ;?> <?php endif;?>
 
 </div>
@@ -79,7 +79,7 @@
 <div class="form-row">
 <div class="form-group col-lg-6">
 	<label class="font-weight-bold text-dark text-2">Provincia</label>
-	<select class="form-control" id="provincia" name="provincia">
+	<select class="form-control" id="provincia" name="provincia" >
 		<!-- Fijar Argentina -->
         <?php 
             echo  "<option value=0>Seleccione una Provincia</option>";

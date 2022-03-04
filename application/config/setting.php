@@ -29,7 +29,7 @@ $config['sitio_id'] 	= 3;
 | 'porto/header_shop'
 */
 
-$config['header'] 	= 'porto/header_classic'; 
+$config['header'] 	= 'porto/header_shop'; 
 
 /*
 |--------------------------------------------------------------------------
