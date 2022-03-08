@@ -43,7 +43,7 @@ class Productos extends MX_Controller {
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
 
 
-    $data['title'] = 'Productos / Categoria';
+    $data['title'] = 'Productos';
     //obtengo id del slug
     $row_categoria = $this->Productos_model->getOneBy('categorias', '', $parametros, '');
    
