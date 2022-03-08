@@ -186,7 +186,7 @@ class Carrito extends MX_Controller {
     $costoenvio  = parametro(3);
 
     if ($costoenvio == 0 or $costoenvio == null) {
-      $envio = 'Sin costo ede envío';
+      $envio = 'Sin costo de envío';
       $total = $subtotal;
     } else {
       $envio = $costoenvio;

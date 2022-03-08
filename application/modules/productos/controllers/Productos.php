@@ -21,6 +21,7 @@ class Productos extends MX_Controller {
     $data['title'] = 'Productos';
     $data['categorias'] = $this->Productos_model->getCategorias();  
     $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $parametros['publicar'] = 1;
     $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
     $data['productos'] = $productos;
     $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
