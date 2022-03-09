@@ -25,17 +25,38 @@
 					</div>
 					
 					<!-- Menú TOP a la derecha  -->
-					<?php if ($this->ion_auth->is_admin()): ?>
+
  					<div class="header-column justify-content-end">
 						<div class="header-row">
 							<nav class="header-nav-top">
 								<ul class="nav nav-pills">
-									<!-- 
-									<li class="nav-item nav-item-anim-icon d-none d-md-block">
-										<a class="nav-link pl-0" href="about-us.html"><i class="fas fa-angle-right"></i> About Us</a>
-									</li>
-									-->
 
+
+				        <?php 
+				        if(parametro(6) == 'S'): // Pregunto si es multiidioma
+				                 
+                  switch ($this->session->userdata('site_lang')) {
+                      case 'spanish':
+                          echo "<li class='nav-item nav-item-anim-icon d-none d-md-block'><img width='24' height='16' src='".site_url('assets/images/banderas/inglaterra.png')."'><a href='".site_url('contenidos/LanguageSwitcher/switchLang/english')."'> Switch to english</a></li>";
+                          break;
+                      case 'english':
+                          echo "<li class='nav-item nav-item-anim-icon d-none d-md-block'><img width='24' height='16' src='".site_url('assets/images/banderas/argentina.png')."''><a href='".site_url('contenidos/LanguageSwitcher/switchLang/spanish')."'> Cambiar a español</a></li>";
+                          break;    
+                      default:
+                          echo "<li class='nav-item nav-item-anim-icon d-none d-md-block'><img width='24' height='16' src='".site_url('assets/images/banderas/inglaterra.png')."'><a href='".site_url('contenidos/LanguageSwitcher/switchLang/english')."'> Switch to english</a></li>";
+                          break;
+                  }
+				                   
+				        endif; 
+				        ?>
+
+
+									
+									<!-- <li class="nav-item nav-item-anim-icon d-none d-md-block">
+										<a class="nav-link pl-0" href="about-us.html"><i class="fas fa-angle-right"></i> About Us</a>
+									</li> -->
+									
+							<?php if ($this->ion_auth->is_admin() AND ENVIRONMENT == 'development'): ?>
 									<li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
 										<a class="nav-link" href="#" role="button" id="dropdownSite" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actual:  <?php echo $this->session->userdata('sitio'); ?>
 											<i class="fas fa-angle-down"></i>
@@ -46,15 +67,17 @@
 											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/2'); ?>"> Webpass</a>
 											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/3'); ?>"> Vitello</a>
 											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/4'); ?>"> Claudia</a>
+											<a class="dropdown-item" href="<?php echo site_url('contenidos/switchSite/0'); ?>"> Cabañas EI</a>
 										</div>
 										
 									</li>
+							<?php endif; ?>		
 									
 								</ul>
 							</nav>
 						</div>
 					</div>
-					<?php endif; ?>
+					
 					<!-- FIN menu TOP a la derecha -->
 
 				</div>

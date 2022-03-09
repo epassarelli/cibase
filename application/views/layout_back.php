@@ -322,7 +322,7 @@
             <?php switch ($this->config->item('sitio_id')) {
                 case 1: ?>
 
-                    <li>
+<!--                     <li>
                         <a href="<?php echo site_url('mipanel/admin/secciones');?>">
                             <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
                             <span class="pull-right-container">
@@ -346,7 +346,7 @@
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">
@@ -360,9 +360,16 @@
                     <?php
                     break;
 
-                case 2: 
-                ?>
 
+
+
+                case 2: 
+
+
+
+
+                ?>
+<!-- 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/secciones');?>">
                             <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
@@ -388,7 +395,7 @@
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">
@@ -405,7 +412,7 @@
                 case 3: 
                 ?>
 
-                    <li>
+<!--                     <li>
                         <a href="<?php echo site_url('mipanel/admin/secciones');?>">
                             <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
                             <span class="pull-right-container">
@@ -430,7 +437,7 @@
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
@@ -450,17 +457,17 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/categorias');?>">
-                            <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/categorias/productos');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/productos');?>">
+                        <a href="<?php echo site_url('mipanel/productos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Productos</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -481,10 +488,17 @@
                     <?php
                     break;
 
+
+
+
                 case 4: 
+
+
+
+
                 ?>
 
-                    <li>
+<!--                     <li>
                         <a href="<?php echo site_url('mipanel/admin/secciones');?>">
                             <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
                             <span class="pull-right-container">
@@ -509,7 +523,7 @@
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
@@ -532,10 +546,20 @@
                     <?php
                     break;
 
+
+
+
+
                 case 5: 
+
+
+
+
+
+
                 ?>
 
-                    <li>
+<!--                     <li>
                         <a href="<?php echo site_url('mipanel/admin/secciones');?>">
                             <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
                             <span class="pull-right-container">
@@ -560,7 +584,7 @@
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">

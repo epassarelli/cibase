@@ -54,8 +54,15 @@
                 <div class="ievent clearfix bottommargin">
                     <div class="row">
                         <div class="col-md-3">
+                            <?php if(file_exists('assets/uploads/4/publicaciones/' . $articulo->portada)): ?>
                             
-                            <img src="<?php echo site_url('assets/uploads/claudia/publicaciones/') . $articulo->portada; ?>">
+                                <img src="<?php echo site_url('assets/uploads/4/publicaciones/') . $articulo->portada; ?>">
+
+                            <?php else: ?>
+
+                                <img src="<?php echo site_url('assets/uploads/Imagen-no-disponible.png'); ?>">
+
+                            <?php endif; ?>
                             
                         </div>
                         <div class="col-md-6">
@@ -66,8 +73,6 @@
                             <br>Páginas: <?php echo $articulo->paginas; ?>
                             <br>Formato: <?php echo $articulo->formato; ?>
                             </p>
-
-
 
                         </div>
 
@@ -142,65 +147,10 @@
 
 
 
-
-
       <!-- Sidebar
       ============================================= -->
-      <div class="sidebar nobottommargin col_last clearfix">
-          <div class="sidebar-widgets-wrap">
-
-            <div class="widget clearfix">
-
-                <h4>Relacionadas</h4>
-
-                <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
-
-                  <div class="tab-container">
-
-                    <div class="tab-content clearfix" id="tabs-1">
-                      <div id="popular-post-list-sidebar">
-
-                        <div class="spost clearfix">
-
-                          <div class="entry-c">
-
-                            <?php if(count($relacionados)>0): ?>
-
-                              <?php foreach ($relacionados as $r): ?>
-
-                                <div class="entry-title">
-                                    <h4><a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $r->slug; ?>"><?php echo $r->titulo; ?></a></h4>
-                                    <br>
-                                </div>
-
-                              <?php endforeach; ?>
-
-                            <?php endif; ?>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-        </div>
-
-      </div><!-- .sidebar end -->
-
-
-
-
-
-
-
+        <?php $this->load->view('publicaciones_sidebar_'.$this->session->userdata('theme').'_view'); ?>
+      <!-- .sidebar end -->
 
 
 

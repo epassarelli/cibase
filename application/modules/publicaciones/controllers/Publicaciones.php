@@ -57,6 +57,7 @@ class Publicaciones extends MX_Controller {
     $rsCats = $this->Publicaciones_model->getCategoriasPor($params);
     $categoria = $rsCats[0];
     $idCategoria = $categoria->categoria_id;
+    $data['categoria'] = $categoria->categoria;
     //var_dump($idCategoria);
 
     $params2 = array(
@@ -68,14 +69,23 @@ class Publicaciones extends MX_Controller {
     
     //$articulo = $data['articulos'][0];
     //var_dump($data['articulo']);die();
-    if($this->session->userdata('site_lang') == 'spanish'){
-    $idIdioma = 1;
+    if($this->session->userdata('site_lang') == 'english'){
+    $idIdioma = 2;
     }
     else{
-    $idIdioma = 2;        
+    $idIdioma = 1;        
     }
 
-    $data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria, $idIdioma);
+    $params3 = array(
+        'categoria_id !=' => $idCategoria,
+        'idioma_id' => $idIdioma,
+        'sitio_id' => $this->session->userdata('sitio_id'),
+        'modulo_id' => 2
+    );    
+    $data['otrasCategorias'] = $this->Publicaciones_model->getCategoriasPor($params3);
+
+
+    //$data['otrasCategorias'] = $this->Publicaciones_model->getOtrasCategorias($idCategoria, $idIdioma);
     //var_dump($data['otrasCategorias']);die();
     //var_dump(count($data['otrasCategorias']));die();
 

@@ -12,9 +12,9 @@ public function getProductos($categoria = 0)
     {
         $sitio = $this->config->item('sitio_id');
         if ($categoria  !== 0) {
-          $comando =  'SELECT * FROM v_productos WHERE (categoria_id = ' . $categoria . ' or catpadre_id = ' . $categoria . ') AND sitio_id = ' . $sitio . ' order by titulo desc';
+          $comando =  'SELECT * FROM v_productos WHERE (categoria_id = ' . $categoria . ' or catpadre_id = ' . $categoria . ') AND sitio_id = ' . $sitio .  ' AND publicar = 1 order by titulo desc';
         }else{
-          $comando = 'SELECT * FROM v_productos WHERE sitio_id = ' . $sitio . ' order by titulo desc';
+          $comando = 'SELECT * FROM v_productos WHERE sitio_id = ' . $sitio . ' AND publicar = 1 order by titulo desc';
         }    
         $query = $this->db->query($comando);
         return $query->result();

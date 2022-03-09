@@ -7,13 +7,16 @@ class Secciones_model extends MY_Model{
         parent::__construct();
     }  
 
+
     public function getItemsMenu(){
         $this->db->from('secciones');
         $this->db->where('sitio_id', $this->session->userdata('sitio_id'));
+        $this->db->where('idioma_id', $this->session->userdata('idioma_id'));
         $this->db->where('menu', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
+
 
     public function getSeccionesPor($parametros){
         $this->db->from('secciones');
@@ -21,5 +24,6 @@ class Secciones_model extends MY_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
 
 }

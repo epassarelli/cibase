@@ -23,8 +23,8 @@ if (!isset($_SESSION['carrito'])) {
 		<title><?php if(isset($title)){ echo $title;}else{ echo "Sin titulo";} ?></title>	
 
 		<meta name="keywords" content="HTML5 Template" />
-		<meta name="description" content="Porto - Responsive HTML5 Template">
-		<meta name="author" content="okler.net">
+		<meta name="description" content="">
+		<meta name="author" content="webpass.com.ar">
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -60,7 +60,7 @@ if (!isset($_SESSION['carrito'])) {
 
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/skins/default.css"> 
+		<link href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme').'76/css/skins/default_sitio_'.$this->config->item('sitio_id').'.css');?>" rel="stylesheet" > 
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/css/custom.css">
@@ -86,9 +86,21 @@ if (!isset($_SESSION['carrito'])) {
 
 		<div class="body">
 
-			<?php echo $this->load->view('header_porto_view', '', FALSE); ?>
+			<?php //echo $this->load->view('header_porto_view', '', FALSE); ?>
+
+			<?php 
+				if($this->config->item('header') !== ''){
+					$this->load->view($this->config->item('header'));
+				}
+			?>
 			
 			<div role="main" class="main shop py-4">
+
+				<?php 
+					if($this->config->item('page_header') !== ''){
+						$this->load->view($this->config->item('page_header'));
+					}
+				?>
 
 				<?php echo $this->load->view($view, '', FALSE); ?>
 
@@ -117,6 +129,10 @@ if (!isset($_SESSION['carrito'])) {
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/vivus/vivus.min.js"></script>
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
+
+		<!-- Current Page Vendor and Views -->
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.js"></script>

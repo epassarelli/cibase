@@ -41,7 +41,7 @@ class Carrito extends MX_Controller {
   {
 
     $data['view']       = 'carrito_'.$this->session->userdata('theme').'_view';
-
+    $data['title'] = 'Carrito';
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
     $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
 
@@ -186,7 +186,7 @@ class Carrito extends MX_Controller {
     $costoenvio  = parametro(3);
 
     if ($costoenvio == 0 or $costoenvio == null) {
-      $envio = 'Sin costo ede envío';
+      $envio = 'Sin costo de envío';
       $total = $subtotal;
     } else {
       $envio = $costoenvio;
@@ -240,7 +240,7 @@ class Carrito extends MX_Controller {
   }
 
   public function checkout() {
-    
+    $data['title'] = 'Carrito';
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js','localidades/js/localidades.js?v='.rand());
     $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
     $data['provincias'] = $this->Provincias_model->getAllBy('provincias','', '','nombre');
@@ -253,7 +253,7 @@ class Carrito extends MX_Controller {
 
    
   public function checkout_validation()  {
-       
+       $data['title'] = 'Carrito';
    $this->form_validation->set_rules('nombre','Nombre',array('required'),
                   array('required'   => 'Debe ingresar un nombre'));
   
