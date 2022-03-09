@@ -11,12 +11,14 @@ Theme Version:	7.6.0
 	/*
 	Quantity
 	*/
+    
     $('.quantity .plus').on('click',function(){
         var $qty=$(this).parents('.quantity').find('.qty');
         var currentVal = parseInt($qty.val());
         if (!isNaN(currentVal)) {
             $qty.val(currentVal + 1);
         }
+       
     });
 
     $('.quantity .minus').on('click',function(){

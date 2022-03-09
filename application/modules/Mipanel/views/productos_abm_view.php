@@ -91,6 +91,23 @@
                     </div>
 
                     <div class="form-group has-feedback">
+                        <label for="categoria_id" class="control-label">Categoria</label>
+                        <select id="categoria_id" name="categoria_id" class="form-control">
+                        <?php 
+                                  echo  "<option value=0>Seleccione una Categoria</option>";
+                                  foreach ($categorias as $pres) {
+                                       if (set_value('categoria_id',@$categoria_id)==$pres->categoria_id) { 
+                                            echo '<option value="' .$pres->categoria_id. '"" selected>' . $pres->categoria . '  </option>';  
+                                        }else
+                                            echo '<option value="' .$pres->categoria_id. '"">' . $pres->categoria . ' </option>';  
+                                    }
+                                  ?> 
+
+                        </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
                         <label for="codigo" class="control-label">Codigo</label>
                         <input type="text" class="form-control" id="codigo" name="codigo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

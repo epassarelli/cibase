@@ -44,7 +44,7 @@ public function getCatsDelProducto($id='')
 
 public function getProducto($id)
     {
-        $this->db->select('titulo,imagen,precioOF,precioLista,OfDesde,OfHasta')
+        $this->db->select('titulo,imagen,precioOF,precioLista,OfDesde,OfHasta,unidadvta')
                 ->from('productos')
                 ->where('id', $id)
                 ->where('sitio_id', $this->config->item('sitio_id'));

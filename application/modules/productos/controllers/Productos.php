@@ -33,7 +33,6 @@ class Productos extends MX_Controller {
   }
 
  
-
   public function categorias($slug = '')
   {
     $parametros['slug'] = $slug;

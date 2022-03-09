@@ -8,12 +8,11 @@ public function __construct() {
 
 
 public function getAll(){
-    $ssql = "SELECT pedidos.id,pedidos.fecha,pedidos.apellido,pedidos.nombre,pedidos.email,pedidos.telefono,pedidos.total,estado_envios.nombre AS nomestado FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY id ";
+    $ssql = "SELECT pedidos.id,pedidos.fecha,pedidos.apellido,pedidos.nombre,pedidos.email,pedidos.telefono,pedidos.total,estado_envios.nombre AS nomestado FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY pedidos.fecha desc  ";    
 
     $query = $this->db->query($ssql);
     return  $query->result();
 }
-
 
 
 public function setParametro($data)

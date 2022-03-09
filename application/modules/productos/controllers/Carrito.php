@@ -54,10 +54,18 @@ class Carrito extends MX_Controller {
        $cantidad = $this->input->post('cantidad');
       
        $producto = $this->Productos_model->getProducto($producto_id);
+
+   
+       
+
+     
+
        $totallastitem = 0;
        if (!isset($cantidad) or $cantidad == null) {
          $cantidad = 1;
        }
+
+       /// incrementa total del carrito
        $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
 
        ///// verificamos que existe para solo incrementar la cantidad
@@ -88,6 +96,7 @@ class Carrito extends MX_Controller {
                 'titulo' => $producto->titulo,
                 'precio' => $precioventa,
                 'imagen' => $imagen,
+                'unidadvta' => $producto->unidadvta,
                 'totalitem' => $cantidad*$precioventa,
               );
               $totallastitem= $cantidad*$precioventa;    
@@ -107,7 +116,7 @@ class Carrito extends MX_Controller {
     $cantidad = $this->input->post('cantidad');
     $producto = $this->Productos_model->getProducto($producto_id);
     if (!isset($cantidad) or $cantidad == null) {
-      $cantidad = -1;
+      $cantidad = 1;
     }
     $totallastitem = 0;
 
@@ -251,7 +260,7 @@ class Carrito extends MX_Controller {
  
   } 
 
-   
+  
   public function checkout_validation()  {
        $data['title'] = 'Carrito';
    $this->form_validation->set_rules('nombre','Nombre',array('required'),
@@ -271,10 +280,6 @@ class Carrito extends MX_Controller {
           array('required'   => 'Debe ingresar un calle'));
       $this->form_validation->set_rules('nro','nro',array('required'),
           array('required'   => 'Debe ingresar un nro'));
-     // $this->form_validation->set_rules('piso','piso',array('required'),
-     //     array('required'   => 'Debe ingresar un piso'));
-     // $this->form_validation->set_rules('dpto','dpto',array('required'),
-     //     array('required'   => 'Debe ingresar un dpto'));
       $this->form_validation->set_rules('provincia','provincia',array('greater_than[0]'),
           array('greater_than'   => 'Debe ingresar un provincia'));
       $this->form_validation->set_rules('localidad','localidad',array('greater_than[0]'),
@@ -352,7 +357,14 @@ class Carrito extends MX_Controller {
        $_SESSION['carrito'] = null;
 
        
-       redirect("productos");
+       //redirect("productos");
+       $data['nombre'] = $data_pedidos['nombre'];
+       $data['numero_pedido'] = $pedido_id;
+       $data['mensaje'] = parametro(7);
+       $data['view']       = $this->session->userdata('theme').'-shop-success';
+       $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
+
+
      }else{  
         $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js','localidades/js/localidades.js?v='.rand());
         $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');

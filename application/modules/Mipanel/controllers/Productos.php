@@ -13,6 +13,8 @@ class Productos  extends MX_Controller {
     $this->load->model('../models/Productos_model');
     $this->load->model('../models/Impuestos_model');
     $this->load->model('../models/Presentaciones_model');
+    $this->load->model('../models/Categorias_model');
+    
     
     
     switch (ENVIRONMENT){
@@ -35,7 +37,11 @@ class Productos  extends MX_Controller {
     $this->data['files_js'] = array('productos.js?v='.rand(),'sweetalert2.min.js');
     $this->data['presentaciones'] = $this->Presentaciones_model->getAllBy('presentaciones','','','');
     $this->data['impuestos'] = $this->Impuestos_model->getAllBy('impuestos','','','');
+    $this->data['presentaciones'] = $this->Presentaciones_model->getAllBy('presentaciones','','','');
     
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $this->data['categorias'] = $this->Categorias_model->getAllBy('categorias','',$parametros,'categoria');
+
     $this->template->load('layout_back', 'productos_abm_view', $this->data);  
   }
 
@@ -54,12 +60,15 @@ class Productos  extends MX_Controller {
   public function getProductoJson()
   {
     
-    $parametros['sitio_id'] = $this->config->item('sitio_id');
-    $parametros['id'] = $this->input->post('Id');
-    $data['data'] = $this->Productos_model->getOneBy('productos','',$parametros,'');
-    echo json_encode($data);
+   // $parametros['sitio_id'] = $this->config->item('sitio_id');
+   // $parametros['id'] = $this->input->post('Id');
+   // $data['data'] = $this->Productos_model->getOneBy('productos','',$parametros,'');
+   $id = $this->input->post('Id');
+   $data['data'] = $this->Productos_model->getAllById($id);
+   echo json_encode($data);
   }
  
+
 
 
 
@@ -92,7 +101,12 @@ public function accion()
 
     $this->form_validation->set_rules('titulo','Titulo', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
+
+    $this->form_validation->set_rules('categoria_id','Categoria', 
+      array('required','greater_than[0]'), array('required'   => '{field} es obligatorio',
+    'greater_than'   => '{field} es obligatorio'));
     
+
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
@@ -167,6 +181,7 @@ public function accion()
          
         //Tomamos los valores
         $opcion = $this->input->post('Opcion');
+        $categoria = $this->input->post('categoria_id');
         $producto['id']        = $this->input->post('id');
         $producto['sitio_id']  = $this->input->post('sitio_id');
         $producto['titulo']    = $this->input->post('titulo');
@@ -188,16 +203,18 @@ public function accion()
         $producto['tamano'] = $this->input->post('tamano');
         $producto['link'] = $this->input->post('link');
         $producto['orden'] = $this->input->post('orden');
+
+
       
         // Pasar el switch
         switch ($opcion) {
 
             case 'insertar':
-                $data['success'] = $this->setProductos($producto);
+                $data['success'] = $this->setProductos($producto, $categoria);
             break;
 
             case 'editar':
-                $data['success'] = $this->updateProductos($producto);
+                $data['success'] = $this->updateProductos($producto, $categoria);
             break;
         }
 
@@ -233,7 +250,7 @@ public function accion()
 }
 
   // Alta de un sitios
-  public function setProductos($data){
+  public function setProductos($data, $categoria){
     $producto['titulo']      = $data['titulo'];
     $producto['descLarga']   = $data['descLarga'];
     $producto['codigo']   = $data['codigo'];
@@ -257,12 +274,12 @@ public function accion()
     
 
 
-      $this->Productos_model->setProducto($producto);
+      $this->Productos_model->setProducto($producto, $categoria);
       return TRUE;
   }
 
   // Editar un sitios
-  public function updateProductos($data){
+  public function updateProductos($data, $categoria){
 
     $producto['titulo']      = $data['titulo'];
     $producto['descLarga']   = $data['descLarga'];
@@ -284,7 +301,7 @@ public function accion()
     $producto['link'] = $data['link'];
     $producto['orden'] = $data['orden'];
       
-    $this->Productos_model->update($data['id'], $producto);
+    $this->Productos_model->update($data['id'], $producto, $categoria);
 
     return TRUE;
 

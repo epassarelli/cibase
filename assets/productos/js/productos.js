@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 			$.ajax({
 				url: UrlBase+'productos/carrito/agregarCarrito',
-				data: { producto_id: id,cantidad: 1 },
+				data: { producto_id: id,cantidad: 1},
 				type: 'POST',
 				dataType: 'json',
 				success: function (response) {
@@ -99,6 +99,7 @@ $(document).ready(function () {
                                 document.getElementsByClassName('cart-qty')[0].textContent=response.items;
                                 var MyRow = e.closest('tr')[0].rowIndex-1;
                                 document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.parcial;                                
+
                                 calculaPie();
 
                                 Toast.fire({type: 'success',
@@ -172,7 +173,7 @@ $(document).ready(function () {
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/agregarCarrito',
-                data: { producto_id: id,cantidad: 1 },
+                data: { producto_id: id, cantidad: 1},  // 
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {

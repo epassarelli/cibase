@@ -358,6 +358,7 @@ function submit(table,Toast) {
             $("#peso").val(response['data'].peso)
             $("#tamano").val(response['data'].tamano)
             $("#orden").val(response['data'].orden)
+            $("#categoria_id").val(response['data'].categoria_id)
         },//success
             error: function(xhr, textStatus, error){
             console.log(xhr.statusText);
