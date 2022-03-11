@@ -12,6 +12,19 @@ class Productos extends MX_Controller {
         case 'production': $this->output->enable_profiler(FALSE); break;
     }          
 */
+switch (ENVIRONMENT){
+  case 'development':
+  ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
+      break;          
+  case 'testing':
+  ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
+      break;
+  case 'production':
+  ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(false);
+      break;
+  }    
+
+  
     $this->load->model('Productos_model');
     $this->load->helper('Productos_helper');
   }

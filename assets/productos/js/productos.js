@@ -11,11 +11,11 @@ $(document).ready(function () {
 
 
 
-        function agregarCarro(id) { 
+        function agregarCarro(id,unidadvta) { 
 
 			$.ajax({
 				url: UrlBase+'productos/carrito/agregarCarrito',
-				data: { producto_id: id,cantidad: 1},
+				data: { producto_id: id,cantidad: unidadvta},
 				type: 'POST',
 				dataType: 'json',
 				success: function (response) {
@@ -165,15 +165,33 @@ $(document).ready(function () {
             
         } 	
 
-        function agregarCarro2(id,e) { 
+        function sumaritem(unidadvta) {
+            parcial = parseFloat(document.getElementById('quantity').value);
+            if (isNaN(parcial)) {parcial= 0;}
+            parcial = parcial + unidadvta;
+            document.getElementById('quantity').value = parcial;
+        }
+
+        function restaritem(unidadvta) {
+            parcial = parseFloat(document.getElementById('quantity').value);
+            if (isNaN(parcial)) {parcial= 0;}
+            if (parcial > unidadvta) {
+                parcial = parcial - unidadvta;
+                document.getElementById('quantity').value = parcial;
+            }    
+        }
+
+
+        function agregarCarro2(id,e,unidadvta) { 
 
             var MyRow = e.closest('tr')[0].rowIndex-1;
+            
             
             
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/agregarCarrito',
-                data: { producto_id: id, cantidad: 1},  // 
+                data: { producto_id: id, cantidad: unidadvta},  // 
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
@@ -181,6 +199,14 @@ $(document).ready(function () {
                         document.getElementsByClassName('cart-qty')[0].textContent=response.items
 
                         document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
+
+                        parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
+                        if (isNaN(parcial)) {parcial= 0;}
+                        parcial = parcial + unidadvta;
+                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
+
+
+
 
                         calculaPie()
                         Toast.fire({type: 'success',
@@ -207,7 +233,7 @@ $(document).ready(function () {
             
         } 
 
-        function quitarCarro2(id,e) { 
+        function quitarCarro2(id,e,unidadvta) { 
 
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
@@ -215,21 +241,36 @@ $(document).ready(function () {
             
             $.ajax({
                 url: UrlBase+'productos/carrito/quitarCarrito',
-                data: { producto_id: id,cantidad: 1 },
+                data: { producto_id: id,cantidad: unidadvta },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
                     if (response.success == 'OK') {
                         document.getElementsByClassName('cart-qty')[0].textContent=response.items
                         //este if es por si la cantidad es 1 y quiere decrementar el controlador no calcula
-                        if (response.totallastitem > 0) {
+                        if (response.totallastitem > unidadvta) {
                             document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
+
+                            parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
+                            if (isNaN(parcial)) {parcial= 0;}
+                            parcial = parcial - unidadvta;
+                            document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
+    
+                            calculaPie();
+                            Toast.fire({type: 'success',
+                                        title: 'Producto Quitado',
+                                      })
+
+                        }else{
+                            Toast.fire({type: 'error',
+                            title: 'Debe eliminar el producto',
+                          })
+
                         }
                         
-                        calculaPie();
-                        Toast.fire({type: 'success',
-                        	        title: 'Producto Quitado',
-                        		  })
+                       
+
+          
                     }else{
                         alert('quitado fallo ');
                         Toast.fire({type: 'error',

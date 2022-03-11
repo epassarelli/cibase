@@ -106,6 +106,7 @@ public function accion()
       array('required','greater_than[0]'), array('required'   => '{field} es obligatorio',
     'greater_than'   => '{field} es obligatorio'));
     
+    $this->form_validation->set_rules('unidadvta','Unidad de Venta', array('required'), array('required'   => '{field} es obligatorio'));
 
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
@@ -203,6 +204,7 @@ public function accion()
         $producto['tamano'] = $this->input->post('tamano');
         $producto['link'] = $this->input->post('link');
         $producto['orden'] = $this->input->post('orden');
+        $producto['unidadvta'] = $this->input->post('unidadvta');
 
 
       
@@ -270,6 +272,7 @@ public function accion()
     $producto['tamano'] = $data['tamano'];
     $producto['link'] = $data['link'];
     $producto['orden'] = $data['orden'];
+    $producto['unidadvta'] = $data['unidadvta'];
     $producto['sitio_id'] = $this->config->item('sitio_id');
     
 
@@ -300,7 +303,8 @@ public function accion()
     $producto['tamano'] = $data['tamano'];
     $producto['link'] = $data['link'];
     $producto['orden'] = $data['orden'];
-      
+    $producto['unidadvta'] = $data['unidadvta'];
+
     $this->Productos_model->update($data['id'], $producto, $categoria);
 
     return TRUE;

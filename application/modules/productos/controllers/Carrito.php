@@ -55,19 +55,12 @@ class Carrito extends MX_Controller {
       
        $producto = $this->Productos_model->getProducto($producto_id);
 
-   
-       
-
-     
-
        $totallastitem = 0;
        if (!isset($cantidad) or $cantidad == null) {
          $cantidad = 1;
        }
 
-       /// incrementa total del carrito
-       $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
-
+       
        ///// verificamos que existe para solo incrementar la cantidad
        $existe = 0;
        $elementos = sizeof($_SESSION['carrito']);
@@ -104,8 +97,26 @@ class Carrito extends MX_Controller {
        
         ///retorno en el json el utimo calculo para cambiar en el fornt 
        
+            /// incrementa total del carrito
+            $muestratotal=0;
+            $elementos = sizeof($_SESSION['carrito']);
+            for  ($i = 0; $i <= $elementos-1   ; $i++) {
+                if ($_SESSION['carrito'][$i]['tipo']=='item'){
+                  if (parametro(8)=="B") { 
+                    $muestratotal = $muestratotal +1;
+                  }else{  
+                    $muestratotal = $muestratotal + $_SESSION['carrito'][$i]['cantidad']; 
+                  }  
+                }
+            }
+            //$_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
+            $_SESSION['carrito'][0]['cantidad'] = $muestratotal;
 
-       $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'totallastitem' => $totallastitem);
+            
+
+       $response = array('success' => 'OK',
+                         'items' => $_SESSION['carrito'][0]['cantidad'], 
+                         'totallastitem' => $totallastitem);
        echo json_encode($response);
   }
 
@@ -126,19 +137,35 @@ class Carrito extends MX_Controller {
     for  ($i = 0; $i <= $elementos-1   ; $i++) {
        if ($_SESSION['carrito'][$i]['tipo']=='item'){
          if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
-             if($_SESSION['carrito'][$i]['cantidad'] > 1) {
-                  $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] -1;
+             if($_SESSION['carrito'][$i]['cantidad'] > $cantidad) {
+                  $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] - $cantidad;
                   $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
                   
                   ///retorno en el json el utimo calculo para cambiar en el fornt 
                   $totallastitem = $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
 
-                  $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] -1;
+                  //$_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] - $cantidad;
              } 
          }  
        }
     }
     
+    /// incrementa total del carrito
+    $muestratotal=0;
+    $elementos = sizeof($_SESSION['carrito']);
+    for  ($i = 0; $i <= $elementos-1   ; $i++) {
+        if ($_SESSION['carrito'][$i]['tipo']=='item'){
+          if (parametro(8)=="B") { 
+            $muestratotal = $muestratotal +1;
+          }else{  
+            $muestratotal = $muestratotal + $_SESSION['carrito'][$i]['cantidad']; 
+          }  
+        }
+    }
+    $_SESSION['carrito'][0]['cantidad'] = $muestratotal;
+
+
+
     $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'totallastitem' => $totallastitem);
     echo json_encode($response);
   }
@@ -161,9 +188,6 @@ class Carrito extends MX_Controller {
             /// le pongo al articulo la cantidad nueva
             $_SESSION['carrito'][$i]['cantidad'] = $cantidad;
 
-            /// sumo al total de items la nueva cantidad
-            $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $_SESSION['carrito'][$i]['cantidad'];
-            
             /// calculo precio por cantidad
             
             $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
@@ -174,7 +198,21 @@ class Carrito extends MX_Controller {
           }  
        }
     }
-    
+      /// incrementa total del carrito
+      $muestratotal=0;
+      $elementos = sizeof($_SESSION['carrito']);
+      for  ($i = 0; $i <= $elementos-1   ; $i++) {
+          if ($_SESSION['carrito'][$i]['tipo']=='item'){
+            if (parametro(8)=="B") { 
+              $muestratotal = $muestratotal +1;
+            }else{  
+              $muestratotal = $muestratotal + $_SESSION['carrito'][$i]['cantidad']; 
+            }  
+          }
+      }
+      //$_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
+      $_SESSION['carrito'][0]['cantidad'] = $muestratotal;
+
     $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'parcial' => $parcial);
     echo json_encode($response);
   }
@@ -228,9 +266,7 @@ class Carrito extends MX_Controller {
               //guardo la cantidad a borrar del total  
               $cantidadaborrar = $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'];
               
-              //seteo la cantidad restada
-              $_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] - $cantidadaborrar;
-
+              
               //elimino la variable de la memoria 
               //unset($_SESSION['carrito'][$i]);
               // reordeno los indices del array
@@ -239,10 +275,27 @@ class Carrito extends MX_Controller {
         }  
       }
 
+
+
       if ($aborrar !== -1 ) {
         array_splice($_SESSION['carrito'],$aborrar,1);
       }
   
+      
+        /// incrementa total del carrito
+        $muestratotal=0;
+        $elementos = sizeof($_SESSION['carrito']);
+        for  ($i = 0; $i <= $elementos-1   ; $i++) {
+            if ($_SESSION['carrito'][$i]['tipo']=='item'){
+              if (parametro(8)=="B") { 
+                $muestratotal = $muestratotal +1;
+              }else{  
+                $muestratotal = $muestratotal + $_SESSION['carrito'][$i]['cantidad']; 
+              }  
+            }
+        }
+        //$_SESSION['carrito'][0]['cantidad'] =  $_SESSION['carrito'][0]['cantidad'] + $cantidad;
+        $_SESSION['carrito'][0]['cantidad'] = $muestratotal;
     
     $response = array('success' => 'OK','items' => $_SESSION['carrito'][0]['cantidad'], 'totallastitem' => 0);
     echo json_encode($response);

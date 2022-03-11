@@ -11,7 +11,7 @@ Theme Version:	7.6.0
 	/*
 	Quantity
 	*/
-    
+    /*
     $('.quantity .plus').on('click',function(){
         var $qty=$(this).parents('.quantity').find('.qty');
         var currentVal = parseInt($qty.val());
@@ -28,5 +28,5 @@ Theme Version:	7.6.0
             $qty.val(currentVal - 1);
         }
     });
-
+*/
 }).apply(this, [jQuery]);

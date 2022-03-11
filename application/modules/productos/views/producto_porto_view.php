@@ -75,9 +75,19 @@
 							<?php if(parametro(1) == 'S'): ?>
 							<form enctype="multipart/form-data" method="post" class="cart">
 								<div class="quantity quantity-lg">
-									<input type="button" class="minus" value="-">
-									<input type="text" class="input-text qty text" title="Qty" value="1" id="quantity" name="quantity" min="1" step="1">
-									<input type="button" class="plus" value="+">
+									<input type="button" 
+											class="minus" 
+											value="-"
+											onclick="restaritem(<?php echo $producto->unidadvta ?>)"
+											>
+									
+									<input type="text"   class="input-text qty text" title="Qty" value="<?php echo $producto->unidadvta ?>" id="quantity" name="quantity" min="1" step="1" disabled
+									>
+									<input type="button" 
+										   class="plus" 
+										   value="+"
+										   onclick="sumaritem(<?php echo $producto->unidadvta ?>)"
+										   >
 								</div>
 								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
 							</form>
