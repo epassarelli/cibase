@@ -91,6 +91,7 @@ class Carrito extends MX_Controller {
                 'imagen' => $imagen,
                 'unidadvta' => $producto->unidadvta,
                 'totalitem' => $cantidad*$precioventa,
+                'vacio' => 0
               );
               $totallastitem= $cantidad*$precioventa;    
        } 
@@ -400,7 +401,9 @@ class Carrito extends MX_Controller {
                   "producto_id" => $_SESSION['carrito'][$i]['codigo'],
                   "cantidad" => $_SESSION['carrito'][$i]['cantidad'],
                   "preciounit" => $_SESSION['carrito'][$i]['precio'],
-                  "precioitem" => $_SESSION['carrito'][$i]['totalitem']);  
+                  "precioitem" => $_SESSION['carrito'][$i]['totalitem'],
+                  "vacio" => $_SESSION['carrito'][$i]['vacio']
+                );  
             $this->Carrito_model->grabaitem($data_item);
          }  
       }
@@ -428,6 +431,33 @@ class Carrito extends MX_Controller {
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
    
     }
+  }
+
+
+  public function cambiaVacio() {
+       
+    $producto_id = $this->input->post('producto_id');
+    $estado_ant = $this->input->post('estado');
+
+    ///// verificamos que existe para decrementar cantidad
+    $elementos = sizeof($_SESSION['carrito']);
+    for  ($i = 0; $i <= $elementos-1   ; $i++) {
+       if ($_SESSION['carrito'][$i]['tipo']=='item'){
+         if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
+             if($_SESSION['carrito'][$i]['vacio'] ==  1) {
+                 $_SESSION['carrito'][$i]['vacio'] =  0;
+                 $estado = 0;
+             }else{
+                 $_SESSION['carrito'][$i]['vacio'] =  1;
+                 $estado = 1;
+             }    
+
+         }  
+       }
+    }
+    $response = array('success' => 'OK','estado_ant' => $estado_ant, 'estado' => $estado);
+
+    echo json_encode($response);
   }
 
 }

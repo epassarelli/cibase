@@ -23,6 +23,11 @@
 													<th class="product-name">
 														Productos
 													</th>
+													<?php if (parametro(9)=="S"): ?> 
+														<th class="product-vacio">
+															Cerrado al Vacio
+														</th>
+													<?php endif; ?>	
 													<th class="product-price">
 														Precio
 													</th>
@@ -52,6 +57,24 @@
 	<td class="product-name">
 	<a href="<?php echo site_url('productos/detalle/').$_SESSION['carrito'][$i]['codigo']; ?>"><?php echo $_SESSION['carrito'][$i]['titulo']; ?></a>
 	</td>
+	
+	<?php if (parametro(9)=="S"): ?> 
+		<td class="product-vacio">
+            <div class='text-center'>
+				<a href='#' 
+				   onclick="cambiaVacio(<?php echo $_SESSION['carrito'][$i]['codigo'] ?>,
+				   						$(this),<?php echo $_SESSION['carrito'][$i]['vacio'] ?>
+										   )"  
+				   >
+				   <?php if ($_SESSION['carrito'][$i]['vacio']==0): ?>	  
+				   		<i class='vacio fa  fa-toggle-off fa-2x text-green'></i></a>
+					<?php else:  ?>
+						<i class='vacio fa  fa-toggle-on fa-2x text-green'></i></a>
+					<?php endif; ?>		   
+			</div>
+		</td>
+	<?php endif; ?>	
+
 	<td class="product-price">
 		<span class="amount">$<?php echo $_SESSION['carrito'][$i]['precio']; ?></span>
 	</td>

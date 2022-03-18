@@ -272,7 +272,7 @@ class Admin extends MX_Controller {
 		if (!$this->ion_auth->is_admin()) {
 			$crud->where('sitio_id',$this->config->item('sitio_id'));
 		}
-		$crud->set_relation('sitio_id','sitios','nombre');	
+		$crud->set_relation('sitio_id','sitios','sitio');	
 		$output = $crud->render();
 		$this->_example_output($output);
 	}	

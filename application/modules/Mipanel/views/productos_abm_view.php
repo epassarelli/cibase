@@ -251,7 +251,7 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="orden" class="control-label">Unidad de Venta</label>
+                        <label for="unidadvta" class="control-label">Unidad de Venta</label>
                         <input type="text" class="form-control" id="unidadvta" name="unidadvta" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>

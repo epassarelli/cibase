@@ -131,8 +131,8 @@ if (!isset($_SESSION['carrito'])) {
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
 
 		<!-- Current Page Vendor and Views -->
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo site_url('assets/themes/'.$this->session->userdata('theme')); ?>76/js/theme.js"></script>
