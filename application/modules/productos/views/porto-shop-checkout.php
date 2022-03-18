@@ -266,6 +266,16 @@
 											Envio Gratis<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
 										</td>
 									</tr>
+									<?php if(parametro(9) == 'S'): ?>
+													<tr>
+														<th>
+															Envasado al Vacio
+														</th>
+														<td id="costovacio">
+															Sin costo de envasado al vacio<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
+														</td>
+													<?php endif; ?>	
+
 									<tr class="total">
 										<th>
 											<strong class="text-dark">Total del Pedido</strong>

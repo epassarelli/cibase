@@ -91,6 +91,7 @@ class Carrito extends MX_Controller {
                 'imagen' => $imagen,
                 'unidadvta' => $producto->unidadvta,
                 'totalitem' => $cantidad*$precioventa,
+                'vacio' => 0
               );
               $totallastitem= $cantidad*$precioventa;    
        } 
@@ -221,17 +222,22 @@ class Carrito extends MX_Controller {
   public function pieCarrito() {
        
     $subtotal = 0;
-   
+    $cost_unit_vacio = parametro(10);
+    $costo_vacio = 0;
+    $costoenvio  = parametro(3);
+
     
     $elementos = sizeof($_SESSION['carrito']);
     for  ($i = 0; $i <= $elementos-1   ; $i++) {
        if ($_SESSION['carrito'][$i]['tipo']=='item'){
           $subtotal = $subtotal + $_SESSION['carrito'][$i]['totalitem']; 
+          if ($_SESSION['carrito'][$i]['vacio'] == 1){
+            $costo_vacio = $costo_vacio + $cost_unit_vacio;
+          }
+          
        }  
     }
-
-    $costoenvio  = parametro(3);
-
+   
     if ($costoenvio == 0 or $costoenvio == null) {
       $envio = 'Sin costo de envío';
       $total = $subtotal;
@@ -240,12 +246,19 @@ class Carrito extends MX_Controller {
       $total = $subtotal + $costoenvio;
     }
 
+    if ($costo_vacio == 0 or $costo_vacio == null) {
+      $costo_vacio = 'Sin costo de envasado al vacio';
+    } else {
+      $total = $subtotal + $costo_vacio;
+    
+    }  
 
     
     $response = array('success' => 'OK',
                        'total' => $total,
                        'subtotal' => $subtotal,
-                       'envio' => $envio
+                       'envio' => $envio,
+                       'envvacio' => $costo_vacio
                       );
     echo json_encode($response);
   }
@@ -345,15 +358,23 @@ class Carrito extends MX_Controller {
       $total = 0;
       $envio = 0;
       $cantidad = 0;
+      $cost_unit_vacio = parametro(10);
+      $costo_vacio = 0;
 
       $elementos = sizeof($_SESSION['carrito']);
       for  ($i = 0; $i <= $elementos-1   ; $i++) {
          if ($_SESSION['carrito'][$i]['tipo']=='item'){
             $subtotal = $subtotal + $_SESSION['carrito'][$i]['totalitem']; 
             $cantidad = $cantidad +1;
-         }  
+            if ($_SESSION['carrito'][$i]['vacio'] == 1){
+              $costo_vacio = $costo_vacio + $cost_unit_vacio;
+            }
+       
+          }  
       }
   
+
+   
       if ($subtotal == 0) {
         redirect('productos');
       }
@@ -364,6 +385,11 @@ class Carrito extends MX_Controller {
         $envio = 0;
         $total = $subtotal + $costoenvio;
       }
+
+      if ($costo_vacio != 0) {
+        $total = $total + $costo_vacio;
+      }
+
 
         $data_pedidos = array(
                               "sitio_id" => $this->config->item('sitio_id'),
@@ -386,7 +412,8 @@ class Carrito extends MX_Controller {
                               "del_costo" => $envio,
                               "subtotal" => $subtotal,
                               "total" => $total,
-                              "cantidad_items" => $cantidad);
+                              "cantidad_items" => $cantidad,
+                              "env_vacio" => $costo_vacio);
     
         
       
@@ -400,7 +427,9 @@ class Carrito extends MX_Controller {
                   "producto_id" => $_SESSION['carrito'][$i]['codigo'],
                   "cantidad" => $_SESSION['carrito'][$i]['cantidad'],
                   "preciounit" => $_SESSION['carrito'][$i]['precio'],
-                  "precioitem" => $_SESSION['carrito'][$i]['totalitem']);  
+                  "precioitem" => $_SESSION['carrito'][$i]['totalitem'],
+                  "vacio" => $_SESSION['carrito'][$i]['vacio']
+                );  
             $this->Carrito_model->grabaitem($data_item);
          }  
       }
@@ -428,6 +457,33 @@ class Carrito extends MX_Controller {
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
    
     }
+  }
+
+
+  public function cambiaVacio() {
+       
+    $producto_id = $this->input->post('producto_id');
+    $estado_ant = $this->input->post('estado');
+
+    ///// verificamos que existe para decrementar cantidad
+    $elementos = sizeof($_SESSION['carrito']);
+    for  ($i = 0; $i <= $elementos-1   ; $i++) {
+       if ($_SESSION['carrito'][$i]['tipo']=='item'){
+         if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
+             if($_SESSION['carrito'][$i]['vacio'] ==  1) {
+                 $_SESSION['carrito'][$i]['vacio'] =  0;
+                 $estado = 0;
+             }else{
+                 $_SESSION['carrito'][$i]['vacio'] =  1;
+                 $estado = 1;
+             }    
+
+         }  
+       }
+    }
+    $response = array('success' => 'OK','estado_ant' => $estado_ant, 'estado' => $estado);
+
+    echo json_encode($response);
   }
 
 }

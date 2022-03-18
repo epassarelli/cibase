@@ -303,7 +303,8 @@ $(document).ready(function () {
                        if (document.getElementById('subtotal') != null) {
                         document.getElementById('subtotal').innerText=response.subtotal;
                         document.getElementById('envio').innerText=response.envio;
-                        document.getElementById('total').innerText=response.total;						
+                        document.getElementById('total').innerText=response.total;
+                        document.getElementById('costovacio').innerText=response.envvacio;                        						
                        }     
                     }else{
                         Toast.fire({type: 'error',
@@ -324,6 +325,64 @@ $(document).ready(function () {
             
         }
 
+
+        function cambiaVacio(id,e,estado) { 
+
+            var MyRow = e.closest('tr')[0].rowIndex-1;
+            //console.log(MyRow);
+            
+            // Ejecutamos la accion y la enviamos al servidor 
+            
+            $.ajax({
+                url: UrlBase+'productos/carrito/cambiaVacio',
+                data: { producto_id: id,estado: estado },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success == 'OK') {
+                        var objeto =  document.getElementsByClassName('vacio')[MyRow];
+                        objeto.removeAttribute('class');
+                        calculaPie();
+
+                        if (response.estado == 1) {
+                            objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
+                            Toast.fire({type: 'success',
+                                        title: 'Agregado el servicio de Cierre al Vacio',
+                                      })
+
+
+                        }else{
+                            objeto.setAttribute('class','vacio fa  fa-toggle-off fa-2x text-green');
+
+                            Toast.fire({type: 'error',
+                            title: 'Quitado el servicio de Cierre al Vacio',
+                          })
+
+                        }
+                        
+         
+                    }else{
+                        alert('Servicio cierre al vacio fallo ');
+                        Toast.fire({type: 'error',
+                        		title: 'No se pudo modificar el servicio',
+                        		   })
+                    }
+            
+                }, //success         
+                error: function(response) {
+                    alert('error al modificar el servicio');
+                },
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //alert('Petición realizada');
+                }
+                        
+            });//ajax
+            
+        } 
+
+
+   
 
 
 

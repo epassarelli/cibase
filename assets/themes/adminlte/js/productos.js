@@ -224,8 +224,8 @@ function listar(base,Toast) {
     deleteSitios("#productosAbm tbody", table); //Eliminar un slide
     
     //Cambiar estado en datatable
-    cambioEstado("#productosAbm tbody", table,Toast); 
-
+    cambioEstado("#productosAbm tbody", table,Toast);
+   
  }
 
 
