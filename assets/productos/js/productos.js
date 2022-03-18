@@ -303,7 +303,8 @@ $(document).ready(function () {
                        if (document.getElementById('subtotal') != null) {
                         document.getElementById('subtotal').innerText=response.subtotal;
                         document.getElementById('envio').innerText=response.envio;
-                        document.getElementById('total').innerText=response.total;						
+                        document.getElementById('total').innerText=response.total;
+                        document.getElementById('costovacio').innerText=response.envvacio;                        						
                        }     
                     }else{
                         Toast.fire({type: 'error',
@@ -341,13 +342,14 @@ $(document).ready(function () {
                     if (response.success == 'OK') {
                         var objeto =  document.getElementsByClassName('vacio')[MyRow];
                         objeto.removeAttribute('class');
+                        calculaPie();
 
                         if (response.estado == 1) {
                             objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
-
                             Toast.fire({type: 'success',
                                         title: 'Agregado el servicio de Cierre al Vacio',
                                       })
+
 
                         }else{
                             objeto.setAttribute('class','vacio fa  fa-toggle-off fa-2x text-green');

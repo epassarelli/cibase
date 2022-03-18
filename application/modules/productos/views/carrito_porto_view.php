@@ -25,7 +25,7 @@
 													</th>
 													<?php if (parametro(9)=="S"): ?> 
 														<th class="product-vacio">
-															Cerrado al Vacio
+															Envasado al Vacio
 														</th>
 													<?php endif; ?>	
 													<th class="product-price">
@@ -194,6 +194,18 @@
 													Sin costo de envío<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
 												</td>
 											</tr>
+											
+											<?php if(parametro(9) == 'S'): ?>
+											<tr>
+												<th>
+													Envasado al Vacio
+												</th>
+												<td id="costovacio">
+													Sin costo de envasado al vacio<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
+												</td>
+											</tr>	
+											<?php endif; ?>	
+												
 											<tr class="total">
 												<th>
 													<strong class="text-dark">Total de la compra</strong>
