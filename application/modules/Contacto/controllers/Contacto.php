@@ -107,7 +107,13 @@ class Contacto extends MX_Controller {
     }
     else{
       $data['title']    = "Contacto";      
-      $data['view']     = 'contacto_' . $this->session->userdata('theme') . '_1'; 
+      if($this->config->item('sitio_id') == 4){
+        $data['view']     = 'contacto_claudia_' . $this->session->userdata('theme') . '_1'; 
+      }
+      else{
+        $data['view']     = 'contacto_' . $this->session->userdata('theme') . '_1'; 
+      }
+      
 
       if($this->input->post()){
           $message = array(
