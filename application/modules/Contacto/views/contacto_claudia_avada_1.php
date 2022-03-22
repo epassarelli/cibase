@@ -1,9 +1,8 @@
-<!-- <div style="padding-top: 150px; background: #f9f9f9; width: 100%" id="<?php //echo $slug; ?>"> -->
- <div class="container clearfix">
-    <div class="heading-block center">
-        <h2><?php echo $titulo; ?></h2>
-        <span><?php //echo $bajada; ?></span>
-    </div>
+<section id="content">
+
+  <div class="content-wrap">
+    
+    <div class="container clearfix">
 
     <!-- Contact Form
     ============================================= -->
@@ -93,34 +92,29 @@
     </div><!-- Contact Form End -->
 
     <?php if($this->session->userdata('urlGMap') !== ''): ?>
+        
         <!-- Google Map
         ============================================= -->
         <div class="col_half col_last">
 
             <section id="google-map" class="gmap" style="height: 410px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0272290824646!2d-58.37684288423676!3d-34.603472964993166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacda843d817%3A0xc2ad9185a06cb900!2sSan%20Mart%C3%ADn%20439%2C%20C1004%20CABA!5e0!3m2!1ses-419!2sar!4v1635368043785!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="<?php echo $this->session->userdata('urlGMap'); ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </section>
         </div>
-        <!-- Google Map End -->        
+        <!-- Google Map End -->   
+
     <?php endif; ?>
-
-
-
-                    
-                    
-
-
 
     <div class="clear"></div>
 
     <!-- Contact Info
     ============================================= -->
-    <div class="row clear-bottommargin">
+    <div class="row clear-bottommargin topmargin">
 
         <div class="col-md-3 col-sm-6 bottommargin clearfix">
             <div class="feature-box fbox-center fbox-bg fbox-plain">
                 <div class="fbox-icon">
-                    <a href="https://instagram.com/<?php echo $this->session->userdata('telefono'); ?>" target="_blank"><i class="icon-instagram"></i></a>
+                    <a href="https://instagram.com/<?php echo $this->session->userdata('instagram'); ?>" target="_blank"><i class="icon-instagram"></i></a>
                 </div>
                 <h3>Instagram</h3>
             </div>
@@ -158,3 +152,6 @@
 </div>
 
 <!-- </div> -->
+</div>
+
+</section>

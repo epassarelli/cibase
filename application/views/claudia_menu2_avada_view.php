@@ -19,7 +19,7 @@ switch ($this->session->userdata('site_lang')) {
                 'item3'=>'articles',
                 'item4'=>'interviews',
                 'item5'=>'conferences',
-                'item6'=>'LAWS-&-CASE-LAW',
+                'item6'=>'laws-and-case-law',
                 'item7'=>'women-in-the-world',
                 'item8'=>'contact'
                 );
@@ -40,13 +40,13 @@ switch ($this->session->userdata('site_lang')) {
 ?>
 <style>
 .headerClaudia{
-    background-color: #000;
+  background-color: #000;
 }
 .idiomaClaudia{
-    background-color: #a163f7 !important;
-    border-top-color: #51327d;
-    border-top-width: 5px;  
-    border-top-style: solid;
+  background-color: #a163f7 !important;
+  border-top-color: #51327d;
+  border-top-width: 5px;  
+  border-top-style: solid;
 }
 .idiomaClaudia a, .idiomaClaudia a:hover{
     color: #fff;
@@ -160,6 +160,7 @@ switch ($this->session->userdata('site_lang')) {
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+ 
  @media screen and (max-width: 600px) {
 
 body { margin: 0; }
@@ -177,61 +178,195 @@ body { margin: 0; }
   -webkit-transition: none;
   transition: none;
 }
+
+#carousel-claudia div a div h2 {
+  font-family: Montserrat, sans-serif;
+  text-overflow: clip;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  top: 160px;
+  color: #FFF;
+}
+
 }
 
 </style>
 
 <div class="headerClaudia">
-<div class="accordion">
+<div class="accordion hidden-xs">
   <ul>
     <li>
       <div> <a href="<?php echo site_url().$menu['item1']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item1']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item2']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item2']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item3']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item3']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item4']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item4']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item5']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item5']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item6']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item6']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item7']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item7']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
     <li>
       <div> <a href="<?php echo site_url().$menu['item8']; ?>">
         <h2><?php echo str_replace('-',' ',$menu['item8']); ?></h2>
-        <!-- <p>Description 1</p> -->
         </a> </div>
     </li>
   </ul>
 </div>
+
+
+
+
+
+
+<div id="carousel-claudia" class="carousel slide hidden-lg hidden-md hidden-sm" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-claudia" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-claudia" data-slide-to="1"></li>
+    <li data-target="#carousel-claudia" data-slide-to="2"></li>
+    <li data-target="#carousel-claudia" data-slide-to="3"></li>
+    <li data-target="#carousel-claudia" data-slide-to="4"></li>
+    <li data-target="#carousel-claudia" data-slide-to="5"></li>
+    <li data-target="#carousel-claudia" data-slide-to="6"></li>
+    <li data-target="#carousel-claudia" data-slide-to="7"></li>
+    <li data-target="#carousel-claudia" data-slide-to="8"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    
+    <div class="item active">
+      <a href="<?php echo site_url().$menu['item1']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item1.jpg'); ?>" alt="<?php echo $menu['item1']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item1']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item2']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item2.jpg'); ?>" alt="<?php echo $menu['item2']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item2']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item3']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item3.jpg'); ?>" alt="<?php echo $menu['item3']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item3']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item4']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item4.jpg'); ?>" alt="<?php echo $menu['item4']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item4']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item5']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item5.jpg'); ?>" alt="<?php echo $menu['item5']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item5']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item6']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item6.jpg'); ?>" alt="<?php echo $menu['item6']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item6']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item7']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item7.jpg'); ?>" alt="<?php echo $menu['item7']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item7']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a href="<?php echo site_url().$menu['item8']; ?>">
+      <img src="<?php echo site_url('assets/images/claudia/menu/item8.jpg'); ?>" alt="<?php echo $menu['item8']; ?>">
+      <div class="carousel-caption">
+        <h2><?php echo $menu['item8']; ?></h2>
+      </div>
+      </a>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 </div>
