@@ -382,6 +382,47 @@ $(document).ready(function () {
         } 
 
 
+        function cambiaEntrega(e) { 
+
+            var MyEntregaID = document.getElementById('entrega_id').options[entrega_id.selectedIndex].value;
+        
+            // Ejecutamos la accion y la enviamos al servidor 
+            
+            $.ajax({
+                url: UrlBase+'productos/carrito/cambiaEntrega',
+                data: { entrega_id: MyEntregaID },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success == 'OK') {
+                        if (Number(response.costo_entrega) > 0) {
+                            document.getElementById('envio').innerText=response.costo_entrega;
+                            //objeto.removeAttribute('class');
+                        }else{    
+                            document.getElementById('envio').innerText="Sin costo de envío la puta";
+                        }    
+                        calculaPie();
+                           // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
+       
+                    }else{
+                        Toast.fire({type: 'error',
+                        		title: 'No se pudo calcular envio',
+                        		   })
+                    }
+            
+                }, //success         
+                error: function(response) {
+                    alert('error al modificar el servicio');
+                },
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //alert('Petición realizada');
+                }
+                        
+            });//ajax
+            
+        } 
+
    
 
 

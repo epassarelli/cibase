@@ -137,39 +137,7 @@
 					<div class="row">
 						
 						<div class="col-sm-6">
-							<?php if(parametro(3) != 0): ?>
-							<div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
-								<div class="box-content">
-									<h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3">Calcular envío</h4>
-
-									<form action="/" id="frmCalculateShipping" method="post">
-										<div class="form-row">
-											<div class="form-group col">
-												<label class="font-weight-bold text-dark">Country</label>
-												<select class="form-control">
-													<option value="">Select a country</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-lg-6">
-												<label class="font-weight-bold text-dark">State</label>
-												<input type="text" value="" class="form-control">
-											</div>
-											<div class="form-group col-lg-6">
-												<label class="font-weight-bold text-dark">Zip Code</label>
-												<input type="text" value="" class="form-control">
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col">
-												<input type="submit" value="Actualizar Totales" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase" data-loading-text="Loading...">
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<?php endif; ?>
+						
 						</div>
 
 						<div class="col-sm-6">

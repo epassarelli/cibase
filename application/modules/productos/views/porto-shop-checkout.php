@@ -52,6 +52,37 @@
 
 </div>
 </div>
+
+<div class="form-row">
+	<div class="form-group col-lg-6">
+		<label class="font-weight-bold text-dark text-2">Forma de Entrega</label>
+		<select class="form-control" 
+				id="entrega_id" 
+				name="entrega_id" 
+				onchange="cambiaEntrega($(this.value))"
+				>
+			<?php 
+				echo  "<option value=0>Seleccione una Forma de Entrega</option>";
+				foreach ($entregas as $entrega) {
+					if (set_value('entrega_id',@$entrega_id)==$entrega->id) { 
+						echo '<option value="' .$entrega->id. '"" selected>' . $entrega->nombre  . ' '  . 
+																			   $entrega->detalle . ' $ ' .
+																			   $entrega->costo   . '  </option>';  
+					}else
+						echo '<option value="' .$entrega->id. '"">' . $entrega->nombre  . ' '  . 
+																	  $entrega->detalle . ' $ ' .
+																	  $entrega->costo   . '  </option>';  
+					}
+			?> 
+			</select>               
+			<?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
+
+	</div>
+</div>
+
+
+
+
 <div class="form-row">
 <div class="form-group col">
 	<label class="font-weight-bold text-dark text-2">

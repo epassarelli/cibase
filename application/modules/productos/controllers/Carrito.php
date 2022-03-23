@@ -28,6 +28,7 @@ class Carrito extends MX_Controller {
    
     $this->load->model('Carrito_model');
     $this->load->model('Productos_model');
+    $this->load->model('entregas/Entregas_model');
     $this->load->model('mipanel/Provincias_model');
     $this->load->model('mipanel/Localidades_model');
     $this->load->helper('Productos_helper');
@@ -224,8 +225,7 @@ class Carrito extends MX_Controller {
     $subtotal = 0;
     $cost_unit_vacio = parametro(10);
     $costo_vacio = 0;
-    $costoenvio  = parametro(3);
-
+    $costoenvio  = 0;   //parametro(3); vamos a tomarlo de entregas_sitios
     
     $elementos = sizeof($_SESSION['carrito']);
     for  ($i = 0; $i <= $elementos-1   ; $i++) {
@@ -238,8 +238,13 @@ class Carrito extends MX_Controller {
        }  
     }
    
+    $costoenvio =0;
+    $costoenvio =$_SESSION['carrito'][0]['del_costo'];
+    
+    
+      
     if ($costoenvio == 0 or $costoenvio == null) {
-      $envio = 'Sin costo de envío';
+      $envio = 0; //'Sin costo de envío';
       $total = $subtotal;
     } else {
       $envio = $costoenvio;
@@ -247,18 +252,18 @@ class Carrito extends MX_Controller {
     }
 
     if ($costo_vacio == 0 or $costo_vacio == null) {
-      $costo_vacio = 'Sin costo de envasado al vacio';
+      $costo_vacio = 0; //'Sin costo de envasado al vacio';
     } else {
       $total = $subtotal + $costo_vacio;
     
     }  
 
-    
+        
     $response = array('success' => 'OK',
-                       'total' => $total,
-                       'subtotal' => $subtotal,
-                       'envio' => $envio,
-                       'envvacio' => $costo_vacio
+                       'total' => number_format(round($total,2),2),
+                       'subtotal' => number_format(round($subtotal,2),2),
+                       'envio' => number_format(round($envio,2),2),
+                       'envvacio' => number_format(round($costo_vacio,2),2)
                       );
     echo json_encode($response);
   }
@@ -321,6 +326,8 @@ class Carrito extends MX_Controller {
     $data['provincias'] = $this->Provincias_model->getAllBy('provincias','', '','nombre');
     $parametros['provincia_id'] = 6;
     $data['localidades'] = $this->Localidades_model->getAllBy('localidades','', $parametros,'nombre');
+    $data['entregas'] = $this->Entregas_model->getEntregas();
+    $data['entrega_id'] =  $_SESSION['carrito'][0]['entrega_id'];
     $data['view']       = $this->session->userdata('theme').'-shop-checkout';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
  
@@ -379,12 +386,15 @@ class Carrito extends MX_Controller {
         redirect('productos');
       }
       
-      $costoenvio  = parametro(3);
-  
+      //$costoenvio  = parametro(3); vamos a tomar el costo de entregas_sitios
+      $costoenvio =  $_SESSION['carrito'][0]['del_costo'];
+      
       if ($costoenvio == 0 or $costoenvio == null) {
         $envio = 0;
-        $total = $subtotal + $costoenvio;
+      }else{
+        $envio = $costoenvio;
       }
+      $total = $subtotal + $costoenvio;
 
       if ($costo_vacio != 0) {
         $total = $total + $costo_vacio;
@@ -409,11 +419,12 @@ class Carrito extends MX_Controller {
                               "formapago_id" => 0,
                               "observaciones" => "",
                               "estado_id" => 1,                     
-                              "del_costo" => $envio,
-                              "subtotal" => $subtotal,
-                              "total" => $total,
+                              "del_costo" => round((float)$envio,2),
+                              "entrega_id" => $this->input->post("entrega_id"),
+                              "subtotal" => round($subtotal,2),
+                              "total" => round($total,2),
                               "cantidad_items" => $cantidad,
-                              "env_vacio" => $costo_vacio);
+                              "env_vacio" => round($costo_vacio,2));
     
         
       
@@ -437,7 +448,6 @@ class Carrito extends MX_Controller {
 
        ///// borramos carro en session 
        $_SESSION['carrito'] = null;
-
        
        //redirect("productos");
        $data['nombre'] = $data_pedidos['nombre'];
@@ -482,6 +492,24 @@ class Carrito extends MX_Controller {
        }
     }
     $response = array('success' => 'OK','estado_ant' => $estado_ant, 'estado' => $estado);
+
+    echo json_encode($response);
+  }
+
+
+
+  public function cambiaEntrega() {
+       
+    $entrega_id = intval($this->input->post('entrega_id'));
+
+    $entrega = $this->Entregas_model->getEntregas($entrega_id);
+
+    $valor = round($entrega[0]->costo,2);
+
+    $_SESSION['carrito'][0]['entrega_id'] = $entrega_id;
+    $_SESSION['carrito'][0]['del_costo'] = $valor;
+
+    $response = array('success' => 'OK','costo_entrega' => round($valor,2));
 
     echo json_encode($response);
   }
