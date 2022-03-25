@@ -336,6 +336,9 @@ class Carrito extends MX_Controller {
   
   public function checkout_validation()  {
        $data['title'] = 'Carrito';
+   $this->form_validation->set_rules('entrega_id','Entrega',array('greater_than[0]'),
+       array('greater_than'   => 'Debe ingresar una forma de envio'));
+
    $this->form_validation->set_rules('nombre','Nombre',array('required'),
                   array('required'   => 'Debe ingresar un nombre'));
   
@@ -348,7 +351,10 @@ class Carrito extends MX_Controller {
    $this->form_validation->set_rules('telefono','telefono',array('required'),
                   array('required'   => 'Debe ingresar un telefono'));
 
-   if (parametro(4) == "S") {
+    $entrega_id=$this->input->post("entrega_id");
+    $entrega = $this->Entregas_model->getEntregas($entrega_id);
+
+   if ($entrega[0]->pidedirec == 1) {
       $this->form_validation->set_rules('calle','calle',array('required'),
           array('required'   => 'Debe ingresar un calle'));
       $this->form_validation->set_rules('nro','nro',array('required'),
@@ -463,6 +469,10 @@ class Carrito extends MX_Controller {
         $data['provincias'] = $this->Provincias_model->getAllBy('provincias','', '','nombre');
         $parametros['provincia_id'] = 86;
         $data['localidades'] = $this->Localidades_model->getAllBy('localidades','', $parametros,'nombre');
+       
+        $data['entregas'] = $this->Entregas_model->getEntregas();
+        $data['entrega_id'] =  $_SESSION['carrito'][0]['entrega_id'];
+           
         $data['view']       = $this->session->userdata('theme').'-shop-checkout';
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
    
@@ -505,11 +515,15 @@ class Carrito extends MX_Controller {
     $entrega = $this->Entregas_model->getEntregas($entrega_id);
 
     $valor = round($entrega[0]->costo,2);
+    $pidedirec = round($entrega[0]->pidedirec,0);
+
 
     $_SESSION['carrito'][0]['entrega_id'] = $entrega_id;
     $_SESSION['carrito'][0]['del_costo'] = $valor;
 
-    $response = array('success' => 'OK','costo_entrega' => round($valor,2));
+    $response = array('success' => 'OK',
+                      'costo_entrega' => round($valor,2),
+                      'pidedirec' => $pidedirec);
 
     echo json_encode($response);
   }

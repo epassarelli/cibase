@@ -403,7 +403,18 @@ $(document).ready(function () {
                         }    
                         calculaPie();
                            // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
-       
+                        if (response.pidedirec == 0)   {
+                            document.getElementById('lblcalle').innerHTML='Dirección Calle'
+                            document.getElementById('lblnro').innerHTML='Nro'
+                            document.getElementById('lblprovincia').innerHTML='Provincia'
+                            document.getElementById('lbllocalidad').innerHTML='Localidad'
+                        }else{
+                            document.getElementById('lblcalle').innerHTML='Dirección Calle *'
+                            document.getElementById('lblnro').innerHTML='Nro *'
+                            document.getElementById('lblprovincia').innerHTML='Provincia *'
+                            document.getElementById('lbllocalidad').innerHTML='Localidad *'
+
+                        }                  
                     }else{
                         Toast.fire({type: 'error',
                         		title: 'No se pudo calcular envio',

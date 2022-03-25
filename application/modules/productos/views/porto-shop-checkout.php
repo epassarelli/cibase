@@ -75,7 +75,7 @@
 					}
 			?> 
 			</select>               
-			<?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
+			<?php if (!empty(form_error('entrega_id'))): ?> <?php  echo  form_error('entrega_id') ;?> <?php endif;?>
 
 	</div>
 </div>
@@ -85,16 +85,14 @@
 
 <div class="form-row">
 <div class="form-group col">
-	<label class="font-weight-bold text-dark text-2">
-		Dirección Calle	<?php if (parametro(4)=='S'){echo '*';}?>
-	</label>
+	<label class="font-weight-bold text-dark text-2" id="lblcalle">Dirección Calle</label>
 	<input type="text" value="<?php echo set_value('calle',@$calle); ?>" class="form-control" id="calle" name="calle">
 	<?php if (!empty(form_error('calle'))): ?> <?php  echo  form_error('calle') ;?> <?php endif;?>
 </div>
 </div>
 <div class="form-row">
 <div class="form-group col-lg-4">
-	<label class="font-weight-bold text-dark text-2">Nro <?php if (parametro(4)=='S'){echo '*';}?></label>
+	<label class="font-weight-bold text-dark text-2" id="lblnro">Nro</label>
 	<input type="text" value="<?php echo set_value('nro',@$nro); ?>" class="form-control" id="nro" name="nro">
 	<?php if (!empty(form_error('nro'))): ?> <?php  echo  form_error('nro') ;?> <?php endif;?>
 </div>
@@ -111,7 +109,7 @@
 </div>
 <div class="form-row">
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Provincia <?php if (parametro(4)=='S'){echo '*';}?></label>
+	<label class="font-weight-bold text-dark text-2" id="lblprovincia">Provincia</label>
 	<select class="form-control" id="provincia" name="provincia" >
 		<!-- Fijar Argentina -->
         <?php 
@@ -128,7 +126,7 @@
 
 </div>
 <div class="form-group col-lg-6">
-	<label class="font-weight-bold text-dark text-2">Localidad <?php if (parametro(4)=='S'){echo '*';}?></label>
+	<label class="font-weight-bold text-dark text-2" id="lbllocalidad">Localidad</label>
 	<select class="form-control" id="localidad" name="localidad">
 	<?php 
             echo  "<option value=0>Seleccione una Localidad</option>";
