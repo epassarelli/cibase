@@ -11,6 +11,7 @@ class Publicaciones extends MX_Controller {
     }
 
     $this->load->model('Publicaciones_model');
+    $this->load->model('Categorias_model');
     
     switch (ENVIRONMENT){
       case 'development':
@@ -45,6 +46,7 @@ class Publicaciones extends MX_Controller {
      if($this->form_validation->run($this)==FALSE)
      {
        $data['accion'] = 'insertar';
+       $data['categorias'] = $this->Categorias_model->getCategorias(2, $this->config->item('sitio_id'));
        
        $this->template->load('layout_back', 'publicaciones_form_view', $data); 
      }
@@ -52,7 +54,7 @@ class Publicaciones extends MX_Controller {
      {  
         //Tomo todo lo que llegue
         $pub['titulo'] = $this->input->post('titulo');
-        $pub['slug']      = url_title($this->input->post('titulo'),'-',TRUE);
+        $pub['slug']    = url_title($this->input->post('titulo'),'-',TRUE);
         $pub['anio'] = $this->input->post('anio');
         $pub['isbn'] = $this->input->post('isbn');
 
@@ -82,9 +84,14 @@ class Publicaciones extends MX_Controller {
      if($this->form_validation->run($this)==FALSE)
      {
        $data['accion'] = 'editar';
-       $data['pub'] = $this->Publicaciones_model->get($id);       
-       //var_dump($data['pub']);die();
-       $this->template->load('layout_back', 'publicaciones_form_view', $data); 
+       $data['pub'] = $this->Publicaciones_model->get($id);  
+       $data['categorias'] = $this->Categorias_model->getCategorias(2, $this->config->item('sitio_id'));     
+      //  var_dump($this->config->item('sitio_id'));
+      //  echo "<hr>";
+      var_dump($data['pub']);
+      // echo "<hr>";
+      // var_dump($data['categorias']);die();
+      $this->template->load('layout_back', 'publicaciones_form_view', $data); 
      }
      else 
      {  

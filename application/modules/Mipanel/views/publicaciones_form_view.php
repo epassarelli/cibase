@@ -30,12 +30,18 @@
 		  <div class="row">
 
       <div class="col-md-3">
-          <div class="form-group">
-              <label for="categoria" class="control-label">Categoria</label>
-              <input type="text" class="form-control" id="categoria" name="categoria" value="">
-              <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-          </div>
+        <div class="form-group">
+          <label for="categoria" class="control-label">Categoria</label>
+
+          <select class="form-control" id="categoria" name="categoria" required>
+            <option value=""> Seleccione una opción</option>
+              <?php foreach ($categorias as $cat): ?>
+                <option value="<?php echo $cat->categoria_id; ?>" <?php if( (isset($pub)) and ($cat->categoria_id == $pub->categoria_id) ) echo "selected"; ?> ><?php echo $cat->categoria; ?></option> 
+              <?php endforeach; ?>
+          </select>
+        </div>
       </div>
+
 
 		  <div class="col-md-9">
 		      <div class="form-group">
