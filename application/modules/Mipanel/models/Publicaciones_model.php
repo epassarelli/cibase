@@ -1,9 +1,10 @@
 <?php
 
-class Publicaciones_model extends CI_Model{
+class Publicaciones_model extends MY_Model{
   
     public function __construct() {
         parent::__construct();
+        $this->table = 'publicaciones';
     }  
 
 
