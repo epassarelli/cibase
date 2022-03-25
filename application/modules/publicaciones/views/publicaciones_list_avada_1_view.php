@@ -41,7 +41,7 @@
                 -->
                 <div class="entry-content">
                     <p><?php echo substr($art->resumen, 0, 300) . ' ...'; ?></p>
-                    <a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>"class="more-link">Leer más</a>
+                    <a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>"class="more-link"><?php echo $this->lang->line('leerMas'); ?></a>
                 </div>
               </div>
             

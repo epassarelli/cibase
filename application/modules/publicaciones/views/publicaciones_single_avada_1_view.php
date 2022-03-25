@@ -108,11 +108,11 @@
                 <div class="si-share noborder clearfix">
                     <span><?php echo $this->lang->line('compartir'); ?>:</span>
                     <div>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=[url]" class="social-icon si-borderless si-facebook">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo current_url(); ?>" class="social-icon si-borderless si-facebook">
                             <i class="icon-facebook"></i>
                             <i class="icon-facebook"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?text=[text]&url=[url]&hashtags=[hashtag]" class="social-icon si-borderless si-twitter">
+                        <a href="https://twitter.com/intent/tweet?text=<?php echo current_url(); ?>&url=<?php echo current_url(); ?>" class="social-icon si-borderless si-twitter">
                             <i class="icon-twitter"></i>
                             <i class="icon-twitter"></i>
                         </a>
