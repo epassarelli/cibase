@@ -5,9 +5,12 @@ if(!isset($_SESSION))
 }
 
 
-if (!isset($_SESSION['carrito'])) {
+if (!isset($_SESSION['carrito']) or $_SESSION['carrito']==null) {
     if (parametro(1) == 'S') { 
-        $_SESSION['carrito'][] = array('tipo' => 'info','cantidad' => 0);
+        $_SESSION['carrito'][] = array('tipo' => 'info',
+									   'cantidad' => 0,
+									   'del_costo' => 0,
+									   'entrega_id' => 0);
     }
 }
 

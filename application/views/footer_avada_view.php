@@ -12,32 +12,39 @@
                 <div class="copyrights-menu copyright-links clearfix">
                 <?php                     
                     // Mientras haya módulos recorro y agrego items
-                    foreach ($this->session->userdata('items') as $m) {
-                        $preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
+                    //foreach ($this->session->userdata('items') as $m) {
+                        //$preSlug = ($this->session->userdata('landing')) ? '#' : site_url();
                         # code...
                         //if($m['menu']){
                             //$preSlug = ($landing) ? '#' : site_url();
-                        echo "<a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a>/";
+                        //echo "<a href='" . $preSlug . '' . $m['slug'] . "'>" . $m['titulo'] . "</a>/";
                         //}
-                    }
+                    //}
                 ?> 
                 
                 </div>
-               &copy; Copyright <?php echo date('Y',time())?> - Todos los derechos reservados.
+               &copy; Copyright <?php echo date('Y',time())?> - Todos los derechos reservados. <br>
+               <a href="http://webpass.com.ar">Diseño y desarrollo web</a>
             </div>
 
             <div class="col_half col_last tright">
                 <div class="fright clearfix">
-                    <!-- <a href="#" class="social-icon si-small si-borderless nobottommargin si-facebook">
+                     <!--
+                     <a href="https://facebook.com" class="social-icon si-small si-borderless nobottommargin si-facebook">
                         <i class="icon-facebook"></i>
                         <i class="icon-facebook"></i>
                     </a>
-
-                    <a href="#" class="social-icon si-small si-borderless nobottommargin si-twitter">
+                    
+                    <a href="https://twitter.com" class="social-icon si-small si-borderless nobottommargin si-twitter">
                         <i class="icon-twitter"></i>
                         <i class="icon-twitter"></i>
                     </a>
 
+                    <a href="https://instagram.com" class="social-icon si-small si-borderless nobottommargin si-instagram">
+                        <i class="icon-instagram"></i>
+                        <i class="icon-instagram"></i>
+                    </a>
+                    
                     <a href="#" class="social-icon si-small si-borderless nobottommargin si-gplus">
                         <i class="icon-gplus"></i>
                         <i class="icon-gplus"></i>
@@ -71,7 +78,7 @@
                 <div>
                     <?php if($this->session->userdata('qr') !== ''): ?>
                         
-                        <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('qr')); ?>" alt="QR">
+                        <!-- <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/'.$this->session->userdata('qr')); ?>" alt="QR"> -->
 
                     <?php endif; ?>
 

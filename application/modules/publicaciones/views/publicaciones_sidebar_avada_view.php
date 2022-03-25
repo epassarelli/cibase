@@ -4,7 +4,7 @@
             <?php if(isset($relacionados)): ?>
             <div class="widget  widget_links clearfix">
 
-                <h4><span>Relacionadas</span></h4>
+                <h4><span><?php echo $this->lang->line('relacionadas'); ?></span></h4>
 
                   <ul>
 
@@ -34,7 +34,7 @@
             <?php if(isset($otrasCategorias)): ?>
             <div class="widget  widget_links clearfix">
 
-                <h4><span>Otras categorias</span></h4>
+                <h4><span><?php echo $this->lang->line('otrasCategorias'); ?></span></h4>
 
                   <ul>
 

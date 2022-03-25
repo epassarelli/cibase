@@ -67,19 +67,19 @@
                         </div>
                         <div class="col-md-6">
                             <p>
-                            Editorial: <?php echo $articulo->editorial; ?>
-                            <br>Editor: <?php echo $articulo->editor; ?>
-                            <br>ISBN: <?php echo $articulo->isbn; ?>
-                            <br>Páginas: <?php echo $articulo->paginas; ?>
-                            <br>Formato: <?php echo $articulo->formato; ?>
+                            <?php echo $this->lang->line('editorial'); ?>: <?php echo $articulo->editorial; ?>
+                            <br><?php echo $this->lang->line('editor'); ?>: <?php echo $articulo->editor; ?>
+                            <br><?php echo $this->lang->line('isbn'); ?>: <?php echo $articulo->isbn; ?>
+                            <br><?php echo $this->lang->line('paginas'); ?>: <?php echo $articulo->paginas; ?>
+                            <br><?php echo $this->lang->line('formato'); ?>: <?php echo $articulo->formato; ?>
                             </p>
 
                         </div>
 
                         <div class="col-md-3">
                             
-                            <?php if(strlen($articulo->publicacion)>5): ?>
-                                <a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/'.$articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i>Leer más</a>
+                            <?php if(strlen($articulo->publicacion) > 5): ?>
+                                <a href="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/'.$articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i><?php echo $this->lang->line('leerMas'); ?></a>
                             <?php endif; ?>
                             
                         </div>                            
@@ -106,16 +106,17 @@
                 <!-- Post Single - Share
                 ============================================= -->
                 <div class="si-share noborder clearfix">
-                    <span>Compartir publicación en:</span>
+                    <span><?php echo $this->lang->line('compartir'); ?>:</span>
                     <div>
-                        <a href="#" class="social-icon si-borderless si-facebook">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo current_url(); ?>" class="social-icon si-borderless si-facebook">
                             <i class="icon-facebook"></i>
                             <i class="icon-facebook"></i>
                         </a>
-                        <a href="#" class="social-icon si-borderless si-twitter">
+                        <a href="https://twitter.com/intent/tweet?text=<?php echo current_url(); ?>&url=<?php echo current_url(); ?>" class="social-icon si-borderless si-twitter">
                             <i class="icon-twitter"></i>
                             <i class="icon-twitter"></i>
                         </a>
+                        <!-- 
                         <a href="#" class="social-icon si-borderless si-pinterest">
                             <i class="icon-pinterest"></i>
                             <i class="icon-pinterest"></i>
@@ -131,7 +132,8 @@
                         <a href="#" class="social-icon si-borderless si-email3">
                             <i class="icon-email3"></i>
                             <i class="icon-email3"></i>
-                        </a>
+                        </a> 
+                        -->
                     </div>
                 </div><!-- Post Single - Share End -->
 

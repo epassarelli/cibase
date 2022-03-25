@@ -13,7 +13,9 @@ class Publicaciones extends MX_Controller {
     }          
 
     $this->load->model('Publicaciones_model');
+    $this->lang->load('publicaciones', $this->session->userdata('site_lang'));
   }
+
 
   public function index()
   {

@@ -22,7 +22,9 @@
         <?php foreach ($componentes as $comp): ?>
           <?php if ($primera == 0): ?> 
               <div class="carousel-item active">
-                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')) .'/componentes/'.$comp->imagen; ?>" width=100% height=auto alt="">
+                
+                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')) .'/componentes/'.$comp->imagen; ?>" width=100% height=auto alt="Vitello">
+
                  <div class="carousel-caption">
                     <h3 style="color: white;"><?php echo $comp->texto1; ?></h3>
                     <p style="color: orange;"><?php echo $comp->texto2; ?></p>
@@ -31,7 +33,9 @@
           <?php endif; ?>    
           <?php if ($primera != 0): ?> 
               <div class="carousel-item">
-                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')) .'/componentes/'.$comp->imagen; ?>" width=100% height=auto alt="">
+
+                <img src="<?php echo site_url('assets/uploads/'.$this->config->item('sitio_id')) .'/componentes/'.$comp->imagen; ?>" width=100% height=auto alt="Vitello">
+
                  <div class="carousel-caption">
                     <h3 style="color: white;"><?php echo $comp->texto1; ?></h3>
                     <p style="color: orange;"><?php echo $comp->texto2; ?></p>

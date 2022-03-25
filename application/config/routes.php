@@ -66,8 +66,8 @@ switch ($this->config->item('sitio_id')) {
 		$route['interviews/(:any)'] 			= 'publicaciones/mostrar/$1';
 		$route['interviews'] 				= 'publicaciones/categoria/interviews';
 		
-		$route['laws-&-case-law/(:any)'] 			= 'publicaciones/mostrar/$1';
-		$route['laws-&-case-law'] 	= 'publicaciones/categoria/laws-&-case-law';
+		$route['laws-and-case-law/(:any)'] 			= 'publicaciones/mostrar/$1';
+		$route['laws-and-case-law'] 	= 'publicaciones/categoria/laws-and-case-law';
 		
 		$route['women-in-the-world/(:any)'] 			= 'publicaciones/mostrar/$1';
 		$route['women-in-the-world'] = 'publicaciones/categoria/women-in-the-world';
