@@ -26,5 +26,18 @@ class Publicaciones_model extends MY_Model{
         return $query->row();        
     }
 
+    public function actualizar($data, $id) {
+        $this->db->where('publicacion_id', $id);
+        $this->db->update($this->table, $data);
+        return TRUE;
+    }
+
+	// borrar un adjunto (abm en editar)
+	public function deleteAdjunto($campo, $id)
+	{
+		$data[$campo] = NULL;		
+		$this->db->where('publicacion_id', $id)
+			 ->update('publicaciones', $data);
+	}
 
 }

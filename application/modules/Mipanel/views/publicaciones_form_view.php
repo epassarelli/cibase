@@ -5,7 +5,6 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <!-- <li><a href="#">Tables</a></li> -->
         <li class="active">Publicaciones</li>
     </ol>
 </section>
@@ -107,25 +106,97 @@
           </div>
       </div>
 
-      <div class="col-md-6">
+
+        <!-- Portada JPG -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="col">
+            <div class="col-form-label pt-0 text-dark">Adjuntar portada <span class="text-danger">*</span></div>
+              
+            <!-- insertar portada -->
+              <div id="subirPortada" class="botonFile color-scheme-recursos">
+                <label for="portada" class="btn btn-success"> 
+                <i class="fa fa-upload text-white" aria-hidden="true" title="Subir portada" alt="Subir portada"></i> 
+                <span class="sr-only"> Adjuntar portada</span> </label>
+                <span class="fileIcon titleAd ml-1 text-recursos"> 
+                    <!-- trae el nombre del portada en JPG del js/publicaciones.js --> 
+                </span><br>
+                <?php echo form_error('portada');?>
+              </div>   
+              
+              <!-- delete portada -->
+              <div id="borrarPortada" class="botonDelete"> 
+                <input type="hidden" id="NamePortada" name="NamePortada" value="<?php echo set_value('portada', @$pub->portada); ?>" class="form-control-file">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalFile" data-campo="portada">
+                    <i class="fa fa-trash" aria-hidden="true" title="eliminar portada" alt="eliminar portada"></i>
+                    <span class="sr-only">Eliminar portada</span>
+                  </button>
+                  <span class="ml-1 h6"><?php echo set_value('portada', @$pub->portada); ?> </span> 
+              </div>
+
+            </div>  
+          </div>
+        </div>      
+
+
+      <!-- <div class="col-md-6">
           <div class="form-group">
               <label for="portada" class="control-label">Portada</label>
               <input type="file" class="form-control" id="portada" name="portada" value="">
               <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
           </div>
-      </div>
+      </div> -->
 
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
           <div class="form-group">
               <label for="publicacion" class="control-label">Publicacion</label>
               <input type="file" class="form-control" id="publicacion" name="publicacion" value="">
               <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
           </div>
-      </div>
+      </div> -->
+
+
+        <!-- Publicacion PDF -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="col">
+            <div class="col-form-label pt-0 text-dark">Adjuntar publicacion <span class="text-danger">*</span></div>
+              
+            <!-- insertar publicacion -->
+              <div id="subirPublicacion" class="botonFile color-scheme-recursos">
+                <label for="publicacion" class="btn btn-success"> 
+                <i class="fa fa-upload text-white" aria-hidden="true" title="Subir publicacion" alt="Subir publicacion"></i> 
+                <span class="sr-only"> Adjuntar publicacion</span> </label>
+                <span class="fileIcon titleAd ml-1 text-recursos"> 
+                    <!-- trae el nombre de la publicacion en PDF de js/publicaciones.js --> 
+                </span><br>
+                <?php echo form_error('publicacion');?>
+              </div>   
+              
+              <!-- delete publicacion -->
+              <div id="borrarPublicacion" class="botonDelete"> 
+                <input type="hidden" id="NamePublicacion" name="NamePublicacion" value="<?php echo set_value('publicacion', @$pub->publicacion); ?>" class="form-control-file">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalFile" data-campo="publicacion">
+                    <i class="fa fa-trash" aria-hidden="true" title="eliminar publicacion" alt="eliminar publicacion"></i>
+                    <span class="sr-only">Eliminar publicacion</span>
+                  </button>
+                  <span class="ml-1 h6"><?php echo set_value('publicacion', @$pub->publicacion); ?> </span> 
+              </div>
+
+            </div>  
+          </div>
+        </div>
+
+
 
 
       <div class="col-md-12">
           <div class="form-group">
+            
+            <?php if($accion == 'editar'): ?>
+                <input type="hidden" id="id" name="id" value="<?php echo set_value('id', @$pub->publicacion_id); ?>">
+            <?php endif; ?>
+
             <input type="submit" value="Guardar" class="btn btn-success">
             <a href="<?php echo site_url('mipanel/publicaciones'); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Volver al listado</a>
           </div>
@@ -144,3 +215,26 @@
   </div>
 
 </section>
+
+
+<!-- INICIO myModal  -->
+<div class="modal fade" id="modalFile" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalFileLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modalFileLabel"><i class="fas fa-exclamation-triangle text-danger"></i> Advertencia</h3>        
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="font-weight-normal">¿Está seguro que desea eliminar el documento?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="botonAcepto" class="btn btn-danger Eliminar">Eliminar</button>
+            <button type="button" id="botonNoAcepto" class="btn btn-secondary" data-dismiss="modal">No acepto</button>
+          </div>     
+        </div>
+      </div>
+    </div>
+    <!-- FIN myModal  --> 

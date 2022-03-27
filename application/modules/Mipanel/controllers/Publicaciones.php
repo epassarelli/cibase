@@ -31,7 +31,7 @@ class Publicaciones extends MX_Controller {
   public function index(){      
     //$data['files_css'] = array('animate.css','sweetalert2.min.css');
     //$data['files_js'] = array('sitios.js?v='.rand(),'sweetalert2.min.js');
-    $data['files_js'] = array('datatables.init.js' );
+    //$data['files_js'] = array('datatables.init.js' );
     //$data['files_css'] = array('datatables.min.css');
     $data['publicaciones'] = $this->Publicaciones_model->get_AllBackend();
     $this->template->load('layout_back', 'publicaciones_abm_view', $data);  
@@ -116,14 +116,48 @@ class Publicaciones extends MX_Controller {
 
 
 
-  public function editar($id='')
-  {
-     
+  public function editar($id=''){
+
+    $result1 = null;
+    $result2 = null;
+
+    $valid_portada = TRUE;
+
+    if(isset($_FILES["portada"]["name"]) and $this->input->post('portada') !== '')
+    {
+      if($_FILES["portada"]["name"] !=='' )
+      {     
+          $result1 = $this->upload('portada','jpg|png');
+          if (isset($result1['error'])) {
+              $valid_portada = FALSE;
+          }else{
+            $valid_portada = TRUE;
+          }
+       }
+    }
+
+    $valid_publicacion = TRUE;
+
+    if(isset($_FILES["publicacion"]["name"]) and $this->input->post('publicacion') !== '')
+    {
+      if($_FILES["publicacion"]["name"] !=='' )
+      {     
+          $result2 = $this->upload('publicacion','pdf');
+          if (isset($result2['error'])) {
+              $valid_publicacion = FALSE;
+          }else{
+            $valid_publicacion = TRUE;
+          }
+       }
+    }    
+
      $this->form_validation->set_rules('titulo', 'Titulo','required');
 
      if($this->form_validation->run($this)==FALSE)
      {
-       $data['accion'] = 'editar';
+      $data['files_css'] = array('animate.css','sweetalert2.min.css');
+      $data['files_js'] = array('publicaciones.js?v='.rand(),'sweetalert2.min.js');
+      $data['accion'] = 'editar';
        $data['pub'] = $this->Publicaciones_model->get($id);  
        $data['categorias'] = $this->Categorias_model->getCategorias(2, $this->config->item('sitio_id'));     
       //  var_dump($this->config->item('sitio_id'));
@@ -135,6 +169,8 @@ class Publicaciones extends MX_Controller {
      }
      else 
      {  
+        $id =   $this->input->post('id');
+
         //Tomo todo lo que llegue
         $pub['titulo'] = $this->input->post('titulo');
         $pub['categoria_id'] = $this->input->post('categoria');
@@ -152,7 +188,7 @@ class Publicaciones extends MX_Controller {
         $pub['publicacion'] = (isset($result2["file_name"])) ? $result2["file_name"] : $this->input->post('publicacion') ;
 
         //Actualizo
-        $this->Publicaciones_model->actualizar($pub);
+        $this->Publicaciones_model->actualizar($pub, $id);
 
         //redireccionar a la vista de ABM (Listado)
         redirect('mipanel/publicaciones');
@@ -184,6 +220,22 @@ class Publicaciones extends MX_Controller {
     }
   
 
+
+     // Metodo para Eliminar el documento
+     public function deleteFile(){      
+         $fileName = $this->input->post('nombreArchivo');
+         $id = $this->input->post('id');
+         $campo = $this->input->post('campo');
+
+         // var_dump($fileName, $id); die();
+         $this->Publicaciones_model->deleteAdjunto($campo, $id);
+         $deletefile = './assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/' . $fileName;
+         if(unlink($deletefile))
+           {
+             $response['success'] = true;
+             echo json_encode($response);
+           }
+     }   
 
 
 
