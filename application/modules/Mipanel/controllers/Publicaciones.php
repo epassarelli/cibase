@@ -30,6 +30,8 @@ class Publicaciones extends MX_Controller {
 
   // Listado del ABM de slider 
   public function index(){      
+    $data['files_css']  = array('animate.css','sweetalert2.min.css');
+    $data['files_js']   = array('publicaciones.js?v='.rand(),'sweetalert2.min.js');  
     $data['publicaciones'] = $this->Publicaciones_model->get_AllBackend();
     $this->template->load('layout_back', 'publicaciones_abm_view', $data);  
   }
@@ -179,8 +181,21 @@ class Publicaciones extends MX_Controller {
         //  Actualizo
         $this->Publicaciones_model->actualizar($pub, $id);
 
+        // Si NamePortada está vacio hay que eliminar fisicamente la Anterior
+        if(($this->input->post('NamePortada') == '' ) and ($this->input->post('PortadaOriginal') !== '') ){
+          echo "Mando a borrar la portada anterior<br>";
+          $this->deleteFile($this->input->post('PortadaOriginal'));
+        }
+
+        // Si NamePortada está vacio hay que eliminar fisicamente la Anterior
+        if(($this->input->post('NamePublicacion') == '') and ($this->input->post('PublicacionOriginal') !== '') ){
+          echo "Mando a borrar la publicacion anterior<br>";
+          $this->deleteFile($this->input->post('PublicacionOriginal'));
+        }
+
+        var_dump($this->input->post());die();
         //  redireccionar a la vista de ABM (Listado)
-        redirect('mipanel/publicaciones');
+        //redirect('mipanel/publicaciones');
       }
   }
 
@@ -210,18 +225,15 @@ class Publicaciones extends MX_Controller {
 
 
   // Metodo para Eliminar el documento
-  public function deleteFile(){      
+  public function deleteFile($aEliminar){      
     
-    $fileName = $this->input->post('nombreArchivo');
-    $id = $this->input->post('id');
-    $campo = $this->input->post('campo');
-
-    $this->Publicaciones_model->deleteAdjunto($campo, $id);
-    $deletefile = './assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/' . $fileName;
-    if(unlink($deletefile))
-      {
-        $response['success'] = true;
-        echo json_encode($response);
+    $deletefile = './assets/uploads/'.$this->config->item('sitio_id').'/publicaciones/' . $aEliminar;
+    echo "A borrar: " . $aEliminar . "<br>";
+    if(unlink($deletefile)){
+        return true;
+      }
+      else{
+        return false;
       }
   }   
 
