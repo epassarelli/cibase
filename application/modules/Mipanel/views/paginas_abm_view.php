@@ -21,7 +21,7 @@
                 <div class="box-body">
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalSitios"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalPaginas"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
                     <table id="paginasAbm" class="table table-bordered">
                         <thead>
@@ -54,7 +54,7 @@
 <!-- MODAL DE FORMULARIO -->
 <!-- --------------------- -->
 
-<div class="modal fade" id="modalSitios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="modalPaginas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,7 +63,7 @@
             </div>
             <div class="modal-body">
             <div id="sent" class="col-3"></div>
-                <form action="<?php echo base_url('mipanel/sitios/accion');?>" id="formSitios" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('mipanel/paginas/accion');?>" id="formSitios" method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                     <input type="hidden" id="Opcion" name="Opcion" value="">
                     <input type="hidden" id="Id" name="Id" value="">

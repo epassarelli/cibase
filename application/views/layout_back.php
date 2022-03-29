@@ -189,7 +189,7 @@
               </a>
               <ul class="treeview-menu" style="display: none;">
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/secciones');?>">
+                    <a href="<?php echo site_url('mipanel/paginas');?>">
                         <i class="fa fa-fw fa-check"></i> <span>Paginas</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>

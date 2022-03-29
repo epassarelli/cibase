@@ -75,11 +75,16 @@ function listar(base,Toast) {
           $('td:eq(5)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' /> - " + data.sitio ); 
 
           if ( data.menu == "1" ) {
-            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(3)', row).html( "Si" ); 
           }else{
-            $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
-
+            $('td:eq(3)', row).html( "No" ); 
           }
+
+          // if ( data.menu == "1" ) {
+          //   $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+          // }else{
+          //   $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+          // }
 
           if ( data.estado == "1" ) {
             $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
