@@ -629,6 +629,17 @@
                     </span>
                 </a>
             </li>
+
+
+                    <li>
+                        <a href="<?php echo site_url('mipanel/publicaciones');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Publicaciones New</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
         </ul>
 
 
@@ -969,12 +980,28 @@
    $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+          "language": {                
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "NingÃºn dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": 
+                {
+                  "sFirst": "Primero",
+                  "sLast": "Ultimo",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+                }
+          }
+
         });
     });
 </script>

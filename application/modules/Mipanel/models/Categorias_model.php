@@ -38,5 +38,14 @@ public function cambioEstado($id,$estado)
     return $data['estado'];
 }
 
+  public function getCategorias($modulo_id, $sitio_id){
+    $this->db->select('categoria_id, categoria')
+              ->from('categorias')
+              ->where('modulo_id', $modulo_id)
+              ->where('sitio_id', $sitio_id);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
 }
 ?>
