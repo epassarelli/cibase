@@ -29,7 +29,7 @@
                   <th width="30">Cod</th>
                   <th>Categoria</th>
                   <th>Titulo</th>
-                  <th>Accion</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -41,8 +41,16 @@
                           <td><?php echo $pub->publicacion_id; ?></td>
                           <td><?php echo $pub->categoria; ?></td>
                           <td><?php echo $pub->titulo; ?></td>
-                          <td>
-                            <a href="<?php echo site_url('mipanel/publicaciones/editar/'.$pub->publicacion_id); ?>" class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a>
+                          <td width="150" align="right">
+                            <a href="javascript:void(0);" data-id="<?php echo $pub->publicacion_id; ?>" class="cambiarEstado btn btn-xs" title="Cambiar estado">
+                              <?php echo ($pub->estado == 1) ? '<i class="fa fa-toggle-on fa-2x text-green"></i>' : '<i class="fa fa-toggle-on fa-2x text-green"></i>'; ?>                                            
+                            </a>
+                            <a href="<?php echo site_url('mipanel/publicaciones/editar/'.$pub->publicacion_id); ?>" class="editar btn btn-xs" title="Editar">
+                              <i class="fa fa-pencil fa-2x text-yellow"></i>
+                            </a>
+                            <a href="javascript:void(0);" data-id="<?php echo $pub->publicacion_id; ?>" class="eliminar btn btn-xs" title="Eliminar">
+                              <i class="fa fa-trash fa-2x text-red"></i>
+                            </a>
                           </td>
 
                         </tr>

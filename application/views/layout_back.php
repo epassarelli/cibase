@@ -114,10 +114,6 @@
 
 
 
-
-
-
-
 <ul class="sidebar-menu">
     <li class="header">Administracion</li>
         
@@ -218,9 +214,6 @@
 
 
 
-
-
-
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-gear"></i> <span>Productos</span>
@@ -295,7 +288,7 @@
                 </li>                
 
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
+                    <a href="<?php echo site_url('mipanel/publicaciones');?>">
                         <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>
@@ -319,34 +312,11 @@
 
         <?php else: ?>
 
-            <?php switch ($this->config->item('sitio_id')) {
-                case 1: ?>
-
-<!--                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li> -->
+            <?php 
+            
+            switch ($this->config->item('sitio_id')) {
+                case 1: 
+                ?>
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">
@@ -361,41 +331,10 @@
                     break;
 
 
-
-
                 case 2: 
 
 
-
-
                 ?>
-<!-- 
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">
@@ -411,35 +350,6 @@
 
                 case 3: 
                 ?>
-
-                    <!--                     
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li> 
-                    -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
@@ -499,45 +409,13 @@
                     <?php
                     break;
 
-
-
-
                 case 4: 
-
-
 
 
                 ?>
 
-<!--                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li> -->
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/publicaciones');?>">
+                        <a href="<?php echo site_url('mipanel/publicaciones');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Publicaciones</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -554,48 +432,13 @@
                         </a>
                     </li>
 
-                    <?php
+                <?php
                     break;
-
-
-
 
 
                 case 5: 
 
-
-
-
-
-
                 ?>
-
-<!--                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/secciones');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Secciones</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/bloques');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Bloques</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/componentes');?>">
-                            <i class="fa fa-fw fa-industry"></i> <span>Componentes</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li> -->
 
                     <li>
                         <a href="<?php echo site_url('mipanel/admin/contactos');?>">
@@ -618,9 +461,6 @@
         
         <?php endif; ?>
 
-
-
-
             <li>
                 <a href="<?php echo site_url('login/logout');?>">
                     <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
@@ -629,16 +469,6 @@
                     </span>
                 </a>
             </li>
-
-
-                    <li>
-                        <a href="<?php echo site_url('mipanel/publicaciones');?>">
-                            <i class="fa fa-fw fa-check"></i> <span>Publicaciones New</span>
-                            <span class="pull-right-container">
-                              <small class="label pull-right bg-green"></small>
-                            </span>
-                        </a>
-                    </li>
 
         </ul>
 
@@ -1008,7 +838,24 @@
 
    
     <input type="hidden" id="url" value="<?php echo base_url();?>">
+    <!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
+    <?php if(isset($files_js)){
+      foreach ($files_js as $file_js) {
+        # code...
+        echo "<script src='".site_url("assets/themes/adminlte/js/$file_js")."'></script>"; 
+      }
+    } 
+    ?>
     
+    
+    
+    <?php 
+    if(isset($js_files)){ 
+        foreach($js_files as $file): ?>
+            <script src="<?php echo $file; ?>"></script> 
+    <?php endforeach; 
+    }
+    ?>    
     <script>
 			 $(document).ready(function () {
 			 		UrlBase = $('#url').val();
@@ -1027,24 +874,7 @@
 
 
 
-    <!-- CONDICIONAL PARA CARGAR LOS SCRIPT DESDE EL CONTROLLER -->
-    <?php if(isset($files_js)){
-      foreach ($files_js as $file_js) {
-        # code...
-        echo "<script src='".site_url("assets/themes/adminlte/js/$file_js")."'></script>"; 
-      }
-    } 
-    ?>
-    
-    
-    
-    <?php 
-    if(isset($js_files)){ 
-        foreach($js_files as $file): ?>
-            <script src="<?php echo $file; ?>"></script> 
-    <?php endforeach; 
-    }
-    ?>
+
 
 </body>
 </html>

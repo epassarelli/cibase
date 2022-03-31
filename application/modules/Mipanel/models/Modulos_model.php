@@ -1,17 +1,20 @@
 <?php
 
-class Idiomas_model extends My_Model{
+class Modulos_model extends MY_Model{
   
     public function __construct() {
         parent::__construct();
     }  
 
+
     public function get_AllBackend(){
-        $this->db->from('idiomas');
+        $this->db->from('modulos');
 
         $query=$this->db->get();
         return $query->result();
     }
 
+
+
+
 }
-?>

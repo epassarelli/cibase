@@ -9,7 +9,7 @@ class Publicaciones_model extends MY_Model{
 
 
     public function get_AllBackend(){
-        $this->db->select('c.categoria, p.publicacion_id, p.titulo');
+        $this->db->select('c.categoria, p.publicacion_id, p.titulo, p.estado');
         $this->db->from('publicaciones p');
         $this->db->join('categorias c', 'c.categoria_id = p.categoria_id'); 
         $query=$this->db->get();

@@ -21,22 +21,52 @@
                 <div class="box-body">
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalPaginas"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                        <a type="button" href="<?php echo site_url('mipanel/paginas/insertar'); ?>" class="btn btn-primary margin insertar"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </a>
                     </p>
-                    <table id="paginasAbm" class="table table-bordered">
+                    <table id="example2" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th width="30">Cod</th>                               
                                 <th>Titulo</th>
                                 <th>Slug</th>
-                                <th width="30">En menu?</th>
-                                <th width="30">Idioma</th>
-                                <th>Sitio</th>
-                                <th width="30">Pubicada?</th>                                
-                                <th>Action</th>
+                                <th>¿En menu?</th>
+                                <th>Orden</th>
+                                <th>Idioma</th>
+                                <th>Módulo</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            <?php
+                            if(!empty($paginas)){
+                                foreach ($paginas as $p) {
+                                    ?>
+                                    <tr>
+                                    <td><?php echo $p->seccion_id; ?></td>
+                                    <td><?php echo $p->titulo; ?></td>
+                                    <td><?php echo $p->slug; ?></td>
+                                    <td><?php echo ($p->menu ==1) ? 'Si' : 'No'; ?></td>
+                                    <td><?php echo $p->orden; ?></td>
+                                    <td><?php echo $p->idioma; ?></td>
+                                    <td><?php echo $p->modulo; ?></td>
+                                    <td width="150" align="right">
+                                        <a href="javascript:void(0);" data-id="<?php echo $p->seccion_id; ?>" class="cambiarEstado btn btn-xs" title="Cambiar estado">
+                                            <?php echo ($p->estado == 1) ? '<i class="fa fa-toggle-on fa-2x text-green"></i>' : '<i class="fa fa-toggle-on fa-2x text-green"></i>'; ?>                                            
+                                        </a>
+                                        <a href="<?php echo site_url('mipanel/paginas/editar/'.$p->seccion_id); ?>" class="editar btn btn-xs" title="Editar">
+                                            <i class="fa fa-pencil fa-2x text-yellow"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" data-id="<?php echo $p->seccion_id; ?>" class="eliminar btn btn-xs" title="Eliminar">
+                                            <i class="fa fa-trash fa-2x text-red"></i>
+                                        </a>
+                                    </td>
+            
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
                     </table>
 
                 </div>

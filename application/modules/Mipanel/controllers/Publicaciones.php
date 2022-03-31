@@ -193,9 +193,9 @@ class Publicaciones extends MX_Controller {
           $this->deleteFile($this->input->post('PublicacionOriginal'));
         }
 
-        var_dump($this->input->post());die();
+        // var_dump($this->input->post());die();
         //  redireccionar a la vista de ABM (Listado)
-        //redirect('mipanel/publicaciones');
+        redirect('mipanel/publicaciones');
       }
   }
 

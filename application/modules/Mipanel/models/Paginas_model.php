@@ -1,24 +1,38 @@
 <?php
 
-class Paginas_model extends CI_Model{
+class Paginas_model extends MY_Model{
   
     public function __construct() {
         parent::__construct();
+        $this->table = 'secciones';
     }  
 
 
     public function get_AllBackend(){
+        $this->db->select('se.seccion_id, se.titulo, se.slug, se.menu, se.orden, m.modulo, i.idioma, se.estado');
         $this->db->from('secciones se');
         $this->db->join('sitios si', 'si.sitio_id = se.sitio_id'); 
         $this->db->join('idiomas i', 'se.idioma_id = i.idioma_id'); 
+        $this->db->join('modulos m', 'm.modulo_id = se.modulo_id'); 
+        $this->db->where('si.sitio_id',$this->config->item('sitio_id'));
         $query=$this->db->get();
         return $query->result();
     }
 
 
+    public function get($id)
+    {
+        $this->db->from('secciones');
+        $this->db->where('seccion_id',$id);
+        $query = $this->db->get();
+        return $query->row();     
+    }
 
-
-
+    function actualizar($data, $id) {
+        $this->db->where('seccion_id', $id);
+        $this->db->update($this->table, $data);
+        return TRUE;
+      }
 
 
 
