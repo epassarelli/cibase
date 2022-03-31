@@ -186,8 +186,7 @@ $(document).ready(function () {
 
             var MyRow = e.closest('tr')[0].rowIndex-1;
             
-            
-            
+                     
             // Ejecutamos la accion y la enviamos al servidor 
             $.ajax({
                 url: UrlBase+'productos/carrito/agregarCarrito',
@@ -200,10 +199,11 @@ $(document).ready(function () {
 
                         document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
 
-                        parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
+                        parcial = parseFloat(
+                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
                         if (isNaN(parcial)) {parcial= 0;}
                         parcial = parcial + unidadvta;
-                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
+                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
 
 
 
@@ -251,10 +251,10 @@ $(document).ready(function () {
                         if (response.totallastitem > unidadvta) {
                             document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
 
-                            parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
+                            parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
                             if (isNaN(parcial)) {parcial= 0;}
                             parcial = parcial - unidadvta;
-                            document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[4].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
+                            document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value=parcial;
     
                             calculaPie();
                             Toast.fire({type: 'success',
