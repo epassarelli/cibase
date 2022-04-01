@@ -4,6 +4,7 @@ class Componentes_model extends CI_Model{
   
     public function __construct() {
         parent::__construct();
+        $this->table = 'componentes';
     }  
 
 
@@ -25,5 +26,10 @@ class Componentes_model extends CI_Model{
         return $query->result();
     }
 
+    function actualizar($data, $id) {
+        $this->db->where('componente_id', $id);
+        $this->db->update($this->table, $data);
+        return TRUE;
+      }
 
 }

@@ -32,10 +32,15 @@ class Publicaciones extends MX_Controller {
   public function index(){      
     $data['files_css']  = array('animate.css','sweetalert2.min.css');
     $data['files_js']   = array('publicaciones.js?v='.rand(),'sweetalert2.min.js');  
-    $data['publicaciones'] = $this->Publicaciones_model->get_AllBackend();
+    //$data['publicaciones'] = $this->Publicaciones_model->get_AllBackend();
     $this->template->load('layout_back', 'publicaciones_abm_view', $data);  
   }
 
+  // Datos del ABM
+  public function getPublicaciones(){
+    $data['data'] = $this->Publicaciones_model->get_AllBackend();    
+    echo json_encode($data);
+  }
 
   // Listado del ABM de slider 
   public function insertar(){
@@ -237,6 +242,29 @@ class Publicaciones extends MX_Controller {
       }
   }   
 
+
+  // Eliminación fisica
+  public function eliminar(){
+    
+    $id = $this->input->post('Id');
+      
+    if($this->Publicaciones_model->eliminar($id)){
+      echo json_encode(array('status' => true, 'message' => 'Publicación eliminada con exito'));
+    }   
+    else // Mando un alert de No se puede eliminar
+      { 
+        echo json_encode(array('status' => false, 'message' => 'No se puede eliminar la publicación'));
+      }
+  }
+
+
+  public function cambiarEstado(){
+    
+    $data['estado'] = ($this->input->post('Estado') == 1) ? '0' : '1';
+    $id = $this->input->post('Id');
+    $this->Publicaciones_model->actualizar($data, $id);
+    echo json_encode(array('status' => TRUE,'estado' => $data['estado']));
+  }
 
 
 }

@@ -3,12 +3,12 @@ $(document).ready(function () {
   // Url Dinamico
     UrlBase = $('#url').val();
 
-//Configuramos las alerts
+  // Configuramos las alerts
   const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
     });
 
 
@@ -16,20 +16,20 @@ $(document).ready(function () {
     listar(UrlBase,Toast);
 
   // Reseteamos el form y asignamos el valor de la opcion
-    $(".insertar").click(function() {
-      $('.titulo').html('Insertar');   // Titulo del form   
-      $("#formPaginas").trigger("reset"); // Reseteams el form
-      $("#Opcion").val("insertar"); // Asignamos la accion
-      $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
-      $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
-      $('#ocultaFile').show() // Mostramos el input file
-      $('#ocultaFile1').show() // Mostramos el input file
-      $('#ocultaFile2').show() // Mostramos el input file
-      $('#Logo').val(null) // Reiniciamos el valor del file para validacion
-      $('#Icon').val(null) // Reiniciamos el valor del file para validacion
-      $('#Qr').val(null) // Reiniciamos el valor del file para validacion
-      $('#Landing').val(0) // Reiniciamos el valor del file para validacion
-    });
+  $(".insertar").click(function() {
+    $('.titulo').html('Insertar');   // Titulo del form   
+    $("#formPaginas").trigger("reset"); // Reseteams el form
+    $("#Opcion").val("insertar"); // Asignamos la accion
+    $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
+    $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
+    $('#ocultaFile').show() // Mostramos el input file
+    $('#ocultaFile1').show() // Mostramos el input file
+    $('#ocultaFile2').show() // Mostramos el input file
+    $('#Logo').val(null) // Reiniciamos el valor del file para validacion
+    $('#Icon').val(null) // Reiniciamos el valor del file para validacion
+    $('#Qr').val(null) // Reiniciamos el valor del file para validacion
+    $('#Landing').val(0) // Reiniciamos el valor del file para validacion
+  });
 
 });
 
@@ -57,8 +57,10 @@ $('#llave_landing').click(function()  {
 
 
 /////////////////////////////////////////////
-///////////Funciones de la tabla////////////
-////////////////////////////////////////////
+////////// Funciones de la tabla ////////////
+/////////////////////////////////////////////
+
+// var datos = table.row($(this).parents("tr")).data();
 
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
@@ -71,7 +73,8 @@ function listar(base,Toast) {
             type: "jsonp"
         },
         rowCallback : function( row, data ) {
-          // //console.log(data.estado)
+          //console.log(data);
+          //console.log(data.estado)
           // $('td:eq(1)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' />"); 
 
           // if ( data.menu == "1" ) {
@@ -81,13 +84,14 @@ function listar(base,Toast) {
           // }
 
           if ( data.estado == "1" ) {
-            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
           }else{
-            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='activo'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
-
+            $('td:eq(6)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
           }
           
-          // //alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
+          $('td:eq(7)', row).html( "<div class='text-center'><a href='" + UrlBase + "mipanel/componentes/editar/" + data.componente_id + "' class='activo'><i class='fa fa-pencil fa-2x text-yellow'></a></div>" ); 
+
+          // alert("<img src='" + base + "assets/uploads/"+ data.sitio_id +"/"+data.logo + "' class='rounded mx-auto d-block' />")  
           // $('td:eq(6)', row).html("<img src='" + base + "assets/images/banderas/" + data.flag + "'width='24' height='16' />"); 
           
         },
@@ -100,17 +104,17 @@ function listar(base,Toast) {
             { data: "sitio_id"},
             { data: "estado"},
             {
-                defaultContent:
-                    "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
+              defaultContent:
+                "<div class='text-center'><a href='" + url + "/editar/' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
             }
         ],
         language: espanol
     });
 
     submit(table,Toast) //Accion de Insertar o Editar
-    // Edit("#paginasAbm tbody", table); //Tomar datos para la Edicion
-    // deleteSitios("#paginasAbm tbody", table); //Eliminar un slide
-    // cambioEstado("#paginasAbm tbody", table,Toast); //Cambiar estado
+    // Edit("#componentesAbm tbody", table); //Tomar datos para la Edicion
+    // deleteSitios("#componentesAbm tbody", table); //Eliminar un slide
+    cambiarEstado("#componentesAbm tbody", table, Toast); //Cambiar estado
 
  }
 
@@ -198,7 +202,6 @@ function submit(table,Toast) {
   });//submit
 
 }//funcion
-
 
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
@@ -355,21 +358,25 @@ function submit(table,Toast) {
   }//funcion
 
 //Funcion para cambiar estado
- function cambioEstado(body,table,Toast) { 
+ function cambiarEstado(body,table,Toast) { 
     // Mostrar un alert con el dato de la row
-    $(body).on("click", "a.activo", function () {
-      var me = $(this);
+    $(body).on("click", "a.cambiarEstado", function () {
+      //var me = $(this);
       var datos = table.row($(this).parents("tr")).data();
-         // Ejecutamos la accion y la enviamos al servidor 
+      
+      //console.log(me);
+      //console.log(datos);
+
+      // Ejecutamos la accion y la enviamos al servidor 
          $.ajax({
           type: "POST",
-          url: UrlBase+'mipanel/sitios/cambioEstado',
-          data: { Estado: datos.activo, Id: datos.sitio_id },
+          url: UrlBase+'mipanel/componentes/cambiarEstado',
+          data: { Estado: datos.estado, Id: datos.componente_id },
           dataType: "json",
           success: function (response) {
             if (response.success == true) {
                
-              if(response.activo == "1"){
+              if(response.estado == "1"){
                 // alert('Activo');
                 Toast.fire({
                   type: 'success',

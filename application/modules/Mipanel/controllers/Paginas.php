@@ -113,7 +113,33 @@ class Paginas  extends MX_Controller {
 }
 
 
+  // Baja Logica de una Rendicion y Devuelve un JSON de status
+  public function eliminar(){
+    $id = $this->input->post('id');
 
+    $rendicion = $this->Rendiciones_model->getRendicion($id);
+    //var_dump($rendicion);
+
+    // Si no está aprobado o rechazado lo elimino
+    if($rendicion->aprobada !== 1){
+      
+      $rend['usuarioModifico']  = $this->ion_auth->get_user_id();
+      $rend['fechaModifico']    = date('Y-m-d H:i:s', time());
+      $rend['usuarioElimino']   = $this->ion_auth->get_user_id();
+      $rend['fechaElimino']     = date('Y-m-d H:i:s', time());
+      $rend['activo']           = FALSE;
+      
+      $this->Rendiciones_model->actualizar($rend, $id);
+
+      echo json_encode(array('status' => true, 'message' => 'Rendicion eliminada con exito'));
+    }
+    // Mando un alert de No se puede eliminar
+    else{ 
+
+      echo json_encode(array('status' => false, 'message' => 'No se puede eliminar porque esta Aprobada'));
+
+    }
+  }
 
 
 

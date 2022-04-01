@@ -23,42 +23,19 @@
           <p>
               <a class="btn btn-primary margin insertar" href="<?php echo site_url('mipanel/publicaciones/insertar') ?>"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </a>
           </p>
-          <table id="example2" class="table table-bordered">
+          <table id="publicacionesAbm" class="table table-bordered">
               <thead>
                 <tr>
                   <th width="30">Cod</th>
                   <th>Categoria</th>
                   <th>Titulo</th>
                   <th></th>
+                  <th></th>
+                  <th></th>
+
                 </tr>
               </thead>
-              <tbody>
-                <?php 
-                  if(!empty($publicaciones)):
-                    foreach ($publicaciones as $pub) {
-                      ?>
-                        <tr>
-                          <td><?php echo $pub->publicacion_id; ?></td>
-                          <td><?php echo $pub->categoria; ?></td>
-                          <td><?php echo $pub->titulo; ?></td>
-                          <td width="150" align="right">
-                            <a href="javascript:void(0);" data-id="<?php echo $pub->publicacion_id; ?>" class="cambiarEstado btn btn-xs" title="Cambiar estado">
-                              <?php echo ($pub->estado == 1) ? '<i class="fa fa-toggle-on fa-2x text-green"></i>' : '<i class="fa fa-toggle-on fa-2x text-green"></i>'; ?>                                            
-                            </a>
-                            <a href="<?php echo site_url('mipanel/publicaciones/editar/'.$pub->publicacion_id); ?>" class="editar btn btn-xs" title="Editar">
-                              <i class="fa fa-pencil fa-2x text-yellow"></i>
-                            </a>
-                            <a href="javascript:void(0);" data-id="<?php echo $pub->publicacion_id; ?>" class="eliminar btn btn-xs" title="Eliminar">
-                              <i class="fa fa-trash fa-2x text-red"></i>
-                            </a>
-                          </td>
-
-                        </tr>
-                      <?php
-                    }
-                  endif;
-                ?>
-              </tbody>
+              <tbody></tbody>
           </table>
 
         </div>
@@ -71,3 +48,31 @@
   <!-- /.row -->
 </section>
 <!-- /.content -->
+
+
+
+<?php 
+//if(empty($publicaciones)):
+  //foreach ($publicaciones as $pub) {
+    ?>
+      <!-- <tr>
+        <td><?php //echo $pub->publicacion_id; ?></td>
+        <td><?php //echo $pub->categoria; ?></td>
+        <td><?php //echo $pub->titulo; ?></td>
+        <td width="150" align="right">
+          <a href="javascript:void(0);" data-id="<?php //echo $pub->publicacion_id; ?>" class="cambiarEstado btn btn-xs" title="Cambiar estado">
+            <?php //echo ($pub->estado == 1) ? '<i class="fa fa-toggle-on fa-2x text-green"></i>' : '<i class="fa fa-toggle-on fa-2x text-green"></i>'; ?>                                            
+          </a>
+          <a href="<?php //echo site_url('mipanel/publicaciones/editar/'.$pub->publicacion_id); ?>" class="editar btn btn-xs" title="Editar">
+            <i class="fa fa-pencil fa-2x text-yellow"></i>
+          </a>
+          <a href="javascript:void(0);" data-id="<?php //echo $pub->publicacion_id; ?>" class="eliminarPub btn btn-xs" title="Eliminar">
+            <i class="fa fa-trash fa-2x text-red"></i>
+          </a>
+        </td>
+
+      </tr> -->
+    <?php
+  //}
+//endif;
+?>

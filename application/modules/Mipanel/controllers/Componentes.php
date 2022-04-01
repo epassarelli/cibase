@@ -36,13 +36,19 @@ class Componentes  extends MX_Controller {
   }
 
   // Datos del ABM
-  public function getComponentes()
-  {
-    $data['data'] = $this->Componentes_model->get_AllBackend();
-    
+  public function getComponentes(){
+    $data['data'] = $this->Componentes_model->get_AllBackend();    
     echo json_encode($data);
   }
 
+
+  public function cambiarEstado(){
+    
+    $data['estado'] = ($this->input->post('Estado') == 1) ? '0' : '1';
+    $id = $this->input->post('Id');
+    $this->Componentes_model->actualizar($data, $id);
+    echo json_encode(array('success' => TRUE,'estado' => $data['estado']));
+  }
 
 
 }
