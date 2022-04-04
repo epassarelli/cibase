@@ -29,9 +29,19 @@ class Paginas  extends MX_Controller {
   public function index(){      
     $data['files_css'] = array('animate.css','sweetalert2.min.css');
     $data['files_js'] = array('paginas.js?v='.rand(),'sweetalert2.min.js');
-    $data['paginas'] = $this->Paginas_model->get_AllBackend(); 
+    // $data['paginas'] = $this->Paginas_model->get_AllBackend(); 
     $this->template->load('layout_back', 'paginas_abm_view', $data);  
   }
+
+
+
+// Datos del ABM
+  public function getPaginas(){
+    $data['data'] = $this->Paginas_model->get_AllBackend();    
+    echo json_encode($data);
+  }
+
+
 
    // Metodo de agregar nuevo /a 
    public function insertar(){ 
@@ -113,36 +123,37 @@ class Paginas  extends MX_Controller {
 }
 
 
-  // Baja Logica de una Rendicion y Devuelve un JSON de status
+  // Elimina o no una página y Devuelve un JSON de status y mensaje
   public function eliminar(){
     $id = $this->input->post('id');
 
-    $rendicion = $this->Rendiciones_model->getRendicion($id);
+    $bloques = $this->Bloques_model->getPorPagina($id);
     //var_dump($rendicion);
 
-    // Si no está aprobado o rechazado lo elimino
-    if($rendicion->aprobada !== 1){
-      
-      $rend['usuarioModifico']  = $this->ion_auth->get_user_id();
-      $rend['fechaModifico']    = date('Y-m-d H:i:s', time());
-      $rend['usuarioElimino']   = $this->ion_auth->get_user_id();
-      $rend['fechaElimino']     = date('Y-m-d H:i:s', time());
-      $rend['activo']           = FALSE;
-      
-      $this->Rendiciones_model->actualizar($rend, $id);
-
-      echo json_encode(array('status' => true, 'message' => 'Rendicion eliminada con exito'));
-    }
-    // Mando un alert de No se puede eliminar
-    else{ 
-
-      echo json_encode(array('status' => false, 'message' => 'No se puede eliminar porque esta Aprobada'));
+    // Si no tiene bloques asociados la elimino
+    if(count($bloques) == 0 ){
+            
+      if($this->Paginas_model->eliminar($id)){
+        echo json_encode(array('status' => true, 'message' => 'Pagina eliminada con exito'));       
+      }else{
+        echo json_encode(array('status' => false, 'message' => 'Ha ocurrido un error al eliminar la página'));       
+      }
+    }else{ 
+      // Mando un alert de No se puede eliminar    
+      echo json_encode(array('status' => false, 'message' => 'No se puede eliminar la página por tener bloques asociados'));
 
     }
   }
 
 
 
+  public function cambiarEstado(){
+    
+    $data['estado'] = ($this->input->post('Estado') == 1) ? '0' : '1';
+    $id = $this->input->post('Id');
+    $this->Paginas_model->actualizar($data, $id);
+    echo json_encode(array('status' => TRUE,'estado' => $data['estado']));
+  }
 
 
 }

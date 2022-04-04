@@ -19,6 +19,13 @@ class Paginas_model extends MY_Model{
         return $query->result();
     }
 
+    public function getPaginas(){
+        $this->db->from('secciones');
+        $this->db->where('sitio_id',$this->config->item('sitio_id'));
+        $query = $this->db->get();
+        return $query->result();     
+    }
+
 
     public function get($id)
     {

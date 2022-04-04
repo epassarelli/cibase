@@ -194,7 +194,7 @@
                 </li>
                 
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/bloques');?>">
+                    <a href="<?php echo site_url('mipanel/bloques');?>">
                         <i class="fa fa-fw fa-check"></i> <span>Bloques de paginas</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>
@@ -202,7 +202,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/componentes');?>">
+                    <a href="<?php echo site_url('mipanel/componentes');?>">
                         <i class="fa fa-fw fa-check"></i> <span>Componentes de bloques</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>
