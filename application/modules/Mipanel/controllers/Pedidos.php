@@ -12,7 +12,7 @@ class Pedidos  extends MX_Controller {
 
     $this->load->model('../models/Pedidos_model');
     
-    
+   
     switch (ENVIRONMENT){
       case 'development':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
@@ -25,7 +25,8 @@ class Pedidos  extends MX_Controller {
           break;
       }    
 
-  }
+  
+    }
 
   // Listado del ABM de slider 
   public function index(){      
@@ -150,6 +151,42 @@ public function accion()
     $this->Pedidos_model->deletePedidos($id);
     echo json_encode(array('success' => TRUE));
   }
+
+
+  
+ public function verpedido($id)
+ {
+
+  $pedidos['pedido_id'] = 56; //$id;
+  $data['pedido'] = $this->Pedidos_model->getPedido($id);
+
+    
+ $vista ='mipanel/pedido_pdf_view';
+
+$this->load->view($vista, $data); 
+
+ /*
+ // instantiate and use the dompdf class
+ $dompdf = new Dompdf\Dompdf();
+ 
+ $html = $this->load->view($vista,$data,true);
+ 
+ $dompdf->loadHtml($html);
+ 
+ // (Optional) Setup the paper size and orientation
+ $dompdf->setPaper('A4', 'portrait');
+ 
+ // Render the HTML as PDF
+ $dompdf->render();
+ 
+ // Get the generated PDF file contents
+ $pdf = $dompdf->output();
+ 
+ // Output the generated PDF to Browser
+ $dompdf->stream();
+*/
+
+}
 
 
 }

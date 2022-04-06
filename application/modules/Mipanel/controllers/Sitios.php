@@ -26,6 +26,8 @@ class Sitios  extends MX_Controller {
 
   }
 
+
+
   // Listado del ABM de slider 
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');

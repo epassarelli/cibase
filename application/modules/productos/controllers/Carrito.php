@@ -335,7 +335,9 @@ class Carrito extends MX_Controller {
 
   
   public function checkout_validation()  {
-       $data['title'] = 'Carrito';
+  
+    
+    $data['title'] = 'Carrito';
    $this->form_validation->set_rules('entrega_id','Entrega',array('greater_than[0]'),
        array('greater_than'   => 'Debe ingresar una forma de envio'));
 
