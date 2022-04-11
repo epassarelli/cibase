@@ -3,6 +3,7 @@ $(document).ready(function () {
   // Url Dinamico
     UrlBase = $('#url').val();
 
+
 //Configuramos las alerts
   const Toast = Swal.mixin({
       toast: true,
@@ -172,6 +173,12 @@ function submit(table,Toast) {
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
  function Edit(body, table) {
+  
+  
+     // Variable del fomr
+     var provincia = '';
+     var localidad = '';
+
    //Tomando desde el boton de edicion
 		$(body).on("click", "a.editar", function() {
       //Guardamos los datos que tomamos del datatable
@@ -185,8 +192,6 @@ function submit(table,Toast) {
       $("#Opcion").val("editar");
       //hay que ir a buscar el registro a la tabla porque en el datatable
       //no tenemos todos los campos 
-     
-    
                 
      
       $.ajax({
@@ -204,39 +209,57 @@ function submit(table,Toast) {
             $("#del_nro").val(response['data'][0].nro.trim())
             $("#del_piso").val(response['data'][0].piso)
             $("#del_dpto").val(response['data'][0].dpto)
-            $("#provincia").val(response['data'][0].provincia_id)
             $("#localidad").val(response['data'][0].localidad_id)
             $("#telefono").val(response['data'][0].telefono)
             $("#email").val(response['data'][0].email)
             
             provincia = response['data'][0].provincia_id
-            console.log('provincia',provincia)
-            
+            localidad = response['data'][0].localidad_id
+    
             $.ajax({
               type: "POST",
               url: UrlBase+'mipanel/provincias/getProvinciasJson',
               data: {},
               dataType: "json",
               success: function (response2) {
-                console.log('armo provincias')
+               
                 var $select = $('#provincia');
                 $.each(response2.data, function(id, prov) {
-                  if (provincia==response['data'][0].provincia_id){
+                  if (prov.id==provincia){
                       $select.append('<option value=' + prov.id + ' selected>' + prov.nombre + '</option>');
                     }else{
                       $select.append('<option value=' + prov.id + '>' + prov.nombre + '</option>');
                   }  
                 });
+
+
+                $.ajax({
+                  type: "POST",
+                  url: UrlBase+'mipanel/localidades/getLocalidadesJson',
+                  data: {provincia: provincia},
+                  dataType: "json",
+                  success: function (response3) {
                 
+                    var $select2 = $('#localidad');
+                    $.each(response3, function(id, loc) {
+                      if (loc.id==localidad){
+                          $select2.append('<option value=' + loc.id + ' selected>' + loc.nombre + '</option>');
+                        }else{
+                          $select2.append('<option value=' + loc.id + '>' + loc.nombre + '</option>');
+                      }  
+                    });
+                  },//success
+                  });//ajax  
+
+
+                  
+
 
 
               },//success
               });//ajax  
-      
-              //$("#provincia").val(response['data'][0].provincia_id)
-              //$("#localidad").val(response['data'][0].localidad_id)
-  
-             
+            
+
           },//success
             error: function(xhr, textStatus, error){
             console.log(xhr.statusText);
@@ -246,7 +269,7 @@ function submit(table,Toast) {
       });//ajax  
 
       //console.log(datos);
-
+   
  
         
     
