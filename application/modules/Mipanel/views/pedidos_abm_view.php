@@ -57,55 +57,121 @@
 <!-- --------------------- -->
 
 <div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Pedidos</h4>
             </div>
             <div class="modal-body">
-            <div id="sent" class="col-3"></div>
+            <div id="sent" class="col-3" ></div>
                 <form action="<?php echo base_url('mipanel/pedidos/accion');?>" id="formPedidos" method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                     <input type="hidden" id="Opcion" name="Opcion" value="">
-                    <input type="hidden" id="id" name="id" value="">
-               
-                    <div class="form-group has-feedback">
-                        <label for="descripcion" class="control-label">Descripcion</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                   
-                    <div class="form-group has-feedback">
-                        <label for="detalle" class="control-label">Detalle</label>
-                        <input type="text" class="form-control" id="detalle" name="detalle" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
+                        <div class="row col-lg-12">
+                            <div class="col-md-2 col-sm-12">
+                                    <div class="form-group has-feedback">
+                                        <label for="id" class="control-label">Id</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="" readonly>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                    <div class="form-group has-feedback">
+                                        <label for="fecha" class="control-label">Fecha</label>
+                                        <input type="text" class="form-control" id="fecha" name="fecha" value="" readonly>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group has-feedback">
-                        <label for="default" class="control-label">Valor Default</label>
-                        <input type="text" class="form-control" id="default" name="default" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
 
-                    <div class="form-group has-feedback">
-                        <label for="relacionados" class="control-label">Relacionados</label>
-                        <input type="text" class="form-control" id="relacionados" name="relacionados" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
 
-                    <div class="form-group has-feedback">
-                        <label for="valor" class="control-label">Valor Sitio</label>
-                        <input type="text" class="form-control" id="valor" name="valor" value="">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                                <div class="form-group has-feedback">
+                                    <label for="apellido" class="control-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="nombre" class="control-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">                                                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="del_calle" class="control-label">Calle</label>
+                                    <input type="text" class="form-control" id="del_calle" name="del_calle" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>        
+                        <div class="col-md-2 col-sm-12">                                                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="del_nro" class="control-label">Numero</label>
+                                    <input type="text" class="form-control" id="del_nro" name="del_nro" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">                                                                
+                                <div class="form-group has-feedback">
+                                    <label for="del_piso" class="control-label">Piso</label>
+                                    <input type="text" class="form-control" id="del_piso" name="del_piso" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">                                                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="del_dpto" class="control-label">Dpto.</label>
+                                    <input type="text" class="form-control" id="del_dpto" name="del_dpto" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>                                                                                        
 
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary titulo"></button>
-            </div>
+                       <div class="col-md-6 col-sm-12">                                                                                        
+                            <div class="form-group has-feedback">
+                                    <label class="form-group has-feedbak id="lblprovincia">Provincia</label>
+                                    <select class="form-control" id="provincia" name="provincia" >
+                                    <?php   echo  "<option value=0>Seleccione una Provincia</option>"; ?> 
+                                    </select>               
+                                    <?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
+                                </div>
+                        </div>     
+                        
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group has-feedback">   
+                                <label class="form-group has-feedbak" id="lbllocalidad">Localidad</label>
+                                <select class="form-control" id="localidad" name="localidad">
+                                    <?php  echo  "<option value=0>Seleccione una Localidad</option>"; ?> 
+                                </select>
+                                <?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
+                            </div>
+                        </div>     
+
+
+
+                        <div class="col-md-6 col-sm-12">                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="telefono" class="control-label">Telefono</label>
+                                    <input type="text" class="form-control" id="telefono" name="telefono" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>                      
+                        <div class="col-md-6 col-sm-12">                                                        
+                                <div class="form-group has-feedback">
+                                    <label for="email" class="control-label">E-mail</label>
+                                    <input type="text" class="form-control" id="email" name="email" value="">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>                                
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary titulo"></button>
+                        </div>
                 </form>
         </div>
     </div>

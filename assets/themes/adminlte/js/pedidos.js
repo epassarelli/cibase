@@ -92,7 +92,7 @@ function listar(base,Toast) {
 
     submit(table,Toast) //Accion de Insertar o Editar
     Edit("#pedidosAbm tbody", table); //Tomar datos para la Edicion
-    deleteParametros("#pedidosAbm tbody", table); //Eliminar un slide
+    //deleteParametros("#pedidosAbm tbody", table); //Eliminar un slide
         
  }
 
@@ -186,34 +186,57 @@ function submit(table,Toast) {
       //hay que ir a buscar el registro a la tabla porque en el datatable
       //no tenemos todos los campos 
      
-     
-                 //// obtener valor asignado
-                 $("#valor").val('')
-                 $.ajax({
-                  type: "POST",
-                  url: UrlBase+'mipanel/parametros/getParametroSitio',
-                  data: { Id: datos.id},
-                  dataType: "json",
-                  success: function (response) {
-                    console.log('respuesto: ',response)
-                    $("#valor").val(response['data_sitio'].valor)
-                  },//success
-                });//ajax  
-                //// obtener valor asignado
-     
+    
+                
      
       $.ajax({
         type: "POST",
-        url: UrlBase+'mipanel/parametros/getParametroJson',
+        url: UrlBase+'mipanel/pedidos/getPedidoJson',
         data: { Id: datos.id},
         dataType: "json",
         success: function (response) {
             //Asignamos los valores de cada input para que se muestren en el form
-            $("#id").val(response['data'].id)
-            $("#descripcion").val(response['data'].descripcion)
-            $("#detalle").val(response['data'].detalle)
-            $("#default").val(response['data'].default)
-            $("#relacionados").val(response['data'].relacionados)
+            $("#id").val(response['data'][0].id)
+            $("#fecha").val(response['data'][0].fecha)
+            $("#apellido").val(response['data'][0].apellido)
+            $("#nombre").val(response['data'][0].nombre)
+            $("#del_calle").val(response['data'][0].calle)
+            $("#del_nro").val(response['data'][0].nro.trim())
+            $("#del_piso").val(response['data'][0].piso)
+            $("#del_dpto").val(response['data'][0].dpto)
+            $("#provincia").val(response['data'][0].provincia_id)
+            $("#localidad").val(response['data'][0].localidad_id)
+            $("#telefono").val(response['data'][0].telefono)
+            $("#email").val(response['data'][0].email)
+            
+            provincia = response['data'][0].provincia_id
+            console.log('provincia',provincia)
+            
+            $.ajax({
+              type: "POST",
+              url: UrlBase+'mipanel/provincias/getProvinciasJson',
+              data: {},
+              dataType: "json",
+              success: function (response2) {
+                console.log('armo provincias')
+                var $select = $('#provincia');
+                $.each(response2.data, function(id, prov) {
+                  if (provincia==response['data'][0].provincia_id){
+                      $select.append('<option value=' + prov.id + ' selected>' + prov.nombre + '</option>');
+                    }else{
+                      $select.append('<option value=' + prov.id + '>' + prov.nombre + '</option>');
+                  }  
+                });
+                
+
+
+              },//success
+              });//ajax  
+      
+              //$("#provincia").val(response['data'][0].provincia_id)
+              //$("#localidad").val(response['data'][0].localidad_id)
+  
+             
           },//success
             error: function(xhr, textStatus, error){
             console.log(xhr.statusText);
@@ -224,10 +247,11 @@ function submit(table,Toast) {
 
       //console.log(datos);
 
-
+ 
+        
     
         //Abrimos el modal
-      $("#modalParametros").modal("show");
+      $("#modalPedidos").modal("show");
     });//click
     
 
@@ -235,7 +259,8 @@ function submit(table,Toast) {
 
 
  // Funcion para eliminar un row
- function deleteParametros(body, table) { 
+ 
+ function deletePedido(body, table) { 
     //Tomando desde el boton de edicion
 		$(body).on("click", "a.eliminar", function() {
       // Obtenemos los datos del row
@@ -265,7 +290,7 @@ function submit(table,Toast) {
           //console.log('ejecutamos');  
           $.ajax({
               type: "POST",
-              url: UrlBase+'mipanel/parametros/deleteParametro',
+              url: UrlBase+'mipanel/parametros/deletePedido',
               data: { Id: datos.id},
               dataType: "json",
               success: function (response) {
@@ -294,7 +319,7 @@ function submit(table,Toast) {
 
     });//eliminar
   }//funcion
-
+ 
 
  // Declaramos el idioma del Datatable
  let espanol = {

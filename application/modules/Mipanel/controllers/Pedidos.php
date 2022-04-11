@@ -11,6 +11,8 @@ class Pedidos  extends MX_Controller {
     }
 
     $this->load->model('../models/Pedidos_model');
+    $this->load->model('../models/Provincias_model');
+    $this->load->model('../models/Localidades_model');
     
    
     switch (ENVIRONMENT){
@@ -50,9 +52,13 @@ public function getPedidoJson()
 {
     $id = $this->input->post('Id');
     $pedidos['id'] = $id;
-    $data['data'] = $this->Pedidos_model->getOneBy('pedidos','',$pedidos,'');
+    //$data['data'] = $this->Pedidos_model->getOneBy('pedidos','',$pedidos,'');
+    $data['data'] = $this->Pedidos_model->getPedido($id);
     echo json_encode($data);
 }
+
+
+
 
 public function getPedidoSitio()
 {
@@ -63,6 +69,8 @@ public function getPedidoSitio()
     $data['data_sitio'] = $this->Pedidos_model->getOneBy('pedidos_sitios','',$pedidos,'');
     echo json_encode($data);
 }
+
+
 
 
 public function accion()

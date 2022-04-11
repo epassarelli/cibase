@@ -38,12 +38,15 @@ public function getPedido($id){
                       pedidos.env_vacio,
                       pedidos.total,
                       localidades.nombre as localidad,
-                      localidades.provincia_nombre as provincia,
                       estado_envios.nombre AS nomestado,
-                      entregas.nombre as nomentrega
+                      entregas.nombre as nomentrega,
+                      pedidos.localidad_id,
+                      pedidos.provincia_id,
+                      provincias.nombre as provincia
                       FROM pedidos_items
                       LEFT JOIN pedidos  ON pedidos.id = pedidos_items.pedido_id
                       LEFT JOIN localidades on pedidos.localidad_id = localidades.id
+                      LEFT JOIN provincias on pedidos.provincia_id = provincias.id
                       LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id 
                       LEFT JOIN productos ON pedidos_items.producto_id = productos.id
                       LEFT JOIN entregas ON pedidos.entrega_id = entregas.id
