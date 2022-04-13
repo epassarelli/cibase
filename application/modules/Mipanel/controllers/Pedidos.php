@@ -13,6 +13,9 @@ class Pedidos  extends MX_Controller {
     $this->load->model('../models/Pedidos_model');
     $this->load->model('../models/Provincias_model');
     $this->load->model('../models/Localidades_model');
+    $this->load->model('entregas/Entregas_model');
+    $this->load->model('productos/Productos_model');
+    
     
    
     switch (ENVIRONMENT){
@@ -34,9 +37,11 @@ class Pedidos  extends MX_Controller {
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
     $this->data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
-    
+    $this->data['pedidos'] = $this->Pedidos_model->getAll(); 
     $this->template->load('layout_back', 'pedidos_abm_view', $this->data);  
   }
+
+
 
   // Datos del ABM
   public function getPedidos()
@@ -55,6 +60,27 @@ public function getPedidoJson()
     //$data['data'] = $this->Pedidos_model->getOneBy('pedidos','',$pedidos,'');
     $data['data'] = $this->Pedidos_model->getPedido($id);
     echo json_encode($data);
+}
+
+
+
+public function editPedido($id)
+{
+    $data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+   
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $parametros['publicar'] = 1;
+    $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+    $data['productos'] = $productos;
+    $parametros = [];
+    $data['pedido'] = $this->Pedidos_model->getPedido($id);
+    $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
+    $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+    $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+    $data['entregas']    = $this->Entregas_model->getEntregas();
+    $this->template->load('layout_back', 'pedidos_edit_view', $data);  
+   
 }
 
 

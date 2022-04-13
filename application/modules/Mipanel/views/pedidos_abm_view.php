@@ -22,7 +22,7 @@
                 <div class="box-body">
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalPedidos"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                        <button type="button" class="btn btn-primary margin insertar" ><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
                     <table id="pedidosAbm" class="table table-bordered">
                         <thead>
@@ -38,7 +38,28 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            <?php foreach ($pedidos as $a): ?>
+                                <tr>
+                                    <td><?php echo $a->id ?></td>
+                                    <td><?php echo $a->fecha ?></td>
+                                    <td><?php echo $a->apellido ?></td>
+                                    <td><?php echo $a->nombre ?></td>
+                                    <td><?php echo $a->email ?></td>
+                                    <td><?php echo $a->telefono ?></td>
+                                    <td><?php echo $a->total ?></td>
+                                    <td><?php echo $a->nomestado ?></td>
+                                    <td>
+                                        <div class='text-center'>
+                                            <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
+                                            <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
+                                            <a href="" class='btn btn-xs'  ><i class='fa fa-clipboard fa-2x text-red'></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            <?php endforeach; ?>    
+                        </tbody>
                     </table>
 
                 </div>

@@ -40,4 +40,18 @@ class Localidades  extends MX_Controller {
   }
  
 
+  public function getLocalidades($provincia='')
+  {    
+    if ($provincia=='') {
+      $parametros='';
+    }else{
+      $parametros['provincia_id'] = $this->input->post('provincia');
+    }
+    $localidades = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre,localidades.provincia_id',$parametros,'localidades.nombre');
+    return $localidades;
+  }
+ 
+
+
+
 }

@@ -42,6 +42,7 @@ public function getPedido($id){
                       entregas.nombre as nomentrega,
                       pedidos.localidad_id,
                       pedidos.provincia_id,
+                      pedidos.entrega_id,
                       provincias.nombre as provincia
                       FROM pedidos_items
                       LEFT JOIN pedidos  ON pedidos.id = pedidos_items.pedido_id

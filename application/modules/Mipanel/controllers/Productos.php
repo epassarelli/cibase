@@ -14,6 +14,7 @@ class Productos  extends MX_Controller {
     $this->load->model('../models/Impuestos_model');
     $this->load->model('../models/Presentaciones_model');
     $this->load->model('../models/Categorias_model');
+    $this->load->helper('productos');
     
     
     
@@ -63,8 +64,22 @@ class Productos  extends MX_Controller {
    // $parametros['sitio_id'] = $this->config->item('sitio_id');
    // $parametros['id'] = $this->input->post('Id');
    // $data['data'] = $this->Productos_model->getOneBy('productos','',$parametros,'');
+   
    $id = $this->input->post('Id');
-   $data['data'] = $this->Productos_model->getAllById($id);
+    
+   $producto = $this->Productos_model->getAllById($id);
+
+ 
+   if (enOferta($producto->precioOF,$producto->OfDesde,$producto->OfHasta)) {
+        $precioventa  = $producto->precioOF;
+    }else{
+        $precioventa  = $producto->precioLista;
+   }
+   $producto->precioventa = $precioventa; 
+   
+   
+   
+   $data['data'] = $producto;
    echo json_encode($data);
   }
  

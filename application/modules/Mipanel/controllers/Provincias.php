@@ -35,6 +35,14 @@ public function getProvinciasJson()
   echo json_encode($data);
 }
 
+public function getProvincias()
+{
+  $provincias = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+  return $provincias;
+
+}
+
+
 
 
 

@@ -2,6 +2,8 @@ $(document).ready(function () {
 
   // Url Dinamico
     UrlBase = $('#url').val();
+    indice = 0;
+
 
 
 //Configuramos las alerts
@@ -13,10 +15,7 @@ $(document).ready(function () {
     });
 
 
-  // Carga de tabla
-    listar(UrlBase,Toast);
-
-  // Reseteamos el form y asignamos el valor de la opcion
+   // Reseteamos el form y asignamos el valor de la opcion
     $(".insertar").click(function() {
       $('.titulo').html('Agregar ');   // Titulo del form   
       $("#formParametros").trigger("reset"); // Reseteams el form
@@ -29,257 +28,117 @@ $(document).ready(function () {
 });
 
 
-
-function readURL(input) {
-  if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
-    var reader = new FileReader(); //Leemos el contenido
-    reader.onload = function(e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
-      if (input.name === 'File') {
-          $('#im1').attr('src', e.target.result);
-      }else{
-        if (input.name === 'File1') {
-            $('#im2').attr('src', e.target.result);
-        }else{
-          $('#im3').attr('src', e.target.result);
-        }
-      } 
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-
-
-
-
 /////////////////////////////////////////////
 ///////////Funciones de la tabla////////////
 ////////////////////////////////////////////
 
 
-// Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
-function listar(base,Toast) {
-    var table = $("#pedidosAbm").DataTable({
-        destroy: true,
-        responsive: true,
-        ajax: {
-            url: base + "mipanel/pedidos/getPedidos",
-            type: "jsonp"
-        },
-        rowCallback : function( row, data ) {
-          //console.log(data.estado)
-        },
-
-        columns: [
-            { data: "id" },
-            { data: "fecha" },
-            { data: "apellido"},
-            { data: "nombre"},
-            { data: "email" },
-            { data: "telefono"},
-            { data: "total" },
-            { data: "nomestado" },
-            {
-                defaultContent:
-                    "<div class='text-center'>" +
-                        "<a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>" +
-                        "<a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a>" +
-                        "<a href='javascript:void(0);' class='ver btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-clipboard fa-2x text-red'></i></a>" +
-                    "</div>"
-            }
-        ],
-        language: espanol
-    });
-
-    submit(table,Toast) //Accion de Insertar o Editar
-    Edit("#pedidosAbm tbody", table); //Tomar datos para la Edicion
-    //deleteParametros("#pedidosAbm tbody", table); //Eliminar un slide
-        
- }
-
-
-
-// Funcion de Enviar datos al servidor para insertar o editar datos
-function submit(table,Toast) {
-  $("#formParametros").submit(function(e) {
-    e.preventDefault(); // evitamos que redireccione el formulario
-
-    
-   // Variable del fomr
-    var me = $(this);
-
-    // Envio asincrono
-    $.ajax({  
-      url: me.attr("action"),
-      method:"POST",  
-      //ESte tipo se usa cuando se envian archivos
-      data:new FormData(this),  //El otro metodo es con me.serialize() pero sin archivos
-      contentType: false,  
-      cache: false,  
-      processData:false,  
-      //respuesta del envio
-      success: function(response) {
-        //Convertimos en Json el String, en el caso de me.serialize() no hace falta
-        response = JSON.parse(response)
-
-        if (response.success == true) {
-          
-          //Cerramos el modal
-            $("#modalParametros").modal("hide"); 
-          //Eliminamos las clases de los errores
-              $(".form-group")
-              .removeClass("has-error has-success")
-              $('.text-danger').remove()    
-          // Mostramos el mensaje de cargado
-          Toast.fire({
-            type: 'success',
-            title: 'Cargado con Exito !',
-          })
-          //Reseteamos form
-          me[0].reset();
-          //Recargamos la tabla
-          table.ajax.reload();
-
-        } else {
-         
-          //Recorremos los mensajes y los asignamos a cada input
-          $.each(response.messages, function(key, value) {
-            
-              //Declaramos los id
-            var element = $("#" + key);
-            //Asignamos las clases a los inputs
-            /*Seleccionamos los grupos de imputs que llevaran las clases de error */
-            element.closest('div.form-group') 
-            /*Removemos clase de error por si tuvo uno */
-            .removeClass('has-error') 
-            /* Asignamos la clase dependiendo de lo ingresado */
-            .addClass(value.length > 0 ? 'has-error' : 'has-success')
-            // Evitamos que se repita el mensaje de error al pulsar el submit
-            .find('.text-danger').remove();
-
-            //Mostramos los mensajes de error
-            element.after(value);
-            
- 
-            }); // Each
-          }// else
-        }  // success
-      });  //Ajax   l
-  });//submit
-
-}//funcion
-
-
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
- function Edit(body, table) {
+ function Editar(e) {
   
-  
-     // Variable del fomr
-     var provincia = '';
-     var localidad = '';
-
-   //Tomando desde el boton de edicion
-		$(body).on("click", "a.editar", function() {
+     //Tomando desde el boton de edicion
       //Guardamos los datos que tomamos del datatable
-      var datos = table.row($(this).parents("tr")).data();
+      //var datos = $('#detallepedidos').row($(this).parents("tr")).data();
       // Removemos las posibles clases de validacion que pueda tener el fomr
-      $('.form-group').removeClass('has-error has-success')
-      $('.text-danger, .editFile').remove()
+      //$('.form-group').removeClass('has-error has-success')
+      //$('.text-danger, .editFile').remove()
 			// Asignamos titulo al form y al boton
-      $('.titulo').html('Editar')
+      //$('.titulo').html('Edicion Item ')
       // Asignamos las accion que realiza el metodo del servidor
-      $("#Opcion").val("editar");
+      //$("#Opcion").val("editar");
       //hay que ir a buscar el registro a la tabla porque en el datatable
       //no tenemos todos los campos 
-                
-     
-      $.ajax({
-        type: "POST",
-        url: UrlBase+'mipanel/pedidos/getPedidoJson',
-        data: { Id: datos.id},
-        dataType: "json",
-        success: function (response) {
-            //Asignamos los valores de cada input para que se muestren en el form
-            $("#id").val(response['data'][0].id)
-            $("#fecha").val(response['data'][0].fecha)
-            $("#apellido").val(response['data'][0].apellido)
-            $("#nombre").val(response['data'][0].nombre)
-            $("#del_calle").val(response['data'][0].calle)
-            $("#del_nro").val(response['data'][0].nro.trim())
-            $("#del_piso").val(response['data'][0].piso)
-            $("#del_dpto").val(response['data'][0].dpto)
-            $("#localidad").val(response['data'][0].localidad_id)
-            $("#telefono").val(response['data'][0].telefono)
-            $("#email").val(response['data'][0].email)
-            
-            provincia = response['data'][0].provincia_id
-            localidad = response['data'][0].localidad_id
-    
-            $.ajax({
-              type: "POST",
-              url: UrlBase+'mipanel/provincias/getProvinciasJson',
-              data: {},
-              dataType: "json",
-              success: function (response2) {
-               
-                var $select = $('#provincia');
-                $.each(response2.data, function(id, prov) {
-                  if (prov.id==provincia){
-                      $select.append('<option value=' + prov.id + ' selected>' + prov.nombre + '</option>');
-                    }else{
-                      $select.append('<option value=' + prov.id + '>' + prov.nombre + '</option>');
-                  }  
-                });
+      //Abrimos el modal
+      //$("table tbody tr ").click(function() {
+         //var total = $(this).find("td:first-child").text();
+         //console.log(total)
+         
+       
+
+         var idproducto = e.parents("tr").find("td:eq(7)").text()
+         var preciounit = e.parents("tr").find("td:eq(2)").text()
+         var cantidad   = e.parents("tr").find("td:eq(3)").text()
+         var total      = e.parents("tr").find("td:eq(4)").text()
 
 
-                $.ajax({
-                  type: "POST",
-                  url: UrlBase+'mipanel/localidades/getLocalidadesJson',
-                  data: {provincia: provincia},
-                  dataType: "json",
-                  success: function (response3) {
-                
-                    var $select2 = $('#localidad');
-                    $.each(response3, function(id, loc) {
-                      if (loc.id==localidad){
-                          $select2.append('<option value=' + loc.id + ' selected>' + loc.nombre + '</option>');
-                        }else{
-                          $select2.append('<option value=' + loc.id + '>' + loc.nombre + '</option>');
-                      }  
-                    });
-                  },//success
-                  });//ajax  
+         document.getElementById('producto_id').value=parseInt(idproducto,10)
+         document.getElementById('preciounit').value=parseFloat(preciounit,10)
+         document.getElementById('cantidad').value=parseFloat(cantidad,10)
+         document.getElementById('total').value=parseFloat(total,10)
+         
+          //indice es el numero de fila de la table
+         indice = e.parents("tr").index();
+         $("#modalPedidos").modal("show");  
+             
+      //});
+  
+  }
+
+  
 
 
-                  
-
-
-
-              },//success
-              });//ajax  
-            
-
-          },//success
-            error: function(xhr, textStatus, error){
-            console.log(xhr.statusText);
-            console.log(textStatus);
-            console.log(error);
-        } //error 
-      });//ajax  
-
-      //console.log(datos);
-   
- 
+function cambiaProducto() {
+   id=document.getElementById('producto_id').value;
+  console.log('ID',id);
+  $.ajax({
+    type: "POST",
+    url: UrlBase+'mipanel/productos/getProductoJson',
+    data: { Id: id},
+    dataType: "json",
+    success: function (response) {
+        //Asignamos los valores de cada input para que se muestren en el form
+        $("#preciounit").val(response['data'].precioventa)
         
-    
-        //Abrimos el modal
-      $("#modalPedidos").modal("show");
-    });//click
-    
+        uni = parseFloat($("#preciounit").val())
+        can = parseFloat($("#cantidad").val())
+        tot = parseFloat(uni*can)
 
- }//funcion
+        $("#preciounit").val(uni.toFixed(2))
+        $("#cantidad").val(can.toFixed(2))
+        $("#total").val(tot.toFixed(2))
+        
 
+      
+  
+      },//success
+        error: function(xhr, textStatus, error){
+        console.log(xhr.statusText);
+        console.log(textStatus);
+        console.log(error);
+    } //error 
+  });//ajax  
+
+
+
+}
+
+
+function aceptar() {
+   
+  producto_id=parseInt(document.getElementById('producto_id').value,10)
+  preciounit=parseFloat(document.getElementById('preciounit').value,10)
+  cantidad=parseFloat(document.getElementById('cantidad').value,10)
+  total=parseFloat(document.getElementById('total').value,10)
+
+  console.log('acepto indice', indice)
+
+
+  miTabla = document.getElementsByTagName("table")[0];
+  mibody = miTabla.getElementsByTagName("tbody")[0];
+  miFila = mibody.getElementsByTagName("tr")[indice];
+  miCelda = miFila.getElementsByTagName("td")[0];
+  miDato = miCelda.firstChild.nodeValue;
+
+  console.log(miFila)
+  
+
+
+
+
+  $("#modalPedidos").modal("hide");  
+
+}
 
  // Funcion para eliminar un row
  
@@ -343,22 +202,3 @@ function submit(table,Toast) {
     });//eliminar
   }//funcion
  
-
- // Declaramos el idioma del Datatable
- let espanol = {
-    sProcessing: "Procesando...",
-    sLengthMenu: "Mostrar _MENU_ resultados",
-    sZeroRecords: "No se encontraron resultados",
-    sEmptyTable: "Ningún dato disponible en esta tabla",
-    sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
-    sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
-    sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-    sSearch: "Buscar:",
-    sLoadingRecords: "Cargando...",
-    oPaginate: {
-        sFirst: "Primero",
-        sLast: "Último",
-        sNext: "Siguiente",
-        sPrevious: "Anterior"
-    }
- }
