@@ -79,6 +79,7 @@ public function editPedido($id)
     $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
     $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
     $data['entregas']    = $this->Entregas_model->getEntregas();
+    $data['cost_unit_vacio'] = parametro(10);
     $this->template->load('layout_back', 'pedidos_edit_view', $data);  
    
 }

@@ -247,6 +247,9 @@
                             <?php endforeach; ?>    
                         </tbody>
                     </table>
+                    
+                    <input type="hidden" class="form-control" id="cost_unit_vacio" name="cost_unit_vacio" value="<?php echo set_value('cost_unit_vacio',@$cost_unit_vacio); ?>" >
+                    
                     <table style="width: 20%;" class="table table-bordered">
                       <tr>
                         <td align="left" >Subtotal</td>

@@ -24,6 +24,37 @@ $(document).ready(function () {
 ////////////////////////////////////////////
 
 
+function calculaPie() {
+  
+  var rowCount = $("#detallepedidos tr th").length;
+  var subt = 0;
+  var cant_vacio = 0;
+  var totvacio = 0;
+  var cost_unit_vacio = parseFloat(document.getElementById("cost_unit_vacio").value,10)
+  var envio = 0
+  
+  $('#detallepedidos tbody').find('tr').each(function () {
+             
+    //Voy incrementando las variables segun la fila ( .eq(0) representa la fila 1 )     
+    subt     += parseFloat($(this).find('td').eq(4).text());
+    cant_vacio += parseFloat($(this).find('td').eq(6).text());
+            
+});
+
+miTabla = document.getElementsByTagName("table")[1];
+miBody = miTabla.getElementsByTagName("tbody")[0];
+
+envio = parseFloat(miBody.getElementsByTagName("tr")[1].getElementsByTagName("td")[1].innerText,10)
+totvacio = cant_vacio * cost_unit_vacio;
+
+
+miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].innerText=subt.toFixed(2)
+miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].innerText=(totvacio).toFixed(2)
+miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(subt+totvacio+envio).toFixed(2)
+
+
+
+}
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
 function Editar(e) {
@@ -72,6 +103,9 @@ function cambiaVacio(e)  {
         miObjeto.classList.add('fa-toggle-off')
         miFila.getElementsByTagName("td")[6].innerHTML=0
   }
+
+  calculaPie();
+
 }  
 
  
@@ -94,7 +128,6 @@ function Agregar() {
 
 function cambiaProducto() {
    id=document.getElementById('producto_id').value;
-  console.log('ID',id);
   $.ajax({
     type: "POST",
     url: UrlBase+'mipanel/productos/getProductoJson',
@@ -157,7 +190,7 @@ function aceptar() {
     var table = document.getElementsByTagName("table")[0]; 
     var row = table.insertRow();
     var col0 = '<td>'+ producto_nombre  +'</td>';
-    var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green"></i></a></td>';
+    var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green" onclick="cambiaVacio($(this))"></i></a></td>';
     var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
     var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
     var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
@@ -170,6 +203,8 @@ function aceptar() {
   }
   
   $("#modalPedidos").modal("hide");  
+
+  calculaPie();
 }
 
    
@@ -192,7 +227,7 @@ function cambiaEntrega(e) {
                 }else{    
                     document.getElementById('envio').innerText="0.00";
                 }    
-               // calculaPie();
+                calculaPie();
                    // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
                 if (response.pidedirec == 0)   {
                     document.getElementById('lblcalle').innerHTML='Dirección Calle'
