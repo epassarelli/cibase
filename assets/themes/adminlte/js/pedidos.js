@@ -24,6 +24,50 @@ $(document).ready(function () {
 ////////////////////////////////////////////
 
 
+
+
+function Eliminar(e) {
+  indice = e.parents("tr").index();
+  miTabla = document.getElementsByTagName("table")[0];
+  mibody = miTabla.getElementsByTagName("tbody")[0];
+  mibody.deleteRow(indice);
+  calculaPie();
+}
+
+$("#provincia").on('change', function () {
+  $("#provincia option:selected").each(function () {
+      provincia=$(this).val();
+      $.ajax({
+                  url: UrlBase+'mipanel/localidades/getLocalidadesJson',
+                  data: { provincia: provincia },
+                  type: 'POST',
+                  dataType: 'json',
+                  success: function (response) {
+
+                          $('#localidad').empty();
+                          var $select = $('#localidad');
+                          $select.append('<option value="0">Selecciona una Localidad</option>');
+                          $.each(response, function(id, registro) {
+                              $select.append('<option value=' + registro.id + '>' + registro.nombre + '</option>');
+                          });
+                 
+                 
+                      }, //success         
+                  error: function(response) {
+                      Toast.fire({type: 'success',
+                      title: 'Error lista de localidades',
+                    })                        },
+                  // código a ejecutar sin importar si la petición falló o no
+                  complete : function(xhr, status) {
+                      //alert('Petición realizada');
+                  }
+                          
+      });//ajax
+
+  });
+});
+
+
 function calculaPie() {
   
   var rowCount = $("#detallepedidos tr th").length;
@@ -194,7 +238,7 @@ function aceptar() {
     var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
     var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
     var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
-    var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs"  ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
+    var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
     var col6 = '<td style="display: none;">0</td>';
     var col7 = '<td style="display: none;">'+ producto_id +'</td>';
     
