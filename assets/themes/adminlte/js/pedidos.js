@@ -3,6 +3,8 @@ $(document).ready(function () {
   // Url Dinamico
     UrlBase = $('#url').val();
     indice = 0;
+    operacion = '';  //E=Edicion  //N=New
+
 
 
 
@@ -14,18 +16,7 @@ $(document).ready(function () {
       timer: 3000
     });
 
-
-   // Reseteamos el form y asignamos el valor de la opcion
-    $(".insertar").click(function() {
-      $('.titulo').html('Agregar ');   // Titulo del form   
-      $("#formParametros").trigger("reset"); // Reseteams el form
-      $("#Opcion").val("insertar"); // Asignamos la accion
-      $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
-      $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
-      $("#valor").val('')
-    });
-
-});
+  });
 
 
 /////////////////////////////////////////////
@@ -35,47 +26,70 @@ $(document).ready(function () {
 
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
- function Editar(e) {
-  
-     //Tomando desde el boton de edicion
-      //Guardamos los datos que tomamos del datatable
-      //var datos = $('#detallepedidos').row($(this).parents("tr")).data();
-      // Removemos las posibles clases de validacion que pueda tener el fomr
-      //$('.form-group').removeClass('has-error has-success')
-      //$('.text-danger, .editFile').remove()
-			// Asignamos titulo al form y al boton
-      //$('.titulo').html('Edicion Item ')
-      // Asignamos las accion que realiza el metodo del servidor
-      //$("#Opcion").val("editar");
-      //hay que ir a buscar el registro a la tabla porque en el datatable
-      //no tenemos todos los campos 
-      //Abrimos el modal
-      //$("table tbody tr ").click(function() {
-         //var total = $(this).find("td:first-child").text();
-         //console.log(total)
-         
-       
+function Editar(e) {
 
+         operacion = "E";
+         $('#operacion').html('Edicion');   // Titulo del form   
+     
          var idproducto = e.parents("tr").find("td:eq(7)").text()
          var preciounit = e.parents("tr").find("td:eq(2)").text()
          var cantidad   = e.parents("tr").find("td:eq(3)").text()
          var total      = e.parents("tr").find("td:eq(4)").text()
+         var titulo     = e.parents("tr").find("td:eq(0)").text()
+         
 
 
          document.getElementById('producto_id').value=parseInt(idproducto,10)
          document.getElementById('preciounit').value=parseFloat(preciounit,10)
          document.getElementById('cantidad').value=parseFloat(cantidad,10)
          document.getElementById('total').value=parseFloat(total,10)
+         document.getElementById('titulo').value=titulo
          
           //indice es el numero de fila de la table
          indice = e.parents("tr").index();
          $("#modalPedidos").modal("show");  
-             
-      //});
-  
+ 
   }
 
+
+
+//cambio estado llave landing formulario alta y edicion 
+function cambiaVacio(e)  {
   
+  indice = e.parents("tr").index();
+  var vacio = parseInt(e.parents("tr").find("td:eq(6)").text())
+  miTabla = document.getElementsByTagName("table")[0];
+  mibody = miTabla.getElementsByTagName("tbody")[0];
+  miFila = mibody.getElementsByTagName("tr")[indice];
+  miObjeto = miFila.getElementsByTagName("td")[1].getElementsByTagName('i')[0];
+  
+  if (vacio==0) {
+        miObjeto.classList.remove('fa-toggle-off')
+        miObjeto.classList.add('fa-toggle-on')
+        miFila.getElementsByTagName("td")[6].innerHTML=1
+    }else{
+        miObjeto.classList.remove('fa-toggle-on')
+        miObjeto.classList.add('fa-toggle-off')
+        miFila.getElementsByTagName("td")[6].innerHTML=0
+  }
+}  
+
+ 
+function Agregar() {
+
+
+    operacion = "N";
+    $('#operacion').html('Nuevo');   // Titulo del form   
+    document.getElementById('producto_id').value=parseInt(0,10)
+    document.getElementById('preciounit').value=parseFloat(0,10)
+    document.getElementById('cantidad').value=parseFloat(0,10)
+    document.getElementById('total').value=parseFloat(0,10)
+    document.getElementById('titulo').value=''
+    
+    $("#modalPedidos").modal("show");  
+        
+ 
+}
 
 
 function cambiaProducto() {
@@ -89,7 +103,9 @@ function cambiaProducto() {
     success: function (response) {
         //Asignamos los valores de cada input para que se muestren en el form
         $("#preciounit").val(response['data'].precioventa)
-        
+        $('#titulo').val(response['data'].titulo)
+       // $('#cantidad').val(response['data'].unidadvta)
+
         uni = parseFloat($("#preciounit").val())
         can = parseFloat($("#cantidad").val())
         tot = parseFloat(uni*can)
@@ -109,96 +125,104 @@ function cambiaProducto() {
     } //error 
   });//ajax  
 
-
-
 }
+
 
 
 function aceptar() {
    
-  producto_id=parseInt(document.getElementById('producto_id').value,10)
-  preciounit=parseFloat(document.getElementById('preciounit').value,10)
-  cantidad=parseFloat(document.getElementById('cantidad').value,10)
-  total=parseFloat(document.getElementById('total').value,10)
+   // tomo los datos del modal
+   producto_id=parseInt(document.getElementById('producto_id').value,10)
+   preciounit=parseFloat(document.getElementById('preciounit').value,10)
+   cantidad=parseFloat(document.getElementById('cantidad').value,10)
+   total=parseFloat(document.getElementById('total').value,10)
+   producto_nombre=document.getElementById('titulo').value
 
-  console.log('acepto indice', indice)
+  if (operacion == "E") {
 
+    //cambio los valores en la fila de la tabla del formulario
+    miTabla = document.getElementsByTagName("table")[0];
+    mibody = miTabla.getElementsByTagName("tbody")[0];
+    miFila = mibody.getElementsByTagName("tr")[indice];
+    
+    miFila.getElementsByTagName("td")[0].innerHTML=producto_nombre;
+    miFila.getElementsByTagName("td")[2].innerHTML=preciounit.toFixed(2);
+    miFila.getElementsByTagName("td")[3].innerHTML=cantidad.toFixed(2);
+    miFila.getElementsByTagName("td")[4].innerHTML=total.toFixed(2);
+    miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
+    //miCelda = miFila.getElementsByTagName("td")[0];
+    //miDato = miCelda.firstChild.nodeValue;
+  }else{
+    //tomo la primer tabla
+    var table = document.getElementsByTagName("table")[0]; 
+    var row = table.insertRow();
+    var col0 = '<td>'+ producto_nombre  +'</td>';
+    var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green"></i></a></td>';
+    var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
+    var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
+    var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
+    var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs"  ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
+    var col6 = '<td style="display: none;">0</td>';
+    var col7 = '<td style="display: none;">'+ producto_id +'</td>';
+    
+    row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7;
 
-  miTabla = document.getElementsByTagName("table")[0];
-  mibody = miTabla.getElementsByTagName("tbody")[0];
-  miFila = mibody.getElementsByTagName("tr")[indice];
-  miCelda = miFila.getElementsByTagName("td")[0];
-  miDato = miCelda.firstChild.nodeValue;
-
-  console.log(miFila)
+  }
   
-
-
-
-
   $("#modalPedidos").modal("hide");  
-
 }
 
- // Funcion para eliminar un row
- 
- function deletePedido(body, table) { 
-    //Tomando desde el boton de edicion
-		$(body).on("click", "a.eliminar", function() {
-      // Obtenemos los datos del row
-      var datos = table.row($(this).parents("tr")).data();
-          
-      //Configuracion de botones del alert con clase de bootstrap
-      const swalButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
+   
+function cambiaEntrega(e) { 
+
+    var MyEntregaID = document.getElementById('entrega_id').options[entrega_id.selectedIndex].value;
+
+    // Ejecutamos la accion y la enviamos al servidor 
+    
+    $.ajax({
+        url: UrlBase+'productos/carrito/cambiaEntrega',
+        data: { entrega_id: MyEntregaID },
+        type: 'POST',
+        dataType: 'json',
+        success: function (response) {
+            if (response.success == 'OK') {
+                if (Number(response.costo_entrega) > 0) {
+                    document.getElementById('envio').innerText=parseFloat(response.costo_entrega).toFixed(2);
+                    //objeto.removeAttribute('class');
+                }else{    
+                    document.getElementById('envio').innerText="0.00";
+                }    
+               // calculaPie();
+                   // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
+                if (response.pidedirec == 0)   {
+                    document.getElementById('lblcalle').innerHTML='Dirección Calle'
+                    document.getElementById('lblnro').innerHTML='Nro'
+                    document.getElementById('lblprovincia').innerHTML='Provincia'
+                    document.getElementById('lbllocalidad').innerHTML='Localidad'
+                }else{
+                    document.getElementById('lblcalle').innerHTML='Dirección Calle *'
+                    document.getElementById('lblnro').innerHTML='Nro *'
+                    document.getElementById('lblprovincia').innerHTML='Provincia *'
+                    document.getElementById('lbllocalidad').innerHTML='Localidad *'
+
+                }                  
+            }else{
+                Toast.fire({type: 'error',
+                    title: 'No se pudo calcular envio',
+                       })
+            }
+    
+        }, //success         
+        error: function(response) {
+            alert('error al modificar el servicio');
         },
-        buttonsStyling: false
-      })
-
-      // Abrimos alerta de confirmacion
-      swalButtons.fire({
-        title: 'Estas Seguro ?',
-        text: "No podrás revertir esto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar esto!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          // Ejecutamos la accion y la enviamos al servidor 
-          //console.log('ejecutamos');  
-          $.ajax({
-              type: "POST",
-              url: UrlBase+'mipanel/parametros/deletePedido',
-              data: { Id: datos.id},
-              dataType: "json",
-              success: function (response) {
-                if (response.success == true) {
-                 swalButtons.fire(
-                    'Eliminado!',
-                    'Su archivo ha sido eliminado.',
-                    'success'
-                  );
-                  table.ajax.reload();
-                }
-              }//success
-            });//ajax  
-            //console.log('ejecutamos 3'); 
-          } else if (
-          /* Read more about handling dismissals below */
-           result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalButtons.fire(
-            'Cancelado',
-            'Tu archivo está seguro',
-            'error'
-          )
+        // código a ejecutar sin importar si la petición falló o no
+        complete : function(xhr, status) {
+            //alert('Petición realizada');
         }
-      })
+                
+    });//ajax
+    
+} 
 
-    });//eliminar
-  }//funcion
- 
+

@@ -399,7 +399,7 @@ $(document).ready(function () {
                             document.getElementById('envio').innerText=response.costo_entrega;
                             //objeto.removeAttribute('class');
                         }else{    
-                            document.getElementById('envio').innerText="Sin costo de envío la puta";
+                            document.getElementById('envio').innerText="Sin costo de envío";
                         }    
                         calculaPie();
                            // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');

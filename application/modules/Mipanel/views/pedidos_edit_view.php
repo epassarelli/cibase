@@ -69,34 +69,30 @@
                                     </div>
                             </div>
 
+                            <div class="col-md-6 col-sm-12">
+                                <label for="entrega_id" class="font-weight-bold text-dark text-2">Forma de Entrega</label>
+                                <select class="form-control" 
+                                    id="entrega_id" 
+                                    name="entrega_id" 
+                                    onchange="cambiaEntrega($(this.value))"
+                                    >
+                                <?php 
+                                    echo  "<option value=0>Seleccione una Forma de Entrega</option>";
+                                    foreach ($entregas as $entrega) {
+                                    if (set_value('entrega_id',@$entrega_id)==$entrega->id) { 
+                                        echo '<option value="' .$entrega->id. '"" selected>' . $entrega->nombre  . ' '  . 
+                                                                    $entrega->detalle . ' $ ' .
+                                                                    $entrega->costo   . '  </option>';  
+                                    }else
+                                        echo '<option value="' .$entrega->id. '"">' . $entrega->nombre  . ' '  . 
+                                                                $entrega->detalle . ' $ ' .
+                                                                $entrega->costo   . '  </option>';  
+                                    }
+                                ?> 
+                                </select>               
+                                <?php if (!empty(form_error('entrega_id'))): ?> <?php  echo  form_error('entrega_id') ;?> <?php endif;?>
 
-
-                            <div class="form-row">
-                                <div class="form-group col-lg-6">
-                                  <label class="font-weight-bold text-dark text-2">Forma de Entrega</label>
-                                  <select class="form-control" 
-                                      id="entrega_id" 
-                                      name="entrega_id" 
-                                      onchange="cambiaEntrega($(this.value))"
-                                      >
-                                    <?php 
-                                      echo  "<option value=0>Seleccione una Forma de Entrega</option>";
-                                      foreach ($entregas as $entrega) {
-                                        if (set_value('entrega_id',@$entrega_id)==$entrega->id) { 
-                                          echo '<option value="' .$entrega->id. '"" selected>' . $entrega->nombre  . ' '  . 
-                                                                      $entrega->detalle . ' $ ' .
-                                                                      $entrega->costo   . '  </option>';  
-                                        }else
-                                          echo '<option value="' .$entrega->id. '"">' . $entrega->nombre  . ' '  . 
-                                                                  $entrega->detalle . ' $ ' .
-                                                                  $entrega->costo   . '  </option>';  
-                                        }
-                                    ?> 
-                                    </select>               
-                                    <?php if (!empty(form_error('entrega_id'))): ?> <?php  echo  form_error('entrega_id') ;?> <?php endif;?>
-
-                                </div>
-                              </div>
+                            </div>
 
 
                     </div>
@@ -120,14 +116,14 @@
                     <div class="row">  
                         <div class="col-md-6 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="del_calle" class="control-label">Calle</label>
+                                    <label id="lblcalle" for="del_calle" class="control-label">Calle</label>
                                     <input type="text" class="form-control" id="del_calle" name="del_calle" value="<?php echo set_value('calle',@$calle); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                         </div>        
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="del_nro" class="control-label">Numero</label>
+                                    <label id='lblnro' for="del_nro" class="control-label">Numero</label>
                                     <input type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
@@ -150,7 +146,7 @@
                     <div class="row">
                        <div class="col-md-6 col-sm-12">                                                                                        
                             <div class="form-group has-feedback">
-                                    <label class="form-group has-feedbak id="lblprovincia">Provincia</label>
+                                    <label  class="form-group has-feedbak" id="lblprovincia" >Provincia</label>
                                     <select class="form-control" id="provincia" name="provincia" >
                                     <?php  
                                          echo  "<option value=0>Seleccione una Provincia</option>"; 
@@ -206,7 +202,7 @@
                     </div>
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" ><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                        <button type="button" class="btn btn-primary margin insertar" onclick="Agregar()"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
 
                     <table id="detallepedidos" class="table table-bordered">
@@ -228,9 +224,9 @@
                                     <td><?php echo $a->titulo ?></td>
                                     <td  align="center"> 
                                        <?php if ($a->vacio==0): ?>	  
-				   		                              <i class='vacio fa  fa-toggle-off fa-2x text-green'></i></a>
+				   		                              <i class='vacio fa  fa-toggle-off fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
 					                                <?php else:  ?>
-						                                <i class='vacio fa  fa-toggle-on fa-2x text-green'></i></a>
+						                                <i class='vacio fa  fa-toggle-on fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
 					                              <?php endif; ?>		   
                                     </td>
                                     <td  align="right"><?php echo $a->preciounit ?></td>
@@ -253,12 +249,12 @@
                     </table>
                     <table style="width: 20%;" class="table table-bordered">
                       <tr>
-                        <td align="left" >Sutotal</td>
+                        <td align="left" >Subtotal</td>
                         <td align="right" ><?php echo $pedido[0]->subtotal ?></td>
                       </tr>
                       <tr>
                         <td>Envio</td>
-                        <td  align="right"><?php echo $pedido[0]->delivery ?></td>
+                        <td id='envio' align="right"><?php echo $pedido[0]->delivery ?></td>
                       </tr>
                       <tr>
                         <td>Envasado Vacio</td>
@@ -290,7 +286,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Pedidos</h4>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Producto.<small id='operacion'></small></h4>
+    </h1>
+                
             </div>
             <div class="modal-body">
             <div id="sent" class="col-3" ></div>
@@ -310,7 +308,7 @@
                                 <?php if (!empty(form_error('producto_id'))): ?> <?php  echo  form_error('producto_id') ;?> <?php endif;?>
                             </div>
                         </div>
-
+                        <input type="hidden" id="titulo" name="titulo" value="">
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label for="preciounit" class="control-label">Precio</label>
