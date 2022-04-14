@@ -10,7 +10,7 @@
     </ol>
 </section>
 <section class="content">
-             <form action="<?php echo base_url('mipanel/pedidos/accion');?>"  method="post" enctype="multipart/form-data">
+             <form id="formpedidos" action="<?php echo base_url('mipanel/pedidos/accion');?>"  method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                         
     
@@ -274,7 +274,7 @@
 
                     <div class="footer">
                             <button type="button" class="btn btn-default">Cerrar</button>
-                            <button type="submit" class="btn btn-primary titulo">Grabar</button>
+                            <button type="button" class="btn btn-primary titulo" onclick="grabarPedido()">Grabar</button>
                     </div>
                 </form>
 </section>                
@@ -338,8 +338,11 @@
 
                     </div>    
                     <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
-                  <button type="button" class="btn btn-primary titulo" onclick="aceptar()">Aceptar</button>
+                        <div class="row" style="float: left;">
+                            <small>Los campos producto y cantidad son obligatorios</small>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                        <button type="button" class="btn btn-primary titulo" onclick="aceptar()">Aceptar</button>
             </div>     
 
                

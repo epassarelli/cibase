@@ -4,9 +4,11 @@ $(document).ready(function () {
     UrlBase = $('#url').val();
     indice = 0;
     operacion = '';  //E=Edicion  //N=New
-
-
-
+    domicilio_requerido=0;
+    // se ejecuta esta funcion para que coloque los asterisco 
+    // en los inputs obligatorios segun la forma de entrega
+    cambiaEntrega();
+   
 
 //Configuramos las alerts
   const Toast = Swal.mixin({
@@ -22,6 +24,48 @@ $(document).ready(function () {
 /////////////////////////////////////////////
 ///////////Funciones de la tabla////////////
 ////////////////////////////////////////////
+
+function grabarPedido() {
+
+  apellido  = document.getElementById('apellido').value;
+  nombre    = document.getElementById('nombre').value;
+  calle     = document.getElementById('del_calle').value;
+  numero    = document.getElementById('del_nro').value;
+  provincia = parseInt(document.getElementById('provincia').value);
+  localidad = parseInt(document.getElementById('localidad').value);
+  formaentrega = parseInt(document.getElementById('entrega_id').options[entrega_id.selectedIndex].value);
+  cantidad_productos = $("#detallepedidos tbody tr").length;
+  //console.log(cantidad_productos)
+  
+  if (apellido=='' || nombre=='') {
+     Toast.fire({type: 'error',title: 'Debe ingresar el Apellido y el nombre',})
+     return
+  }
+  if (domicilio_requerido==1) {
+      if (calle=='' || numero=='' || provincia==0 || localidad ==0){
+        Toast.fire({type: 'error',title: 'Debe ingresar calle, numero, provincia y localidad',})
+        return
+      }    
+  }
+  if (formaentrega==0) {
+    Toast.fire({type: 'error',title: 'Debe seleccionar una forma de entrega',})
+    return
+ }
+ if (cantidad_productos==0) {
+  Toast.fire({type: 'error',title: 'No hay productos seleccionados',})
+  return
+}
+
+
+     
+    
+  
+    document.forms["formpedidos"].submit()
+    //Toast.fire({type: 'success', title: 'Cargado con Exito !', })
+
+
+ 
+}  //grabar pedido 
 
 
 
@@ -102,7 +146,6 @@ miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(su
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
 function Editar(e) {
-
          operacion = "E";
          $('#operacion').html('Edicion');   // Titulo del form   
      
@@ -123,6 +166,8 @@ function Editar(e) {
           //indice es el numero de fila de la table
          indice = e.parents("tr").index();
          $("#modalPedidos").modal("show");  
+       
+
  
   }
 
@@ -215,40 +260,73 @@ function aceptar() {
    total=parseFloat(document.getElementById('total').value,10)
    producto_nombre=document.getElementById('titulo').value
 
-  if (operacion == "E") {
+   if (isNaN(producto_id)) { 
+            producto_id= 0; 
+            document.getElementById('preciounit').value=producto_id.toFixed(2);
 
-    //cambio los valores en la fila de la tabla del formulario
-    miTabla = document.getElementsByTagName("table")[0];
-    mibody = miTabla.getElementsByTagName("tbody")[0];
-    miFila = mibody.getElementsByTagName("tr")[indice];
-    
-    miFila.getElementsByTagName("td")[0].innerHTML=producto_nombre;
-    miFila.getElementsByTagName("td")[2].innerHTML=preciounit.toFixed(2);
-    miFila.getElementsByTagName("td")[3].innerHTML=cantidad.toFixed(2);
-    miFila.getElementsByTagName("td")[4].innerHTML=total.toFixed(2);
-    miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
-    //miCelda = miFila.getElementsByTagName("td")[0];
-    //miDato = miCelda.firstChild.nodeValue;
-  }else{
-    //tomo la primer tabla
-    var table = document.getElementsByTagName("table")[0]; 
-    var row = table.insertRow();
-    var col0 = '<td>'+ producto_nombre  +'</td>';
-    var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green" onclick="cambiaVacio($(this))"></i></a></td>';
-    var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
-    var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
-    var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
-    var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
-    var col6 = '<td style="display: none;">0</td>';
-    var col7 = '<td style="display: none;">'+ producto_id +'</td>';
-    
-    row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7;
+    }
+   if (isNaN(preciounit)) { 
+              preciounit= 0; 
+              document.getElementById('preciounit').value=preciounit.toFixed(2);
+    }
 
-  }
-  
-  $("#modalPedidos").modal("hide");  
+   if (isNaN(cantidad)) { 
+             cantidad= 0; 
+             document.getElementById('cantidad').value=cantidad.toFixed(2);
+    }
 
-  calculaPie();
+
+   if (isNaN(total)) { total= 0; }
+   //este control es porque si no da enter en la 
+   //cantidad no calcula el total del item 
+
+   if (total == 0) {
+     total = cantidad*preciounit;
+   }
+
+   if (producto_id != 0 && cantidad != 0) {
+
+            if (operacion == "E") {
+
+              //cambio los valores en la fila de la tabla del formulario
+              miTabla = document.getElementsByTagName("table")[0];
+              mibody = miTabla.getElementsByTagName("tbody")[0];
+              miFila = mibody.getElementsByTagName("tr")[indice];
+              
+              miFila.getElementsByTagName("td")[0].innerHTML=producto_nombre;
+              miFila.getElementsByTagName("td")[2].innerHTML=preciounit.toFixed(2);
+              miFila.getElementsByTagName("td")[3].innerHTML=cantidad.toFixed(2);
+              miFila.getElementsByTagName("td")[4].innerHTML=total.toFixed(2);
+              miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
+              //miCelda = miFila.getElementsByTagName("td")[0];
+              //miDato = miCelda.firstChild.nodeValue;
+            }else{
+              //tomo la primer tabla
+              var table = document.getElementsByTagName("table")[0]; 
+              //var row = table.insertRow();
+              var col0 = '<td>'+ producto_nombre  +'</td>';
+              var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green" onclick="cambiaVacio($(this))"></i></a></td>';
+              var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
+              var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
+              var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
+              var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
+              var col6 = '<td style="display: none;">0</td>';
+              var col7 = '<td style="display: none;">'+ producto_id +'</td>';
+              //row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7;
+              $(table).find('tbody').append('<tr>' + col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7 + '</tr>');
+
+
+            }
+            
+            $("#modalPedidos").modal("hide");  
+
+            calculaPie(); 
+          }else{
+            Toast.fire({type: 'error',
+            title: 'Debe seleccionar un producto y la cantidad solicitada',
+             })
+          }
+
 }
 
    
@@ -267,12 +345,11 @@ function cambiaEntrega(e) {
             if (response.success == 'OK') {
                 if (Number(response.costo_entrega) > 0) {
                     document.getElementById('envio').innerText=parseFloat(response.costo_entrega).toFixed(2);
-                    //objeto.removeAttribute('class');
                 }else{    
                     document.getElementById('envio').innerText="0.00";
                 }    
+                domicilio_requerido=parseInt(response.pidedirec)
                 calculaPie();
-                   // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
                 if (response.pidedirec == 0)   {
                     document.getElementById('lblcalle').innerHTML='Dirección Calle'
                     document.getElementById('lblnro').innerHTML='Nro'

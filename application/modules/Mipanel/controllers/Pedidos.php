@@ -36,7 +36,8 @@ class Pedidos  extends MX_Controller {
   // Listado del ABM de slider 
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
-    $this->data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+    //$this->data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+    $this->data['files_js'] = array('sweetalert2.min.js');
     $this->data['pedidos'] = $this->Pedidos_model->getAll(); 
     $this->template->load('layout_back', 'pedidos_abm_view', $this->data);  
   }
