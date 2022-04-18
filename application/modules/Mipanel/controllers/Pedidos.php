@@ -138,6 +138,23 @@ public function pedidoValidation()
         
     } else {
 
+
+      $preciounit = $this->input->post('preciounit');
+      $cantidad = $this->input->post('cantidad');
+      $precioitem = $this->input->post('precioitem');
+      $vacio = $this->input->post('vacio');
+      $producto_id = $this->input->post('producto_id');
+           
+
+      var_dump($preciounit);
+      var_dump($cantidad);
+      var_dump($precioitem);
+      var_dump($vacio);
+      var_dump($producto_id);
+      die();
+
+
+
       $data['files_css'] = array('animate.css','sweetalert2.min.css');
       $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
      

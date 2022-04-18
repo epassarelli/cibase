@@ -221,7 +221,7 @@
                         <tbody>
                             <?php foreach ($pedido as $a): ?>
                                 <tr>
-                                    <td><?php echo $a->titulo ?></td>
+                                    <td><input type="text" class="form-control"  name="titulo[]"  value="<?php echo $a->titulo; ?>"></td>
                                     <td  align="center"> 
                                        <?php if ($a->vacio==0): ?>	  
 				   		                              <i class='vacio fa  fa-toggle-off fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
@@ -229,18 +229,19 @@
 						                                <i class='vacio fa  fa-toggle-on fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
 					                              <?php endif; ?>		   
                                     </td>
-                                    <td  align="right"><?php echo $a->preciounit ?></td>
-                                    <td  align="right"><?php echo $a->cantidad ?></td>
-                                    <td  align="right"><?php echo $a->precioitem ?></td>
+                                    
+                                    <td  align="right"><input type="text" class="form-control"  name="preciounit[]"  value="<?php echo $a->preciounit; ?>"></td>
+                                    <td  align="right"><input type="text" class="form-control"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
+                                    <td  align="right"><input type="text" class="form-control"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
                                     <td  align="center">
                                             <a href="javascript:void(0);"  onclick="Editar($(this))"  class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
                                             <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
                                     </td>
-                                    <td style="display: none;">
-                                      <?php echo $a->vacio; ?>
+                                    <td style="display:none">
+                                        <input type="text" class="form-control"  name="vacio[]"  value="<?php echo $a->vacio; ?>">
                                     </td>
-                                    <td style="display: none;">
-                                      <?php echo $a->producto_id; ?>
+                                    <td style="display:none">
+                                        <input type="text" class="form-control"  name="producto_id[]"  value="<?php echo $a->producto_id; ?>">
                                     </td>
                                 </tr>
 
@@ -276,7 +277,7 @@
                             <button type="button" class="btn btn-default">Cerrar</button>
                             <button type="button" class="btn btn-primary titulo" onclick="grabarPedido()">Grabar</button>
                     </div>
-                </form>
+             </form>
 </section>                
 
 
@@ -300,7 +301,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group has-feedback">   
                                 <label class="control-label">Producto</label>
-                                <select class="form-control" id="producto_id" name="producto_id" onchange="cambiaProducto()">
+                                <select class="form-control" id="m_producto_id" name="m_producto_id" onchange="cambiaProducto()">
                                     <?php 
                                       echo  "<option value=0>Seleccione un Producto</option>";
                                       foreach ($productos as $prod) {
@@ -308,30 +309,30 @@
                                       }
                                     ?>                                     
                                 </select>
-                                <?php if (!empty(form_error('producto_id'))): ?> <?php  echo  form_error('producto_id') ;?> <?php endif;?>
+                                <?php if (!empty(form_error('m_producto_id'))): ?> <?php  echo  form_error('m_producto_id') ;?> <?php endif;?>
                             </div>
                         </div>
                         <input type="hidden" id="titulo" name="titulo" value="">
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="preciounit" class="control-label">Precio</label>
-                                    <input type="text" class="form-control" id="preciounit" name="preciounit" value="<?php echo set_value('preciounit',@$preciounit); ?>" readonly>
+                                    <label for="m_preciounit" class="control-label">Precio</label>
+                                    <input type="text" class="form-control" id="m_preciounit" name="m_preciounit" value="<?php echo set_value('preciounit',@$preciounit); ?>" readonly>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                         </div> 
                         
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="cantidad" class="control-label">Cantidad</label>
-                                    <input type="text" class="form-control" id="cantidad" name="cantidad" value="<?php echo set_value('cantidad',@$cantidad); ?>" onchange="cambiaProducto()">
+                                    <label for="m_cantidad" class="control-label">Cantidad</label>
+                                    <input type="text" class="form-control" id="m_cantidad" name="m_cantidad" value="<?php echo set_value('cantidad',@$cantidad); ?>" onchange="cambiaProducto()">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                         </div>                          
                         
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="total" class="control-label">Total</label>
-                                    <input type="text" class="form-control" id="total" name="total" value="<?php echo set_value('total',@$total); ?>" readonly>
+                                    <label for="m_total" class="control-label">Total</label>
+                                    <input type="text" class="form-control" id="m_total" name="m_total" value="<?php echo set_value('total',@$total); ?>" readonly>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                         </div>       

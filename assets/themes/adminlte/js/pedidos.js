@@ -114,31 +114,38 @@ $("#provincia").on('change', function () {
 
 function calculaPie() {
   
-  var rowCount = $("#detallepedidos tr th").length;
+  var rowCount = $("#detallepedidos tbody tr" ).length;
   var subt = 0;
   var cant_vacio = 0;
   var totvacio = 0;
   var cost_unit_vacio = parseFloat(document.getElementById("cost_unit_vacio").value,10)
   var envio = 0
-  
+
+  miTabla = document.getElementsByTagName("table")[0];
+  miBody = miTabla.getElementsByTagName("tbody")[0];
+    
+ 
+ /*
   $('#detallepedidos tbody').find('tr').each(function () {
-             
     //Voy incrementando las variables segun la fila ( .eq(0) representa la fila 1 )     
-    subt     += parseFloat($(this).find('td').eq(4).text());
-    cant_vacio += parseFloat($(this).find('td').eq(6).text());
-            
-});
+    subt     += parseFloat($(this).find('td').eq(4).value);
+    cant_vacio += parseFloat($(this).find('td').eq(6)('input').value);
+  });
+  */
 
-miTabla = document.getElementsByTagName("table")[1];
-miBody = miTabla.getElementsByTagName("tbody")[0];
+  for(let i=0; i<rowCount; i++){
+     subt = subt + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[4].getElementsByTagName("input")[0].value);
+     cant_vacio = cant_vacio + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[6].getElementsByTagName("input")[0].value);
+  }
 
-envio = parseFloat(miBody.getElementsByTagName("tr")[1].getElementsByTagName("td")[1].innerText,10)
-totvacio = cant_vacio * cost_unit_vacio;
+  miTabla = document.getElementsByTagName("table")[1];
+  miBody = miTabla.getElementsByTagName("tbody")[0];
+  envio = parseFloat(miBody.getElementsByTagName("tr")[1].getElementsByTagName("td")[1].innerText,10)
+  totvacio = cant_vacio * cost_unit_vacio;
 
-
-miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].innerText=subt.toFixed(2)
-miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].innerText=(totvacio).toFixed(2)
-miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(subt+totvacio+envio).toFixed(2)
+  miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].innerText=subt.toFixed(2)
+  miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].innerText=(totvacio).toFixed(2)
+  miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(subt+totvacio+envio).toFixed(2)
 
 
 
@@ -147,21 +154,32 @@ miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(su
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
 function Editar(e) {
          operacion = "E";
+         indice = e.parents("tr").index();
          $('#operacion').html('Edicion');   // Titulo del form   
      
-         var idproducto = e.parents("tr").find("td:eq(7)").text()
-         var preciounit = e.parents("tr").find("td:eq(2)").text()
-         var cantidad   = e.parents("tr").find("td:eq(3)").text()
-         var total      = e.parents("tr").find("td:eq(4)").text()
-         var titulo     = e.parents("tr").find("td:eq(0)").text()
+        // var idproducto = e.parents("tr").find("td:eq(7)").text()
+        // var preciounit = e.parents("tr").find("td:eq(2)").text()
+        // var cantidad   = e.parents("tr").find("td:eq(3)").text()
+        // var total      = e.parents("tr").find("td:eq(4)").text()
+        // var titulo     = e.parents("tr").find("td:eq(0)").text()
+
+        miFila = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[indice]
+        
+         
+         var idproducto = miFila.getElementsByTagName("td")[7].getElementsByTagName("input")[0].value
+         var preciounit = miFila.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value
+         var cantidad   = miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value
+         var total      = miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value
+         var titulo     = miFila.getElementsByTagName("td")[0].getElementsByTagName("input")[0].value
          
 
 
-         document.getElementById('producto_id').value=parseInt(idproducto,10)
-         document.getElementById('preciounit').value=parseFloat(preciounit,10)
-         document.getElementById('cantidad').value=parseFloat(cantidad,10)
-         document.getElementById('total').value=parseFloat(total,10)
-         document.getElementById('titulo').value=titulo
+
+         document.getElementById('m_producto_id').value=parseInt(idproducto,10)
+         document.getElementById('m_preciounit').value=parseFloat(preciounit,10)
+         document.getElementById('m_cantidad').value=parseFloat(cantidad,10)
+         document.getElementById('m_total').value=parseFloat(total,10)
+         
          
           //indice es el numero de fila de la table
          indice = e.parents("tr").index();
@@ -177,20 +195,22 @@ function Editar(e) {
 function cambiaVacio(e)  {
   
   indice = e.parents("tr").index();
-  var vacio = parseInt(e.parents("tr").find("td:eq(6)").text())
+  //var vacio = parseInt(e.parents("tr").find("td:eq(6)").text())
+
   miTabla = document.getElementsByTagName("table")[0];
   mibody = miTabla.getElementsByTagName("tbody")[0];
   miFila = mibody.getElementsByTagName("tr")[indice];
+  var vacio = parseInt(miFila.getElementsByTagName("td")[6].getElementsByTagName("input")[0].value)
   miObjeto = miFila.getElementsByTagName("td")[1].getElementsByTagName('i')[0];
   
   if (vacio==0) {
         miObjeto.classList.remove('fa-toggle-off')
         miObjeto.classList.add('fa-toggle-on')
-        miFila.getElementsByTagName("td")[6].innerHTML=1
+        miFila.getElementsByTagName("td")[6].getElementsByTagName("input")[0].value=1
     }else{
         miObjeto.classList.remove('fa-toggle-on')
         miObjeto.classList.add('fa-toggle-off')
-        miFila.getElementsByTagName("td")[6].innerHTML=0
+        miFila.getElementsByTagName("td")[6].getElementsByTagName("input")[0].value=0
   }
 
   calculaPie();
@@ -203,12 +223,14 @@ function Agregar() {
 
     operacion = "N";
     $('#operacion').html('Nuevo');   // Titulo del form   
-    document.getElementById('producto_id').value=parseInt(0,10)
-    document.getElementById('preciounit').value=parseFloat(0,10)
-    document.getElementById('cantidad').value=parseFloat(0,10)
-    document.getElementById('total').value=parseFloat(0,10)
-    document.getElementById('titulo').value=''
-    
+
+    document.getElementById('m_producto_id').value=parseInt(0,10)
+    document.getElementById('m_preciounit').value=parseFloat(0,10)
+    document.getElementById('m_cantidad').value=parseFloat(0,10)
+    document.getElementById('m_total').value=parseFloat(0,10)
+         
+
+
     $("#modalPedidos").modal("show");  
         
  
@@ -216,7 +238,7 @@ function Agregar() {
 
 
 function cambiaProducto() {
-   id=document.getElementById('producto_id').value;
+   id=document.getElementById('m_producto_id').value;
   $.ajax({
     type: "POST",
     url: UrlBase+'mipanel/productos/getProductoJson',
@@ -224,17 +246,17 @@ function cambiaProducto() {
     dataType: "json",
     success: function (response) {
         //Asignamos los valores de cada input para que se muestren en el form
-        $("#preciounit").val(response['data'].precioventa)
-        $('#titulo').val(response['data'].titulo)
+        $("#m_preciounit").val(response['data'].precioventa)
+        $('#m_titulo').val(response['data'].titulo)
        // $('#cantidad').val(response['data'].unidadvta)
 
-        uni = parseFloat($("#preciounit").val())
-        can = parseFloat($("#cantidad").val())
+        uni = parseFloat($("#m_preciounit").val())
+        can = parseFloat($("#m_cantidad").val())
         tot = parseFloat(uni*can)
 
-        $("#preciounit").val(uni.toFixed(2))
-        $("#cantidad").val(can.toFixed(2))
-        $("#total").val(tot.toFixed(2))
+        $("#m_preciounit").val(uni.toFixed(2))
+        $("#m_cantidad").val(can.toFixed(2))
+        $("#m_total").val(tot.toFixed(2))
         
 
       
@@ -254,11 +276,15 @@ function cambiaProducto() {
 function aceptar() {
    
    // tomo los datos del modal
-   producto_id=parseInt(document.getElementById('producto_id').value,10)
-   preciounit=parseFloat(document.getElementById('preciounit').value,10)
-   cantidad=parseFloat(document.getElementById('cantidad').value,10)
-   total=parseFloat(document.getElementById('total').value,10)
-   producto_nombre=document.getElementById('titulo').value
+   producto_id=parseInt(document.getElementById('m_producto_id').value,10)
+   preciounit=parseFloat(document.getElementById('m_preciounit').value,10)
+   cantidad=parseFloat(document.getElementById('m_cantidad').value,10)
+   total=parseFloat(document.getElementById('m_total').value,10)
+   //producto_nombre=document.getElementById('m_titulo').value
+   micombo=document.getElementById("m_producto_id")
+   producto_nombre=micombo.options[micombo.selectedIndex].text
+
+
 
    if (isNaN(producto_id)) { 
             producto_id= 0; 
@@ -293,25 +319,34 @@ function aceptar() {
               mibody = miTabla.getElementsByTagName("tbody")[0];
               miFila = mibody.getElementsByTagName("tr")[indice];
               
-              miFila.getElementsByTagName("td")[0].innerHTML=producto_nombre;
-              miFila.getElementsByTagName("td")[2].innerHTML=preciounit.toFixed(2);
-              miFila.getElementsByTagName("td")[3].innerHTML=cantidad.toFixed(2);
-              miFila.getElementsByTagName("td")[4].innerHTML=total.toFixed(2);
-              miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
+              //miFila.getElementsByTagName("td")[0].innerHTML=producto_nombre;
+              //miFila.getElementsByTagName("td")[2].innerHTML=preciounit.toFixed(2);
+              //miFila.getElementsByTagName("td")[3].innerHTML=cantidad.toFixed(2);
+              //miFila.getElementsByTagName("td")[4].innerHTML=total.toFixed(2);
+              //miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
+              
+              miFila.getElementsByTagName("td")[0].getElementsByTagName("input")[0].value=producto_nombre;
+              miFila.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value=preciounit.toFixed(2);
+              miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value=cantidad.toFixed(2);
+              miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value=total.toFixed(2);
+              miFila.getElementsByTagName("td")[7].getElementsByTagName("input")[0].value=producto_id;
+              
+              
               //miCelda = miFila.getElementsByTagName("td")[0];
               //miDato = miCelda.firstChild.nodeValue;
             }else{
               //tomo la primer tabla
               var table = document.getElementsByTagName("table")[0]; 
               //var row = table.insertRow();
-              var col0 = '<td>'+ producto_nombre  +'</td>';
+              var col0 = '<td><input type="text" class="form-control"  name="titulo[]"  value="'+  producto_nombre   +'"></td>';
               var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green" onclick="cambiaVacio($(this))"></i></a></td>';
-              var col2 = '<td align="right">'+ preciounit.toFixed(2) +'</td>';
-              var col3 = '<td align="right">'+ cantidad.toFixed(2) +'</td>';
-              var col4 = '<td align="right">'+ total.toFixed(2) +'</td>';
+              var col2 = '<td align="right"><input type="text" class="form-control"  name="preciounit[]"  value="'+ preciounit.toFixed(2) + '"></td>';
+              var col3 = '<td align="right"><input type="text" class="form-control"  name="cantidad[]"  value="'  + cantidad.toFixed(2)   + '"></input></td>';
+              var col4 = '<td align="right"><input type="text" class="form-control" name="precioitem[]"  value="' + total.toFixed(2) + '"></input></td>'
+
               var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
-              var col6 = '<td style="display: none;">0</td>';
-              var col7 = '<td style="display: none;">'+ producto_id +'</td>';
+              var col6 = '<td style="display:none;"><input type="text" class="form-control"  name="vacio[]"  value="0"></td>';
+              var col7 = '<td style="display:none;"><input type="text" class="form-control"  name="producto_id[]"  value="'+ producto_id + '"></input></td>'
               //row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7;
               $(table).find('tbody').append('<tr>' + col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7 + '</tr>');
 
