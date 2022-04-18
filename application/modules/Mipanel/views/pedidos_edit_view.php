@@ -10,7 +10,7 @@
     </ol>
 </section>
 <section class="content">
-             <form id="formpedidos" action="<?php echo base_url('mipanel/pedidos/accion');?>"  method="post" enctype="multipart/form-data">
+             <form id="formpedidos" action="<?php echo base_url('mipanel/pedidos/pedidoValidation');?>"  method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                         
     
@@ -51,13 +51,13 @@
                              
                 ?>
     
-    
+                    <input type="hidden" class="form-control" id="domicilio_requerido"  name="domicilio_requerido"  value="<?php echo set_value('id',@$id); ?>" readonly>
     
                     <div class="row">
                             <div class="col-md-2 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="id" class="control-label">Id</label>
-                                        <input type="text" class="form-control" id="id" name="id" name="nombre"  value="<?php echo set_value('id',@$id); ?>" readonly>
+                                        <input type="text" class="form-control" id="id" name="id" value="<?php echo set_value('id',@$id); ?>" readonly>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                             </div>

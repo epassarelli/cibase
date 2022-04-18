@@ -101,53 +101,65 @@ public function getPedidoSitio()
 
 
 
-public function accion()
+public function pedidoValidation()
 {
-    $data = array('success' => false, 'messages' => array());
-
-    $this->form_validation->set_rules('descripcion','Descripcion', array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
+ 
+  
+    $this->form_validation->set_rules('apellido','Apellido', array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
 
-    $this->form_validation->set_rules('default','Valor Default', array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
+    $this->form_validation->set_rules('nombre','Nombre', array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
+
+    if ($this->input->post('domicilio_requerido') == '1') {
+          $this->form_validation->set_rules('del_calle','Apellido', array('required','max_length[200]'), array('required'   => '{field} es obligatorio',
+          'max_length' => '{field} no puede exceder {param} caracteres -'));
     
+          $this->form_validation->set_rules('del_nro','Numero', array('required','numeric','greater_than[0]'), array('required'   => '{field} es obligatorio',
+          'numeric' => '{field} es un campo numerico -','greater_than' => '{field} debe ser mayor a cero'));
+    
+          $this->form_validation->set_rules('provincia','Provincia', array('greater_than[0]'), array('greater_than' => 'Debe seleccionar una provincia'));
 
+          $this->form_validation->set_rules('localidad','Localidad', array('greater_than[0]'), array('greater_than' => 'Debe seleccionar una localidad'));
+
+    }
 
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
+     
+
+
+
     if ($this->form_validation->run() == TRUE ) {
          
-        //Tomamos los valores
-        $opcion = $this->input->post('Opcion');
-        $pedido['id']        = $this->input->post('id');
-        $pedido['detalle']  = $this->input->post('detalle');
-        $pedido['descripcion']    = $this->input->post('descripcion');
-        $pedido['default']    = $this->input->post('default');
-        $pedido['relacionados'] = $this->input->post('relacionados');
-        $pedido['valor'] = $this->input->post('valor');
 
-        // Pasar el switch
-        switch ($opcion) {
-
-            case 'insertar':
-                $data['success'] = $this->setPedidos($pedido);
-            break;
-
-            case 'editar':
-                $data['success'] = $this->updatePedidos($pedido);
-            break;
-        }
-
+        redirect("pedidos");
         
     } else {
-        foreach ($_POST as $key => $value) {
-            $data['messages'][$key] = form_error($key);
-        }
 
+      $data['files_css'] = array('animate.css','sweetalert2.min.css');
+      $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+     
+      $parametros['sitio_id'] = $this->config->item('sitio_id');
+      $parametros['publicar'] = 1;
+      $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+      $data['productos'] = $productos;
+      $parametros = [];
+      
+      //rearmar pedido para que muestre todo denuevo con las filas que agrego 
+      //en la edicion o en la insercion
+      //$data['pedido'] = $this->Pedidos_model->getPedido($id);
+      
+      
+      $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
+      $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+      $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+      $data['entregas']    = $this->Entregas_model->getEntregas();
+      $data['cost_unit_vacio'] = parametro(10);
+      $this->template->load('layout_back', 'pedidos_edit_view', $data);  
     }
 
-    echo json_encode($data);
 
 }
 

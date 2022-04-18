@@ -349,6 +349,7 @@ function cambiaEntrega(e) {
                     document.getElementById('envio').innerText="0.00";
                 }    
                 domicilio_requerido=parseInt(response.pidedirec)
+                document.getElementById('domicilio_requerido').value=domicilio_requerido
                 calculaPie();
                 if (response.pidedirec == 0)   {
                     document.getElementById('lblcalle').innerHTML='Dirección Calle'
