@@ -140,12 +140,12 @@ function calculaPie() {
 
   miTabla = document.getElementsByTagName("table")[1];
   miBody = miTabla.getElementsByTagName("tbody")[0];
-  envio = parseFloat(miBody.getElementsByTagName("tr")[1].getElementsByTagName("td")[1].innerText,10)
+  envio = parseFloat(miBody.getElementsByTagName("tr")[1].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value,10)
   totvacio = cant_vacio * cost_unit_vacio;
 
-  miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].innerText=subt.toFixed(2)
-  miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].innerText=(totvacio).toFixed(2)
-  miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].innerText=(subt+totvacio+envio).toFixed(2)
+  miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=subt.toFixed(2)
+  miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(totvacio).toFixed(2)
+  miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(subt+totvacio+envio).toFixed(2)
 
 
 

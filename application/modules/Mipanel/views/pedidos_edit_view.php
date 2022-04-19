@@ -104,6 +104,7 @@
                                     <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo set_value('apellido',@$apellido); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
+                                <?php if (!empty(form_error('apellido'))): ?> <?php  echo  form_error('apellido') ;?> <?php endif;?>
                         </div>
                         <div class="col-md-6 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
@@ -254,19 +255,20 @@
                     <table style="width: 20%;" class="table table-bordered">
                       <tr>
                         <td align="left" >Subtotal</td>
-                        <td align="right" ><?php echo $pedido[0]->subtotal ?></td>
+                        <td align="right"><input type="text" class="form-control"  name="subtotal"  value="<?php echo $pedido[0]->subtotal; ?>"></td>
                       </tr>
                       <tr>
                         <td>Envio</td>
-                        <td id='envio' align="right"><?php echo $pedido[0]->delivery ?></td>
+                        <td align="right"><input type="text" class="form-control"  name="delivery"  value="<?php echo $pedido[0]->delivery; ?>"></td>
                       </tr>
                       <tr>
                         <td>Envasado Vacio</td>
-                        <td  align="right"><?php echo $pedido[0]->env_vacio ?></td>
+                        <td align="right"><input type="text" class="form-control"  name="env_vacio"  value="<?php echo $pedido[0]->env_vacio; ?>"></td>
                       </tr>
                       <tr>
                         <td><h4><strong>Total</h4></strong></td>
-                        <td  align="right"><h4><strong><?php echo $pedido[0]->total ?><strong><h4></td>
+                        <td align="right"><input  type="text" class="form-control"  name="total"  value="<?php echo $pedido[0]->total; ?>"></td>
+
                       </tr>
 
 

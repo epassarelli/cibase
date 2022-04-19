@@ -124,7 +124,7 @@ public function pedidoValidation()
 
     }
 
-    $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
+        $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
      
@@ -139,20 +139,80 @@ public function pedidoValidation()
     } else {
 
 
+      $parametros['sitio_id'] = $this->config->item('sitio_id');
+      $parametros['publicar'] = 1;
+      $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+      $data['productos'] = $productos;
+      //$parametros = [];
+      //$data['pedido'] = $this->Pedidos_model->getPedido($id);
+      
+
       $preciounit = $this->input->post('preciounit');
       $cantidad = $this->input->post('cantidad');
       $precioitem = $this->input->post('precioitem');
       $vacio = $this->input->post('vacio');
       $producto_id = $this->input->post('producto_id');
-           
+      $titulo = $this->input->post('titulo');
 
-      var_dump($preciounit);
-      var_dump($cantidad);
-      var_dump($precioitem);
-      var_dump($vacio);
-      var_dump($producto_id);
-      die();
+      public function getOneBy('provincias', $campos='', $parametros='', $orden='')
 
+
+
+      $rowCount = sizeof($producto_id);
+      for ($i = 0; $i <= $rowCount-1   ; $i++) {
+        $data['pedido'][$i]['cantidad'] = $cantidad[$i];
+        $data['pedido'][$i]['titulo'] = $titulo[$i];
+        $data['preciounit'][$i]['preciounit'] = $preciounit[$i];
+        $data['precioitem'][$i]['precioitem'] = $precioitem[$i];
+        $data['preciounit'][$i]['titulo'] = $preciounit[$i];
+        $data['vacio'][$i]['vacio'] = $vacio[$i];
+        $data['fecha'][$i]['fecha'] =  $this->input->post('fecha');
+        $data['apellido'][$i]['apellido'] =  $this->input->post('apellido');
+        $data['nombre'][$i]['nombre'] =  $this->input->post('nombre');
+        $data['email'][$i]['email'] =  $this->input->post('email');
+        $data['telefono'][$i]['telefono'] =  $this->input->post('telefono');
+        $data['calle'][$i]['calle'] =  $this->input->post('del_calle');
+        $data['nro'][$i]['nro'] =  $this->input->post('del_nro');
+        $data['piso'][$i]['piso'] =  $this->input->post('del_piso');
+        $data['dpto'][$i]['dpto'] =  $this->input->post('del_dpto');
+        $data['subtotal'][$i]['subtotal'] =  $this->input->post('subtotal');
+        $data['delivery'][$i]['delivery'] =  $this->input->post('delivery');
+        $data['env_vacio'][$i]['env_vacio'] =  $this->input->post('env_vacio');
+        $data['total'][$i]['total'] =  $this->input->post('total');
+        $data['localidad'][$i]['localidad'] = '';
+        $data['nomestado'][$i]['nomestado'] = '';
+        $data['nomentrega'][$i]['nomentrega'] = '';
+        $data['localidad_id'][$i]['localidad_id'] =  $this->input->post('localidad');
+        $data['provincia_id'][$i]['provincia_id'] =  $this->input->post('provincia');
+        $data['entrega_id'][$i]['entrega_id'] =  $this->input->post('entrega_id');
+        $data['provincia'][$i]['provincia'] = '';
+
+
+
+      }
+
+      
+      
+      //var_dump(data['pedido']);
+      
+
+
+
+
+      $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
+      $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+      $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+      $data['entregas']    = $this->Entregas_model->getEntregas();
+      $data['cost_unit_vacio'] = parametro(10);
+      $this->template->load('layout_back', 'pedidos_edit_view', $data);  
+
+
+
+
+
+     
+
+      
 
 
       $data['files_css'] = array('animate.css','sweetalert2.min.css');
