@@ -15,6 +15,7 @@ class Pedidos  extends MX_Controller {
     $this->load->model('../models/Localidades_model');
     $this->load->model('entregas/Entregas_model');
     $this->load->model('productos/Productos_model');
+    $this->load->model('productos/Carrito_model');
     
     
    
@@ -76,6 +77,8 @@ public function editPedido($id)
     $data['productos'] = $productos;
     $parametros = [];
     $data['pedido'] = $this->Pedidos_model->getPedido($id);
+    $data['operacion'] = "E";
+
     $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
     $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
     $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
@@ -85,6 +88,27 @@ public function editPedido($id)
    
 }
 
+
+public function newPedido()
+{
+    $data['files_css'] = array('animate.css','sweetalert2.min.css');
+    $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+   
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $parametros['publicar'] = 1;
+    $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+    $data['productos'] = $productos;
+    $parametros = [];
+    $data['operacion'] = "N";
+
+    $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+    $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre','','localidades.nombre');
+    $data['entregas']    = $this->Entregas_model->getEntregas();
+    $data['cost_unit_vacio'] = parametro(10);
+    $data['pedido'] = null;
+    $this->template->load('layout_back', 'pedidos_edit_view', $data);  
+   
+}
 
 
 
@@ -132,88 +156,149 @@ public function pedidoValidation()
 
 
     if ($this->form_validation->run() == TRUE ) {
+         $operacion = $this->input->post('accion');
+         $subtotal = $this->input->post('subtotal');
+         $total    = $this->input->post('total');
+         $envio    = $this->input->post('delivery');
+         $cost_unit_vacio = parametro(10);
+         $costo_vacio = $this->input->post('env_vacio');
+         $preciounit = $this->input->post('preciounit');
+         $cantidad = $this->input->post('cantidad');
+         $precioitem = $this->input->post('precioitem');
+         $vacio = $this->input->post('vacio');
+         $producto_id = $this->input->post('producto_id');
+         $titulo = $this->input->post('titulo');
+         $rowCount = sizeof($producto_id); 
+     
+
+         ///cabecera
+         $data_pedidos = array(
+                                 "sitio_id" => $this->config->item('sitio_id'),
+                                 "fecha"    => date('Y-m-d H:i:s'), 
+                                 "sucursal_id" => 1, 
+                                 "cliente_id"  => 0, 
+                                 "apellido" => $this->input->post("apellido"),
+                                 "nombre" => $this->input->post("nombre"), 
+                                 "email" => $this->input->post("email"), 
+                                 "telefono" => $this->input->post("telefono"), 
+                                 "del_calle" => $this->input->post("del_calle"),
+                                 "del_nro" => $this->input->post("del_nro"),
+                                 "del_dpto" => $this->input->post("del_dpto"),
+                                 "del_piso" => $this->input->post("del_piso"),
+                                 "provincia_id" => $this->input->post("provincia"),
+                                 "localidad_id" => $this->input->post("localidad"),
+                                 "formapago_id" => 0,
+                                 "observaciones" => "",
+                                 "estado_id" => 1,                     
+                                 "del_costo" => round((float)$envio,2),
+                                 "entrega_id" => $this->input->post("entrega_id"),
+                                 "subtotal" => round($subtotal,2),
+                                 "total" => round($total,2),
+                                 "cantidad_items" => $rowCount,
+                                 "env_vacio" => round($costo_vacio,2));
          
-
-        redirect("pedidos");
-        
-    } else {
-
+         if ($operacion=='E') {  //edicion
+                  
+                  $idpedido = $this->input->post('id');
+                  $this->Carrito_model->updatepedido($data_pedidos,$idpedido);
+                  $this->Carrito_model->borraitemspedido($idpedido);
+                  $elementos = $rowCount;
+                  for  ($i = 0; $i <= $elementos-1   ; $i++) {
+                      //detalle 
+                      $data_item = array(
+                              "pedido_id" => $idpedido,
+                              "producto_id" => $producto_id[$i],
+                              "cantidad" => $cantidad[$i],
+                              "preciounit" => $preciounit[$i],
+                              "precioitem" => $precioitem[$i],
+                              "vacio" => $vacio[$i],
+                            );  
+                            $this->Carrito_model->grabaitem($data_item);
+                  }          
+                 
+          }else{  //alta
+            $pedido_id = $this->Carrito_model->grabapedido($data_pedidos);
+            $elementos = $rowCount;
+            for  ($i = 0; $i <= $elementos-1   ; $i++) {
+                 //detalle 
+                 $data_item = array(
+                        "pedido_id" => $pedido_id,
+                        "producto_id" => $producto_id[$i],
+                        "cantidad" => $cantidad[$i],
+                        "preciounit" => $preciounit[$i],
+                        "precioitem" => $precioitem[$i],
+                        "vacio" => $vacio[$i],
+                      );  
+                      $this->Carrito_model->grabaitem($data_item);
+             }          
+   
+          }
+          redirect('mipanel/pedidos');
+         
+    }else{    
 
       $parametros['sitio_id'] = $this->config->item('sitio_id');
       $parametros['publicar'] = 1;
       $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+      $parametros = [];
       $data['productos'] = $productos;
-      //$parametros = [];
-      //$data['pedido'] = $this->Pedidos_model->getPedido($id);
-      
-
+  
       $preciounit = $this->input->post('preciounit');
       $cantidad = $this->input->post('cantidad');
       $precioitem = $this->input->post('precioitem');
       $vacio = $this->input->post('vacio');
       $producto_id = $this->input->post('producto_id');
       $titulo = $this->input->post('titulo');
+      $data['operacion'] = $this->input->post('accion');
 
-      public function getOneBy('provincias', $campos='', $parametros='', $orden='')
-
+      $parametros['id'] = $this->input->post('provincia');
+      $tablaprovi =  $this->Provincias_model->getOneBy('provincias', 'nombre', $parametros,'');
+      $parametros = [];
+      $parametros['id'] = $this->input->post('localidad');
+      $tablalocal =  $this->Localidades_model->getOneBy('localidades', 'nombre', $parametros,'');  
+      $parametros = [];
+      $parametros['id'] = $this->input->post('entrega_id');
+      $tablaentrega =  $this->Entregas_model->getOneBy('entregas', 'nombre', $parametros,'');  
+      $parametros = [];
 
 
       $rowCount = sizeof($producto_id);
       for ($i = 0; $i <= $rowCount-1   ; $i++) {
-        $data['pedido'][$i]['cantidad'] = $cantidad[$i];
-        $data['pedido'][$i]['titulo'] = $titulo[$i];
-        $data['preciounit'][$i]['preciounit'] = $preciounit[$i];
-        $data['precioitem'][$i]['precioitem'] = $precioitem[$i];
-        $data['preciounit'][$i]['titulo'] = $preciounit[$i];
-        $data['vacio'][$i]['vacio'] = $vacio[$i];
-        $data['fecha'][$i]['fecha'] =  $this->input->post('fecha');
-        $data['apellido'][$i]['apellido'] =  $this->input->post('apellido');
-        $data['nombre'][$i]['nombre'] =  $this->input->post('nombre');
-        $data['email'][$i]['email'] =  $this->input->post('email');
-        $data['telefono'][$i]['telefono'] =  $this->input->post('telefono');
-        $data['calle'][$i]['calle'] =  $this->input->post('del_calle');
-        $data['nro'][$i]['nro'] =  $this->input->post('del_nro');
-        $data['piso'][$i]['piso'] =  $this->input->post('del_piso');
-        $data['dpto'][$i]['dpto'] =  $this->input->post('del_dpto');
-        $data['subtotal'][$i]['subtotal'] =  $this->input->post('subtotal');
-        $data['delivery'][$i]['delivery'] =  $this->input->post('delivery');
-        $data['env_vacio'][$i]['env_vacio'] =  $this->input->post('env_vacio');
-        $data['total'][$i]['total'] =  $this->input->post('total');
-        $data['localidad'][$i]['localidad'] = '';
-        $data['nomestado'][$i]['nomestado'] = '';
-        $data['nomentrega'][$i]['nomentrega'] = '';
-        $data['localidad_id'][$i]['localidad_id'] =  $this->input->post('localidad');
-        $data['provincia_id'][$i]['provincia_id'] =  $this->input->post('provincia');
-        $data['entrega_id'][$i]['entrega_id'] =  $this->input->post('entrega_id');
-        $data['provincia'][$i]['provincia'] = '';
-
-
-
+        
+        $registro = array('id' => $this->input->post('id'), 
+                          'cantidad' =>  $cantidad[$i],
+                          'titulo' => $titulo[$i],
+                          'preciounit' => $preciounit[$i],
+                          'precioitem' => $precioitem[$i],
+                          'vacio' => $vacio[$i],
+                          'fecha' =>  $this->input->post('fecha'),
+                          'apellido' =>  $this->input->post('apellido'),
+                          'nombre' =>  $this->input->post('nombre'),
+                          'email' =>  $this->input->post('email'),
+                          'telefono' =>  $this->input->post('telefono'),
+                          'calle' =>  $this->input->post('del_calle'),
+                          'nro' =>  $this->input->post('del_nro'),
+                          'piso' =>  $this->input->post('del_piso'),
+                          'dpto' =>  $this->input->post('del_dpto'),
+                          'subtotal' =>  $this->input->post('subtotal'),
+                          'delivery' =>  $this->input->post('delivery'),
+                          'env_vacio' =>  $this->input->post('env_vacio'),
+                          'total' =>  $this->input->post('total'),
+                          'localidad' => $tablalocal['nombre'],
+                          'nomentrega' => $tablaentrega['nombre'],
+                          'localidad_id' =>  $this->input->post('localidad'),
+                          'provincia_id' =>  $this->input->post('provincia'),
+                          'entrega_id' =>  $this->input->post('entrega_id'),
+                          'provincia' => $tablaprovi['nombre']);
+                          $data['pedido'][$i] = (object) $registro;
       }
-
       
-      
-      //var_dump(data['pedido']);
-      
-
-
-
-
       $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
       $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
       $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+      $parametros=[];
       $data['entregas']    = $this->Entregas_model->getEntregas();
       $data['cost_unit_vacio'] = parametro(10);
-      $this->template->load('layout_back', 'pedidos_edit_view', $data);  
-
-
-
-
-
-     
-
-      
-
 
       $data['files_css'] = array('animate.css','sweetalert2.min.css');
       $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
@@ -224,17 +309,9 @@ public function pedidoValidation()
       $data['productos'] = $productos;
       $parametros = [];
       
-      //rearmar pedido para que muestre todo denuevo con las filas que agrego 
-      //en la edicion o en la insercion
-      //$data['pedido'] = $this->Pedidos_model->getPedido($id);
-      
-      
-      $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
-      $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
-      $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
-      $data['entregas']    = $this->Entregas_model->getEntregas();
-      $data['cost_unit_vacio'] = parametro(10);
       $this->template->load('layout_back', 'pedidos_edit_view', $data);  
+
+
     }
 
 
@@ -279,24 +356,35 @@ public function pedidoValidation()
 
 
   
- public function verpedido($id)
+ public function verPedido($id)
  {
 
-  $pedidos['pedido_id'] = 56; //$id;
+  $data['files_css'] = array('animate.css','sweetalert2.min.css');
+  $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+ 
+  $parametros['sitio_id'] = $this->config->item('sitio_id');
+  $parametros['publicar'] = 1;
+  $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+  $data['productos'] = $productos;
+  $parametros = [];
   $data['pedido'] = $this->Pedidos_model->getPedido($id);
+  $data['operacion'] = "E";
 
-    
- $vista ='mipanel/pedido_pdf_view';
-
-$this->load->view($vista, $data); 
-
- /*
- // instantiate and use the dompdf class
- $dompdf = new Dompdf\Dompdf();
+  $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
+  $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+  $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+  $data['entregas']    = $this->Entregas_model->getEntregas();
+  $data['cost_unit_vacio'] = parametro(10);
+  
  
- $html = $this->load->view($vista,$data,true);
+     
+  $vista ='mipanel/pedidos_edit_view';
  
- $dompdf->loadHtml($html);
+  $dompdf = new Dompdf\Dompdf();
+ 
+  $html = $this->load->view($vista,$data,true);
+ 
+  $dompdf->loadHtml($html);
  
  // (Optional) Setup the paper size and orientation
  $dompdf->setPaper('A4', 'portrait');
@@ -309,7 +397,6 @@ $this->load->view($vista, $data);
  
  // Output the generated PDF to Browser
  $dompdf->stream();
-*/
 
 }
 

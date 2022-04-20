@@ -8,7 +8,7 @@ public function __construct() {
 
 
 public function getAll(){
-    $ssql = "SELECT pedidos.id,pedidos.fecha,pedidos.apellido,pedidos.nombre,pedidos.email,pedidos.telefono,pedidos.total,estado_envios.nombre AS nomestado FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY pedidos.fecha desc  ";    
+    $ssql = "SELECT pedidos.id,pedidos.fecha,pedidos.apellido,pedidos.nombre,pedidos.email,pedidos.telefono,pedidos.total,pedidos.estado_id,estado_envios.nombre AS nomestado FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY pedidos.fecha desc  ";    
 
     $query = $this->db->query($ssql);
     return  $query->result();
@@ -67,6 +67,7 @@ public function deletePedidos($id)
     $this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->delete('pedidos_sitios');
 }
+
 
 
 }

@@ -15,7 +15,8 @@
                         
     
                     <?php 
-                          if (isset($pedido)) {
+                            $accion = $operacion;   
+                            if ($accion == 'E') {
                                $id       = $pedido[0]->id;
                                $fecha    = $pedido[0]->fecha;
                                $apellido = $pedido[0]->apellido;
@@ -28,10 +29,16 @@
                                $localidad_id = $pedido[0]->localidad_id;
                                $entrega_id = $pedido[0]->entrega_id;
                                $email       = $pedido[0]->email;
-                               $telefono      = $pedido[0]->telefono;
+                               $telefono    = $pedido[0]->telefono;
+
+                               $subtotal = $pedido[0]->subtotal ;
+                               $env_vacio = $pedido[0]->env_vacio ;
+                               $delivery = $pedido[0]->delivery ;
+                               $total = $pedido[0]->total ;
+
                             }else{
                               $id       = '';
-                              $fecha    = '';
+                              $fecha    = date('Y-m-d H:i:s');
                               $apellido = '';
                               $nombre   = '';
                               $calle    = '';
@@ -43,6 +50,11 @@
                               $entrega_id = '';
                               $email       = '';
                               $telefono      = '';
+
+                              $subtotal = "0.00";
+                              $env_vacio = "0.00";
+                              $delivery = "0.00";
+                              $total = "0.00";
 
                             }
 
@@ -60,12 +72,14 @@
                                         <input type="text" class="form-control" id="id" name="id" value="<?php echo set_value('id',@$id); ?>" readonly>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
+                                    <input type="hidden" class="form-control" id="accion" name="accion" value="<?php echo set_value('accion',@$accion); ?>" readonly>
                             </div>
                             <div class="col-md-4 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="fecha" class="control-label">Fecha</label>
                                         <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo set_value('fecha',@$fecha); ?>" readonly>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        
                                     </div>
                             </div>
 
@@ -120,6 +134,7 @@
                                     <label id="lblcalle" for="del_calle" class="control-label">Calle</label>
                                     <input type="text" class="form-control" id="del_calle" name="del_calle" value="<?php echo set_value('calle',@$calle); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('del_calle'))): ?> <?php  echo  form_error('del_calle') ;?> <?php endif;?>
                                 </div>
                         </div>        
                         <div class="col-md-2 col-sm-12">                                                                                        
@@ -127,6 +142,7 @@
                                     <label id='lblnro' for="del_nro" class="control-label">Numero</label>
                                     <input type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('del_nro'))): ?> <?php  echo  form_error('del_nro') ;?> <?php endif;?>
                                 </div>
                         </div>
                         <div class="col-md-2 col-sm-12">                                                                
@@ -134,6 +150,7 @@
                                     <label for="del_piso" class="control-label">Piso</label>
                                     <input type="text" class="form-control" id="del_piso" name="del_piso" value="<?php echo set_value('piso',@$piso); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('del_piso'))): ?> <?php  echo  form_error('del_piso') ;?> <?php endif;?>
                                 </div>
                         </div>
                         <div class="col-md-2 col-sm-12">                                                                                        
@@ -141,6 +158,7 @@
                                     <label for="del_dpto" class="control-label">Dpto.</label>
                                     <input type="text" class="form-control" id="del_dpto" name="del_dpto" value="<?php echo set_value('dpto',@$dpto); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('del_dpto'))): ?> <?php  echo  form_error('del_dpto') ;?> <?php endif;?>
                                 </div>
                         </div>                                                                                        
                     </div>
@@ -191,6 +209,7 @@
                                     <label for="telefono" class="control-label">Telefono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo set_value('telefono',@$telefono); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('telefono'))): ?> <?php  echo  form_error('telefono') ;?> <?php endif;?>
                                 </div>
                         </div>                      
                         <div class="col-md-6 col-sm-12">                                                        
@@ -198,6 +217,7 @@
                                     <label for="email" class="control-label">E-mail</label>
                                     <input type="text" class="form-control" id="email" name="email" value="<?php echo set_value('email',@$email); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <?php if (!empty(form_error('email'))): ?> <?php  echo  form_error('email') ;?> <?php endif;?>
                                 </div>
                         </div>                                
                     </div>
@@ -220,6 +240,7 @@
                               </tr>
                         </thead>
                         <tbody>
+                          <?php if (isset($pedido) & $pedido != null): ?> 
                             <?php foreach ($pedido as $a): ?>
                                 <tr>
                                     <td><input type="text" class="form-control"  name="titulo[]"  value="<?php echo $a->titulo; ?>"></td>
@@ -247,6 +268,7 @@
                                 </tr>
 
                             <?php endforeach; ?>    
+                        <?php endif; ?>       
                         </tbody>
                     </table>
                     
@@ -255,19 +277,19 @@
                     <table style="width: 20%;" class="table table-bordered">
                       <tr>
                         <td align="left" >Subtotal</td>
-                        <td align="right"><input type="text" class="form-control"  name="subtotal"  value="<?php echo $pedido[0]->subtotal; ?>"></td>
+                        <td align="right"><input  readonly type="text" class="form-control"  name="subtotal" id="subtotal"  value="<?php echo set_value('subtotal',@$subtotal);  ?>"></td>
                       </tr>
                       <tr>
                         <td>Envio</td>
-                        <td align="right"><input type="text" class="form-control"  name="delivery"  value="<?php echo $pedido[0]->delivery; ?>"></td>
+                        <td align="right"><input readonly type="text" class="form-control"  name="delivery"  id="delivery" value="<?php echo set_value('delivery',@$delivery);  ?>"></td>
                       </tr>
                       <tr>
                         <td>Envasado Vacio</td>
-                        <td align="right"><input type="text" class="form-control"  name="env_vacio"  value="<?php echo $pedido[0]->env_vacio; ?>"></td>
+                        <td align="right"><input readonly type="text" class="form-control"  name="env_vacio" id="env_vacio" value="<?php echo set_value('env_vacio',@$env_vacio);  ?>"></td>
                       </tr>
                       <tr>
                         <td><h4><strong>Total</h4></strong></td>
-                        <td align="right"><input  type="text" class="form-control"  name="total"  value="<?php echo $pedido[0]->total; ?>"></td>
+                        <td align="right"><input  readonly type="text" class="form-control"  name="total" id="total"  value="<?php echo set_value('total',@$total);  ?>"></td>
 
                       </tr>
 

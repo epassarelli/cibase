@@ -514,10 +514,11 @@ class Carrito extends MX_Controller {
        
     $entrega_id = intval($this->input->post('entrega_id'));
 
-    $entrega = $this->Entregas_model->getEntregas($entrega_id);
+     $entrega = $this->Entregas_model->getEntregas($entrega_id);
 
-    $valor = round($entrega[0]->costo,2);
-    $pidedirec = round($entrega[0]->pidedirec,0);
+     $valor = round($entrega[0]->costo,2);
+     $pidedirec = round($entrega[0]->pidedirec,0);
+     $id = $entrega[0]->id;
 
 
     $_SESSION['carrito'][0]['entrega_id'] = $entrega_id;
@@ -525,7 +526,8 @@ class Carrito extends MX_Controller {
 
     $response = array('success' => 'OK',
                       'costo_entrega' => round($valor,2),
-                      'pidedirec' => $pidedirec);
+                      'pidedirec' => $pidedirec,
+                      'entrega_id' => $id);
 
     echo json_encode($response);
   }

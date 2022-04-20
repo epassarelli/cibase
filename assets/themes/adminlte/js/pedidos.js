@@ -35,7 +35,7 @@ function grabarPedido() {
   localidad = parseInt(document.getElementById('localidad').value);
   formaentrega = parseInt(document.getElementById('entrega_id').options[entrega_id.selectedIndex].value);
   cantidad_productos = $("#detallepedidos tbody tr").length;
-  //console.log(cantidad_productos)
+  
   
   if (apellido=='' || nombre=='') {
      Toast.fire({type: 'error',title: 'Debe ingresar el Apellido y el nombre',})
@@ -183,8 +183,8 @@ function Editar(e) {
          
           //indice es el numero de fila de la table
          indice = e.parents("tr").index();
-         $("#modalPedidos").modal("show");  
-       
+
+          $("#modalPedidos").modal("show");  
 
  
   }
@@ -379,9 +379,10 @@ function cambiaEntrega(e) {
         success: function (response) {
             if (response.success == 'OK') {
                 if (Number(response.costo_entrega) > 0) {
-                    document.getElementById('envio').innerText=parseFloat(response.costo_entrega).toFixed(2);
+                  document.getElementById("delivery").value=parseFloat(response.costo_entrega).toFixed(2);
+                  document.getElementById("entrega_id").value=parseInt(response.entrega_id);
                 }else{    
-                    document.getElementById('envio').innerText="0.00";
+                  document.getElementById("delivery").value='0.00';
                 }    
                 domicilio_requerido=parseInt(response.pidedirec)
                 document.getElementById('domicilio_requerido').value=domicilio_requerido

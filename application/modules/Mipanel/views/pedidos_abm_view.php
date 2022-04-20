@@ -22,7 +22,7 @@
                 <div class="box-body">
 
                     <p>
-                        <button type="button" class="btn btn-primary margin insertar" ><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                        <a href="<?php echo site_url('mipanel/pedidos/newPedido/'); ?>   "  class="btn btn-primary" role="button">Insertar</a>
                     </p>
                     <table id="pedidosAbm" class="table table-bordered">
                         <thead>
@@ -51,9 +51,15 @@
                                     <td><?php echo $a->nomestado ?></td>
                                     <td>
                                         <div class='text-center'>
-                                            <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
-                                            <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
-                                            <a href="" class='btn btn-xs'  ><i class='fa fa-clipboard fa-2x text-red'></i></a>
+                                           
+                                            <?php if ($a->estado_id == 1): ?>
+                                                <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
+                                                <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
+                                            <?php else:  ?>
+                                                <a  class='btn btn-xs'><i class='fa fa-pencil fa-2x text-gray'></i></a>
+                                                <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-gray'></i></a>
+                                            <?php endif; ?>    
+                                            <a href="<?php echo site_url('mipanel/pedidos/verPedido/' . $a->id ); ?>" class='btn btn-xs'  ><i class='fa fa-clipboard fa-2x text-red'></i></a>
                                         </div>
                                     </td>
                                 </tr>
