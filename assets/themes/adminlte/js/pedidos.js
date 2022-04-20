@@ -18,8 +18,11 @@ $(document).ready(function () {
       timer: 3000
     });
 
+
   });
 
+
+ 
 
 /////////////////////////////////////////////
 ///////////Funciones de la tabla////////////
@@ -112,6 +115,7 @@ $("#provincia").on('change', function () {
 });
 
 
+
 function calculaPie() {
   
   var rowCount = $("#detallepedidos tbody tr" ).length;
@@ -189,6 +193,71 @@ function Editar(e) {
  
   }
 
+//elimina pedido del listado  
+function eliminar(e) {
+
+    // Obtenemos los datos del row
+    //var datos = table.row($(this).parents("tr")).data();
+
+    indice = e.parents("tr").index();
+    miTabla = document.getElementsByTagName("table")[0];
+    mibody = miTabla.getElementsByTagName("tbody")[0];
+    miFila = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[indice]
+    var idpedido = miFila.getElementsByTagName("td")[0].innerText;
+
+    //Configuracion de botones del alert con clase de bootstrap
+    const swalButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    // Abrimos alerta de confirmacion
+    swalButtons.fire({
+      title: 'Estas Seguro ?',
+      text: "No podrás revertir esto!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar esto!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        // Ejecutamos la accion y la enviamos al servidor 
+        //console.log('ejecutamos');  
+        $.ajax({
+            type: "POST",
+            url: UrlBase+'mipanel/pedidos/deletePedido',
+            data: { Id: idpedido},
+            dataType: "json",
+            success: function (response) {
+              if (response.success == true) {
+               swalButtons.fire(
+                  'Eliminado!',
+                  'Su registro ha sido eliminado.',
+                  'success'
+                );
+                //table.ajax.reload();
+                mibody.deleteRow(indice);
+              }
+            }//success
+          });//ajax  
+          //console.log('ejecutamos 3'); 
+        } else if (
+        /* Read more about handling dismissals below */
+         result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalButtons.fire(
+          'Cancelado',
+          'Tu registro está seguro',
+          'error'
+        )
+      }
+    })
+
+  }
 
 
 //cambio estado llave landing formulario alta y edicion 

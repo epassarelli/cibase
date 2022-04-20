@@ -10,6 +10,16 @@
     </ol>
 </section>
 <section class="content">
+
+
+
+<div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
              <form id="formpedidos" action="<?php echo base_url('mipanel/pedidos/pedidoValidation');?>"  method="post" enctype="multipart/form-data">
                     <!-- DATOS DE CONDICIONES -->
                         
@@ -66,7 +76,7 @@
                     <input type="hidden" class="form-control" id="domicilio_requerido"  name="domicilio_requerido"  value="<?php echo set_value('id',@$id); ?>" readonly>
     
                     <div class="row">
-                            <div class="col-md-2 col-sm-12">
+                            <div class="col-md-1 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="id" class="control-label">Id</label>
                                         <input type="text" class="form-control" id="id" name="id" value="<?php echo set_value('id',@$id); ?>" readonly>
@@ -74,7 +84,7 @@
                                     </div>
                                     <input type="hidden" class="form-control" id="accion" name="accion" value="<?php echo set_value('accion',@$accion); ?>" readonly>
                             </div>
-                            <div class="col-md-4 col-sm-12">
+                            <div class="col-md-2 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="fecha" class="control-label">Fecha</label>
                                         <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo set_value('fecha',@$fecha); ?>" readonly>
@@ -83,7 +93,7 @@
                                     </div>
                             </div>
 
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                 <label for="entrega_id" class="font-weight-bold text-dark text-2">Forma de Entrega</label>
                                 <select class="form-control" 
                                     id="entrega_id" 
@@ -112,7 +122,7 @@
                     </div>
                     <div class="row">
                         
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                                 <div class="form-group has-feedback">
                                     <label for="apellido" class="control-label">Apellido</label>
                                     <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo set_value('apellido',@$apellido); ?>">
@@ -120,7 +130,7 @@
                                 </div>
                                 <?php if (!empty(form_error('apellido'))): ?> <?php  echo  form_error('apellido') ;?> <?php endif;?>
                         </div>
-                        <div class="col-md-6 col-sm-12">                                                        
+                        <div class="col-md-3 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
                                     <label for="nombre" class="control-label">Nombre</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo set_value('nombre',@$nombre); ?>">
@@ -129,7 +139,7 @@
                         </div>
                     </div>
                     <div class="row">  
-                        <div class="col-md-6 col-sm-12">                                                                                        
+                        <div class="col-md-4 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label id="lblcalle" for="del_calle" class="control-label">Calle</label>
                                     <input type="text" class="form-control" id="del_calle" name="del_calle" value="<?php echo set_value('calle',@$calle); ?>">
@@ -137,7 +147,7 @@
                                     <?php if (!empty(form_error('del_calle'))): ?> <?php  echo  form_error('del_calle') ;?> <?php endif;?>
                                 </div>
                         </div>        
-                        <div class="col-md-2 col-sm-12">                                                                                        
+                        <div class="col-md-1 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label id='lblnro' for="del_nro" class="control-label">Numero</label>
                                     <input type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
@@ -145,7 +155,7 @@
                                     <?php if (!empty(form_error('del_nro'))): ?> <?php  echo  form_error('del_nro') ;?> <?php endif;?>
                                 </div>
                         </div>
-                        <div class="col-md-2 col-sm-12">                                                                
+                        <div class="col-md-1 col-sm-12">                                                                
                                 <div class="form-group has-feedback">
                                     <label for="del_piso" class="control-label">Piso</label>
                                     <input type="text" class="form-control" id="del_piso" name="del_piso" value="<?php echo set_value('piso',@$piso); ?>">
@@ -153,7 +163,7 @@
                                     <?php if (!empty(form_error('del_piso'))): ?> <?php  echo  form_error('del_piso') ;?> <?php endif;?>
                                 </div>
                         </div>
-                        <div class="col-md-2 col-sm-12">                                                                                        
+                        <div class="col-md-1 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label for="del_dpto" class="control-label">Dpto.</label>
                                     <input type="text" class="form-control" id="del_dpto" name="del_dpto" value="<?php echo set_value('dpto',@$dpto); ?>">
@@ -163,7 +173,7 @@
                         </div>                                                                                        
                     </div>
                     <div class="row">
-                       <div class="col-md-6 col-sm-12">                                                                                        
+                       <div class="col-md-3 col-sm-12">                                                                                        
                             <div class="form-group has-feedback">
                                     <label  class="form-group has-feedbak" id="lblprovincia" >Provincia</label>
                                     <select class="form-control" id="provincia" name="provincia" >
@@ -179,11 +189,11 @@
                                     ?> 
                                     </select>               
                                     <?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
-                                </div>
+                            </div>
                         </div>     
                         
                         
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                             <div class="form-group has-feedback">   
                                 <label class="form-group has-feedbak" id="lbllocalidad">Localidad</label>
                                 <select class="form-control" id="localidad" name="localidad">
@@ -204,7 +214,7 @@
                         </div>     
                     </div>                                      
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">                                                        
+                        <div class="col-md-3 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
                                     <label for="telefono" class="control-label">Telefono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo set_value('telefono',@$telefono); ?>">
@@ -212,7 +222,7 @@
                                     <?php if (!empty(form_error('telefono'))): ?> <?php  echo  form_error('telefono') ;?> <?php endif;?>
                                 </div>
                         </div>                      
-                        <div class="col-md-6 col-sm-12">                                                        
+                        <div class="col-md-3 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
                                     <label for="email" class="control-label">E-mail</label>
                                     <input type="text" class="form-control" id="email" name="email" value="<?php echo set_value('email',@$email); ?>">
@@ -243,7 +253,7 @@
                           <?php if (isset($pedido) & $pedido != null): ?> 
                             <?php foreach ($pedido as $a): ?>
                                 <tr>
-                                    <td><input type="text" class="form-control"  name="titulo[]"  value="<?php echo $a->titulo; ?>"></td>
+                                    <td class="col-md-3 col-sm-12"><input readonly type="text" class="form-control"  name="titulo[]"  value="<?php echo $a->titulo; ?>"></td>
                                     <td  align="center"> 
                                        <?php if ($a->vacio==0): ?>	  
 				   		                              <i class='vacio fa  fa-toggle-off fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
@@ -252,9 +262,9 @@
 					                              <?php endif; ?>		   
                                     </td>
                                     
-                                    <td  align="right"><input type="text" class="form-control"  name="preciounit[]"  value="<?php echo $a->preciounit; ?>"></td>
-                                    <td  align="right"><input type="text" class="form-control"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
-                                    <td  align="right"><input type="text" class="form-control"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
+                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="preciounit[]"  value="<?php echo $a->preciounit; ?>"></td>
+                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
+                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
                                     <td  align="center">
                                             <a href="javascript:void(0);"  onclick="Editar($(this))"  class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
                                             <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
@@ -268,7 +278,7 @@
                                 </tr>
 
                             <?php endforeach; ?>    
-                        <?php endif; ?>       
+                          <?php endif; ?>       
                         </tbody>
                     </table>
                     
@@ -277,19 +287,19 @@
                     <table style="width: 20%;" class="table table-bordered">
                       <tr>
                         <td align="left" >Subtotal</td>
-                        <td align="right"><input  readonly type="text" class="form-control"  name="subtotal" id="subtotal"  value="<?php echo set_value('subtotal',@$subtotal);  ?>"></td>
+                        <td align="right"><input  readonly type="text" class="form-control dinero"  name="subtotal" id="subtotal"  value="<?php echo set_value('subtotal',@$subtotal);  ?>"></td>
                       </tr>
                       <tr>
                         <td>Envio</td>
-                        <td align="right"><input readonly type="text" class="form-control"  name="delivery"  id="delivery" value="<?php echo set_value('delivery',@$delivery);  ?>"></td>
+                        <td align="right"><input readonly type="text" class="form-control dinero"  name="delivery"  id="delivery" value="<?php echo set_value('delivery',@$delivery);  ?>"></td>
                       </tr>
                       <tr>
                         <td>Envasado Vacio</td>
-                        <td align="right"><input readonly type="text" class="form-control"  name="env_vacio" id="env_vacio" value="<?php echo set_value('env_vacio',@$env_vacio);  ?>"></td>
+                        <td align="right"><input readonly type="text" class="form-control dinero"  name="env_vacio" id="env_vacio" value="<?php echo set_value('env_vacio',@$env_vacio);  ?>"></td>
                       </tr>
                       <tr>
                         <td><h4><strong>Total</h4></strong></td>
-                        <td align="right"><input  readonly type="text" class="form-control"  name="total" id="total"  value="<?php echo set_value('total',@$total);  ?>"></td>
+                        <td align="right"><input  readonly type="text" class="form-control dinero"  name="total" id="total"  value="<?php echo set_value('total',@$total);  ?>"></td>
 
                       </tr>
 
@@ -298,11 +308,11 @@
                     </table>
 
                     <div class="footer">
-                            <button type="button" class="btn btn-default">Cerrar</button>
+                             <a href="<?php echo site_url('mipanel/pedidos'); ?>"  class="btn btn-default" role="button"> Cerrar</a>
                             <button type="button" class="btn btn-primary titulo" onclick="grabarPedido()">Grabar</button>
                     </div>
              </form>
-</section>                
+              
 
 
 <!-- --------------------- -->
@@ -374,7 +384,8 @@
         </div>
     </div>
 </div>
-
+</div>
+</div>
 <!-- --------------------- -->
 <!-- MODAL DE CONFIRMACION -->
 <!-- --------------------- -->
@@ -400,3 +411,4 @@
 		</div>
 	</div>
 </div>   
+</section>  

@@ -1,4 +1,6 @@
 
+
+
 <section class="content-header">
     <h1>
         Pedidos
@@ -22,9 +24,11 @@
                 <div class="box-body">
 
                     <p>
-                        <a href="<?php echo site_url('mipanel/pedidos/newPedido/'); ?>   "  class="btn btn-primary" role="button"><i class='fa fa-plus-circle fa-lg'></i> Insertar</a>
+                        <a href="<?php echo site_url('mipanel/pedidos/newPedido/'); ?>"  class="btn btn-primary" role="button"><i class='fa fa-plus-circle fa-lg'></i> Insertar</a>
                     </p>
-                    <table id="pedidosAbm" class="table table-bordered">
+                   
+                   
+                    <table id="example2" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -53,9 +57,9 @@
                                         <div class='text-center'>
                                            
                                             <?php if ($a->estado_id == 1): ?>
-                                                <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
-                                                <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
-                                            <?php else:  ?>
+                                                  <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
+                                                  <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red' onclick="eliminar($(this))" ></i></a>
+                                                <?php else:  ?>
                                                 <a  class='btn btn-xs'><i class='fa fa-pencil fa-2x text-gray'></i></a>
                                                 <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-gray'></i></a>
                                             <?php endif; ?>    
@@ -229,3 +233,4 @@
 		</div>
 	</div>
 </div>   
+

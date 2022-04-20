@@ -63,9 +63,8 @@ public function deletePedidos($id)
     $this->db->where('id',$id);
     $this->db->delete('pedidos');
 
-    $this->db->where('parametro_id',$id);
-    $this->db->where('sitio_id',$this->config->item('sitio_id'));
-    $this->db->delete('pedidos_sitios');
+    $this->db->where('pedido_id',$id);
+    $this->db->delete('pedidos_items');
 }
 
 
