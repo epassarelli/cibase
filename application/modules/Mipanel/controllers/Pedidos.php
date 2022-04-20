@@ -250,17 +250,19 @@ public function pedidoValidation()
       $producto_id = $this->input->post('producto_id');
       $titulo = $this->input->post('titulo');
       $data['operacion'] = $this->input->post('accion');
-
       $parametros['id'] = $this->input->post('provincia');
       $tablaprovi =  $this->Provincias_model->getOneBy('provincias', 'nombre', $parametros,'');
+
       $parametros = [];
-      $parametros['id'] = $this->input->post('localidad');
+      $parametros['id'] =  $this->input->post('localidad');
       $tablalocal =  $this->Localidades_model->getOneBy('localidades', 'nombre', $parametros,'');  
       $parametros = [];
+
       $parametros['id'] = $this->input->post('entrega_id');
       $tablaentrega =  $this->Entregas_model->getOneBy('entregas', 'nombre', $parametros,'');  
       $parametros = [];
 
+      
 
       $rowCount = sizeof($producto_id);
       for ($i = 0; $i <= $rowCount-1   ; $i++) {
@@ -284,12 +286,12 @@ public function pedidoValidation()
                           'delivery' =>  $this->input->post('delivery'),
                           'env_vacio' =>  $this->input->post('env_vacio'),
                           'total' =>  $this->input->post('total'),
-                          'localidad' => $tablalocal['nombre'],
-                          'nomentrega' => $tablaentrega['nombre'],
+                          'localidad' => $tablalocal->nombre,
+                          'nomentrega' => $tablaentrega->nombre,
                           'localidad_id' =>  $this->input->post('localidad'),
                           'provincia_id' =>  $this->input->post('provincia'),
                           'entrega_id' =>  $this->input->post('entrega_id'),
-                          'provincia' => $tablaprovi['nombre']);
+                          'provincia' => $tablaprovi->nombre);
                           $data['pedido'][$i] = (object) $registro;
       }
       

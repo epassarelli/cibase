@@ -22,7 +22,7 @@
                 <div class="box-body">
 
                     <p>
-                        <a href="<?php echo site_url('mipanel/pedidos/newPedido/'); ?>   "  class="btn btn-primary" role="button">Insertar</a>
+                        <a href="<?php echo site_url('mipanel/pedidos/newPedido/'); ?>   "  class="btn btn-primary" role="button"><i class='fa fa-plus-circle fa-lg'></i> Insertar</a>
                     </p>
                     <table id="pedidosAbm" class="table table-bordered">
                         <thead>
@@ -175,7 +175,7 @@
                                 <select class="form-control" id="localidad" name="localidad">
                                     <?php  echo  "<option value=0>Seleccione una Localidad</option>"; ?> 
                                 </select>
-                                <?php if (!empty(form_error('provincia'))): ?> <?php  echo  form_error('provincia') ;?> <?php endif;?>
+                                <?php if (!empty(form_error('localidad'))): ?> <?php  echo  form_error('localidad') ;?> <?php endif;?>
                             </div>
                         </div>     
 
