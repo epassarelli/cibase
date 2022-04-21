@@ -379,26 +379,17 @@ public function pedidoValidation()
   $data['cost_unit_vacio'] = parametro(10);
   
  
-     
-  $vista ='mipanel/pedidos_edit_view';
- 
+
+  $vista = "mipanel/pedidos_pdf_view";
   $dompdf = new Dompdf\Dompdf();
- 
   $html = $this->load->view($vista,$data,true);
- 
   $dompdf->loadHtml($html);
+  $dompdf->setPaper('A4', 'portrait');
+  $dompdf->render();
+  $pdf = $dompdf->output();
+  $dompdf->stream();
+
  
- // (Optional) Setup the paper size and orientation
- $dompdf->setPaper('A4', 'portrait');
- 
- // Render the HTML as PDF
- $dompdf->render();
- 
- // Get the generated PDF file contents
- $pdf = $dompdf->output();
- 
- // Output the generated PDF to Browser
- $dompdf->stream();
 
 }
 
