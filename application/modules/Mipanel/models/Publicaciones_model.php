@@ -40,4 +40,10 @@ class Publicaciones_model extends MY_Model{
 			 ->update('publicaciones', $data);
 	}
 
+    public function eliminar($id) {
+        $this->db->where('publicacion_id', $id);
+        $this->db->delete($this->table);
+        return TRUE;
+    }
+
 }
