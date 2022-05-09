@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | 1-cibase, 2-webpass, 3-vitello, 4-claudia, 5-, 6-cabañas
 */
 
-$config['sitio_id'] 	= 3; 
+$config['sitio_id']   = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $config['sitio_id'] 	= 3;
 | 'porto/header_shop'
 */
 
-$config['header'] 	= 'porto/header_shop'; 
+$config['header']   = 'porto/header_shop';
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ $config['header'] 	= 'porto/header_shop';
 | 'porto/page_header_classic_small'
 */
 
-$config['page_header'] 	= 'porto/page_header_classic_small'; 
+$config['page_header']   = 'porto/page_header_classic_small';
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +50,10 @@ $config['page_header'] 	= 'porto/page_header_classic_small';
 |
 */
 
-$config['facebook'] 	= 'https://www.facebook.com/fundacionequifem/'; 
-$config['twitter'] 		= 'https://twitter.com/ClaudiaHasan1'; 
-$config['instagram'] 	= 'https://www.instagram.com/fundacionequifem/'; 
-$config['linkedin'] 	= ''; 
+$config['facebook']   = 'https://www.facebook.com/fundacionequifem/';
+$config['twitter']     = 'https://twitter.com/ClaudiaHasan1';
+$config['instagram']   = 'https://www.instagram.com/fundacionequifem/';
+$config['linkedin']   = '';
 
-$config['logoAncho'] 	= 244;
-$config['logoAlto'] 	= 76;
+$config['logoAncho']   = 244;
+$config['logoAlto']   = 76;

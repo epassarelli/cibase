@@ -1,14 +1,16 @@
 <?php
 
-class Publicaciones_model extends CI_Model{
+class Publicaciones_model extends CI_Model
+{
 
-  
-public function __construct(){
-    parent::__construct();
-}  
 
-// Retorna 1 o mas registros dependiendo del parametro
-public function getArticulosPor($parametros)
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    // Retorna 1 o mas registros dependiendo del parametro
+    public function getArticulosPor($parametros)
     {
         //$this->db->select('*');
         $this->db->from('publicaciones');
@@ -20,8 +22,8 @@ public function getArticulosPor($parametros)
         return $query->result();
     }
 
-// Retorna 1 o mas registros dependiendo del parametro
-public function getCategoriasPor($parametros)
+    // Retorna 1 o mas registros dependiendo del parametro
+    public function getCategoriasPor($parametros)
     {
         $this->db->select('*');
         $this->db->from('categorias');
@@ -31,7 +33,7 @@ public function getCategoriasPor($parametros)
         return $query->result();
     }
 
-public function getOtrasCategorias($idCatActual, $idIdioma)
+    public function getOtrasCategorias($idCatActual, $idIdioma)
     {
         # code...
         $this->db->select('*');
@@ -41,10 +43,10 @@ public function getOtrasCategorias($idCatActual, $idIdioma)
         $this->db->where('categoria_id !=', $idCatActual);
         $this->db->where('estado', 1);
         $query = $this->db->get();
-        return $query->result();        
+        return $query->result();
     }
 
-public function getBySlug($slug)
+    public function getBySlug($slug)
     {
         $this->db->from('publicaciones');
         $this->db->where('slug', $slug);
@@ -52,16 +54,33 @@ public function getBySlug($slug)
         return $query->row();
     }
 
+    // Retorna N novedades si N es Mayor a 0 y sinó retorna todas
+    public function getNovedades($cant)
+    {
+        //$this->db->select('*');
+        $this->db->from('publicaciones p');
+        $this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
+        $this->db->where('c.slug', 'novedades');
+        $this->db->order_by('publicacion_id', 'desc');
+        if ($cant > 0) {
+            $this->db->limit($cant);
+        }
+        $query = $this->db->get();
+        var_dump($this->db->last_query());
+        return $query->result();
+    }
 
-  function actualizarCategoria($tabla, $data, $id) {
-    $this->db->where('categoria_id', $id);
-    $this->db->update($tabla, $data);
-    return TRUE;
-  }
+    function actualizarCategoria($tabla, $data, $id)
+    {
+        $this->db->where('categoria_id', $id);
+        $this->db->update($tabla, $data);
+        return TRUE;
+    }
 
-  function actualizarPublicacion($tabla, $data, $id) {
-    $this->db->where('publicacion_id', $id);
-    $this->db->update($tabla, $data);
-    return TRUE;
-  }
+    function actualizarPublicacion($tabla, $data, $id)
+    {
+        $this->db->where('publicacion_id', $id);
+        $this->db->update($tabla, $data);
+        return TRUE;
+    }
 }
