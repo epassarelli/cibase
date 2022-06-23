@@ -16,24 +16,32 @@ class Install_model extends CI_Model {
 		$this->db->insert('users', $data);	
     }
 
-    // Insertar un registro para empresa
-    public function insertarEmpresa($data){
-		$this->db->insert('empresa', $data);	
+    // Insertar user  y grupo en user_group
+    public function insertarUsuarioGrupo($data){
+     $this->db->insert('users_groups', $data);	
+    } 
+
+    // Insertar un registro para sitios
+    public function insertarSitio($data){
+		$this->db->insert('sitios', $data);	
     }
 
-    // Insertar un registro para nosotros
-    public function insertarNosotros($data){
-		$this->db->insert_batch('nosotros', $data);	
+    // Insertar temas
+    public function insertarTema($data){
+		$this->db->insert_batch('themes', $data);	
     }       
-
-    // Insertar los slides
-    public function insertarSlides($data){
-		$this->db->insert_batch('slider', $data);	
+    // Insertar user por sitio en user_group
+    public function insertarUsuarioSitio($data){
+      $this->db->insert('users_sitios', $data);	
+    } 
+    // Insertar los parametros
+    public function insertarParam($data){
+		$this->db->insert_batch('parametros', $data);	
     }
 
-    // Insertar los servicios
-    public function insertarServicios($data){
-		$this->db->insert_batch('servicios', $data);	
+    // Insertar los parametros_sitio??
+    public function insertarParamSitio($data){
+		$this->db->insert_batch('parametros_sitios', $data);	
     }
 
 }

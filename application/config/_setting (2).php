@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | 1-cibase, 2-webpass, 3-vitello, 4-claudia, 5-, 6-cabañas
 */
 
-$config['sitio_id'] 	= 4; 
+$config['sitio_id'] 	= 3; 
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $config['sitio_id'] 	= 4;
 | 'porto/header_shop'
 */
 
-$config['header'] 	= 'porto/header_shop'; 
+$config['header'] 	= 'porto/header_classic'; 
 
 /*
 |--------------------------------------------------------------------------

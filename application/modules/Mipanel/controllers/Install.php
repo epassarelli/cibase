@@ -38,8 +38,6 @@ class Install extends MX_Controller {
         $this->Install_model->insertarGrupos($grupos);
 
 
-
-
         // Insertar user Admin + SAdmin
         $usuarios = array(
                           'id' => 1,  
@@ -61,112 +59,119 @@ class Install extends MX_Controller {
 
         $this->Install_model->insertarUsuarios($usuarios);
 
-        // Insertar un registro para empresa
-        $empresa = [
+         // Insertar un registro en users_group
+         $usgroup = array(
+                array(
                         'id' => 1,
-                        'razonsocial' => 'Bondrolfio S.A.',
-                        'direcion'    => '9 de Julio 488',
-                        'cpostal'    => '1653',
-                        'localidad'    => 'San Martin',
+                        'user_id' => 1,
+                        'group_id' => 1
+                ),
+        );
+
+        $this->Install_model->insertarUsuarioGrupo($usgroup);
+
+
+        // Insertar un sitio
+        $sitio = [
+                        'sitio_id' => 1,
+                        'sitio' => 'Sitio Empresa',
+                        'url' => 'empresa',
+                        'theme_id' => 1,
+                        'landing' => 1,
+                        'activo' => 1,
+                        'razonsocial' => 'Empresa SA',
+                        'direcion'    => 'Calle xx Nro 999',
+                        'cpostal'    => '9999',
+                        'localidad'    => 'Localidad',
                         'provincia'    => 'Buenos Aires',
                         'pais'    => 'Argentina',
-                        'cordenadas'    => '9 de Julio 488',
-                        'telefono'    => '4567-8912',
-                        'correo'    => 'bondrolfiosa@bondrolfio.com',
+                        'urlGmap'    => 'mapa',
+                        'telefono'    => '4444-4444',
+                        'correo'    => 'info@empresa.com',
                         'facebook'    => 'https://www.facebook.com',
-                        'instagram'    => '@bondrolfioSA'
+                        'instagram'    => '@empresa',
+                        'logo'    => 'logo.jpg',
+                        'icon'    => 'logo.ico',
+                        'qr'    => 'qr.jpg',
+                        'color1'    => '#b2acac',
+                        'color2'    => '#201e1e',
+                        'color3'    => '#eb2c2c'
                 ];
 
-        $this->Install_model->insertarEmpresa($empresa);
+        $this->Install_model->insertarSitio($sitio);
 
-        // Insertar un registro para nosotros
-        $nosotros = [
-                        ['id' => 1,
-                        'imagen'       => '400x300.jpg',
-                        'titulo'     => 'QUIENES SOMOS',
-                        'subtitulo'  => 'Bajada de quienes somos',
-                        'descripcion'      => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
-                        'estado' => 1 ],
-                        ['id' => 2,
-                        'imagen'       => '400x300.jpg',
-                        'titulo'    => 'NUESTRA MISION',
-                        'subtitulo' => 'Bajada de nuestra mision',
-                        'descripcion'     => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
-                        'estado' => 1],
-                        ['id' => 3,
-                        'imagen'       => '400x300.jpg',
-                        'titulo'      => 'NUESTRA VISION',
-                        'subtitulo'   => 'Bajada de nuestra vision',
-                        'descripcion'       => 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500',
-                        'estado' => 1]
+        // Insertar registros para themes
+        $theme = [
+                        ['theme_id' => 1,
+                        'theme'     => 'AVADA',
+                        'screenshot'  => ' ', ],
+                        ['theme_id' => 2,
+                        'theme'     => 'PORTO',
+                        'screenshot'  => ' ', ],
                 ];
 
-        $this->Install_model->insertarNosotros($nosotros);        
+        $this->Install_model->insertarTema($theme);        
 
-        // Insertar los slides
-        $slider = array(
-                    array(
-                            'id' => 1,
-                            'imagen' => '2000x1333.jpg',
-                            'titulo' => 'Titular Slide 1',
-                            'descripcion' => 'Texto Subtitulo 1',
-                            'estado' => 1
-                    ),
-                    array(
-                            'id' => 2,
-                            'imagen' => '2000x1333.jpg',
-                            'titulo' => 'Titular Slide 2',
-                            'descripcion' => 'Texto Subtitulo 2',
-                            'estado' => 1
-                    ),
-                    array(
-                            'id' => 3,
-                            'imagen' => '2000x1333.jpg',
-                            'titulo' => 'Titular Slide 3',
-                            'descripcion' => 'Texto Subtitulo 3',
-                            'estado' => 1
-                    ),                    
+        // Insertar un registro en users_sitio
+         $usSitio = array(
+                array(
+                        'id' => 1,
+                        'user_id' => 1,
+                        'sitio_id' => 1
+                ),
         );
 
-        $this->Install_model->insertarSlides($slider);
+        $this->Install_model->insertarUsuarioSitio($usSitio);
 
-        // Insertar los servicios
-        $servicios = array(
+        // Insertar parametros
+        $parametros = array(
                     array(
                             'id' => 1,
-                            'titulo' => 'SERVICIO 1',
-                            'descripcion' => 'Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.',
-                            'estado' => 1
+                            'descripcion' => 'Utiliza Carrito de Compra',
+                            'default' => 'N',
+                            'detalle' => 'Utiliza E-Comerce',
+                            'relacionado' => '1'
                     ),
                     array(
-                            'id' => 2,
-                            'titulo' => 'SERVICIO 2',
-                            'descripcion' => 'Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.',
-                            'estado' => 1
-                    ),
+                                'id' => 2,
+                                'descripcion' => 'Necesita Registro para efectuar una compra',
+                                'default' => 'S',
+                                'detalle' => 'Si el valor del campo es S, debera registrarse para poder comprar, si el valor es N, podra comprar por e-commerce sin necesidad de registrarse',
+                                'relacionado' => '1'
+                        ),
                     array(
-                            'id' => 3,
-                            'titulo' => 'SERVICIO 3',
-                            'descripcion' => 'Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.',
-                            'estado' => 1
-                    ),                    
+                                'id' => 3,
+                                'descripcion' => 'Costo de entrega por Delivery',
+                                'default' => '100',
+                                'detalle' => 'Costo de los envios por las compras de e-commerce',
+                                'relacionado' => '1'
+                        ),
                     array(
-                            'id' => 4,
-                            'titulo' => 'SERVICIO 4',
-                            'descripcion' => 'Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.',
-                            'estado' => 1
-                    ), 
-                    array(
-                            'id' => 5,
-                            'titulo' => 'SERVICIO 5',
-                            'descripcion' => 'Ejemplo de texto bajada descriptivo de un servicio que prestamos como empresa o emprendimiento individual.',
-                            'estado' => 1
-                    ), 
-        );
+                                'id' => 4,
+                                'descripcion' => 'Efectua Delivery',
+                                'default' => 'N',
+                                'detalle' => 'Realiza envíos a domicilio',
+                                'relacionado' => '3'
+                        ),
+                     array(
+                                'id' => 5,
+                                'descripcion' => 'Usa pasarela de pago',
+                                'default' => 'N',
+                                'detalle' => 'Cobra a través del ecommerce',
+                                'relacionado' => '1,3'
+                        ),
+                        array(
+                                'id' => 6,
+                                'descripcion' => 'Es multiidioma',
+                                'default' => 'N',
+                                'detalle' => 'Si el sitio es multiidioma debe completar en cada pagina el idioma correspondiente',
+                                'relacionado' => '1,3'
+                        ),
+                );
+        $this->Install_model->insertarParam($parametros);
 
-        $this->Install_model->insertarServicios($servicios);
-
-
+        // Insertar parametros por sitio es el que falta
+       
         $this->template->load('layout_back', 'mipanel_dashboard_view', $this->data);
     }
 

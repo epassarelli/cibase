@@ -24,6 +24,7 @@
 								<li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show">
 									<span class="ws-nowrap"><i class="fas fa-phone"></i> (123) 456-789</span>
 								</li>
+								<a href="https://api.whatsapp.com/send?phone=5491163097942"> <i class="fa-brands fa-whatsapp-square"></i> </a>
 							</ul>
 						</nav>
 						<div class="header-nav-features">
