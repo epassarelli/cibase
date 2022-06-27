@@ -66,6 +66,11 @@ class Install extends MX_Controller {
                         'user_id' => 1,
                         'group_id' => 1
                 ),
+                array(
+                        'id' => 2,
+                        'user_id' => 1,
+                        'group_id' => 2
+                )
         );
 
         $this->Install_model->insertarUsuarioGrupo($usgroup);
@@ -80,7 +85,7 @@ class Install extends MX_Controller {
                         'landing' => 1,
                         'activo' => 1,
                         'razonsocial' => 'Empresa SA',
-                        'direcion'    => 'Calle xx Nro 999',
+                        'direccion'    => 'Calle xx Nro 999',
                         'cpostal'    => '9999',
                         'localidad'    => 'Localidad',
                         'provincia'    => 'Buenos Aires',
@@ -114,11 +119,11 @@ class Install extends MX_Controller {
 
         // Insertar un registro en users_sitio
          $usSitio = array(
-                array(
+                // array(
                         'id' => 1,
                         'user_id' => 1,
                         'sitio_id' => 1
-                ),
+                // ),
         );
 
         $this->Install_model->insertarUsuarioSitio($usSitio);
@@ -130,42 +135,42 @@ class Install extends MX_Controller {
                             'descripcion' => 'Utiliza Carrito de Compra',
                             'default' => 'N',
                             'detalle' => 'Utiliza E-Comerce',
-                            'relacionado' => '1'
+                            'relacionados' => '1'
                     ),
                     array(
                                 'id' => 2,
                                 'descripcion' => 'Necesita Registro para efectuar una compra',
                                 'default' => 'S',
                                 'detalle' => 'Si el valor del campo es S, debera registrarse para poder comprar, si el valor es N, podra comprar por e-commerce sin necesidad de registrarse',
-                                'relacionado' => '1'
+                                'relacionados' => '1'
                         ),
                     array(
                                 'id' => 3,
                                 'descripcion' => 'Costo de entrega por Delivery',
                                 'default' => '100',
                                 'detalle' => 'Costo de los envios por las compras de e-commerce',
-                                'relacionado' => '1'
+                                'relacionados' => '1'
                         ),
                     array(
                                 'id' => 4,
                                 'descripcion' => 'Efectua Delivery',
                                 'default' => 'N',
                                 'detalle' => 'Realiza envíos a domicilio',
-                                'relacionado' => '3'
+                                'relacionados' => '3'
                         ),
                      array(
                                 'id' => 5,
                                 'descripcion' => 'Usa pasarela de pago',
                                 'default' => 'N',
                                 'detalle' => 'Cobra a través del ecommerce',
-                                'relacionado' => '1,3'
+                                'relacionados' => '1,3'
                         ),
                         array(
                                 'id' => 6,
                                 'descripcion' => 'Es multiidioma',
                                 'default' => 'N',
                                 'detalle' => 'Si el sitio es multiidioma debe completar en cada pagina el idioma correspondiente',
-                                'relacionado' => '1,3'
+                                'relacionados' => '1,3'
                         ),
                 );
         $this->Install_model->insertarParam($parametros);

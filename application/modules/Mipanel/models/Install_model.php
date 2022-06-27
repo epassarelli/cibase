@@ -18,7 +18,7 @@ class Install_model extends CI_Model {
 
     // Insertar user  y grupo en user_group
     public function insertarUsuarioGrupo($data){
-     $this->db->insert('users_groups', $data);	
+     $this->db->insert_batch('users_groups', $data);	
     } 
 
     // Insertar un registro para sitios
