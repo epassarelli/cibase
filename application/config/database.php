@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.18.1.83',
-	'username' => 'cibase',
-	'password' => 'cibase',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'cibase',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
