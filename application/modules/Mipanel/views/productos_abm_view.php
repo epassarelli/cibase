@@ -30,10 +30,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th style="width: 30%">Titulo</th>
-                                <th>Imagen</th>
-                                <th>Imagen</th>
-                                <th>Imagen</th>
+                                <th style="width: 40%">Titulo</th>
                                 <th>Precio Lista</th>
                                 <th>Precio Oferta</th>
                                 <th>Publicar</th>
@@ -54,9 +51,12 @@
 </section>
 <!-- /.content -->
 
-<!-- --------------------- -->
-<!-- MODAL DE FORMULARIO -->
-<!-- --------------------- -->
+
+
+
+<!-- --------------------------------- -->
+<!-- MODAL DE FORMULARIO abm productos -->
+<!-- --------------------------------- -->
 
 <div class="modal fade" id="modalSitios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
@@ -114,45 +114,6 @@
                         <input type="text" class="form-control" id="codigo" name="codigo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-
-                    <div class="form-group has-feedback imagen">
-                        <label for="imagen" class="control-label">Imagen 1</label>
-                        <a id="deleteimagenicon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
-
-                        <div id="ocultaFile" >
-                            <input type="file" id="File" name="File">
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <p class="help-block">Tipos JPG/PNG</p>
-                        </div>
-                        <div id="showImagen">
-                        </div>
-                        <input type="hidden" id="imagen" name="imagen">
-                    </div>                    
-
-                    <div class="form-group has-feedback imagen">
-                        <label for="imagen2" class="control-label">Imagen 2</label>
-                        <a id="deleteimagen2con" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
-
-                        <div id="ocultaFile1">
-                            <input type="file" id="File1" name="File1" >
-                            <p class="help-block">Tipos ICO/SVG</p>
-                        </div>
-                        <div id="showImagen2">
-                        </div>
-                        <input type="hidden" id="imagen2" name="imagen2">
-                    </div>                    
-
-                    <div class="form-group has-feedback imagen">
-                        <label for="imagen3" class="control-label">Imagen 3</label>
-                        <a id="deleteimagen3icon" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
-                        <div id="ocultaFile2">
-                            <input type="file" id="File2" name="File2" >
-                            <p class="help-block">Tipos JPG/PNG</p>
-                        </div>
-                        <div id="showImagen3">
-                        </div>
-                        <input type="hidden" id="imagen3" name="imagen3">
-                    </div>                
 
 
                     <div class="form-group has-feedback">
@@ -262,10 +223,10 @@
 
                 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary titulo"></button>
-            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary titulo"></button>
+                    </div>
                 </form>
         </div>
     </div>
@@ -296,3 +257,112 @@
 		</div>
 	</div>
 </div>   
+
+
+
+
+
+<!-- ------------------------ -->
+<!-- MODAL LISTA DE IMAGENES  -->
+<!-- ------------------------ -->
+
+<div style="overflow: auto !important;" class="modal fade" id="modalImagenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span></h4>
+            </div>
+            <div class="modal-body">
+            <input type="hidden" id="idproducto2" name="idproducto2" value="">         
+
+            <div class="box-body">
+
+                    <p>
+                        <button type="button" class="btn btn-primary margin insertarI" data-toggle="modal" data-target="#modalAbmImagenes"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
+                    </p>
+                    <table id="ImagenesproductosAbm" class="table table-bordered tableimagenes">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Imagen</th>
+                                <th>Color</th>
+                                <th>Publicar</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+               
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ------------------------ -->
+<!-- MODAL ABM IMAGENES       -->
+<!-- ------------------------ -->
+
+<div class="modal fade" id="modalAbmImagenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle"><span class="tituloI"></span></h4>
+            </div>
+            <div class="modal-body">
+            <div id="sent" class="col-3">
+                <form action="<?php echo base_url('mipanel/productos/accionI');?>" id="formAbmImagenes" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="OpcionI" name="OpcionI" value="">
+                        <input type="hidden" id="idI" name="idI" value="">
+                        <input type="hidden" id="idproducto" name="idproducto" value="">                                            
+                        
+                        <div class="form-group has-feedback imagen">
+                            <label for="imagenI" class="control-label">Imagen </label>
+                            <a id="deleteimageniconI" href="javascript:void(0);"><i class="fa fa-trash text-red"></i></a>
+
+                            <div id="ocultaFileI" >
+                                <input type="file" id="FileI" name="FileI">
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <p class="help-block">Tipos JPG/PNG</p>
+                            </div>
+                            <div id="showImagenI">
+                            </div>
+                            <input type="hidden" id="imagenI" name="imagenI">
+                        </div>
+                        
+                        
+                        <div class="form-group has-feedback">
+                        <label for="idcolor" class="control-label">Color</label>
+                        <select id="idcolor" name="idcolor" class="form-control">
+                        <?php 
+                                  echo  "<option value=0>Seleccione un Color</option>";
+                                  foreach ($colores as $pres) {
+                                       if (set_value('idcolor',@$idcolor)==$pres->id) { 
+                                            echo '<option value="' .$pres->id. '"" selected>' . $pres->descripcion . '  </option>';  
+                                        }else
+                                            echo '<option value="' .$pres->id. '"">' . $pres->descripcion . ' </option>';  
+                                    }
+                                  ?> 
+
+                        </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="$('#modalAbmImagenes').modal('hide');">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -252,6 +252,22 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/talles');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Talles</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('mipanel/colores');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Colores</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>
 
             <li>
                 <a href="<?php echo site_url('mipanel/productos');?>">

@@ -14,6 +14,7 @@ class Productos  extends MX_Controller {
     $this->load->model('../models/Impuestos_model');
     $this->load->model('../models/Presentaciones_model');
     $this->load->model('../models/Categorias_model');
+    $this->load->model('../models/Colores_model');
     $this->load->helper('productos');
     
     
@@ -42,25 +43,31 @@ class Productos  extends MX_Controller {
     
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $this->data['categorias'] = $this->Categorias_model->getAllBy('categorias','',$parametros,'categoria');
+    $parametros=[];
+    $parametros['estado'] = 1;
+    $this->data['colores'] = $this->Colores_model->getAllBy('colores','',$parametros,'descripcion');
 
     $this->template->load('layout_back', 'productos_abm_view', $this->data);  
   }
 
+
+  
+
+
   // Datos del ABM
   public function getProductos()
   {
-    
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $data['data'] = $this->Productos_model->getAllBy('productos','',$parametros,'');
     echo json_encode($data);
   }
 
 
+
   // Esta funcion la usamos para enviar datos
   //completos del registro al js para su edicion
   public function getProductoJson()
   {
-    
    // $parametros['sitio_id'] = $this->config->item('sitio_id');
    // $parametros['id'] = $this->input->post('Id');
    // $data['data'] = $this->Productos_model->getOneBy('productos','',$parametros,'');
@@ -84,8 +91,36 @@ class Productos  extends MX_Controller {
   }
  
 
+  // Esta funcion la usamos para enviar datos
+  //completos del registro al js para su edicion
+  public function getProductoColoresJson($id)
+  {
+  
+   //$id = $this->input->post('Id');
+      
+   $productocolores = $this->Productos_model->getProductosColores($id);
+   
+  
+   $data['data'] = $productocolores;
+
+   echo json_encode($data);
+  }
 
 
+  // Esta funcion la usamos para editar una configuracion
+  // de producto color
+  public function getProductoColorJson($id)
+  {
+  
+   //$id = $this->input->post('Id');
+      
+   $productocolores = $this->Productos_model->getProductoColor($id);
+   
+  
+   $data['data'] = $productocolores;
+
+   echo json_encode($data);
+  }
 
 
 public function deleteImg()
@@ -266,7 +301,7 @@ public function accion()
 
 }
 
-  // Alta de un sitios
+  // Alta de un producto
   public function setProductos($data, $categoria){
     $producto['titulo']      = $data['titulo'];
     $producto['descLarga']   = $data['descLarga'];
@@ -296,7 +331,7 @@ public function accion()
       return TRUE;
   }
 
-  // Editar un sitios
+  // Editar un prodcuto
   public function updateProductos($data, $categoria){
 
     $producto['titulo']      = $data['titulo'];
@@ -338,7 +373,11 @@ public function accion()
     echo json_encode(array('success' => TRUE));
   }
 
-    public function cambioEstado()
+
+  //cambia el estado de la publicacion de los productos
+  //Etadoviejo y id solo lo paso para ver lo que esta tomando 
+  //por post desde la llamada ajax
+  public function cambioEstado()
    {
     $publicar = $this->input->post('Publicar');
     $id = $this->input->post('Id');
@@ -351,12 +390,26 @@ public function accion()
                            'estadoviejo' => $publicar,  //estado original
                            'id' => $id));            //id producto  
   }
-    //Etadoviejo y id solo lo paso para ver lo que esta tomando 
-    //por post desde la llamada ajax
+    
 
+  //cambia el estado de la publicacion de las imagenes de los productos
+  public function cambioEstadoI()
+   {
+    $publicar = $this->input->post('Publicar');
+    $id = $this->input->post('Id');
+
+    $estadoNuevo = $this->Productos_model->cambioEstadoI($id,$publicar);
+    echo json_encode(array('success' => TRUE,
+                           'publicar' => $estadoNuevo,
+                           'estadoviejo' => $publicar,  //estado original
+                           'id' => $id));            //id producto  
+  }
+  
+  
+  
+  
     // Preguntar configuracion de carga de imagenes 
-  function upload($archivo,$tipos)
-    {
+  function upload($archivo,$tipos){
       
       $sitio_id = $this->config->item('sitio_id');
       $config['upload_path']          = 'assets/uploads/' . $sitio_id . '/productos/';
@@ -381,7 +434,146 @@ public function accion()
       }
 
    
+  }
+
+
+  function uploadI($archivo,$tipos){
+      
+    $sitio_id = $this->config->item('sitio_id');
+    $config['upload_path']          = 'assets/uploads/' . $sitio_id . '/colores/';
+    $config['allowed_types']        = $tipos ;   //'gif|jpg|png'
+  
+    // $config['max_size']             = 100;
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->upload->initialize($config);
+    
+    //if (!$this->upload->do_upload('File'))
+    if (!$this->upload->do_upload($archivo))      
+    {
+            $error = array('error' => $this->upload->display_errors());
+            return $error;
+    }
+    else
+    {
+            $data = $this->upload->data();
+            return $data;
+    }
+
+ 
+}
+    
+
+
+  // Alta de una imagen de producto
+  public function setProductoImagen($data){
+    $producto['idproducto']  = $data['idproducto'];
+    $producto['imagen']      = $data['imagen'];
+    $producto['idcolor']     = $data['idcolor'];
+    $this->Productos_model->setProductoImagen($producto);
+    return TRUE;
+  }
+
+  // Editar una imagen de  producto
+  public function updateProductoImagen($data){
+    $producto['idproducto']  = $data['idproducto'];
+    $producto['imagen']      = $data['imagen'];
+    $producto['idcolor']     = $data['idcolor'];
+    $producto['id']          = $data['id'];
+    $this->Productos_model->updateProductoImagen($data['id'], $producto);
+    return TRUE;
+
+  }
+
+ // Eliminar una imagen de  producto
+ public function deleteProductoImagen($id){
+  $this->Productos_model->deleteProductoImagen($id);
+  echo json_encode(array('success' => TRUE));
+}
+
+
+  public function accionI()  {
+    
+    $data = array('success' => false, 'messages' => array());
+
+    $this->form_validation->set_rules('idcolor','Color', 
+      array('required','greater_than[0]'), array('required'   => '{field} es obligatorio',
+    'greater_than'   => '{field} es obligatorio'));
+    
+
+    $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
+
+
+                                          
+        //Cargamos la imagen en el servidor
+        $result = null;
+
+        $valid_imagen = TRUE;
+ 
+        if(isset($_FILES["FileI"]["name"]) and $this->input->post('imagenI') !== '')
+        {
+          if($_FILES["FileI"]["name"] !=='' )
+          {     
+              $result = $this->uploadI('FileI','jpg|png');
+              if (isset($result['error'])) {
+                  $valid_imagen = FALSE;
+              }else{
+                $valid_imagen = TRUE;
+              }
+           }
+        }
+
+     
+
+   ///para ver respuesta en el navegador        
+   $data['f0']   = $this->input->post('imagenI');
+   $data['result']   = $result;
+   $data['file']   = $_FILES;
+   $data['valid_imagen']   = $valid_imagen;
+   ////// debugging
+   
+
+  if ($this->form_validation->run() == TRUE && $valid_imagen ) {
+         
+        //Tomamos los valores
+        $opcion = $this->input->post('OpcionI');
+        $producto['idproducto']        = $this->input->post('idproducto');
+        $producto['idcolor']    = $this->input->post('idcolor');
+        $producto['imagen']    = (isset($result["file_name"])) ? $result["file_name"] : $this->input->post('imagenI') ;
+
+      
+        // Pasar el switch
+         switch ($opcion) {
+
+            case 'insertar':
+                $data['success'] = $this->setProductoImagen($producto);
+            break;
+
+            case 'editar':
+                $producto['id'] = $this->input->post('idI');
+                $data['success'] = $this->updateProductoImagen($producto);
+            break;
+        } 
+
+        
+    } else {
+        foreach ($_POST as $key => $value) {
+            $data['messages'][$key] = form_error($key);
+        }
+
+        if (!$valid_imagen) {
+            //hay que agregarle la eitqueta de text danger porque no viene de form_error sino que es manual
+            $data['messages']['imagen']  = '<p class="text-danger">Archivo no valido o tamaño excedido</p>';
+          }else {
+            $data['messages']['imagen']  = '';
+        }
 
     }
+
+    echo json_encode($data);
+
+}
+
 
 }

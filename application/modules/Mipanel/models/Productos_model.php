@@ -20,6 +20,26 @@ public function setProducto($data,$categoria)
   
 }
 
+public function setProductoImagen($data)
+{
+    $this->db->insert('productos_colores', $data);
+}
+
+
+public function updateProductoImagen($id,$data)
+{
+    $this->db->where('id',$id);
+    $this->db->update('productos_colores', $data);
+}
+
+
+
+public function deleteProductoImagen($id)
+{
+    $this->db->where('id',$id);
+    $this->db->delete('productos_colores');
+}
+
 
 public function getAllById($id)
 {
@@ -82,6 +102,47 @@ public function cambioEstado($id,$publicar)
     $this->db->update('productos',$data);
     return $data['publicar'];
 }
+
+
+
+public function cambioEstadoI($id,$publicar)
+{
+    $data['publicar'] = ($publicar == 1) ? "0" : "1" ;
+    $this->db->where('id',$id);
+    $this->db->update('productos_colores',$data);
+    return $data['publicar'];
+}
+
+
+// Retorna 1 o mas registros dependiendo del parametro
+public function getProductosColores($id)
+    {
+      $comando =  'SELECT productos_colores.id,
+                          productos_colores.idproducto,productos.titulo,
+                          productos_colores.idcolor,colores.descripcion,
+                          productos_colores.imagen,productos_colores.publicar from productos_colores 
+                          left join productos on productos.id=productos_colores.idproducto 
+                          left join colores on colores.id=productos_colores.idcolor 
+                          where productos_colores.idproducto=' . $id;
+
+      $query = $this->db->query($comando);
+
+        return $query->result();
+ 
+    }
+
+
+
+
+
+    // Retorna 1 o mas registros dependiendo del parametro
+public function getProductoColor($id)
+    {
+        $this->db->where('id',$id);
+        $query = $this->db->get('productos_colores');
+        return $query->row();
+ 
+    }
 
 }
 ?>
