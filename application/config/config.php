@@ -537,5 +537,7 @@ $config['proxy_ips'] = '';
 // 3 - Vitello
 // 4 - Claudia
 // 5 - Mutual
+// 6 - Cabañas
+// 7 - Kouro
 
-$config['sitio_id'] 	= 3; 
+$config['sitio_id'] 	= 7; 

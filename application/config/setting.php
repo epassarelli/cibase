@@ -14,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Sitio seleccionado
 |--------------------------------------------------------------------------
 |
-| 1-cibase, 2-webpass, 3-vitello, 4-claudia, 5-, 6-cabañas
+| 1-cibase, 2-webpass, 3-vitello, 4-claudia, 5-, 6-cabañas - 7 kouro
 */
 
-$config['sitio_id'] 	= 3; 
+$config['sitio_id'] 	= 7; 
 
 /*
 |--------------------------------------------------------------------------
