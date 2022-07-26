@@ -24,7 +24,7 @@
                     <div class="row">
                       <div class="form-group has-feedback col-lg-3 col-md-3 col-sm-12">
                             <label for="producto_id" class="control-label">Producto</label>
-                            <select id="producto_id" name="producto_id" id="producto_id" class="form-control">
+                            <select id="producto_id" name="producto_id" id="producto_id" class="form-control chzn-select">
                             <?php 
                                       echo  "<option value=0>Seleccione un Producto</option>";
                                       foreach ($productos as $pres) {
