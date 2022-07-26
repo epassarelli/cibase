@@ -276,7 +276,23 @@
                       <small class="label pull-right bg-green"></small>
                     </span>
                 </a>
-            </li>              
+            </li>   
+            <li>
+                <a href="<?php echo site_url('mipanel/stocks/unidadesStock');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Manejo de Existencias</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>   
+            <li>
+                <a href="<?php echo site_url('mipanel/stocks');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Existencias en Stocks</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>   
             <li>
                 <a href="<?php echo site_url('mipanel/pedidos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Pedidos</span>

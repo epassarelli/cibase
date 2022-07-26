@@ -242,7 +242,7 @@ function listar(base,Toast) {
                 defaultContent:
                     "<div class='text-center'>"+
                     "<a href='javascript:void(0);' class='editar   btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>"+
-                    "<a href='javascript:void(0);' class='detalle  btn btn-xs'><i class='fa fa-file fa-2x text-blue'></i></a>"+
+                    "<a href='javascript:void(0);' class='detalle  btn btn-xs'><i class='fa fa-camera fa-2x text-green'></i></a>"+
                     "<a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a>"+
                     "</div>"
             }
@@ -491,7 +491,7 @@ function submit(table,Toast) {
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
  function Edit(body, table) {
-  console.log('vine')
+  
    //Tomando desde el boton de edicion
 		$(body).on("click", "a.editar", function() {
       //Guardamos los datos que tomamos del datatable
