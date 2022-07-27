@@ -57,6 +57,7 @@ $(".insertar").click(function() {
   }else{
     var t = $('#stocksMoves').DataTable();
     t.row.add([producto_id,producto_titulo,color_id,color_descripcion,talle_id,talle_descripcion,cantidad]).draw(true);
+    $('#cantidad').val(0);
     //swalButtons.fire('Ingresado','Su archivo ha sido subido.','success');
   }
 });

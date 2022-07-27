@@ -24,6 +24,7 @@
                     <p>
                         <button type="button" class="btn btn-primary margin insertar" data-toggle="modal" data-target="#modalCategorias"><i class='fa fa-plus-circle fa-lg'></i>    Insertar </button>
                     </p>
+                    
                     <table id="categoriasAbm" class="table table-bordered">
                         <thead>
                             <tr>

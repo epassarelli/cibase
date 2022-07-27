@@ -15,7 +15,7 @@ public function setCategorias($data)
 public function update($id,$data)
 {
     $this->db->where('categoria_id',$id);
-    $this->db->where('sitio_id',$this->config->item('sitio_id'));
+    //$this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->update('categorias', $data);
 }
 
@@ -23,7 +23,7 @@ public function update($id,$data)
 public function deleteCategorias($id)
 {
     $this->db->where('categoria_id',$id);
-    $this->db->where('sitio_id',$this->config->item('sitio_id'));
+    //$this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->delete('categorias');
 }
 
@@ -33,16 +33,26 @@ public function cambioEstado($id,$estado)
 {
     $data['estado'] = ($estado == 1) ? "0" : "1" ;
     $this->db->where('categoria_id',$id);
-    $this->db->where('sitio_id',$this->config->item('sitio_id'));
+    //$this->db->where('sitio_id',$this->config->item('sitio_id'));
     $this->db->update('categorias',$data);
     return $data['estado'];
 }
 
-  public function getCategorias($modulo_id, $sitio_id){
-    $this->db->select('categoria_id, categoria')
-              ->from('categorias')
-              ->where('modulo_id', $modulo_id)
-              ->where('sitio_id', $sitio_id);
+  public function getCategorias($modulo_id){
+
+    $sitio_id = $this->config->item('sitio_id');
+    if(!$this->ion_auth->is_admin()){
+        $this->db->select('categoria_id, categoria')
+        ->from('categorias')
+        ->where('modulo_id', $modulo_id)
+        ->where('sitio_id', $sitio_id);
+      }else{
+        $this->db->select('categoria_id, categoria')
+        ->from('categorias')
+        ->where('modulo_id', $modulo_id);
+      }   
+  
+
     $query = $this->db->get();
     return $query->result();
   }

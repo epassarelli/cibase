@@ -112,7 +112,8 @@ function listar(base,Toast) {
         destroy: true,
         responsive: true,
         ajax: {
-            url: base + "mipanel/categorias/getCategorias?modulo_id=" + modulo_id,
+            //url: base + "mipanel/categorias/getCategorias?modulo_id=" + modulo_id,
+            url: base + "mipanel/categorias/getCategorias/" + modulo_id,
             type: "json"
         },
           rowCallback : function( row, data ) {
@@ -243,6 +244,7 @@ function submit(table,Toast) {
 		$(body).on("click", "a.editar", function() {
       //Guardamos los datos que tomamos del datatable
       var datos = table.row($(this).parents("tr")).data();
+      //console.log('datos: '+datos.categoria_id);
       // Removemos las posibles clases de validacion que pueda tener el fomr
       $('.form-group').removeClass('has-error has-success')
       $('.text-danger, .editFile').remove()

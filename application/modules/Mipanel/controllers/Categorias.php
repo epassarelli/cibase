@@ -103,10 +103,9 @@ public function getCates($modulo_id){
 
   // Esta funcion la usamos para enviar datos
   //completos del registro al js para su edicion
-  public function getCategoriaJson()
-  {
+  public function getCategoriaJson(){
     
-    $parametros['sitio_id'] = $this->config->item('sitio_id');
+   // $parametros['sitio_id'] = $this->config->item('sitio_id');
     $parametros['categoria_id'] = $this->input->post('Id');
     $data['data'] = $this->Categorias_model->getOneBy('categorias','',$parametros,'');
     echo json_encode($data);
@@ -114,10 +113,7 @@ public function getCates($modulo_id){
  
 
 
-
-
-public function deleteImg()
-{
+public function deleteImg(){
     $fileName = $this->input->post('FileName');
     $deletefile = './assets/uploads/' . $fileName;
     $directory = './assets/uploads/';
@@ -138,8 +134,7 @@ public function deleteImg()
 }
 
 
-public function accion()
-{
+public function accion(){
     $data = array('success' => false, 'messages' => array());
 
     $this->form_validation->set_rules('categoria','Categoria', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
@@ -267,8 +262,7 @@ public function accion()
   }
 
   //Eliminando un registro de la tabla de categorias
-  public function deleteCategoria()
-  {
+  public function deleteCategoria() {
     $categoria_id = $this->input->post('Id');
    
     //$fileName = $this->input->post('FileName');
@@ -278,8 +272,7 @@ public function accion()
     echo json_encode(array('success' => TRUE));
   }
 
-    public function cambioEstado()
-   {
+  public function cambioEstado(){
     $estado = $this->input->post('Estado');
     $id = $this->input->post('Id');
     
