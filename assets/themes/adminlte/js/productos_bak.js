@@ -3,7 +3,6 @@ $(document).ready(function () {
   // Url Dinamico
     UrlBase = $('#url').val();
     var table;
-    var tableimagenes;
 
 
 //Configuramos las alerts
@@ -215,7 +214,7 @@ function readURL(input) {
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
 function listar(base,Toast) {
-  var tableimagenes;
+
   var table = $("#productosAbm").DataTable({
         destroy: true,
         responsive: true,
@@ -259,11 +258,6 @@ function listar(base,Toast) {
     Detalles("#productosAbm tbody", table); //Tomar datos para manejar imagines y colores
     deleteSitios("#productosAbm tbody", table); //Eliminar un slide
     cambioEstado("#productosAbm tbody", table,Toast);  //Cambiar estado en datatable de la publicacion del articulo
-
-    deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
-    editarImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Edicion
-    cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo
-
  }
 
 
@@ -280,7 +274,7 @@ function Detalles(body, table) {
      var datos = table.row($(this).parents("tr")).data();
      
      //var datos = $('#productosAbm').DataTable().row($(this).parents("tr")).data();
-     //alert('imagenes de: '+datos.id);
+     alert('imagenes de: '+datos.id);
      
      
      // Removemos las posibles clases de validacion que pueda tener el fomr
@@ -335,9 +329,9 @@ function Detalles(body, table) {
        //Abrimos el modal
     
      
-   /*   deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
+     deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
      editarImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Edicion
-     cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo */
+     cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo
         
      $("#modalImagenes").modal("show");
    });//click
@@ -717,11 +711,11 @@ function submit(table,Toast) {
 
 
 //Funcion para cambiar estado y publicar o no la foto del articulo
-function cambioEstadoI(body,tableimagenes,Toast) { 
+function cambioEstadoI(body,table,Toast) { 
   // Mostrar un alert con el dato de la row
   $(body).on("click", "a.publicarI", function () {
-    var datos = $('#ImagenesproductosAbm').DataTable().row($(this).parents("tr")).data();
-    //var datos = tableimagenes.row($(this).parents("tr")).data();
+    var me = $(this);
+    var datos = table.row($(this).parents("tr")).data();
        // Ejecutamos la accion y la enviamos al servidor 
        $.ajax({
         type: "POST",
@@ -771,7 +765,7 @@ function editarImagen(body,tableimagenes) {
      
      //var datos = tableimagenes.row($(this).parents("tr")).data();
      var datos = $('#ImagenesproductosAbm').DataTable().row($(this).parents("tr")).data();
-     //alert('datos '+datos.id);
+     alert('datos '+datos.id);
      
      // Removemos las posibles clases de validacion que pueda tener el fomr
      $('.form-group').removeClass('has-error has-success')

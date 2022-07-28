@@ -296,7 +296,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default"  onclick="cerrar2()">cerrar</button>
+               <!--  data-dismiss="modal" -->
             </div>
                
         </div>
@@ -358,7 +359,7 @@
 
                                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="$('#modalAbmImagenes').modal('hide');">Cerrar</button>
+                        <button type="button" class="btn btn-default" onclick="cerrar()">Cerrar</button>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
@@ -366,3 +367,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    function cerrar() {
+        $('#modalAbmImagenes').modal('hide');
+    }
+
+    function cerrar2() {
+        $('#modalImagenes').modal('hide');
+        //a.editarI.removeEventListener('click', myHandler);
+        
+    }
+
+
+</script>
