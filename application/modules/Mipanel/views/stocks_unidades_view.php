@@ -41,7 +41,7 @@
                     <div class="row">
                           <div class="form-group has-feedback col-lg-2 col-md-2 col-sm-12">
                               <label for="talle_id" class="control-label">Talle</label>
-                              <select id="talle_id" name="talle_id" class="form-control">
+                              <select id="talle_id" name="talle_id" class="form-control chzn-select">
                               <?php 
                                         echo  "<option value=0>Seleccione un Talle</option>";
                                         foreach ($talles as $pres) {
@@ -56,7 +56,7 @@
                           </div>
                           <div class="form-group has-feedback col-lg-2 col-md-2 col-sm-12">
                               <label for="color_id" class="control-label">Color</label>
-                              <select id="color_id" name="color_id" class="form-control">
+                              <select id="color_id" name="color_id" class="form-control chzn-select">
                               <?php 
                                         echo  "<option value=0>Seleccione un Color</option>";
                                         foreach ($colores as $pres) {
@@ -78,7 +78,7 @@
 
                           <div class="form-group has-feedback col-lg-4 col-md-4 col-sm-12">
                               <label for="tipo_moves_id" class="control-label">Tipo Movimiento</label>
-                              <select id="tipo_moves_id" name="color_id" class="form-control">
+                              <select id="tipo_moves_id" name="color_id" class="form-control chzn-select">
                               <?php 
                                         echo  "<option value=0>Seleccione un Tipo</option>";
                                         foreach ($tipo_moves as $pres) {
