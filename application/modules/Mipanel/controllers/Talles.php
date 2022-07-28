@@ -33,7 +33,7 @@ class Talles  extends MX_Controller {
 public function index(){      
   $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
   $this->data['files_js'] = array('talles.js?v='.rand(),'sweetalert2.min.js');
-  $this->data['talles'] = $this->Talles_model->getAllBy('talles','','','');
+  $this->data['talles'] = $this->Talles_model->getAllBy('talles','','','descripcion');
   $this->template->load('layout_back', 'talles_abm_view', $this->data);  
 }
 
@@ -149,7 +149,7 @@ public function accion()
 
 // Datos del ABM retorna json
 public function getTalles(){
-    $data['data'] = $this->Talles_model->getAllBy('talles','','','');
+    $data['data'] = $this->Talles_model->getAllBy('talles','','','descripcion');
     echo json_encode($data);
 }
 
@@ -158,7 +158,7 @@ public function getTalles(){
 public function getCates($modulo_id){
   $parametros['sitio_id'] = $this->config->item('sitio_id');
   $parametros['modulo_id'] = $modulo_id;
-  $cates = $this->Talles_model->getAllBy('talles','',$parametros,'');
+  $cates = $this->Talles_model->getAllBy('talles','',$parametros,'descripcion');
   return $cates;
 }
 

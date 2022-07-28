@@ -72,6 +72,7 @@ function listar(base,Toast) {
     var table = $("#coloresAbm").DataTable({
         destroy: true,
         responsive: true,
+        order: [[2, 'asc']],
         ajax: {
             url: base + "mipanel/colores/getColores",
             type: "json"

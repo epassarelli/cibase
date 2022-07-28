@@ -33,7 +33,7 @@ class Colores  extends MX_Controller {
 public function index(){      
   $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
   $this->data['files_js'] = array('colores.js?v='.rand(),'sweetalert2.min.js');
-  $this->data['colores'] = $this->Colores_model->getAllBy('colores','','','');
+  $this->data['colores'] = $this->Colores_model->getAllBy('colores','','','descripcion');
   $this->template->load('layout_back', 'colores_abm_view', $this->data);  
 }
 
@@ -97,7 +97,7 @@ public function accion()
   //completos del registro al js para su edicion
   public function getColoresJson(){
     $parametros['id'] = $this->input->post('Id');
-    $data['data'] = $this->Colores_model->getOneBy('colores','',$parametros,'');
+    $data['data'] = $this->Colores_model->getOneBy('colores','',$parametros,'descripcion');
     echo json_encode($data);
   }
  
@@ -149,7 +149,7 @@ public function accion()
 
 // Datos del ABM retorna json
 public function getColores(){
-    $data['data'] = $this->Colores_model->getAllBy('colores','','','');
+    $data['data'] = $this->Colores_model->getAllBy('colores','','','descripcion');
     echo json_encode($data);
 }
 
@@ -158,7 +158,7 @@ public function getColores(){
 public function getCates($modulo_id){
   $parametros['sitio_id'] = $this->config->item('sitio_id');
   $parametros['modulo_id'] = $modulo_id;
-  $cates = $this->Colores_model->getAllBy('colores','',$parametros,'');
+  $cates = $this->Colores_model->getAllBy('colores','',$parametros,'descripcion');
   return $cates;
 }
 
