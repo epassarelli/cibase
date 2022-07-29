@@ -58,9 +58,12 @@ public function unidadesStock(){
 
   $this->data['files_css'] = array('animate.css','sweetalert2.min.css','chosen.css');
   $this->data['files_js'] = array('stocks.js?v='.rand(),'sweetalert2.min.js','chosen-select.js', 'chosen.jquery.js');
+  
   $this->data['productos'] = $this->Productos_model->getAllBy('productos','','','titulo');
-  $this->data['colores'] = $this->Colores_model->getAllBy('colores','','','');
-  $this->data['talles'] = $this->Talles_model->getAllBy('talles','','','');
+  $parametros['estado'] =1;
+  $this->data['colores'] = $this->Colores_model->getAllBy('colores','',$parametros,'');
+  $this->data['talles'] = $this->Talles_model->getAllBy('talles','',$parametros,'');
+  
   $this->data['tipo_moves'] = $this->Stocks_model->getTipoMoves();
   $this->template->load('layout_back', 'stocks_unidades_view', $this->data); 
 
