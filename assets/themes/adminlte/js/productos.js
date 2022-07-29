@@ -260,10 +260,10 @@ function listar(base,Toast) {
     deleteSitios("#productosAbm tbody", table); //Eliminar un slide
     cambioEstado("#productosAbm tbody", table,Toast);  //Cambiar estado en datatable de la publicacion del articulo
 
-    deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
+/*     deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
     editarImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Edicion
     cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo
-
+ */
  }
 
 
@@ -335,9 +335,9 @@ function Detalles(body, table) {
        //Abrimos el modal
     
      
-   /*   deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
+     deleteProductoImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Eliminacion  
      editarImagen("#ImagenesproductosAbm tbody", tableimagenes); //Tomar datos para la Edicion
-     cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo */
+     cambioEstadoI("#ImagenesproductosAbm tbody", tableimagenes,Toast);  //Cambiar estado en datatable de la publicacion del articulo 
         
      $("#modalImagenes").modal("show");
    });//click
@@ -769,8 +769,8 @@ function editarImagen(body,tableimagenes) {
     alert('Cantidad: ' + count); */
      //Guardamos los datos que tomamos del datatable
      
-     //var datos = tableimagenes.row($(this).parents("tr")).data();
-     var datos = $('#ImagenesproductosAbm').DataTable().row($(this).parents("tr")).data();
+     var datos = tableimagenes.row($(this).parents("tr")).data();
+     //var datos = $('#ImagenesproductosAbm').DataTable().row($(this).parents("tr")).data();
      //alert('datos '+datos.id);
      
      // Removemos las posibles clases de validacion que pueda tener el fomr
