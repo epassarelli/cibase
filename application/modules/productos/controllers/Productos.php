@@ -35,9 +35,9 @@ switch (ENVIRONMENT){
     $data['categorias'] = $this->Productos_model->getCategorias();  
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $parametros['publicar'] = 1;
-    $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
-    $data['productos'] = $productos;
-    $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
+    //$productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
+    //$data['productos'] = $productos;
+    $data['view']       = 'productos_'.$this->session->userdata('theme').'_categorias_view';
     
     $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
