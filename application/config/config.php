@@ -541,3 +541,21 @@ $config['proxy_ips'] = '';
 // 7 - Kouro
 
 $config['sitio_id'] 	= 7; 
+
+
+
+/*  instalacion sdk server side  
+   composer require mercadopago/dx-php 
+ configuraciones mercado pago  */
+
+//credenciales de prueba
+$config['public_key'] = 'TEST-d41ab277-2f0f-4d44-a07a-ee9431b2f237';
+$config['access_token'] = 'TEST-2284997509973029-080409-874c4743aedaca67eb123a4682831759-1164687999';
+
+//credenciales de producccion
+$config['public_key'] = 'APP_USR-2179df65-2675-4751-9de6-d8a7183ee01e';
+$config['access_token'] = 'APP_USR-2284997509973029-080409-1e1a98f05697a6450e2443886e3aa6a5-1164687999';
+
+
+
+

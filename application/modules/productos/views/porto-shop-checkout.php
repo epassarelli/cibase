@@ -1,3 +1,34 @@
+<?php
+
+		// SDK de Mercado Pago
+		require 'vendor/autoload.php';
+		// Agrega credenciales
+		MercadoPago\SDK::setAccessToken($this->config->item('access_token'));
+
+		// Crea un objeto de preferencia
+		$preference = new MercadoPago\Preference();
+
+		// Crea un ítem en la preferencia
+		$item = new MercadoPago\Item();
+		$item->title = 'Mi producto';
+		$item->quantity = 1;
+		$item->unit_price = 75.56;
+		$preference->items = array($item);
+
+
+
+	  $preference->back_urls = array(
+				"success" => "http://localhost/cibase/productos/carrito/success",
+				"failure" => "http://localhost/cibase/productos/carrito/failure",
+				"pending" => "http://localhost/cibase/productos/carrito/pending"
+			);
+			$preference->auto_return = "approved";
+
+		$preference->save();
+		
+
+?>
+
 
 
 
@@ -163,9 +194,10 @@
 									<div class="card-header">
 									<?php if(parametro(5) =="S"): ?>
 										<h4 class="card-title m-0">
-											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+											<!-- <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
 												Pagar y Finalizar
-											</a>
+											</a> -->
+											<!-- cobranza mercado pago -->
 										</h4>
 									<?php endif; ?>
 									</div>
@@ -275,6 +307,7 @@
 								</div>
 							<?php endif; ?>	
 						</div>
+						<div class='.cho-container'></div>
 						<div class="col-lg-3">
 							<h4 class="text-primary">Total carrito</h4>
 							<table class="cart-totals">
@@ -325,3 +358,22 @@
 
 		</div>
 
+<!-- SDK MercadoPago.js V2 -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<div class="cho-container"></div>
+<script>
+  const mp = new MercadoPago("<?php echo $this->config->item('public_key'); ?>", {
+    locale: 'es-AR'
+  });
+
+  mp.checkout({
+    preference: {
+      id: "<?php echo $preference->id;?>"
+    },
+    render: {
+      container: '.cho-container',
+      label: 'Pagar con Mercado Pago',
+    }
+  });
+</script>

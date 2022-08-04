@@ -454,7 +454,7 @@ class Carrito extends MX_Controller {
       }
        
 
-       ///// borramos carro en session 
+      ///// borramos carro en session 
        $_SESSION['carrito'] = null;
        
        //redirect("productos");
@@ -530,6 +530,11 @@ class Carrito extends MX_Controller {
                       'entrega_id' => $id);
 
     echo json_encode($response);
+  }
+
+
+  public function success() {
+    echo 'Pago realizado';
   }
 
 }
