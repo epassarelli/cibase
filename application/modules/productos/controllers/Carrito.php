@@ -454,6 +454,10 @@ class Carrito extends MX_Controller {
       }
        
 
+      // guardamos la variable de sesion para pasarla a la 
+      // pasarela de pago antes de borrarla
+      $data['carrito'] = $_SESSION['carrito'];
+
       ///// borramos carro en session 
        $_SESSION['carrito'] = null;
        

@@ -1,43 +1,3 @@
-<?php
-
-		// SDK de Mercado Pago
-		require 'vendor/autoload.php';
-		// Agrega credenciales
-		MercadoPago\SDK::setAccessToken($this->config->item('access_token'));
-
-		// Crea un objeto de preferencia
-		$preference = new MercadoPago\Preference();
-
-		// Crea un ítem en la preferencia
-
-		$elementos = sizeof($_SESSION['carrito']);
-		for  ($i = 0; $i <= $elementos-1   ; $i++) {
-			 if ($_SESSION['carrito'][$i]['tipo']=='item'){
-					$item = new MercadoPago\Item();
-					$item->title = $_SESSION['carrito'][$i]['titulo'];
-					$item->quantity = $_SESSION['carrito'][$i]['cantidad'];
-					$item->unit_price = $_SESSION['carrito'][$i]['totalitem'];
-					$compra[] = $item;
-				}  
-			
-		}
-		 
-		//$preference->items = array($item);
-		$preference->items = $compra;
-
-    /*
-	  $preference->back_urls = array(
-				"success" => "http://localhost/cibase/productos/carrito/success",
-				"failure" => "http://localhost/cibase/productos/carrito/failure",
-				"pending" => "http://localhost/cibase/productos/carrito/pending"
-			);
-			$preference->auto_return = "approved";
-    */
-		$preference->save();
-		
-
-?>
-
 
 
 
@@ -187,13 +147,13 @@
 												<div class="form-row">
 													<div class="form-group col">
 													<?php if(parametro(5) =="S"): ?>
-														<div class='.cho-container'></div>
-														<input type="submit" value="Continuar sin Pagar" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase float-right mb-2" data-loading-text="Loading...">
+  														<input type="submit" value="Continuar" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase float-right mb-2" data-loading-text="Loading...">
 														<?php else: ?>
-														   	<!--
-															  <div class="actions-continue">
+														   	 
+															  <div class='actions-continue'>
 																<input type="submit" value="Confirmar Compra" name="proceed" class="btn btn-primary btn-modern text-uppercase mt-5 mb-5 mb-lg-0">
-															  </div> -->
+															  </div>  
+															  
 														<?php endif; ?> 
 													</div>
 												</div>
@@ -368,22 +328,6 @@
 
 		</div>
 
-<!-- SDK MercadoPago.js V2 -->
-<script src="https://sdk.mercadopago.com/js/v2"></script>
+		
+		<div class="cho-container"></div>
 
-<div class="cho-container"></div>
-<script>
-  const mp = new MercadoPago("<?php echo $this->config->item('public_key'); ?>", {
-    locale: 'es-AR'
-  });
-
-  mp.checkout({
-    preference: {
-      id: "<?php echo $preference->id;?>"
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Pagar con Mercado Pago',
-    }
-  });
-</script>
