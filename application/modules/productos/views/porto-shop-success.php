@@ -25,15 +25,17 @@
 		//$preference->items = array($item);
 		$preference->items = $compra;
 
-    /*
+    
 	  $preference->back_urls = array(
-				"success" => "http://localhost/cibase/productos/carrito/success",
-				"failure" => "http://localhost/cibase/productos/carrito/failure",
-				"pending" => "http://localhost/cibase/productos/carrito/pending"
+				"success" => "http://localhost/cibase/productos",
+				"failure" => "http://localhost/cibase/productos",
+				"pending" => "http://localhost/cibase/productos"
 			);
 			$preference->auto_return = "approved";
-    */
+    
 		
+    $preference->external_reference = $numero_pedido;
+
     $preference->save();
 		
 
@@ -80,7 +82,7 @@
 <script language="JavaScript">
  
  /* Determinamos el tiempo total en segundos */
- var totalTiempo=90;
+ var totalTiempo=540;
  /* Determinamos la url donde redireccionar */
  var url="<?php echo base_url('productos'); ?>";
 
