@@ -69,5 +69,14 @@ public function deletePedidos($id)
 
 
 
+public function update($id,$data)
+{
+    $this->db->where('id',$id);
+    $this->db->update('pedidos', $data);
+}
+
+
+
+
 }
 ?>

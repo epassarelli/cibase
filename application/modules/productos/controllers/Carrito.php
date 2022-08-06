@@ -13,7 +13,7 @@ class Carrito extends MX_Controller {
     //}
     
    
-     switch (ENVIRONMENT){
+   /*   switch (ENVIRONMENT){
       case 'development':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
           break;          
@@ -23,7 +23,7 @@ class Carrito extends MX_Controller {
       case 'production':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(false);
           break;
-      }     
+      }      */
 
    
     $this->load->model('Carrito_model');
@@ -31,6 +31,7 @@ class Carrito extends MX_Controller {
     $this->load->model('entregas/Entregas_model');
     $this->load->model('mipanel/Provincias_model');
     $this->load->model('mipanel/Localidades_model');
+    $this->load->model('mipanel/Pedidos_model');
     $this->load->helper('Productos_helper');
 
 
@@ -538,45 +539,44 @@ class Carrito extends MX_Controller {
 
 
   public function idpago() {
-    /*
-    {
-      "id": 12345,
-      "live_mode": true,
-      "type": "payment",
-      "date_created": "2015-03-25T10:04:58.396-04:00",
-      "application_id": 123123123,
-      "user_id": 44444,
-      "version": 1,
-      "api_version": "v1",
-      "action": "payment.created",
-      "data": {
-          "id": "999999999"
-      }
-    }*/
-    //require_once 'vendor/autoload.php';
-/*     switch($_POST["type"]) {
-        case "payment":
-            $payment = MercadoPago\Payment::find_by_id($_POST["data"]["id"]);
-            break;
-        case "plan":
-            $plan = MercadoPago\Plan::find_by_id($_POST["data"]["id"]);
-            break;
-        case "subscription":
-            $plan = MercadoPago\Subscription::find_by_id($_POST["data"]["id"]);
-            break;
-        case "invoice":
-            $plan = MercadoPago\Invoice::find_by_id($_POST["data"]["id"]);
-            break;
-        case "point_integration_wh":
-            // $_POST contiene la informaciòn relacionada a la notificaciòn.
-            break;
-    }
- */
+   
+    //este metodo recibe el id de mercado pago desde mercado pago 
+    // por post. Esta url debe estar definida en webhook de mp
+
     $json = json_decode($this->input->raw_input_stream);
     $data = $json->data;
-    $id = $data->id;
-    echo $id;
-  
+    $id_mp = $data->id;  //id de la transaccion de mercado pago
+       
+    
+    $peticion =  $this->config->item('url_getpago') . $id_mp . '/?access_token=' .  $this->config->item('access_token');
+   
+    $curl = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => $peticion ,
+        CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+    ));
+    // Send the request & save response to $resp
+    $response = curl_exec($curl);
+    // Close request to clear up some resources
+    curl_close($curl);
+
+    $json = json_decode($response);
+    $status = $json->status;                            //status mercado pago
+    $status_detail = $json->status_detail;              //detalle del status
+    $external_reference = $json->external_reference;    //numero de pedido webpass
+
+    $data_mp = array("status_mp" => $status,
+                     "detail_mp" => $status_detail,
+                     "transac_mp" => $id_mp);
+
+    $this->Pedidos_model->update($external_reference,$data_mp);
+    //var_dump($status);
+    //var_dump($status_detail);
+    //var_dump($external_reference);
+    //var_dump($id_mp);
+    
   }
 
 }
