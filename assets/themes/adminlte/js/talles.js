@@ -73,7 +73,7 @@ function listar(base,Toast) {
     var table = $("#tallesAbm").DataTable({
         destroy: true,
         responsive: true,
-        order: [[2, 'asc']],
+        order: [[1, 'asc']],
         ajax: {
             url: base + "mipanel/talles/getTalles",
             type: "json"
