@@ -85,6 +85,19 @@ switch (ENVIRONMENT){
       // Obtengo la /s categoria /s del producto
       $catsProducto = $this->Productos_model->getCatsDelProducto($producto->id);
       $data['catsProducto'] = $catsProducto;     
+
+      // Obtengo el /los talle /s del producto
+      $tallesProducto = $this->Productos_model->getTallesDelProducto($producto->id);
+      if(count($tallesProducto) > 0){
+        $data['tallesProducto'] = $tallesProducto;
+      }
+               
+      // Obtengo el /los colores /s del producto
+      $coloresProducto = $this->Productos_model->getColoresDelProducto($producto->id);
+      if(count($coloresProducto) > 0){
+        $data['coloresProducto'] = $coloresProducto; 
+      }
+                
     }  
     
     // Obtengo todas las categorias para el sidebar
@@ -95,6 +108,14 @@ switch (ENVIRONMENT){
     $data['files_css'] = array('themes/adminlte/css/animate.css','themes/adminlte/css/sweetalert2.min.css');
     $data['files_js'] = array('productos/js/productos.js?v='.rand(),'themes/adminlte/js/sweetalert2.min.js');
 
+    // var_dump($data['producto']);
+    // echo "<hr>";
+    // var_dump($data['catsProducto']);
+    // echo "<hr>";
+    // var_dump($data['tallesProducto']);
+    // echo "<hr>";
+    // var_dump($data['coloresProducto']);
+    // die();
     
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);    
   }
