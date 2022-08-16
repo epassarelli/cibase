@@ -57,7 +57,8 @@ public function getTallesDelProducto($id = '')
     $this->db->select('t.id, t.descripcion')
         ->from('stocks s')
         ->join('talles t', 's.idtalle = t.id')
-        ->where('idproducto', $id);
+        ->where('idproducto', $id)
+        ->group_by('t.id, t.descripcion');
     $query = $this->db->get();
     return $query->result(); 
 }
@@ -67,7 +68,8 @@ public function getColoresDelProducto($id = '')
     $this->db->select('c.id, c.descripcion')
         ->from('stocks s')
         ->join('colores c', 's.idcolor = c.id')
-        ->where('idproducto', $id);
+        ->where('idproducto', $id)
+        ->group_by('c.id, c.descripcion');;
     $query = $this->db->get();
     return $query->result();  
 }

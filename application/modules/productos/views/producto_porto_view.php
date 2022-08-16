@@ -105,19 +105,17 @@
 
 								</div>
 
+								
 								<br>
-
 
 
 								<div class="quantity quantity-lg">
 									
-
 									<input type="button" 
 											class="minus" 
 											value="-"
 											onclick="restaritem(<?php echo $producto->unidadvta ?>)"
-											>
-									
+											>									
 									<input type="text" 
 											class="input-text qty text" 
 											title="Qty" 
@@ -131,6 +129,7 @@
 										   onclick="sumaritem(<?php echo $producto->unidadvta ?>)"
 										   >
 								</div>
+
 								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
 							</form>
 
