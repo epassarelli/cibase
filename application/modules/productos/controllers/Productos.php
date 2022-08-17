@@ -64,10 +64,7 @@ switch (ENVIRONMENT){
     $productos = $this->Productos_model->getProductos($categoria);
     $data['productos'] = $productos;
   
-
-    
-
-
+   
     //$data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
     $data['view']       = 'productos7_'.$this->session->userdata('theme').'_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
@@ -81,7 +78,10 @@ switch (ENVIRONMENT){
     $parametros['id'] = $id;
     $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
     
+    $imagenes =  $this->Productos_model->getProdImg($id);
+    $data['imagenes'] = $imagenes; 
 
+   
     if($producto){
       $data['producto'] = $producto;
 
@@ -100,7 +100,11 @@ switch (ENVIRONMENT){
       if(count($coloresProducto) > 0){
         $data['coloresProducto'] = $coloresProducto; 
       }
-                
+             
+  
+
+
+
     }  
     
     // Obtengo todas las categorias para el sidebar
