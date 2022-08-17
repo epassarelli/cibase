@@ -23,11 +23,6 @@
 							<?php endif; ?>
 
 							<span class="product-thumb-info border-0">
-								<?php if(parametro(1) == 'S'): ?>
-								<a href="#" onclick="agregarCarro(<?php echo $prod->producto_id ?>,<?php echo $prod->unidadvta ?>)" class="add-to-cart-product bg-color-primary">
-									<span class="text-uppercase text-1">Agregar al carrito</span>
-								</a>
-								<?php endif; ?>
 
 								<a href="<?php echo site_url('productos/detalle/').$prod->producto_id; ?>">
 									<span class="product-thumb-info-image">

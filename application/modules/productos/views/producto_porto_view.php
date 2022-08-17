@@ -72,16 +72,56 @@
 
 							<p class="mb-5"><?php echo $producto->descCorta; ?> </p>
 
+
+
 							<?php if(parametro(1) == 'S'): ?>
 							<form enctype="multipart/form-data" method="post" class="cart">
+								
+								<div class="row">
+
+									<div class="col-md-6">
+									<?php if(isset($tallesProducto)): ?>
+										<label for="talle">Talle</label>
+										<select class="form-control" name="talle" id="subject" required="">
+											<option value="0">...</option>
+											<?php foreach ($tallesProducto as $talle): ?>
+												<option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>
+									</div>
+
+									<div class="col-md-6">
+									<?php if(isset($coloresProducto)): ?>
+										<label for="color">Color</label>
+										<select class="form-control" name="color" id="subject" required="">
+											<option value="0">...</option>
+											<?php foreach ($coloresProducto as $color): ?>
+												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>											
+									</div>
+
+								</div>
+
+								
+								<br>
+
+
 								<div class="quantity quantity-lg">
+									
 									<input type="button" 
 											class="minus" 
 											value="-"
 											onclick="restaritem(<?php echo $producto->unidadvta ?>)"
-											>
-									
-									<input type="text"   class="input-text qty text" title="Qty" value="<?php echo $producto->unidadvta ?>" id="quantity" name="quantity" min="1" step="1" disabled
+											>									
+									<input type="text" 
+											class="input-text qty text" 
+											title="Qty" 
+											value="<?php echo $producto->unidadvta ?>" 
+											id="quantity" 
+											name="quantity" min="1" step="1" disabled
 									>
 									<input type="button" 
 										   class="plus" 
@@ -89,8 +129,10 @@
 										   onclick="sumaritem(<?php echo $producto->unidadvta ?>)"
 										   >
 								</div>
+
 								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
 							</form>
+
 							<?php endif; ?>
 
 							<?php if(isset($catsProducto)): ?>
