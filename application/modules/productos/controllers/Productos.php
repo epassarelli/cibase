@@ -65,8 +65,11 @@ switch (ENVIRONMENT){
     $data['productos'] = $productos;
   
 
+    
 
-    $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
+
+    //$data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
+    $data['view']       = 'productos7_'.$this->session->userdata('theme').'_view';
     $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
   }
 
