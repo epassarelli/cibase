@@ -137,7 +137,20 @@
 								</div>
 
 								<button id="btnaddcarro" href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase" disabled >Agregar al carrito</button>
-							</form>
+							
+								<div id="avisarstock" style="display: none;" class="row col-md-12">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Tu e-mail y te avisamos cuando haya stock">
+												<span class="input-group-btn">
+													<button class="btn btn-primary" type="button">Enviar</button>
+												</span>
+											</div><!-- /input-group -->
+										</div><!-- /.col-md-12 -->
+
+ 						 </form>
+
+										
+
 
 							<?php endif; ?>
 
