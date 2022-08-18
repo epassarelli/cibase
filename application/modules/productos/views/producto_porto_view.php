@@ -19,25 +19,19 @@
 
 						<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
 							
-							<?php if(strlen($producto->imagen) > 4): ?>
-							<div>
-								<img alt="<?php echo $producto->titulo; ?>" height="300" class="img-fluid" src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/productos/' . $producto->imagen; ?>">
-							</div>
-							<?php endif; ?>
+						<?php if(isset($imagenes)): ?> 
+							
+							<?php foreach ($imagenes as $imgs): ?>
+                <?php //echo '<h4>Imagen ' . $imgs->imagen . '</h4>'; ?> 
+								<div>
+	     							<img alt="<?php echo $producto->titulo; ?>" height="300" class="img-fluid" src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/colores/' . $imgs->imagen; ?>">
+  							</div>
 
-							<?php if(strlen($producto->imagen2) > 4): ?>
-							<div>
-								<img alt="<?php echo $producto->titulo; ?>" height="300" class="img-fluid" src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/productos/' . $producto->imagen2; ?>">
-							</div>
-							<?php endif; ?>
-
-							<?php if(strlen($producto->imagen3) > 4): ?>
-							<div>
-								<img alt="<?php echo $producto->titulo; ?>" height="300" class="img-fluid" src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/productos/' . $producto->imagen3; ?>">
-							</div>
-							<?php endif; ?>
-
-						</div>
+							<?php endforeach; ?>
+							
+						<?php endif; ?>
+						
+					</div>
 
 					</div>
 
