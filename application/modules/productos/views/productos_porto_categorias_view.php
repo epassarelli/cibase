@@ -18,7 +18,7 @@
 									<a href="<?php echo site_url('productos/categorias/') . $cat->slug;?>">
 										<span class="thumb-info thumb-info-lighten border-radius-0">
 											<span class="thumb-info-wrapper border-radius-0">
-												<img src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/categorias/500x370.jpg' //.$cat->imagen; ?>" class="img-fluid border-radius-0" alt="">
+												<img src="<?php echo site_url('assets/uploads/') . $this->config->item('sitio_id') . '/categorias/' . $cat->imagen; ?>" class="img-fluid border-radius-0" alt="">
 
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner"><?php echo $cat->categoria; ?></span>
