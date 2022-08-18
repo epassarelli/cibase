@@ -73,11 +73,33 @@
 								
 								<div class="row">
 
+
+									<div class="col-md-6">
+									<?php if(isset($coloresProducto)): ?>
+										<label for="color">Color</label>
+										<select class="form-control" 
+													  name="color" 
+														id="color" 
+														required=""
+														onchange="checkStock($(talle),$(color))">
+											<option value="0">Seleccione Color</option>
+											<?php foreach ($coloresProducto as $color): ?>
+												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>											
+									</div>
+
 									<div class="col-md-6">
 									<?php if(isset($tallesProducto)): ?>
 										<label for="talle">Talle</label>
-										<select class="form-control" name="talle" id="subject" required="">
-											<option value="0">...</option>
+										<select class="form-control" 
+												    name="talle" 
+														id="talle" 
+														required=""
+														onchange="checkStock($(talle),$(color))">
+>
+											<option value="0">Seleccione Talle</option>
 											<?php foreach ($tallesProducto as $talle): ?>
 												<option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
 											<?php endforeach; ?>
@@ -85,17 +107,6 @@
 									<?php endif; ?>
 									</div>
 
-									<div class="col-md-6">
-									<?php if(isset($coloresProducto)): ?>
-										<label for="color">Color</label>
-										<select class="form-control" name="color" id="subject" required="">
-											<option value="0">...</option>
-											<?php foreach ($coloresProducto as $color): ?>
-												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
-											<?php endforeach; ?>
-										</select>
-									<?php endif; ?>											
-									</div>
 
 								</div>
 

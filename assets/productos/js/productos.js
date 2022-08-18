@@ -11,6 +11,7 @@ $(document).ready(function () {
 
 
 
+
         function agregarCarro(id,unidadvta) { 
 
 			$.ajax({
@@ -434,7 +435,67 @@ $(document).ready(function () {
             
         } 
 
-   
+        function checkStock(xtalle,xcolor) {
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
+            var cantidad = document.getElementById('quantity').value;
+           /*  console.log(talle);
+            console.log(color); */
+
+            $.ajax({
+                url: UrlBase+'productos/carrito/cambiaEntrega',
+                data: { color: color,
+                        talle: talle,
+                        cantidad: cantidad 
+                      },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success == 'OK') {
+                        if (Number(response.costo_entrega) > 0) {
+                            document.getElementById('envio').innerText=response.costo_entrega;
+                            //objeto.removeAttribute('class');
+                        }else{    
+                            document.getElementById('envio').innerText="Sin costo de envío";
+                        }    
+                        calculaPie();
+                           // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
+                        if (response.pidedirec == 0)   {
+                            document.getElementById('lblcalle').innerHTML='Dirección Calle'
+                            document.getElementById('lblnro').innerHTML='Nro'
+                            document.getElementById('lblprovincia').innerHTML='Provincia'
+                            document.getElementById('lbllocalidad').innerHTML='Localidad'
+                        }else{
+                            document.getElementById('lblcalle').innerHTML='Dirección Calle *'
+                            document.getElementById('lblnro').innerHTML='Nro *'
+                            document.getElementById('lblprovincia').innerHTML='Provincia *'
+                            document.getElementById('lbllocalidad').innerHTML='Localidad *'
+
+                        }                  
+                    }else{
+                        Toast.fire({type: 'error',
+                        		title: 'No se pudo calcular envio',
+                        		   })
+                    }
+            
+                }, //success         
+                error: function(response) {
+                    alert('error al modificar el servicio');
+                },
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //alert('Petición realizada');
+                }
+                        
+            });//ajax
+          
+
+
+
+
+        }
 
 
 
