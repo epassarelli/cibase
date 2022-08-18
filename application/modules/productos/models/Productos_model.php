@@ -76,6 +76,7 @@ public function getTallesDelProducto($id = '')
             ->from('stocks s')
             ->join('talles t', 's.idtalle = t.id')
             ->where('idproducto', $id)
+            ->where('cantidad >', 0)
             ->group_by('s.idtalle, t.descripcion');
         $query = $this->db->get();
         return $query->result(); 
@@ -87,6 +88,7 @@ public function getColoresDelProducto($id = '')
             ->from('stocks s')
             ->join('colores c', 's.idcolor = c.id')
             ->where('idproducto', $id)
+            ->where('cantidad >', 0)
             ->group_by('s.idcolor, c.descripcion');;
         $query = $this->db->get();
         return $query->result();  
@@ -95,5 +97,14 @@ public function getColoresDelProducto($id = '')
 
 
 
-
+public function getStock($producto=0,$talle = 0 ,$color = 0,$cantidad=0)
+    {
+        $this->db->from('stocks');
+        $this->db->where('idproducto',$producto);
+        $this->db->where('idtalle',$talle);
+        $this->db->where('idcolor',$color);
+        $this->db->where('cantidad >=',$cantidad);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
 }

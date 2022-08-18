@@ -13,7 +13,8 @@
 				<?php else: ?>
 
 				<?php $enOferta = enOferta($producto->precioOF, $producto->OfDesde, $producto->OfHasta); ?>
-
+				<input type="hidden" id="idproducto" value="<?php echo $producto->id;?>">
+				
 				<div class="row">
 					<div class="col-lg-6">
 
@@ -81,7 +82,7 @@
 													  name="color" 
 														id="color" 
 														required=""
-														onchange="checkStock($(talle),$(color))">
+														onchange="checkStock()">
 											<option value="0">Seleccione Color</option>
 											<?php foreach ($coloresProducto as $color): ?>
 												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
@@ -97,7 +98,7 @@
 												    name="talle" 
 														id="talle" 
 														required=""
-														onchange="checkStock($(talle),$(color))">
+														onchange="checkStock()">
 >
 											<option value="0">Seleccione Talle</option>
 											<?php foreach ($tallesProducto as $talle): ?>
@@ -135,7 +136,7 @@
 										   >
 								</div>
 
-								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
+								<button id="btnaddcarro" href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase" disabled >Agregar al carrito</button>
 							</form>
 
 							<?php endif; ?>

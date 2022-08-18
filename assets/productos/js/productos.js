@@ -171,6 +171,7 @@ $(document).ready(function () {
             if (isNaN(parcial)) {parcial= 0;}
             parcial = parcial + unidadvta;
             document.getElementById('quantity').value = parcial;
+            checkStock();
         }
 
         function restaritem(unidadvta) {
@@ -179,7 +180,9 @@ $(document).ready(function () {
             if (parcial > unidadvta) {
                 parcial = parcial - unidadvta;
                 document.getElementById('quantity').value = parcial;
-            }    
+            }  
+            checkStock();
+  
         }
 
 
@@ -435,61 +438,54 @@ $(document).ready(function () {
             
         } 
 
-        function checkStock(xtalle,xcolor) {
+        function checkStock() {
             indice_talle=document.getElementById('talle').selectedIndex
             indice_color=document.getElementById('color').selectedIndex
             var talle  = document.getElementById('talle').options[indice_talle].value;
             var color  = document.getElementById('color').options[indice_color].value;
             var cantidad = document.getElementById('quantity').value;
+            var producto = document.getElementById('idproducto').value;
            /*  console.log(talle);
-            console.log(color); */
+            console.log(color); 
+            console.log(cantidad);
+            console.log(producto); */
 
             $.ajax({
-                url: UrlBase+'productos/carrito/cambiaEntrega',
+                url: UrlBase+'productos/verStock',
                 data: { color: color,
                         talle: talle,
-                        cantidad: cantidad 
+                        cantidad: cantidad,
+                        producto: producto 
                       },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
                     if (response.success == 'OK') {
-                        if (Number(response.costo_entrega) > 0) {
-                            document.getElementById('envio').innerText=response.costo_entrega;
-                            //objeto.removeAttribute('class');
-                        }else{    
-                            document.getElementById('envio').innerText="Sin costo de envío";
-                        }    
-                        calculaPie();
-                           // objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
-                        if (response.pidedirec == 0)   {
-                            document.getElementById('lblcalle').innerHTML='Dirección Calle'
-                            document.getElementById('lblnro').innerHTML='Nro'
-                            document.getElementById('lblprovincia').innerHTML='Provincia'
-                            document.getElementById('lbllocalidad').innerHTML='Localidad'
-                        }else{
-                            document.getElementById('lblcalle').innerHTML='Dirección Calle *'
-                            document.getElementById('lblnro').innerHTML='Nro *'
-                            document.getElementById('lblprovincia').innerHTML='Provincia *'
-                            document.getElementById('lbllocalidad').innerHTML='Localidad *'
-
-                        }                  
+                        document.getElementById('btnaddcarro').removeAttribute("disabled");
+                        // document.getElementById('btnaddcarro').innerHTML='AGREGAR AL CARRITO'
                     }else{
-                        Toast.fire({type: 'error',
-                        		title: 'No se pudo calcular envio',
-                        		   })
+                       // document.getElementById('btnaddcarro').innerHTML='SIN STOCK'
+                       document.getElementById('btnaddcarro').setAttribute("disabled","false");
+                       //solo escribo mensaje si envio dato 
+                       if ( Number(color) > 0   && 
+                            Number(talle) > 0 && 
+                            Number(cantidad) > 0 ) {
+                           Toast.fire({type: 'error',
+                           title: 'Producto sin stock actualmente',
+                          })
+                        }
                     }
             
                 }, //success         
                 error: function(response) {
-                    alert('error al modificar el servicio');
+                    alert('error al verificar stock');
                 },
                 // código a ejecutar sin importar si la petición falló o no
                 complete : function(xhr, status) {
                     //alert('Petición realizada');
                 }
                         
-            });//ajax
+            });//ajax 
           
 
 
