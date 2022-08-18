@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	
     // Url Dinamico
-   // UrlBase = $('#url').val();
+    UrlBase = $('#url').val();
  
     // Carga de tabla
     calculaPie();
@@ -468,13 +468,14 @@ $(document).ready(function () {
                        // document.getElementById('btnaddcarro').innerHTML='SIN STOCK'
                        document.getElementById('btnaddcarro').setAttribute("disabled","false");
                        //solo escribo mensaje si envio dato 
-                       document.getElementById("avisarstock").style.display = "block"
+                       
                        if ( Number(color) > 0   && 
                             Number(talle) > 0 && 
                             Number(cantidad) > 0 ) {
                            Toast.fire({type: 'error',
                            title: 'Producto sin stock actualmente',
                           })
+                          document.getElementById("avisarstock").style.display = "block"
                         }
                         
                     }
