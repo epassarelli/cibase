@@ -128,4 +128,23 @@ switch (ENVIRONMENT){
   }
 
 
+  public function verStock() {
+       
+    $talle = $this->input->post('talle');
+    $color = $this->input->post('color');
+    $cantidad = $this->input->post('cantidad');
+    $producto = $this->input->post('producto');
+   
+    
+    $haystock = $this->Productos_model->getStock($producto, $talle,$color,$cantidad);
+    
+    if ($haystock !=0) {
+        $response = array('success' => 'OK');
+    }else{
+      $response = array('success' => 'FAIL');
+    }
+
+    echo json_encode($response);
+  }
+
 }

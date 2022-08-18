@@ -13,7 +13,8 @@
 				<?php else: ?>
 
 				<?php $enOferta = enOferta($producto->precioOF, $producto->OfDesde, $producto->OfHasta); ?>
-
+				<input type="hidden" id="idproducto" value="<?php echo $producto->id;?>">
+				
 				<div class="row">
 					<div class="col-lg-6">
 
@@ -73,11 +74,33 @@
 								
 								<div class="row">
 
+
+									<div class="col-md-6">
+									<?php if(isset($coloresProducto)): ?>
+										<label for="color">Color</label>
+										<select class="form-control" 
+													  name="color" 
+														id="color" 
+														required=""
+														onchange="checkStock()">
+											<option value="0">Seleccione Color</option>
+											<?php foreach ($coloresProducto as $color): ?>
+												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>											
+									</div>
+
 									<div class="col-md-6">
 									<?php if(isset($tallesProducto)): ?>
 										<label for="talle">Talle</label>
-										<select class="form-control" name="talle" id="subject" required="">
-											<option value="0">...</option>
+										<select class="form-control" 
+												    name="talle" 
+														id="talle" 
+														required=""
+														onchange="checkStock()">
+>
+											<option value="0">Seleccione Talle</option>
 											<?php foreach ($tallesProducto as $talle): ?>
 												<option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
 											<?php endforeach; ?>
@@ -85,17 +108,6 @@
 									<?php endif; ?>
 									</div>
 
-									<div class="col-md-6">
-									<?php if(isset($coloresProducto)): ?>
-										<label for="color">Color</label>
-										<select class="form-control" name="color" id="subject" required="">
-											<option value="0">...</option>
-											<?php foreach ($coloresProducto as $color): ?>
-												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
-											<?php endforeach; ?>
-										</select>
-									<?php endif; ?>											
-									</div>
 
 								</div>
 
@@ -124,8 +136,21 @@
 										   >
 								</div>
 
-								<button href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase">Agregar al carrito</button>
-							</form>
+								<button id="btnaddcarro" href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase" disabled >Agregar al carrito</button>
+							
+								<div id="avisarstock" style="display: none;" class="row col-md-12">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Tu e-mail y te avisamos cuando haya stock">
+												<span class="input-group-btn">
+													<button class="btn btn-primary" type="button">Enviar</button>
+												</span>
+											</div><!-- /input-group -->
+										</div><!-- /.col-md-12 -->
+
+ 						 </form>
+
+										
+
 
 							<?php endif; ?>
 

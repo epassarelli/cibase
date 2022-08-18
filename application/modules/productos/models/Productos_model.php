@@ -72,22 +72,24 @@ public function getProducto($id)
 
 public function getTallesDelProducto($id = '')
     {
-        $this->db->select('t.id, t.descripcion')
+        $this->db->select('s.idtalle as id, t.descripcion')
             ->from('stocks s')
             ->join('talles t', 's.idtalle = t.id')
             ->where('idproducto', $id)
-            ->group_by('t.id, t.descripcion');
+            ->where('cantidad >', 0)
+            ->group_by('s.idtalle, t.descripcion');
         $query = $this->db->get();
         return $query->result(); 
     }
 
 public function getColoresDelProducto($id = '')
     {
-        $this->db->select('c.id, c.descripcion')
+        $this->db->select('s.idcolor as id, c.descripcion')
             ->from('stocks s')
             ->join('colores c', 's.idcolor = c.id')
             ->where('idproducto', $id)
-            ->group_by('c.id, c.descripcion');;
+            ->where('cantidad >', 0)
+            ->group_by('s.idcolor, c.descripcion');;
         $query = $this->db->get();
         return $query->result();  
     }
@@ -95,5 +97,14 @@ public function getColoresDelProducto($id = '')
 
 
 
-
+public function getStock($producto=0,$talle = 0 ,$color = 0,$cantidad=0)
+    {
+        $this->db->from('stocks');
+        $this->db->where('idproducto',$producto);
+        $this->db->where('idtalle',$talle);
+        $this->db->where('idcolor',$color);
+        $this->db->where('cantidad >=',$cantidad);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
 }

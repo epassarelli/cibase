@@ -11,6 +11,7 @@ $(document).ready(function () {
 
 
 
+
         function agregarCarro(id,unidadvta) { 
 
 			$.ajax({
@@ -170,6 +171,7 @@ $(document).ready(function () {
             if (isNaN(parcial)) {parcial= 0;}
             parcial = parcial + unidadvta;
             document.getElementById('quantity').value = parcial;
+            checkStock();
         }
 
         function restaritem(unidadvta) {
@@ -178,7 +180,9 @@ $(document).ready(function () {
             if (parcial > unidadvta) {
                 parcial = parcial - unidadvta;
                 document.getElementById('quantity').value = parcial;
-            }    
+            }  
+            checkStock();
+  
         }
 
 
@@ -434,7 +438,63 @@ $(document).ready(function () {
             
         } 
 
-   
+        function checkStock() {
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
+            var cantidad = document.getElementById('quantity').value;
+            var producto = document.getElementById('idproducto').value;
+           /*  console.log(talle);
+            console.log(color); 
+            console.log(cantidad);
+            console.log(producto); */
+
+            $.ajax({
+                url: UrlBase+'productos/verStock',
+                data: { color: color,
+                        talle: talle,
+                        cantidad: cantidad,
+                        producto: producto 
+                      },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success == 'OK') {
+                        document.getElementById('btnaddcarro').removeAttribute("disabled");
+                        // document.getElementById('btnaddcarro').innerHTML='AGREGAR AL CARRITO'
+                        document.getElementById("avisarstock").style.display = "none"
+                    }else{
+                       // document.getElementById('btnaddcarro').innerHTML='SIN STOCK'
+                       document.getElementById('btnaddcarro').setAttribute("disabled","false");
+                       //solo escribo mensaje si envio dato 
+                       document.getElementById("avisarstock").style.display = "block"
+                       if ( Number(color) > 0   && 
+                            Number(talle) > 0 && 
+                            Number(cantidad) > 0 ) {
+                           Toast.fire({type: 'error',
+                           title: 'Producto sin stock actualmente',
+                          })
+                        }
+                        
+                    }
+            
+                }, //success         
+                error: function(response) {
+                    alert('error al verificar stock');
+                },
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //alert('Petición realizada');
+                }
+                        
+            });//ajax 
+          
+
+
+
+
+        }
 
 
 
