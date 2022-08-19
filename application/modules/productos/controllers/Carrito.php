@@ -54,8 +54,11 @@ class Carrito extends MX_Controller {
   public function agregarCarrito() {
        $producto_id = $this->input->post('producto_id');
        $cantidad = $this->input->post('cantidad');
+       $talle = $this->input->post('talle');
+       $color = $this->input->post('color');
       
        $producto = $this->Productos_model->getProducto($producto_id);
+       $imagenes =  $this->Productos_model->getProdImg($producto_id);
 
        $totallastitem = 0;
        if (!isset($cantidad) or $cantidad == null) {
@@ -68,7 +71,10 @@ class Carrito extends MX_Controller {
        $elementos = sizeof($_SESSION['carrito']);
        for  ($i = 0; $i <= $elementos-1   ; $i++) {
           if ($_SESSION['carrito'][$i]['tipo']=='item'){
-            if ($_SESSION['carrito'][$i]['codigo']==$producto_id){
+            if ($_SESSION['carrito'][$i]['codigo']==$producto_id &&
+                $_SESSION['carrito'][$i]['talle']==$talle &&
+                $_SESSION['carrito'][$i]['color']==$color 
+                ){
                 $existe=1;
                 $_SESSION['carrito'][$i]['cantidad'] =  $_SESSION['carrito'][$i]['cantidad'] + $cantidad;
                 $_SESSION['carrito'][$i]['totalitem'] =  $_SESSION['carrito'][$i]['cantidad'] * $_SESSION['carrito'][$i]['precio'];
@@ -83,7 +89,7 @@ class Carrito extends MX_Controller {
           }else{
             $precioventa  = $producto->precioLista;
           }
-          $imagen = base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $producto->imagen;
+          $imagen = base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $imagenes[0]->imagen;
           $_SESSION['carrito'][] = 
           array('tipo' => 'item',
                 'cantidad' => $cantidad, 
@@ -93,7 +99,9 @@ class Carrito extends MX_Controller {
                 'imagen' => $imagen,
                 'unidadvta' => $producto->unidadvta,
                 'totalitem' => $cantidad*$precioventa,
-                'vacio' => 0
+                'vacio' => 0,
+                'talle' => $talle,
+                'color' => $color,
               );
               $totallastitem= $cantidad*$precioventa;    
        } 

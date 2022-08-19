@@ -140,9 +140,11 @@
 							
 								<div id="avisarstock" style="display: none;" class="row col-md-12">
 											<div class="input-group">
-												<input type="text" class="form-control" placeholder="Tu e-mail y te avisamos cuando haya stock">
+												<input type="text" id="emailaviso" class="form-control" placeholder="Tu e-mail y te avisamos cuando haya stock">
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="button">Enviar</button>
+													<button class="btn btn-primary" 
+																  type="button"
+																	onclick="pendienteStock()">Enviar</button>
 												</span>
 											</div><!-- /input-group -->
 										</div><!-- /.col-md-12 -->

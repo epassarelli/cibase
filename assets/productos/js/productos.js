@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	
     // Url Dinamico
-   // UrlBase = $('#url').val();
+    UrlBase = $('#url').val();
  
     // Carga de tabla
     calculaPie();
@@ -50,13 +50,20 @@ $(document).ready(function () {
 
         function agregarCarro3(id) { 
 			cantidaddet = document.getElementById('quantity').value;
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
 			
 				
 			// Ejecutamos la accion y la enviamos al servidor 
 			
 			$.ajax({
 				url: UrlBase+'productos/carrito/agregarCarrito',
-				data: { producto_id: id,cantidad: cantidaddet },
+				data: { producto_id: id,
+                        cantidad: cantidaddet,
+                        talle: talle,
+                        color: color },
 				type: 'POST',
 				dataType: 'json',
 				success: function (response) {
@@ -468,13 +475,14 @@ $(document).ready(function () {
                        // document.getElementById('btnaddcarro').innerHTML='SIN STOCK'
                        document.getElementById('btnaddcarro').setAttribute("disabled","false");
                        //solo escribo mensaje si envio dato 
-                       document.getElementById("avisarstock").style.display = "block"
+                       
                        if ( Number(color) > 0   && 
                             Number(talle) > 0 && 
                             Number(cantidad) > 0 ) {
                            Toast.fire({type: 'error',
                            title: 'Producto sin stock actualmente',
                           })
+                          document.getElementById("avisarstock").style.display = "block"
                         }
                         
                     }
@@ -496,11 +504,51 @@ $(document).ready(function () {
 
         }
 
-
-
+        function pendienteStock() {
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
+            var producto = document.getElementById('idproducto').value;
+            var email = document.getElementById('emailaviso').value;
+           /*  console.log(talle);
+            console.log(color); 
+            console.log(producto); 
+            console.log(email);  */
+            if ( email=='') {
+                    Toast.fire({type: 'error', title: 'Ingresa tu E-Mail', })
+                    return
+             }else{       
+                    $.ajax({
+                        url: UrlBase+'productos/pendienteStock',
+                        data: { color: color,
+                                talle: talle,
+                                producto: producto,
+                                email: email 
+                            },
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success == 'OK') {
+                                Toast.fire({type: 'success', title: 'Te llamamos cuando el producto ingrese',})
+                            }else{
+                                Toast.fire({type: 'error', title: 'No pudimos registrar tu solicitud',})
+                            }
+                    
+                        }, //success         
+                        error: function(response) {
+                            alert('error al registrar');
+                        },
+                        // código a ejecutar sin importar si la petición falló o no
+                        complete : function(xhr, status) {
+                            //alert('Petición realizada');
+                        }
+                                
+                    });//ajax 
+        }
 
 	
-
+    }
 
 
 
