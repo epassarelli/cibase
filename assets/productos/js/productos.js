@@ -50,13 +50,20 @@ $(document).ready(function () {
 
         function agregarCarro3(id) { 
 			cantidaddet = document.getElementById('quantity').value;
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
 			
 				
 			// Ejecutamos la accion y la enviamos al servidor 
 			
 			$.ajax({
 				url: UrlBase+'productos/carrito/agregarCarrito',
-				data: { producto_id: id,cantidad: cantidaddet },
+				data: { producto_id: id,
+                        cantidad: cantidaddet,
+                        talle: talle,
+                        color: color },
 				type: 'POST',
 				dataType: 'json',
 				success: function (response) {

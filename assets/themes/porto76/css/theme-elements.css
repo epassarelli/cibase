@@ -9437,6 +9437,7 @@ ul.nav-list li {
 	padding: 0;
 	display: block;
 	position: relative;
+	background-color: #b89f1330;
 }
 
 ul.nav-list li a {
@@ -10866,7 +10867,6 @@ aside ul.nav-list > li > a {
 	font-size: 0.9em;
 	padding: 8px 0 8px 22px;
 }
-
 aside .twitter [class*="fa-"], aside .twitter .icons {
 	clear: both;
 	font-size: 1.5em;
@@ -11908,7 +11908,7 @@ html.boxed .slider-container {
 	}
 
 	.isotope-item.product {
-		position: relative !important;
+		position: relative;
 	}
 
 	.sort-source-wrapper {
@@ -13197,6 +13197,8 @@ html.boxed .slider-container {
 	font-size: 17px;
 	padding: 13px 21px 2px;
 	bottom: 13%;
+	width: 50%;
+	opacity: 0.8;
 }
 
 .thumb-info .thumb-info-type {
