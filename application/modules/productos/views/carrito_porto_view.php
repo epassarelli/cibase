@@ -92,30 +92,18 @@
 	<td class="product-quantity">
 		<form enctype="multipart/form-data" method="post" class="cart">
 			<div class="quantity">
-				<input type="button" 
-					onclick="quitarCarro2(<?php echo $_SESSION['carrito'][$i]['codigo'] ?>,
-										  $(this),
-										  <?php echo $_SESSION['carrito'][$i]['unidadvta'] ?>)" 
-					class="minus" 
-					value="-">
+				
 				
 				<input type="text"   
 					onchange="cambiaCarro2($(this).val(),<?php echo $_SESSION['carrito'][$i]['codigo']; ?>,$(this))" 
 					class="input-text qty text" 
 					title="Qty" 
-					value="<?php echo $_SESSION['carrito'][$i]['cantidad']; ?>" 
+					value="<?php echo intval($_SESSION['carrito'][$i]['cantidad']); ?>" 
 					name="quantity" 
-					min="1" 
-					step="1"
 					id="quantity"
 					disabled >
 				
-				<input type="button" 
-						onclick="agregarCarro2(<?php echo $_SESSION['carrito'][$i]['codigo'] ?>,
-														  $(this),
-														  <?php echo $_SESSION['carrito'][$i]['unidadvta'] ?>)"  
-						class="plus" 
-						value="+">
+		
 			</div>
 		</form>
 	</td>
