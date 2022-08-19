@@ -497,11 +497,51 @@ $(document).ready(function () {
 
         }
 
-
-
+        function pendienteStock() {
+            indice_talle=document.getElementById('talle').selectedIndex
+            indice_color=document.getElementById('color').selectedIndex
+            var talle  = document.getElementById('talle').options[indice_talle].value;
+            var color  = document.getElementById('color').options[indice_color].value;
+            var producto = document.getElementById('idproducto').value;
+            var email = document.getElementById('emailaviso').value;
+           /*  console.log(talle);
+            console.log(color); 
+            console.log(producto); 
+            console.log(email);  */
+            if ( email=='') {
+                    Toast.fire({type: 'error', title: 'Ingresa tu E-Mail', })
+                    return
+             }else{       
+                    $.ajax({
+                        url: UrlBase+'productos/pendienteStock',
+                        data: { color: color,
+                                talle: talle,
+                                producto: producto,
+                                email: email 
+                            },
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success == 'OK') {
+                                Toast.fire({type: 'success', title: 'Te llamamos cuando el producto ingrese',})
+                            }else{
+                                Toast.fire({type: 'error', title: 'No pudimos registrar tu solicitud',})
+                            }
+                    
+                        }, //success         
+                        error: function(response) {
+                            alert('error al registrar');
+                        },
+                        // código a ejecutar sin importar si la petición falló o no
+                        complete : function(xhr, status) {
+                            //alert('Petición realizada');
+                        }
+                                
+                    });//ajax 
+        }
 
 	
-
+    }
 
 
 

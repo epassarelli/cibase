@@ -5,6 +5,7 @@ class Productos_model extends MY_Model{
   
 public function __construct(){
     parent::__construct();
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
 }  
 
 // Retorna 1 o mas registros dependiendo del parametro
@@ -38,6 +39,16 @@ public function getProdImg($idprod = 0)
 
 }
 
+public function pendStock($producto, $talle,$color,$email) {
+    $data=array("idproducto" => $producto,
+                "idtalle"       => $talle,
+                "idcolor"       => $color,
+                "email"       => $email,
+                "fecha" =>  date('Y-m-d H:m:s'));
+    $this->db->insert('stocks_pendientes',$data);
+    $id = $this->db->insert_id();
+    return $id;
+}
 
 public function getCategorias($parametros = '')
     {

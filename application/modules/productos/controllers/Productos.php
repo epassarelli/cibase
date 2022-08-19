@@ -147,4 +147,29 @@ switch (ENVIRONMENT){
     echo json_encode($response);
   }
 
+  public function pendienteStock() {
+       
+    $talle    = $this->input->post('talle');
+    $color    = $this->input->post('color');
+    $producto = $this->input->post('producto');
+    $email    = $this->input->post('email');
+       
+    $grabastock = $this->Productos_model->pendStock($producto, $talle,$color,$email);
+    
+    if ($grabastock !=0) {
+        $response = array('success' => 'OK',
+                          'talle' => $talle,
+                          'color' => $color,
+                          'producto' => $producto,
+                          'email' => $email);
+    }else{
+      $response = array('success' => 'FAIL',
+                        'talle' => $talle,
+                        'color' => $color,
+                        'producto' => $producto,
+                        'email' => $email);
+    }
+
+    echo json_encode($response);
+  }
 }
