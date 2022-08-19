@@ -13,7 +13,7 @@ class Carrito extends MX_Controller {
     //}
     
    
-   /*   switch (ENVIRONMENT){
+      switch (ENVIRONMENT){
       case 'development':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
           break;          
@@ -23,7 +23,7 @@ class Carrito extends MX_Controller {
       case 'production':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(false);
           break;
-      }      */
+      }      
 
    
     $this->load->model('Carrito_model');
@@ -56,6 +56,8 @@ class Carrito extends MX_Controller {
        $cantidad = $this->input->post('cantidad');
        $talle = $this->input->post('talle');
        $color = $this->input->post('color');
+       $nombre_talle = $this->input->post('nombre_talle');
+       $nombre_color = $this->input->post('nombre_color');       
       
        $producto = $this->Productos_model->getProducto($producto_id);
        $imagenes =  $this->Productos_model->getProdImg($producto_id);
@@ -102,6 +104,8 @@ class Carrito extends MX_Controller {
                 'vacio' => 0,
                 'talle' => $talle,
                 'color' => $color,
+                'nombre_talle' => $nombre_talle,
+                'nombre_color' => $nombre_color,
               );
               $totallastitem= $cantidad*$precioventa;    
        } 
@@ -456,7 +460,9 @@ class Carrito extends MX_Controller {
                   "cantidad" => $_SESSION['carrito'][$i]['cantidad'],
                   "preciounit" => $_SESSION['carrito'][$i]['precio'],
                   "precioitem" => $_SESSION['carrito'][$i]['totalitem'],
-                  "vacio" => $_SESSION['carrito'][$i]['vacio']
+                  "vacio" => $_SESSION['carrito'][$i]['vacio'],
+                  "idtalle" => $_SESSION['carrito'][$i]['talle'],
+                  "idcolor" => $_SESSION['carrito'][$i]['color']
                 );  
             $this->Carrito_model->grabaitem($data_item);
          }  

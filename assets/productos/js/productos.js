@@ -54,6 +54,9 @@ $(document).ready(function () {
             indice_color=document.getElementById('color').selectedIndex
             var talle  = document.getElementById('talle').options[indice_talle].value;
             var color  = document.getElementById('color').options[indice_color].value;
+            var nombre_talle  = document.getElementById('talle').options[indice_talle].text;
+            var nombre_color  = document.getElementById('color').options[indice_color].text;
+
 			
 				
 			// Ejecutamos la accion y la enviamos al servidor 
@@ -63,7 +66,10 @@ $(document).ready(function () {
 				data: { producto_id: id,
                         cantidad: cantidaddet,
                         talle: talle,
-                        color: color },
+                        color: color,
+                        nombre_talle: nombre_talle,
+                        nombre_color: nombre_color
+                     },
 				type: 'POST',
 				dataType: 'json',
 				success: function (response) {

@@ -28,6 +28,12 @@
 															Envasado al Vacio
 														</th>
 													<?php endif; ?>	
+													<th class="product-color">
+														Color
+													</th>
+													<th class="product-talle">
+														Talle
+													</th>
 													<th class="product-price">
 														Precio
 													</th>
@@ -74,7 +80,12 @@
 			</div>
 		</td>
 	<?php endif; ?>	
-
+	<td class="product-name">
+		<span><?php echo $_SESSION['carrito'][$i]['nombre_color']; ?></span>
+	</td>
+	<td class="product-name">
+		<span ><?php echo $_SESSION['carrito'][$i]['nombre_talle']; ?></span>
+	</td>
 	<td class="product-price">
 		<span class="amount">$<?php echo $_SESSION['carrito'][$i]['precio']; ?></span>
 	</td>
