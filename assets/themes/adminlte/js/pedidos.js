@@ -121,10 +121,11 @@ $("#provincia").on('change', function () {
 function calculaPie() {
   
   var rowCount = $("#detallepedidos tbody tr" ).length;
+  console.log('cantidad de filas: ', rowCount);
   var subt = 0;
   var cant_vacio = 0;
   var totvacio = 0;
-  var cost_unit_vacio = parseFloat(document.getElementById("cost_unit_vacio").value,10)
+  //var cost_unit_vacio = parseFloat(document.getElementById("cost_unit_vacio").value,10)
   var envio = 0
 
   miTabla = document.getElementsByTagName("table")[0];
@@ -140,7 +141,7 @@ function calculaPie() {
   */
 
   for(let i=0; i<rowCount; i++){
-     subt = subt + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[4].getElementsByTagName("input")[0].value);
+     subt = subt + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[5].getElementsByTagName("input")[0].value);
      //cant_vacio = cant_vacio + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[6].getElementsByTagName("input")[0].value);
   }
 
@@ -151,7 +152,7 @@ function calculaPie() {
 
   miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=subt.toFixed(2)
  // miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(totvacio).toFixed(2)
- // miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(subt+totvacio+envio).toFixed(2)
+   miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(subt+envio).toFixed(2)
 
 
 
@@ -435,16 +436,15 @@ function aceptar() {
               //tomo la primer tabla
               var table = document.getElementsByTagName("table")[0]; 
               //var row = table.insertRow();
-              var col0 = '<td><input type="text" class="form-control"  name="titulo[]"  value="'+  producto_nombre   +'"></td>';
-              var col1 = '<td align="center"><i class="vacio fa  fa-toggle-off fa-2x text-green" onclick="cambiaVacio($(this))"></i></a></td>';
-              var col2 = '<td align="right"><input type="text" class="form-control"  name="preciounit[]"  value="'+ preciounit.toFixed(2) + '"></td>';
-              var col3 = '<td align="right"><input type="text" class="form-control"  name="cantidad[]"  value="'  + cantidad.toFixed(2)   + '"></input></td>';
-              var col4 = '<td align="right"><input type="text" class="form-control" name="precioitem[]"  value="' + total.toFixed(2) + '"></input></td>'
-
-              var col5 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
-              var col6 = '<td style="display:none;"><input type="text" class="form-control"  name="vacio[]"  value="0"></td>';
+              var col0 = '<td><input readonly type="text" class="form-control"  name="titulo[]"  value="'+  producto_nombre   +'"></td>';
+              var col1 = '<td class="col-md-2 col-sm-12"><input readonly type="text" class="form-control"  name="nomcolor[]"  value="' + nomcolor + '"></td>';
+              var col2 = '<td class="col-md-1 col-sm-12"><input readonly type="text" class="form-control"  name="nomtalle[]"  value="' + nomtalle +  '"></td>';
+              var col3 = '<td align="right"><input readonly type="text" class="form-control dinero"  name="preciounit[]"  value="'+ preciounit.toFixed(2) + '"></td>';
+              var col4 = '<td align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="'  + cantidad.toFixed(2)   + '"></input></td>';
+              var col5 = '<td align="right"><input readonly type="text" class="form-control dinero" name="precioitem[]"  value="' + total.toFixed(2) + '"></input></td>'
+              var col6 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
               var col7 = '<td style="display:none;"><input type="text" class="form-control"  name="producto_id[]"  value="'+ producto_id + '"></input></td>'
-              //row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7;
+              //row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7+col8;
               $(table).find('tbody').append('<tr>' + col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7 + '</tr>');
 
 
@@ -453,6 +453,7 @@ function aceptar() {
             $("#modalPedidos").modal("hide");  
 
             calculaPie(); 
+
           }else{
             Toast.fire({type: 'error',
             title: 'Debe seleccionar un producto, color,talle y la cantidad solicitada',

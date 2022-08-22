@@ -260,7 +260,8 @@
                                     <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
                                     <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
                                     <td  align="center">
-                                            <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
+                                        <a href="javascript:void(0);"  onclick="Editar($(this))"  class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
+                                        <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
                                     </td>
                                     <td style="display:none">
                                         <input type="text" class="form-control"  name="producto_id[]"  value="<?php echo $a->producto_id; ?>">
