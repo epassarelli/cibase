@@ -240,12 +240,12 @@
                         <thead>
                             <tr>
                                 <th align="center">Producto</th>
-                                <th align="center">Envasado Vacio</th>
+                                <th align="center">Color</th>
+                                <th align="center">Talle</th>
                                 <th align="center">Precio</th>
                                 <th align="center">Cantidad</th>
                                 <th align="center">Total</th>
                                 <th align="center">Accion</th> 
-                                <th align="center"  style="display: none;" >Vacio</th> 
                                 <th align="center"  style="display: none;">Producto_id</th> 
                               </tr>
                         </thead>
@@ -254,26 +254,14 @@
                             <?php foreach ($pedido as $a): ?>
                                 <tr>
                                     <td class="col-md-3 col-sm-12"><input readonly type="text" class="form-control"  name="titulo[]"  value="<?php echo $a->titulo; ?>"></td>
-                                    <td  align="center"> 
-                                       <?php if ($a->vacio==0): ?>	  
-				   		                              <i class='vacio fa  fa-toggle-off fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
-					                                <?php else:  ?>
-						                                <i class='vacio fa  fa-toggle-on fa-2x text-green' onclick="cambiaVacio($(this))"></i></a>
-					                              <?php endif; ?>		   
-                                    </td>
-                                    
-                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="preciounit[]"  value="<?php echo $a->preciounit; ?>"></td>
-                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
-                                    <td  align="right"><input readonly type="text" class="form-control dinero"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
+                                    <td class="col-md-2 col-sm-12"><input readonly type="text" class="form-control"  name="nomcolor[]"  value="<?php echo $a->nomcolor; ?>"></td>
+                                    <td class="col-md-1 col-sm-12"><input readonly type="text" class="form-control"  name="nomtalle[]"  value="<?php echo $a->nomtalle; ?>"></td>
+                                    <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="preciounit[]"  value="<?php echo $a->preciounit; ?>"></td>
+                                    <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
+                                    <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
                                     <td  align="center">
                                             <a href="javascript:void(0);"  onclick="Editar($(this))"  class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
                                             <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
-                                    </td>
-                                    <td style="display:none">
-                                        <input type="text" class="form-control"  name="vacio[]"  value="<?php echo $a->vacio; ?>">
-                                    </td>
-                                    <td style="display:none">
-                                        <input type="text" class="form-control"  name="producto_id[]"  value="<?php echo $a->producto_id; ?>">
                                     </td>
                                 </tr>
 
@@ -292,10 +280,6 @@
                       <tr>
                         <td>Envio</td>
                         <td align="right"><input readonly type="text" class="form-control dinero"  name="delivery"  id="delivery" value="<?php echo set_value('delivery',@$delivery);  ?>"></td>
-                      </tr>
-                      <tr>
-                        <td>Envasado Vacio</td>
-                        <td align="right"><input readonly type="text" class="form-control dinero"  name="env_vacio" id="env_vacio" value="<?php echo set_value('env_vacio',@$env_vacio);  ?>"></td>
                       </tr>
                       <tr>
                         <td><h4><strong>Total</h4></strong></td>

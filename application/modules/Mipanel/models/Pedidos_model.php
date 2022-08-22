@@ -43,7 +43,11 @@ public function getPedido($id){
                       pedidos.localidad_id,
                       pedidos.provincia_id,
                       pedidos.entrega_id,
-                      provincias.nombre as provincia
+                      provincias.nombre as provincia,
+                      pedidos_items.idcolor,
+                      colores.descripcion as nomcolor,
+                      pedidos_items.idtalle,
+                      talles.descripcion as nomtalle
                       FROM pedidos_items
                       LEFT JOIN pedidos  ON pedidos.id = pedidos_items.pedido_id
                       LEFT JOIN localidades on pedidos.localidad_id = localidades.id
@@ -51,6 +55,8 @@ public function getPedido($id){
                       LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id 
                       LEFT JOIN productos ON pedidos_items.producto_id = productos.id
                       LEFT JOIN entregas ON pedidos.entrega_id = entregas.id
+                      LEFT JOIN talles  ON pedidos_items.idtalle = talles.id
+                      LEFT JOIN colores ON pedidos_items.idcolor = colores.id
                       WHERE pedidos.sitio_id = " . $xsitio . " and pedidos.id = " . $id .  " ORDER BY pedidos.fecha desc  ";    
 
     $query = $this->db->query($ssql);

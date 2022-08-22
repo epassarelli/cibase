@@ -139,7 +139,7 @@ function calculaPie() {
 
   for(let i=0; i<rowCount; i++){
      subt = subt + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[4].getElementsByTagName("input")[0].value);
-     cant_vacio = cant_vacio + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[6].getElementsByTagName("input")[0].value);
+     //cant_vacio = cant_vacio + parseFloat(miBody.getElementsByTagName("tr")[i].getElementsByTagName("td")[6].getElementsByTagName("input")[0].value);
   }
 
   miTabla = document.getElementsByTagName("table")[1];
@@ -148,8 +148,8 @@ function calculaPie() {
   totvacio = cant_vacio * cost_unit_vacio;
 
   miBody.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=subt.toFixed(2)
-  miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(totvacio).toFixed(2)
-  miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(subt+totvacio+envio).toFixed(2)
+ // miBody.getElementsByTagName("tr")[2].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(totvacio).toFixed(2)
+ // miBody.getElementsByTagName("tr")[3].getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=(subt+totvacio+envio).toFixed(2)
 
 
 
@@ -263,7 +263,7 @@ function eliminar(e) {
 //cambio estado llave landing formulario alta y edicion 
 function cambiaVacio(e)  {
   
-  indice = e.parents("tr").index();
+ /*  indice = e.parents("tr").index();
   //var vacio = parseInt(e.parents("tr").find("td:eq(6)").text())
 
   miTabla = document.getElementsByTagName("table")[0];
@@ -282,7 +282,7 @@ function cambiaVacio(e)  {
         miFila.getElementsByTagName("td")[6].getElementsByTagName("input")[0].value=0
   }
 
-  calculaPie();
+  calculaPie(); */
 
 }  
 

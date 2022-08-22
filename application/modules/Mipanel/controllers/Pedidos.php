@@ -13,6 +13,8 @@ class Pedidos  extends MX_Controller {
     $this->load->model('../models/Pedidos_model');
     $this->load->model('../models/Provincias_model');
     $this->load->model('../models/Localidades_model');
+    $this->load->model('../models/Talles_model');
+    $this->load->model('../models/Colores_model');
     $this->load->model('entregas/Entregas_model');
     $this->load->model('productos/Productos_model');
     $this->load->model('productos/Carrito_model');
@@ -82,6 +84,11 @@ public function editPedido($id)
     $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
     $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
     $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+
+    $data['talles']  = $this->Talles_model->getAllBy('talles','','','talles.descripcion');
+    $data['colores']  = $this->Colores_model->getAllBy('colores','','','colores.descripcion');
+    
+
     $data['entregas']    = $this->Entregas_model->getEntregas();
     $data['cost_unit_vacio'] = parametro(10);
     $this->template->load('layout_back', 'pedidos_edit_view', $data);  
@@ -106,6 +113,10 @@ public function newPedido()
     $data['entregas']    = $this->Entregas_model->getEntregas();
     $data['cost_unit_vacio'] = parametro(10);
     $data['pedido'] = null;
+    
+    $data['talles']  = $this->Talles_model->getAllBy('talles','','','talles.descripcion');
+    $data['colores']  = $this->Colores_model->getAllBy('colores','','','colores.descripcion');
+    
     $this->template->load('layout_back', 'pedidos_edit_view', $data);  
    
 }
