@@ -38,6 +38,8 @@ function grabarPedido() {
   localidad = parseInt(document.getElementById('localidad').value);
   formaentrega = parseInt(document.getElementById('entrega_id').options[entrega_id.selectedIndex].value);
   cantidad_productos = $("#detallepedidos tbody tr").length;
+
+
   
   
   if (apellido=='' || nombre=='') {
@@ -337,6 +339,8 @@ function cambiaProducto() {
         console.log(error);
     } //error 
   });//ajax  
+  
+  checkStock();
 
 }
 
@@ -349,9 +353,19 @@ function aceptar() {
    preciounit=parseFloat(document.getElementById('m_preciounit').value,10)
    cantidad=parseFloat(document.getElementById('m_cantidad').value,10)
    total=parseFloat(document.getElementById('m_total').value,10)
+   talle=parseFloat(document.getElementById('talle').value,10)
+   color=parseFloat(document.getElementById('color').value,10)
+
    //producto_nombre=document.getElementById('m_titulo').value
    micombo=document.getElementById("m_producto_id")
    producto_nombre=micombo.options[micombo.selectedIndex].text
+
+   micombo=document.getElementById("talle")
+   nomtalle=micombo.options[micombo.selectedIndex].text
+   micombo=document.getElementById("color")
+   nomcolor=micombo.options[micombo.selectedIndex].text
+   
+
 
 
 
@@ -371,6 +385,19 @@ function aceptar() {
     }
 
 
+    if (isNaN(talle)) { 
+      talle= 0; 
+      document.getElementById('cantidad').value=talle.toFixed(2);
+    }
+
+    if (isNaN(color)) { 
+      color= 0; 
+      document.getElementById('cantidad').value=color.toFixed(2);
+    }
+
+
+
+
    if (isNaN(total)) { total= 0; }
    //este control es porque si no da enter en la 
    //cantidad no calcula el total del item 
@@ -379,7 +406,8 @@ function aceptar() {
      total = cantidad*preciounit;
    }
 
-   if (producto_id != 0 && cantidad != 0) {
+   
+   if (producto_id != 0 && cantidad != 0 && talle != 0 && color != 0) {
 
             if (operacion == "E") {
 
@@ -427,7 +455,7 @@ function aceptar() {
             calculaPie(); 
           }else{
             Toast.fire({type: 'error',
-            title: 'Debe seleccionar un producto y la cantidad solicitada',
+            title: 'Debe seleccionar un producto, color,talle y la cantidad solicitada',
              })
           }
 
@@ -488,3 +516,52 @@ function cambiaEntrega(e) {
 } 
 
 
+
+function checkStock() {
+  indice_talle=document.getElementById('talle').selectedIndex
+  indice_color=document.getElementById('color').selectedIndex
+  var talle  = document.getElementById('talle').options[indice_talle].value;
+  var color  = document.getElementById('color').options[indice_color].value;
+  var cantidad = document.getElementById('m_cantidad').value;
+  var producto = document.getElementById('m_producto_id').value;
+  /* console.log(talle);
+  console.log(color); 
+  console.log(cantidad);
+  console.log(producto);
+   */
+  $.ajax({
+      url: UrlBase+'productos/verStock',
+      data: { color: color,
+              talle: talle,
+              cantidad: cantidad,
+              producto: producto 
+            },
+      type: 'POST',
+      dataType: 'json',
+      success: function (response) {
+        if (response.success == 'OK') {
+          document.getElementById('additempedido').removeAttribute("disabled");
+      }else{
+         document.getElementById('additempedido').setAttribute("disabled","false");
+         
+         if ( Number(color) > 0   && 
+              Number(talle) > 0 && 
+              Number(cantidad) > 0 &&
+              Number(producto > 0)) {
+             Toast.fire({type: 'error',
+             title: 'Producto sin stock actualmente',
+            })
+            
+          }
+          
+      }
+  
+      }, //success         
+      error: function(response) {
+        alert('error al verificar stock');
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {} //alert('Petición realizada');
+  });//ajax 
+  
+}

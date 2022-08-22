@@ -260,11 +260,13 @@
                                     <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="cantidad[]"  value="<?php echo $a->cantidad; ?>"></td>
                                     <td  class="col-md-2 col-sm-12" align="right"><input readonly type="text" class="form-control dinero"  name="precioitem[]"  value="<?php echo $a->precioitem; ?>"></td>
                                     <td  align="center">
-                                            <a href="javascript:void(0);"  onclick="Editar($(this))"  class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
                                             <a href="javascript:void(0);"  onclick="Eliminar($(this))"  class='eliminar btn btn-xs'  ><i class='fa fa-trash fa-2x text-red'></i></a>
                                     </td>
-                                </tr>
+                                    <td style="display:none">
+                                        <input type="text" class="form-control"  name="producto_id[]"  value="<?php echo $a->producto_id; ?>">
+                                    </td>
 
+                                </tr>
                             <?php endforeach; ?>    
                           <?php endif; ?>       
                         </tbody>
@@ -309,65 +311,97 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Producto.<small id='operacion'></small></h4>
-    </h1>
-                
+                 </h1>
             </div>
             <div class="modal-body">
-            <div id="sent" class="col-3" ></div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group has-feedback">   
-                                <label class="control-label">Producto</label>
-                                <select class="form-control" id="m_producto_id" name="m_producto_id" onchange="cambiaProducto()">
-                                    <?php 
-                                      echo  "<option value=0>Seleccione un Producto</option>";
-                                      foreach ($productos as $prod) {
-                                          echo '<option value="' .$prod->producto_id. '"" >' . $prod->titulo . '</option>';  
-                                      }
-                                    ?>                                     
-                                </select>
-                                <?php if (!empty(form_error('m_producto_id'))): ?> <?php  echo  form_error('m_producto_id') ;?> <?php endif;?>
+                    <div id="sent" class="col-3" ></div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group has-feedback">   
+                                    <label class="control-label">Producto</label>
+                                    <select class="form-control" id="m_producto_id" name="m_producto_id" onchange="cambiaProducto()">
+                                        <?php 
+                                        echo  "<option value=0>Seleccione un Producto</option>";
+                                        foreach ($productos as $prod) {
+                                            echo '<option value="' .$prod->producto_id. '"" >' . $prod->titulo . '</option>';  
+                                        }
+                                        ?>                                     
+                                    </select>
+                                    <?php if (!empty(form_error('m_producto_id'))): ?> <?php  echo  form_error('m_producto_id') ;?> <?php endif;?>
+                                </div>
                             </div>
-                        </div>
-                        <input type="hidden" id="titulo" name="titulo" value="">
-                        <div class="col-md-2 col-sm-12">                                                                                        
-                                <div class="form-group has-feedback">
-                                    <label for="m_preciounit" class="control-label">Precio</label>
-                                    <input type="text" class="form-control" id="m_preciounit" name="m_preciounit" value="<?php echo set_value('preciounit',@$preciounit); ?>" readonly>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                        </div> 
-                        
-                        <div class="col-md-2 col-sm-12">                                                                                        
-                                <div class="form-group has-feedback">
-                                    <label for="m_cantidad" class="control-label">Cantidad</label>
-                                    <input type="text" class="form-control" id="m_cantidad" name="m_cantidad" value="<?php echo set_value('cantidad',@$cantidad); ?>" onchange="cambiaProducto()">
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                        </div>                          
-                        
-                        <div class="col-md-2 col-sm-12">                                                                                        
-                                <div class="form-group has-feedback">
-                                    <label for="m_total" class="control-label">Total</label>
-                                    <input type="text" class="form-control" id="m_total" name="m_total" value="<?php echo set_value('total',@$total); ?>" readonly>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                        </div>       
+                            <input type="hidden" id="titulo" name="titulo" value="">
+                            <div class="col-md-2 col-sm-12">                                                                                        
+                                    <div class="form-group has-feedback">
+                                        <label for="m_preciounit" class="control-label">Precio</label>
+                                        <input type="text" class="form-control" id="m_preciounit" name="m_preciounit" value="<?php echo set_value('preciounit',@$preciounit); ?>" readonly>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                            </div> 
+                            
+                            <div class="col-md-2 col-sm-12">                                                                                        
+                                    <div class="form-group has-feedback">
+                                        <label for="m_cantidad" class="control-label">Cantidad</label>
+                                        <input type="text" class="form-control" id="m_cantidad" name="m_cantidad" value="<?php echo set_value('cantidad',@$cantidad); ?>" onchange="cambiaProducto()">
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                            </div>                          
+                            
+                            <div class="col-md-2 col-sm-12">                                                                                        
+                                    <div class="form-group has-feedback">
+                                        <label for="m_total" class="control-label">Total</label>
+                                        <input type="text" class="form-control" id="m_total" name="m_total" value="<?php echo set_value('total',@$total); ?>" readonly>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                            </div>       
+                        </div>    
 
+
+                        <div class="row">
+                                    <div class="col-md-3 col-sm-12">
+                                        <div class="form-group has-feedback">                                       
+                                            <label class="control-label">Color</label>
+                                            <select class="form-control" 
+                                                            name="color" 
+                                                                id="color" 
+                                                                required=""
+                                                                onchange="checkStock()">
+                                                    <option value="0">Seleccione Color</option>
+                                                    <?php foreach ($colores as $color): ?>
+                                                        <option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
+                                                    <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>                    
+
+                                    <div class="col-md-3 col-sm-12">
+                                        <label for="talle">Talle</label>
+                                        <select class="form-control" 
+                                                    name="talle" 
+                                                        id="talle" 
+                                                        required=""
+                                                        onchange="checkStock()">
+                                    
+                                            <option value="0">Seleccione Talle</option>
+                                            <?php foreach ($talles as $talle): ?>
+                                                <option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+
+                        </div>
                     </div>    
                     <div class="modal-footer">
                         <div class="row" style="float: left;">
-                            <small>Los campos producto y cantidad son obligatorios</small>
+                            <small>Los campos producto,talle,color y cantidad son obligatorios</small>
                         </div>
                         <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
-                        <button type="button" class="btn btn-primary titulo" onclick="aceptar()">Aceptar</button>
-            </div>     
-
-               
+                        <button type="button" id="additempedido" class="btn btn-primary titulo" onclick="aceptar()" disabled >Aceptar</button>
+                     </div>     
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <!-- --------------------- -->
