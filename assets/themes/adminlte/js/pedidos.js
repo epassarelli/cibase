@@ -481,57 +481,61 @@ function aceptar() {
    
 function cambiaEntrega(e) { 
 
-    var MyEntregaID = document.getElementById('entrega_id').options[entrega_id.selectedIndex].value;
-
-    // Ejecutamos la accion y la enviamos al servidor 
+   if (document.getElementsByTagName('entrega_id').innerHTML != null ) {
     
-    $.ajax({
-        url: UrlBase+'productos/carrito/cambiaEntrega',
-        data: { entrega_id: MyEntregaID },
-        type: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            if (response.success == 'OK') {
-                if (Number(response.costo_entrega) > 0) {
-                  document.getElementById("delivery").value=parseFloat(response.costo_entrega).toFixed(2);
-                  document.getElementById("entrega_id").value=parseInt(response.entrega_id);
-                }else{    
-                  document.getElementById("delivery").value='0.00';
-                }    
-                domicilio_requerido=parseInt(response.pidedirec)
-                document.getElementById('domicilio_requerido').value=domicilio_requerido
-                calculaPie();
-                if (response.pidedirec == 0)   {
-                    document.getElementById('lblcalle').innerHTML='Dirección Calle'
-                    document.getElementById('lblnro').innerHTML='Nro'
-                    document.getElementById('lblprovincia').innerHTML='Provincia'
-                    document.getElementById('lbllocalidad').innerHTML='Localidad'
-                }else{
-                    document.getElementById('lblcalle').innerHTML='Dirección Calle *'
-                    document.getElementById('lblnro').innerHTML='Nro *'
-                    document.getElementById('lblprovincia').innerHTML='Provincia *'
-                    document.getElementById('lbllocalidad').innerHTML='Localidad *'
+          var MyEntregaID = document.getElementById('entrega_id').options[entrega_id.selectedIndex].value;
 
-                }                  
-            }else{
-                Toast.fire({type: 'error',
-                    title: 'No se pudo calcular envio',
-                       })
-            }
-    
-        }, //success         
-        error: function(response) {
-            alert('error al modificar el servicio');
-        },
-        // código a ejecutar sin importar si la petición falló o no
-        complete : function(xhr, status) {
-            //alert('Petición realizada');
-        }
-                
-    });//ajax
-    
-} 
+          // Ejecutamos la accion y la enviamos al servidor 
+          
+          $.ajax({
+              url: UrlBase+'productos/carrito/cambiaEntrega',
+              data: { entrega_id: MyEntregaID },
+              type: 'POST',
+              dataType: 'json',
+              success: function (response) {
+                  if (response.success == 'OK') {
+                      if (Number(response.costo_entrega) > 0) {
+                        document.getElementById("delivery").value=parseFloat(response.costo_entrega).toFixed(2);
+                        document.getElementById("entrega_id").value=parseInt(response.entrega_id);
+                      }else{    
+                        document.getElementById("delivery").value='0.00';
+                      }    
+                      domicilio_requerido=parseInt(response.pidedirec)
+                      document.getElementById('domicilio_requerido').value=domicilio_requerido
+                      calculaPie();
+                      if (response.pidedirec == 0)   {
+                          document.getElementById('lblcalle').innerHTML='Dirección Calle'
+                          document.getElementById('lblnro').innerHTML='Nro'
+                          document.getElementById('lblprovincia').innerHTML='Provincia'
+                          document.getElementById('lbllocalidad').innerHTML='Localidad'
+                      }else{
+                          document.getElementById('lblcalle').innerHTML='Dirección Calle *'
+                          document.getElementById('lblnro').innerHTML='Nro *'
+                          document.getElementById('lblprovincia').innerHTML='Provincia *'
+                          document.getElementById('lbllocalidad').innerHTML='Localidad *'
 
+                      }                  
+                  }else{
+                      Toast.fire({type: 'error',
+                          title: 'No se pudo calcular envio',
+                            })
+                  }
+          
+              }, //success         
+              error: function(response) {
+                  alert('error al modificar el servicio');
+              },
+              // código a ejecutar sin importar si la petición falló o no
+              complete : function(xhr, status) {
+                  //alert('Petición realizada');
+              }
+                      
+          });//ajax
+
+    
+
+    } 
+  }
 
 
 function checkStock() {

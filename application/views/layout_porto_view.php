@@ -109,7 +109,7 @@ if (!isset($_SESSION['carrito']) or $_SESSION['carrito']==null) {
 
 			</div>
 
-			<?php echo $this->load->view('footer_porto_view', '', FALSE); ?>	
+			<?php  echo $this->load->view('footer_porto_view', '', FALSE); ?>	
 
 		</div>
 

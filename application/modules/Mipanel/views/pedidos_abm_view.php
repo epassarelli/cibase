@@ -1,7 +1,4 @@
-
-
-
-<section class="content-header">
+ <section class="content-header">
     <h1>
         Pedidos
         <small>Listado de Pedidos</small>
@@ -35,9 +32,9 @@
                                 <th>Fecha</th>
                                 <th>Apellido</th>
                                 <th>Nombre</th>
-                                <th>E-Mail</th>
-                                <th>Telefono</th>
-                                <th>Total</th>
+                                <th>Satus Pago</td>
+                                <th>Detalle Pago</td>
+                                <th>Id Pago</td>
                                 <th>Estado</th>
                                 <th>Action</th>
                             </tr>
@@ -49,14 +46,14 @@
                                     <td><?php echo $a->fecha ?></td>
                                     <td><?php echo $a->apellido ?></td>
                                     <td><?php echo $a->nombre ?></td>
-                                    <td><?php echo $a->email ?></td>
-                                    <td><?php echo $a->telefono ?></td>
-                                    <td><?php echo $a->total ?></td>
+                                    <td><?php echo $a->status_mp ?></td>
+                                    <td><?php echo $a->detail_mp ?></td>
+                                    <td><?php echo $a->transac_mp ?></td>
                                     <td><?php echo $a->nomestado ?></td>
                                     <td>
                                         <div class='text-center'>
                                            
-                                            <?php if ($a->estado_id == 1): ?>
+                                            <?php if ($a->estado_id == 1 && $a->status_mp != 'approved' ): ?>
                                                   <a href="<?php echo site_url('mipanel/pedidos/editPedido/' . $a->id ); ?>" class='btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a>
                                                   <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red' onclick="eliminar($(this))" ></i></a>
                                                 <?php else:  ?>
@@ -64,6 +61,11 @@
                                                 <a href="" class='btn btn-xs'  ><i class='fa fa-trash fa-2x text-gray'></i></a>
                                             <?php endif; ?>    
                                             <a href="<?php echo site_url('mipanel/pedidos/verPedido/' . $a->id ); ?>" class='btn btn-xs'  ><i class='fa fa-clipboard fa-2x text-red'></i></a>
+                                            <?php if ($a->transac_mp == 0 ): ?>
+                                                <a href="<?php echo site_url('mipanel/pedidos/cobroPedido/' . $a->id ); ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a>
+                                                <!-- <a href="<?php echo $preference->init_point; ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a> -->
+                                            <?php endif; ?>    
+
                                         </div>
                                     </td>
                                 </tr>
@@ -233,4 +235,6 @@
 		</div>
 	</div>
 </div>   
+
+
 

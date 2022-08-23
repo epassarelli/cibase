@@ -586,10 +586,10 @@ class Carrito extends MX_Controller {
                      "transac_mp" => $id_mp);
 
     $this->Pedidos_model->update($external_reference,$data_mp);
-    //var_dump($status);
-    //var_dump($status_detail);
-    //var_dump($external_reference);
-    //var_dump($id_mp);
+    var_dump('status: ',$status);
+    var_dump('status_detail ',$status_detail);
+    var_dump('external reference: ',$external_reference);
+    var_dump('id_mp: ',$id_mp);
     
   }
 

@@ -8,7 +8,19 @@ public function __construct() {
 
 
 public function getAll(){
-    $ssql = "SELECT pedidos.id,pedidos.fecha,pedidos.apellido,pedidos.nombre,pedidos.email,pedidos.telefono,pedidos.total,pedidos.estado_id,estado_envios.nombre AS nomestado FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY pedidos.fecha desc  ";    
+    $ssql = "SELECT pedidos.id,
+                    pedidos.fecha,
+                    pedidos.apellido,
+                    pedidos.nombre,
+                    pedidos.email,
+                    pedidos.telefono,
+                    pedidos.total,
+                    pedidos.estado_id,
+                    estado_envios.nombre AS nomestado,
+                    pedidos.status_mp,
+                    pedidos.detail_mp,
+                    pedidos.transac_mp 
+                    FROM pedidos  LEFT JOIN estado_envios  ON pedidos.estado_id = estado_envios.id WHERE sitio_id = " . $this->config->item('sitio_id') . " ORDER BY pedidos.fecha desc  ";    
 
     $query = $this->db->query($ssql);
     return  $query->result();

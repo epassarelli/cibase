@@ -21,7 +21,7 @@ class Pedidos  extends MX_Controller {
     
     
    
-    switch (ENVIRONMENT){
+   /*  switch (ENVIRONMENT){
       case 'development':
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false):$this->output->enable_profiler(true);
           break;          
@@ -33,9 +33,9 @@ class Pedidos  extends MX_Controller {
           break;
       }    
 
-  
+   */
     }
-
+ 
   // Listado del ABM de slider 
   public function index(){      
     $this->data['files_css'] = array('animate.css','sweetalert2.min.css');
@@ -45,6 +45,60 @@ class Pedidos  extends MX_Controller {
     $this->template->load('layout_back', 'pedidos_abm_view', $this->data);  
   }
 
+
+
+public function cobroPedido($pedido) {
+/*   		// SDK de Mercado Pago
+      require 'vendor/autoload.php';
+      // Agrega credenciales
+      MercadoPago\SDK::setAccessToken($this->config->item('access_token'));
+  
+      // Crea un objeto de preferencia
+      $preference = new MercadoPago\Preference();
+  
+      // Crea un ítem en la preferencia
+           $item = new MercadoPago\Item();
+           $item->title = 'prueba pago';
+           $item->quantity = 1;
+           $item->unit_price = 15.35;
+           $compra[] = $item;
+  
+      /* $elementos = sizeof($carrito);
+      for  ($i = 0; $i <= $elementos-1   ; $i++) {
+         if ($carrito[$i]['tipo']=='item'){
+            $item = new MercadoPago\Item();
+            $item->title = $carrito[$i]['titulo'];
+            $item->quantity = $carrito[$i]['cantidad'];
+            $item->unit_price = $carrito[$i]['totalitem'];
+            $compra[] = $item;
+          }  
+        
+      }
+      
+  
+        $preference->items = $compra;
+  
+      
+      $preference->back_urls = array(
+          "success" => "http://localhost/cibase/mipanel/pedidos",
+          "failure" => "http://localhost/cibase/mipanel/pedidos",
+          "pending" => "http://localhost/cibase/mipanel/pedidos"
+        );
+        $preference->auto_return = "approved";
+      
+      
+       $preference->external_reference = 142;
+   
+      $preference->save();
+
+      //$preference->init_point;
+ */
+      $data['pedidonro'] = $pedido;
+
+       $this->template->load('layout_back', 'pedidos_cobro_view', $data);   
+  
+  
+}
 
 
   // Datos del ABM

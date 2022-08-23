@@ -58,7 +58,8 @@ switch (ENVIRONMENT){
     $data['title'] = 'Productos';
     //obtengo id del slug
     $row_categoria = $this->Productos_model->getOneBy('categorias', '', $parametros, '');
-   
+
+      
     $categoria = $row_categoria->categoria_id; 
     $data['categorias'] = $this->Productos_model->getCategorias();  
     $productos = $this->Productos_model->getProductos($categoria);
