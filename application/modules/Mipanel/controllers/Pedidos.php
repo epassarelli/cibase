@@ -178,6 +178,8 @@ public function pedidoValidation()
          $precioitem = $this->input->post('precioitem');
          $vacio = $this->input->post('vacio');
          $producto_id = $this->input->post('producto_id');
+         $idcolor = $this->input->post('idcolor');
+         $idtalle = $this->input->post('idtalle');
          $titulo = $this->input->post('titulo');
          $rowCount = sizeof($producto_id); 
      
@@ -222,7 +224,8 @@ public function pedidoValidation()
                               "cantidad" => $cantidad[$i],
                               "preciounit" => $preciounit[$i],
                               "precioitem" => $precioitem[$i],
-                              "vacio" => $vacio[$i],
+                              "idcolor" => $idcolor[$i],
+                              "idtalle" => $idtalle[$i]
                             );  
                             $this->Carrito_model->grabaitem($data_item);
                   }          
@@ -238,7 +241,8 @@ public function pedidoValidation()
                         "cantidad" => $cantidad[$i],
                         "preciounit" => $preciounit[$i],
                         "precioitem" => $precioitem[$i],
-                        "vacio" => $vacio[$i],
+                        "idcolor" => $idcolor[$i],
+                        "idtalle" => $idtalle[$i]
                       );  
                       $this->Carrito_model->grabaitem($data_item);
              }          
@@ -259,6 +263,8 @@ public function pedidoValidation()
       $precioitem = $this->input->post('precioitem');
       $vacio = $this->input->post('vacio');
       $producto_id = $this->input->post('producto_id');
+      $idcolor = $this->input->post('idcolor');
+      $idtalle = $this->input->post('idtalle');
       $titulo = $this->input->post('titulo');
       $data['operacion'] = $this->input->post('accion');
       $parametros['id'] = $this->input->post('provincia');
@@ -321,6 +327,9 @@ public function pedidoValidation()
       $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
       $data['productos'] = $productos;
       $parametros = [];
+      
+      $data['talles']  = $this->Talles_model->getAllBy('talles','','','talles.descripcion');
+      $data['colores']  = $this->Colores_model->getAllBy('colores','','','colores.descripcion');
       
       $this->template->load('layout_back', 'pedidos_edit_view', $data);  
 

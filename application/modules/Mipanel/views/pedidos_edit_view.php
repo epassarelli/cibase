@@ -76,7 +76,7 @@
                     <input type="hidden" class="form-control" id="domicilio_requerido"  name="domicilio_requerido"  value="<?php echo set_value('id',@$id); ?>" readonly>
     
                     <div class="row">
-                            <div class="col-md-1 col-sm-12">
+                            <div class="col-md-2 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="id" class="control-label">Id</label>
                                         <input type="text" class="form-control" id="id" name="id" value="<?php echo set_value('id',@$id); ?>" readonly>
@@ -84,7 +84,7 @@
                                     </div>
                                     <input type="hidden" class="form-control" id="accion" name="accion" value="<?php echo set_value('accion',@$accion); ?>" readonly>
                             </div>
-                            <div class="col-md-2 col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                     <div class="form-group has-feedback">
                                         <label for="fecha" class="control-label">Fecha</label>
                                         <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo set_value('fecha',@$fecha); ?>" readonly>
@@ -93,7 +93,7 @@
                                     </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-12">
+                            <div class="col-md-4 col-sm-12">
                                 <label for="entrega_id" class="font-weight-bold text-dark text-2">Forma de Entrega</label>
                                 <select class="form-control" 
                                     id="entrega_id" 
@@ -147,23 +147,23 @@
                                     <?php if (!empty(form_error('del_calle'))): ?> <?php  echo  form_error('del_calle') ;?> <?php endif;?>
                                 </div>
                         </div>        
-                        <div class="col-md-1 col-sm-12">                                                                                        
+                        <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label id='lblnro' for="del_nro" class="control-label">Numero</label>
-                                    <input type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
+                                    <input style="align=right;" type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <?php if (!empty(form_error('del_nro'))): ?> <?php  echo  form_error('del_nro') ;?> <?php endif;?>
                                 </div>
                         </div>
-                        <div class="col-md-1 col-sm-12">                                                                
+                        <div class="col-md-2 col-sm-12">                                                                
                                 <div class="form-group has-feedback">
                                     <label for="del_piso" class="control-label">Piso</label>
-                                    <input type="text" class="form-control" id="del_piso" name="del_piso" value="<?php echo set_value('piso',@$piso); ?>">
+                                    <input  type="text" class="form-control" id="del_piso" name="del_piso" value="<?php echo set_value('piso',@$piso); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <?php if (!empty(form_error('del_piso'))): ?> <?php  echo  form_error('del_piso') ;?> <?php endif;?>
                                 </div>
                         </div>
-                        <div class="col-md-1 col-sm-12">                                                                                        
+                        <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
                                     <label for="del_dpto" class="control-label">Dpto.</label>
                                     <input type="text" class="form-control" id="del_dpto" name="del_dpto" value="<?php echo set_value('dpto',@$dpto); ?>">
@@ -247,6 +247,8 @@
                                 <th align="center">Total</th>
                                 <th align="center">Accion</th> 
                                 <th align="center"  style="display: none;">Producto_id</th> 
+                                <th align="center"  style="display: none;">idcolor</th> 
+                                <th align="center"  style="display: none;">idtalle</th> 
                               </tr>
                         </thead>
                         <tbody>
@@ -265,6 +267,12 @@
                                     </td>
                                     <td style="display:none">
                                         <input type="text" class="form-control"  name="producto_id[]"  value="<?php echo $a->producto_id; ?>">
+                                    </td>
+                                    <td style="display:none">
+                                        <input type="text" class="form-control"  name="idcolor[]"  value="<?php echo $a->idcolor; ?>">
+                                    </td>
+                                    <td style="display:none">
+                                        <input type="text" class="form-control"  name="idtalle[]"  value="<?php echo $a->idtalle; ?>">
                                     </td>
 
                                 </tr>

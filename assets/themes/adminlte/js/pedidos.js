@@ -121,7 +121,7 @@ $("#provincia").on('change', function () {
 function calculaPie() {
   
   var rowCount = $("#detallepedidos tbody tr" ).length;
-  console.log('cantidad de filas: ', rowCount);
+  //console.log('cantidad de filas: ', rowCount);
   var subt = 0;
   var cant_vacio = 0;
   var totvacio = 0;
@@ -174,18 +174,24 @@ function Editar(e) {
         
          
          var idproducto = miFila.getElementsByTagName("td")[7].getElementsByTagName("input")[0].value
-         var preciounit = miFila.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value
-         var cantidad   = miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value
-         var total      = miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value
+         var preciounit = miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value
+         var cantidad   = miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value
+         var total      = miFila.getElementsByTagName("td")[5].getElementsByTagName("input")[0].value
          var titulo     = miFila.getElementsByTagName("td")[0].getElementsByTagName("input")[0].value
+         var color      = miFila.getElementsByTagName("td")[8].getElementsByTagName("input")[0].value
+         var talle      = miFila.getElementsByTagName("td")[9].getElementsByTagName("input")[0].value
          
-
-
+         //console.log('color: ', color)
+         //console.log('talle: ', talle)
+                   
 
          document.getElementById('m_producto_id').value=parseInt(idproducto,10)
          document.getElementById('m_preciounit').value=parseFloat(preciounit,10)
          document.getElementById('m_cantidad').value=parseFloat(cantidad,10)
          document.getElementById('m_total').value=parseFloat(total,10)
+         document.getElementById('color').value=parseInt(color,10)
+         document.getElementById('talle').value=parseInt(talle,10)
+         
          
          
           //indice es el numero de fila de la table
@@ -354,8 +360,8 @@ function aceptar() {
    preciounit=parseFloat(document.getElementById('m_preciounit').value,10)
    cantidad=parseFloat(document.getElementById('m_cantidad').value,10)
    total=parseFloat(document.getElementById('m_total').value,10)
-   talle=parseFloat(document.getElementById('talle').value,10)
-   color=parseFloat(document.getElementById('color').value,10)
+   talle=parseInt(document.getElementById('talle').value,10)
+   color=parseInt(document.getElementById('color').value,10)
 
    //producto_nombre=document.getElementById('m_titulo').value
    micombo=document.getElementById("m_producto_id")
@@ -366,6 +372,7 @@ function aceptar() {
    micombo=document.getElementById("color")
    nomcolor=micombo.options[micombo.selectedIndex].text
    
+  
 
 
 
@@ -388,12 +395,12 @@ function aceptar() {
 
     if (isNaN(talle)) { 
       talle= 0; 
-      document.getElementById('cantidad').value=talle.toFixed(2);
+      document.getElementById('talle').value=talle.toFixed(2);
     }
 
     if (isNaN(color)) { 
       color= 0; 
-      document.getElementById('cantidad').value=color.toFixed(2);
+      document.getElementById('color').value=color.toFixed(2);
     }
 
 
@@ -424,10 +431,17 @@ function aceptar() {
               //miFila.getElementsByTagName("td")[7].innerHTML=producto_id;
               
               miFila.getElementsByTagName("td")[0].getElementsByTagName("input")[0].value=producto_nombre;
-              miFila.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value=preciounit.toFixed(2);
-              miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value=cantidad.toFixed(2);
-              miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value=total.toFixed(2);
+              miFila.getElementsByTagName("td")[3].getElementsByTagName("input")[0].value=preciounit.toFixed(2);
+              miFila.getElementsByTagName("td")[4].getElementsByTagName("input")[0].value=cantidad.toFixed(2);
+              miFila.getElementsByTagName("td")[5].getElementsByTagName("input")[0].value=total.toFixed(2);
               miFila.getElementsByTagName("td")[7].getElementsByTagName("input")[0].value=producto_id;
+
+              miFila.getElementsByTagName("td")[8].getElementsByTagName("input")[0].value=color;
+              miFila.getElementsByTagName("td")[1].getElementsByTagName("input")[0].value=nomcolor;
+
+              miFila.getElementsByTagName("td")[9].getElementsByTagName("input")[0].value=talle;
+              miFila.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value=nomtalle;
+
               
               
               //miCelda = miFila.getElementsByTagName("td")[0];
@@ -444,8 +458,10 @@ function aceptar() {
               var col5 = '<td align="right"><input readonly type="text" class="form-control dinero" name="precioitem[]"  value="' + total.toFixed(2) + '"></input></td>'
               var col6 = '<td align="center"><a href="javascript:void(0);"  onclick="Editar($(this))"  class="editar btn btn-xs"><i class="fa fa-pencil fa-2x text-yellow"></i></a><a href="javascript:void(0);" class="eliminar btn btn-xs" onclick="Eliminar($(this))" ><i class="fa fa-trash fa-2x text-red"></i></a></td>';
               var col7 = '<td style="display:none;"><input type="text" class="form-control"  name="producto_id[]"  value="'+ producto_id + '"></input></td>'
+              var col8 = '<td style="display:none;"><input type="text" class="form-control"  name="idcolor[]"  value="'+ color + '"></input></td>'
+              var col9 = '<td style="display:none;"><input type="text" class="form-control"  name="idtalle[]"  value="'+ talle + '"></input></td>'                           
               //row.innerHTML = col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7+col8;
-              $(table).find('tbody').append('<tr>' + col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7 + '</tr>');
+              $(table).find('tbody').append('<tr>' + col0 + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8+col9 +'</tr>');
 
 
             }
