@@ -47,7 +47,7 @@ class Pedidos  extends MX_Controller {
 
 
 
-public function cobroPedido($pedido) {
+public function cobroPedido($pedido,$importe) {
 /*   		// SDK de Mercado Pago
       require 'vendor/autoload.php';
       // Agrega credenciales
@@ -94,8 +94,9 @@ public function cobroPedido($pedido) {
       //$preference->init_point;
  */
       $data['pedidonro'] = $pedido;
+      $data['pedidoimporte'] = $importe;
 
-       $this->template->load('layout_back', 'pedidos_cobro_view', $data);   
+      $this->template->load('layout_back', 'pedidos_cobro_view', $data);   
   
   
 }

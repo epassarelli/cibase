@@ -62,7 +62,7 @@
                                             <?php endif; ?>    
                                             <a href="<?php echo site_url('mipanel/pedidos/verPedido/' . $a->id ); ?>" class='btn btn-xs'  ><i class='fa fa-clipboard fa-2x text-red'></i></a>
                                             <?php if ($a->transac_mp == 0 ): ?>
-                                                <a href="<?php echo site_url('mipanel/pedidos/cobroPedido/' . $a->id ); ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a>
+                                                <a href="<?php echo site_url('mipanel/pedidos/cobroPedido/' . $a->id . '/' . $a->total); ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a>
                                                 <!-- <a href="<?php echo $preference->init_point; ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a> -->
                                             <?php endif; ?>    
 

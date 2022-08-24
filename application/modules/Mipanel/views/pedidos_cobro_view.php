@@ -1,3 +1,7 @@
+
+<h4>Cobrar Pedido <?php  echo  $pedidonro; ?></h4>
+<h4>Importe a Cobrar <?php  echo  $pedidoimporte; ?></h4>
+
 <?php 
   
   
@@ -12,12 +16,13 @@
 
 		// Crea un ítem en la preferencia
          $item = new MercadoPago\Item();
-         $item->title = 'prueba pago';
+         $item->title = 'Pago Pedido ' . $pedidonro;
          $item->quantity = 1;
-         $item->unit_price = 15.35;
+         $item->unit_price = $pedidoimporte;
          $compra[] = $item;
 
- 	    $preference->items = $compra;
+
+   	    $preference->items = $compra;
 
     
 	  $preference->back_urls = array(
@@ -35,7 +40,6 @@
      //$preference->init_point;
 ?>
 
-<h4>Cobrar Pedido <?php  echo  $pedidonro; ?></h4>
 <a href="<?php echo $preference->init_point; ?>" class='btn btn-xs'>Cobro con Mercadopago</a> 
 
 
