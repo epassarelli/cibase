@@ -586,3 +586,27 @@ function checkStock() {
   });//ajax 
   
 }
+
+
+
+function cambioEstado(e) {
+
+  indice = e.parents("tr").index();
+  miFila = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[indice]
+
+   
+  var idpedido   = miFila.getElementsByTagName("td")[0].textContent
+  var estado_id  = miFila.getElementsByTagName("td")[9].textContent
+  
+ 
+  document.getElementById('idpedido').value=parseInt(idpedido,10)
+  document.getElementById('estado').value=parseInt(estado_id,10)
+  
+   //indice es el numero de fila de la table
+  //indice = e.parents("tr").index(); 
+
+
+  $("#modalEstados").modal("show");  
+
+
+}

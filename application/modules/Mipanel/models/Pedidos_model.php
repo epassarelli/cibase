@@ -93,8 +93,5 @@ public function update($id,$data)
     $this->db->update('pedidos', $data);
 }
 
-
-
-
 }
 ?>

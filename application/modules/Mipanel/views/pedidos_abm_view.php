@@ -37,6 +37,8 @@
                                 <th>Id Pago</td>
                                 <th>Estado</th>
                                 <th>Action</th>
+                                <th style="display: none;">estadoId</th> 
+
                             </tr>
                         </thead>
                         <tbody>
@@ -64,10 +66,13 @@
                                             <?php if ($a->transac_mp == 0 ): ?>
                                                 <a href="<?php echo site_url('mipanel/pedidos/cobroPedido/' . $a->id . '/' . $a->total); ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a>
                                                 <!-- <a href="<?php echo $preference->init_point; ?>" class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-green'></i></a> -->
-                                            <?php endif; ?>    
-
+                                                <?php else:  ?>
+                                                    <a href=""  class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-gray'></i></a>
+                                             <?php endif; ?>
+                                            <a href='javascript:void(0);' class='btn btn-xs'><i class='fa fa-check fa-2x text-blue' onclick="cambioEstado($(this))" ></i></a>
                                         </div>
                                     </td>
+                                    <td style="display:none"><?php echo $a->estado_id; ?></td>
                                 </tr>
 
                             <?php endforeach; ?>    
@@ -84,6 +89,57 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
+
+
+
+
+
+
+<!-- ------------------------ -->
+<!-- MODAL CAMBIOS DE ESTADO       -->
+<!-- ------------------------ -->
+<div class="modal fade" id="modalEstados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle"><span class="titulo"></span>Cambio de Estado</h4>
+            </div>
+            <div class="modal-body">
+            <div id="sent" class="col-3"></div>
+                <form action="<?php echo base_url('mipanel/pedidos/cambioEstado');?>" id="formEstados" method="post" enctype="multipart/form-data">
+                    
+                    <input type="hidden" class="form-control" id="idpedido"  name="idpedido"  value="<?php echo set_value('idpedido',@$idpedido); ?>" readonly>
+                    <div class="form-group has-feedback">
+                        <label for="estado" class="control-label">Estado</label>
+                        <select id="estado" name="estado" class="form-control">
+                        <?php 
+                                  echo  "<option value=0>Seleccione un Estado</option>";
+                                  foreach ($estados as $pres) {
+                                       if (set_value('estado_id',@$estado_id)==$pres->id) { 
+                                            echo '<option value="' .$pres->id. '"" selected>' . $pres->nombre . '  </option>';  
+                                        }else
+                                            echo '<option value="' .$pres->id. '"">' . $pres->nombre . ' </option>';  
+                                    }
+                                  ?> 
+
+                        </select>               
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary titulo">Cambiar Estado</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <!-- --------------------- -->
 <!-- MODAL DE FORMULARIO -->
@@ -235,6 +291,10 @@
 		</div>
 	</div>
 </div>   
+
+
+
+
 
 
 

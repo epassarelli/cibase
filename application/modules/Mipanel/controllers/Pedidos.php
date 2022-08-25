@@ -18,6 +18,7 @@ class Pedidos  extends MX_Controller {
     $this->load->model('entregas/Entregas_model');
     $this->load->model('productos/Productos_model');
     $this->load->model('productos/Carrito_model');
+    $this->load->model('../models/Estados_model');
     
     
    
@@ -42,6 +43,7 @@ class Pedidos  extends MX_Controller {
     $this->data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
 
     $this->data['pedidos'] = $this->Pedidos_model->getAll(); 
+    $this->data['estados'] = $this->Estados_model->getAllBy('estado_envios', '', '', 'nombre', 0);
     $this->template->load('layout_back', 'pedidos_abm_view', $this->data);  
   }
 
@@ -171,6 +173,7 @@ public function newPedido()
     
     $data['talles']  = $this->Talles_model->getAllBy('talles','','','talles.descripcion');
     $data['colores']  = $this->Colores_model->getAllBy('colores','','','colores.descripcion');
+
     
     $this->template->load('layout_back', 'pedidos_edit_view', $data);  
    
@@ -467,6 +470,17 @@ public function pedidoValidation()
  
 
 }
+
+
+
+  public function cambioEstado(){
+    
+    $pedido['estado_id']  = $this->input->post('estado');
+    $id   = $this->input->post('idpedido');
+    $this->Pedidos_model->update($id,$pedido);
+    redirect('mipanel/pedidos');
+  }
+  
 
 
 }
