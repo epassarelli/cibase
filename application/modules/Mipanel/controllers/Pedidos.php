@@ -480,7 +480,7 @@ public function pedidoValidation()
     $this->Pedidos_model->update($id,$pedido);
     redirect('mipanel/pedidos');
   }
-  
+
 
 
 }

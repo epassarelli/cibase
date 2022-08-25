@@ -114,7 +114,6 @@
                         <label for="estado" class="control-label">Estado</label>
                         <select id="estado" name="estado" class="form-control">
                         <?php 
-                                  echo  "<option value=0>Seleccione un Estado</option>";
                                   foreach ($estados as $pres) {
                                        if (set_value('estado_id',@$estado_id)==$pres->id) { 
                                             echo '<option value="' .$pres->id. '"" selected>' . $pres->nombre . '  </option>';  
