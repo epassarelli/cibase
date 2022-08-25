@@ -610,3 +610,23 @@ function cambioEstado(e) {
 
 
 }
+
+
+function contestaPedido(e) {
+
+  indice = e.parents("tr").index();
+  miFila = document.getElementsByTagName("table")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[indice]
+
+   
+  var idpedido   = miFila.getElementsByTagName("td")[0].textContent
+  var respuesta =  miFila.getElementsByTagName("td")[8].textContent
+ 
+ 
+  document.getElementById('idpedido').value=parseInt(idpedido,10)
+  document.getElementById("textorespuesta").textContent = respuesta
+
+  $("#modalEstados").modal("show");  
+
+
+}
+

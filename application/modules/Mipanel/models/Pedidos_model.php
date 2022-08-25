@@ -93,5 +93,29 @@ public function update($id,$data)
     $this->db->update('pedidos', $data);
 }
 
+
+
+public function getPendientes(){
+    $ssql = "SELECT stocks_pendientes.id,
+                    stocks_pendientes.fecha,
+                    stocks_pendientes.fec_response as respuesta,
+                    stocks_pendientes.email,
+                    stocks_pendientes.idproducto,
+                    productos.titulo,
+                    stocks_pendientes.idcolor,
+                    colores.descripcion as nomcolor,
+                    stocks_pendientes.idtalle,
+                    talles.descripcion as nomtalle,
+                    stocks_pendientes.texto_response as textorespuesta
+                    FROM stocks_pendientes
+                    LEFT JOIN productos  ON stocks_pendientes.idproducto = productos.id
+                    LEFT JOIN talles     ON stocks_pendientes.idtalle   = talles.id
+                    LEFT JOIN colores    ON stocks_pendientes.idcolor = colores.id
+                    ORDER BY stocks_pendientes.fecha desc  ";    
+
+    $query = $this->db->query($ssql);
+    return  $query->result();
+}
+
 }
 ?>

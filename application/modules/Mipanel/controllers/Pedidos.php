@@ -481,6 +481,18 @@ public function pedidoValidation()
     redirect('mipanel/pedidos');
   }
 
+// Datos del ABM
+public function pedidosPendientes()
+{
+
+  $data['files_css'] = array('animate.css','sweetalert2.min.css');
+  $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+
+  $data['pedidos'] = $this->Pedidos_model->getPendientes();
+
+  $this->template->load('layout_back', 'pedidos_pendientes_view', $data);  
+
+}
 
 
 }
