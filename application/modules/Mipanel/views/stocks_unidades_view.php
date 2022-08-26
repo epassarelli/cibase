@@ -2,12 +2,12 @@
 <section class="content-header">
     <h1>
         Stock 
-        <small>Administracion de Stock</small>
+        <small>Manejo de Existencias</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <!-- <li><a href="#">Tables</a></li> -->
-        <li class="active">Administracion de Stocks</li>
+        <li class="active">Manejo de Existencias</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -103,7 +103,7 @@
                             <tr>
                                 <th style="width: 5%;text-align: center">Id Producto</th>
                                 <th style="width: 30%;text-align: center">Descripcion</th>
-                                <th style="width: 5%;text-align: center">Id Color</th>
+                                <th style="width: 5%;text-align: center;">Id Color</th>
                                 <th style="width: 30%;text-align: center">Color</th>
                                 <th style="width: 5%;text-align: center">Id Talle</th>
                                 <th style="width: 30%;text-align: center">Talle</th>

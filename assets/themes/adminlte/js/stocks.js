@@ -129,17 +129,21 @@ function listar(base,Toast) {
             type: "json"
         },
           rowCallback : function( row, data ) {
-         
-
         },
 
+        columnDefs: [
+         {
+           targets: [ 2, 4 ],
+           visible: false
+         }
+        ],
         columns: [
             { data: "idproducto" },
             { data: "titulo" },
-            { data: "idtalle" },
-            { data: "talle" },
             { data: "idcolor" },
             { data: "color" },
+            { data: "idtalle" },
+            { data: "talle" },
             { data: "cantidad" },
 
             {
@@ -162,18 +166,20 @@ function listar2(base,Toast) {
       destroy: true,
       responsive: true,
       columnDefs: [
-          {
+             {
               targets: -1,
-              data: null,
+              data: null, 
               defaultContent: "<a href='javascript:void(0);' class='eliminar btn btn-xs'><i class='fa fa-trash fa-2x text-red'></i></a>",
-              
             },
+            {
+              targets: [ 2, 4 ],
+              visible: false
+            }
       ],
       language: espanol
     });
 
-
-
+   
   //cambioEstado("#coloresAbm tbody", table,Toast); //Cambiar estado en datatable
   
  
@@ -206,13 +212,19 @@ function VerHistoria(body) {
           },
           rowCallback : function( row, data ) {
           },
+          columnDefs: [
+            {
+              targets: [ 0, 2 ],
+              visible: false
+            }
+           ],
           columns: [
      /*          { data: "idproducto" },
               { data: "titulo" }, */
-              { data: "idtalle" },
-              { data: "talle" },
               { data: "idcolor" },
               { data: "color" },
+              { data: "idtalle" },
+              { data: "talle" },
               { data: "cantidad" },
               { data: "fecha" },
               { data: "usuario" },

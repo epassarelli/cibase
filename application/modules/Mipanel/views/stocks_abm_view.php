@@ -2,7 +2,7 @@
 <section class="content-header">
     <h1>
         Stocks
-        <small>Listado de Stock</small>
+        <small>Existencias en Stock</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -31,7 +31,7 @@
                                 <th style="width: 5%;text-align: center">Id Talle</th>
                                 <th style="width: 30%;text-align: center">Talle</th>
                                 <th style="width: 10%">Cantidad</th> 
-                                <th style="width: 5%;text-align: center">Accion</th>
+                                <th style="width: 5%;text-align: center">Movimientos</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -65,10 +65,10 @@
                             <tr>
                         <!--         <th style="width: 5%;text-align: center">Id Producto</th>
                                 <th style="width: 30%;text-align: center">Descripcion</th> -->
-                                <th style="width: 5%;text-align: center">Id Talle</th>
-                                <th style="width: 15%;text-align: center">Talle</th>
                                 <th style="width: 5%;text-align: center">Id Color</th>
                                 <th style="width: 15%;text-align: center">Color</th>
+                                <th style="width: 5%;text-align: center">Id Talle</th>
+                                <th style="width: 15%;text-align: center">Talle</th>
                                 <th style="width: 10%">Cantidad</th> 
                                 <th style="width: 10%">Fecha</th> 
                                 <th style="width: 10%">Usuario</th> 

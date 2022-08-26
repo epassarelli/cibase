@@ -88,6 +88,8 @@
 												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
 											<?php endforeach; ?>
 										</select>
+									<?php else:  ?>											
+												<?php echo "<h4>Producto sin Stock</h4>"?>	
 									<?php endif; ?>											
 									</div>
 
