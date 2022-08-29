@@ -31,7 +31,7 @@
 
 								<a href="<?php echo site_url('productos/detalle/').$prod->producto_id; ?>">
 									<span class="product-thumb-info-image">
-										<img alt="" class="img-fluid" src="<?php echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $prod->imagen; ?>">
+										<img alt="" class="img-fluid" src="<?php echo base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/colores/' . $prod->imagen; ?>">
 									</span>
 								</a>
 								<span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
