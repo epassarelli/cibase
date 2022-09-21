@@ -3,6 +3,16 @@
 
 	<div class="container">
 
+			<div class="row">
+					<form action="<?php echo base_url('productos');?>" id="formBusqueda" method="post" enctype="multipart/form-data" class="col-12">
+										<div class="input-group col-sm-12 col-md-12 col-lg-12">
+												<input type="text" id="articulobuscado" name="articulobuscado" value="<?php echo set_value('articulobuscado',@$articulobuscado); ?>" class="form-control col-sm-12 col-md-4 col-lg-4" placeholder="Busqueda de productos" />
+												<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+										</div>
+					</form>
+			</div>
+			</p>
+	
 		<div class="row">
 			<div class="col-lg-9">
 

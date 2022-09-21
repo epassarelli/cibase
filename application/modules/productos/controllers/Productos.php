@@ -33,8 +33,20 @@ switch (ENVIRONMENT){
   {
     $data['title'] = 'Productos';
     $data['categorias'] = $this->Productos_model->getCategorias();  
+    $parametros=[];
     $parametros['sitio_id'] = $this->config->item('sitio_id');
     $parametros['publicar'] = 1;
+    
+    
+    $busqueda=$this->input->post("articulobuscado");
+    if ($busqueda != '' ) {
+      $parametros['titulo'] = $busqueda;
+    }
+  
+    $data['articulobuscado'] = $busqueda;
+        
+
+
     $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'categoria_id');
     $data['productos'] = $productos;
     $data['view']       = 'productos_'.$this->session->userdata('theme').'_view';
@@ -46,6 +58,7 @@ switch (ENVIRONMENT){
   }
 
  
+
   public function categorias($slug = '')
   {
     $parametros['slug'] = $slug;
