@@ -8,7 +8,7 @@ class Carrito extends MX_Controller {
     /// PARAMETRO 2 = "S" Requiere registro
     if (parametro(2)== 'S') {
       if (!$this->ion_auth->logged_in()) {
-        redirect('login');
+        redirect('auth/login');
       }
     }
     

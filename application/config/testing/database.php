@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.18.1.83',
-	'username' => 'cibase',
-	'password' => 'cibase',
-	'database' => 'cibase',
+	'hostname' => 'localhost',
+	'username' => 'lorem',
+	'password' => 'lorem',
+	'database' => 'lorem',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

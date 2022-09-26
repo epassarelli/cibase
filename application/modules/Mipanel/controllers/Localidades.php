@@ -8,7 +8,7 @@ class Localidades  extends MX_Controller {
     parent::__construct();
    
     if (!$this->ion_auth->logged_in()) {
-      redirect('login');
+      redirect('auth/login');
   }
     $this->load->model('../models/Localidades_model');
     

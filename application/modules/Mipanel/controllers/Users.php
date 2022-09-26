@@ -8,7 +8,7 @@ class Users extends CI_Controller {
         parent::__construct();
 
         if (!$this->ion_auth->logged_in() ) { //OR !$this->ion_auth->is_admin()) {
-            redirect('login');
+            redirect('auth/login');
         }
 
     }

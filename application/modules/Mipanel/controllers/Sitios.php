@@ -7,7 +7,7 @@ class Sitios  extends MX_Controller {
   function __construct() {
     parent::__construct();
     if (!$this->ion_auth->logged_in()) {
-        redirect('login');
+        redirect('auth/login');
     }
 
     $this->load->model('../models/Sitios_model');

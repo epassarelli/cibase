@@ -9,7 +9,7 @@ class Paginas  extends MX_Controller
   {
     parent::__construct();
     if (!$this->ion_auth->logged_in()) {
-      redirect('login');
+      redirect('auth/login');
     }
 
     $this->load->model(array('Paginas_model', 'Modulos_model', 'Idiomas_model', 'Bloques_model'));
