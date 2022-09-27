@@ -45,7 +45,7 @@
             ============================================= -->
             <div class="entry-content notopmargin">
 
-              <?php echo $articulo->resumen; ?>
+              <?php echo nl2br($articulo->resumen,false); ?>
               <p></p>
               <!-- Post Single - Content End -->
 

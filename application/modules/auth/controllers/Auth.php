@@ -48,7 +48,9 @@ class Auth extends MX_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->load->view('auth/index', $this->data);
+			// $this->data['view'] = "auth/index";
+			// $this->load->view('layout_back', $this->data);
+			$this->template->load('layout_back', 'auth/index', $this->data);  
 		}
 	}
 

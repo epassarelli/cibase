@@ -10,7 +10,7 @@
           <h1><?php echo $categoria; ?></h1>
         </div>
 
-        <div id="posts" class="small-thumbs">
+        <div id="posts">
 
           <?php if (count($articulos) > 0) : ?>
 

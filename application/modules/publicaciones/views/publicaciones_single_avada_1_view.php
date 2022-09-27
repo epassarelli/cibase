@@ -13,13 +13,13 @@
 
                         <div class="entry-title">
                             <h2><?php echo $articulo->titulo; ?></h2>
+                            <hr>
                         </div>
 
 
                         <div class="entry-content notopmargin">
-
-                            <?php echo $articulo->resumen; ?>
-                            <p></p>
+                
+                            <p><?php echo str_replace("\n", '</p><p>', $articulo->resumen); ?></p>
 
                             <div class="ievent clearfix bottommargin">
                                 <div class="row">

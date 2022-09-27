@@ -101,7 +101,7 @@
       <div class="col-md-12">
           <div class="form-group">
               <label for="resumen" class="control-label">Resumen</label>
-              <textarea class="form-control" id="resumen" name="resumen" rows="4"><?php echo set_value('resumen', @strip_tags(html_entity_decode($pub->resumen))); ?></textarea>
+              <textarea class="form-control" id="resumen" name="resumen" rows="10"><?php echo set_value('resumen', @strip_tags(html_entity_decode($pub->resumen))); ?></textarea>
               <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
           </div>
       </div>

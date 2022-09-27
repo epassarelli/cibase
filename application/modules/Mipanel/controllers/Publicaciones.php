@@ -6,7 +6,7 @@ class Publicaciones extends MX_Controller {
   function __construct() {
     
     parent::__construct();
-    
+  
     if (!$this->ion_auth->logged_in()) {
         redirect('auth/login');
     }
@@ -25,7 +25,8 @@ class Publicaciones extends MX_Controller {
       ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false) : $this->output->enable_profiler(false);
           break;
       }    
-
+      error_reporting(-1);
+      ini_set('display_errors', 1);  
   }
 
   // Listado del ABM de slider 

@@ -129,7 +129,7 @@ $lang['change_password_validation_new_password_label']         = 'Nueva Contrase
 $lang['change_password_validation_new_password_confirm_label'] = 'Confirmar Nueva Contraseña';
 
 // Forgot Password
-$lang['forgot_password_heading']                 = 'He olvidado mi Contraseña';
+$lang['forgot_password_heading']                 = 'Recuperar contraseña';
 $lang['forgot_password_subheading']              = 'Por favor, introduce tu %s para que podamos enviarte un email para restablecer tu contraseña.';
 $lang['forgot_password_email_label']             = '%s:';
 $lang['forgot_password_submit_btn']              = 'Enviar';

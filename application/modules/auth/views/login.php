@@ -53,7 +53,7 @@
               <input type="checkbox"> Recordarme
             </label>
           </div> -->
-          :: <a href="<?php echo site_url('auth/change_password'); ?>">Recordar password</a>
+          :: <a href="<?php echo site_url('auth/forgot_password'); ?>">Recordar password</a>
           <br>
           :: <a href="<?php echo site_url(); ?>">Volver al sitio</a>
         </div>

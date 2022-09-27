@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
+                    <a href="<?php echo site_url('auth');?>">
                         <i class="fa fa-fw fa-user"></i> <span>Usuarios</span>
                         <span class="pull-right-container">
                           <small class="label pull-right bg-green"></small>
@@ -304,7 +304,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                <a href="<?php echo site_url('mipanel/contactos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -323,7 +323,7 @@
                 ?>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                        <a href="<?php echo site_url('mipanel/contactos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -341,7 +341,7 @@
                 ?>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                        <a href="<?php echo site_url('mipanel/contactos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -401,7 +401,7 @@
                     </li>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                        <a href="<?php echo site_url('mipanel/contactos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -427,14 +427,14 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                    <!-- <li>
+                        <a href="<?php echo site_url('mipanel/contactos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
                             </span>
                         </a>
-                    </li>
+                    </li> -->
 
                 <?php
                     break;
@@ -445,7 +445,7 @@
                 ?>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/contactos');?>">
+                        <a href="<?php echo site_url('mipanel/contactos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -466,7 +466,7 @@
         <?php endif; ?>
 
             <li>
-                <a href="<?php echo site_url('login/logout');?>">
+                <a href="<?php echo site_url('auth/logout');?>">
                     <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -696,7 +696,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo site_url('mipanel/admin/usuarios');?>">
+                <a href="<?php echo site_url('mipanel/auth');?>">
                     <i class="fa fa-fw fa-user"></i> <span>Usuarios</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
