@@ -95,8 +95,6 @@ $db['default'] = array(
 	'save_queries' => TRUE
 ); */
 
-
-
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => '185.212.70.154',

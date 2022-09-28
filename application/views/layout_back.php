@@ -236,7 +236,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
+                <a href="<?php echo site_url('mipanel/presentaciones');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
