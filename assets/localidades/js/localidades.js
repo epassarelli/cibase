@@ -8,7 +8,7 @@ $(document).ready(function(){
             //});			
 			// Ejecutamos la accion y la enviamos al servidor 
 			$.ajax({
-                        url: UrlBase+'mipanel/localidades/getLocalidadesJson',
+                        url: UrlBase+'localidades/getLocalidadesJson',
                         data: { provincia: provinciaid },
                         type: 'POST',
                         dataType: 'json',

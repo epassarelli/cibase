@@ -321,7 +321,7 @@ $(document).ready(function () {
                         document.getElementById('subtotal').innerText=response.subtotal;
                         document.getElementById('envio').innerText=response.envio;
                         document.getElementById('total').innerText=response.total;
-                        document.getElementById('costovacio').innerText=response.envvacio;                        						
+                        //document.getElementById('costovacio').innerText=response.envvacio;                        						
                        }     
                     }else{
                         Toast.fire({type: 'error',
