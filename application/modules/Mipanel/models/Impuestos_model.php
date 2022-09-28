@@ -7,10 +7,26 @@ public function __construct() {
 }  
 
 
-public function setImpuesto($data)
+public function setImpuestos($data)
 {
+    
     $this->db->insert('impuestos', $data);
 }
+
+public function update($id,$data)
+{
+    $this->db->where('impuesto_id',$id);
+    $this->db->update('impuestos', $data);
+}
+
+
+public function deleteImpuesto($id)
+{
+    $this->db->where('impuesto_id',$id);
+    $this->db->delete('impuestos');
+}
+
+
 
 
 }

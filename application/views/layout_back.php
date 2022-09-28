@@ -227,7 +227,7 @@
               </a>
               <ul class="treeview-menu" style="display: none;">
             <li>
-                <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
+                <a href="<?php echo site_url('mipanel/impuestos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
