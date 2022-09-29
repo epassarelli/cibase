@@ -117,5 +117,10 @@ public function getPendientes(){
     return  $query->result();
 }
 
+public function respuestaPendientes($id,$data){
+        $this->db->where('id',$id);
+        $this->db->update('stocks_pendientes', $data);
 }
-?>
+
+}
+

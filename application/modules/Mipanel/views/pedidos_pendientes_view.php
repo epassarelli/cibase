@@ -85,9 +85,9 @@
             </div>
             <div class="modal-body">
             <div id="sent" class="col-3"></div>
-                <form action="<?php echo base_url('mipanel/pedidos/cambioEstado');?>" id="formEstados" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('mipanel/pedidos/enviaRespuesta');?>" id="formEstados" method="post" enctype="multipart/form-data">
                     
-                    <input type="hidden" class="form-control" id="idpedido"  name="idpedido"  value="<?php echo set_value('idpedido',@$idpedido); ?>" readonly>
+                    <input type="text" class="form-control" id="idpedido"  name="idpedido"  value="<?php echo set_value('idpedido',@$idpedido); ?>" readonly>
                    
                     <div class="form-group has-feedback">
                         <label for="textorespuesta" class="control-label">Respuesta</label>

@@ -481,6 +481,8 @@ public function pedidoValidation()
     redirect('mipanel/pedidos');
   }
 
+
+
 // Datos del ABM
 public function pedidosPendientes()
 {
@@ -492,6 +494,18 @@ public function pedidosPendientes()
 
   $this->template->load('layout_back', 'pedidos_pendientes_view', $data);  
 
+}
+
+
+
+public function enviaRespuesta(){
+    
+  $id   = $this->input->post('idpedido');
+  $pedido['texto_response'] = $this->input->post('textorespuesta');
+  $pedido['fec_response'] =  date('Y-m-d H:i:s');
+
+  $this->Pedidos_model->respuestaPendientes($id,$pedido);
+  redirect('mipanel/pedidos/pedidosPendientes');
 }
 
 
