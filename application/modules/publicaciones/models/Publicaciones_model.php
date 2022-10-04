@@ -3,7 +3,6 @@
 class Publicaciones_model extends CI_Model
 {
 
-
     public function __construct()
     {
         parent::__construct();
@@ -12,13 +11,10 @@ class Publicaciones_model extends CI_Model
     // Retorna 1 o mas registros dependiendo del parametro
     public function getArticulosPor($parametros)
     {
-        //$this->db->select('*');
         $this->db->from('publicaciones');
-        //$this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
         $this->db->where($parametros);
         $this->db->order_by('titulo', 'desc');
         $query = $this->db->get();
-        // var_dump($this->db->last_query());
         return $query->result();
     }
 
@@ -29,13 +25,11 @@ class Publicaciones_model extends CI_Model
         $this->db->from('categorias');
         $this->db->where($parametros);
         $query = $this->db->get();
-        // var_dump($this->db->last_query());
         return $query->result();
     }
 
     public function getOtrasCategorias($idCatActual, $idIdioma)
     {
-        # code...
         $this->db->select('*');
         $this->db->from('categorias');
         $this->db->where('idioma_id', $idIdioma);
@@ -57,7 +51,6 @@ class Publicaciones_model extends CI_Model
     // Retorna N novedades si N es Mayor a 0 y sinó retorna todas
     public function getNovedades($cant)
     {
-        //$this->db->select('*');
         $this->db->from('publicaciones p');
         $this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
         $this->db->where('c.slug', 'novedades');
@@ -66,7 +59,7 @@ class Publicaciones_model extends CI_Model
             $this->db->limit($cant);
         }
         $query = $this->db->get();
-        var_dump($this->db->last_query());
+        //var_dump($this->db->last_query());
         return $query->result();
     }
 

@@ -19,12 +19,12 @@
               <div class="entry clearfix bounceInRight animated">
 
                 <div class="entry-title">
-                  <h2><a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>"><?php echo $art->titulo; ?></a></h2>
+                  <h3><a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>"><?php echo $art->titulo; ?></a></h3>
                 </div>
 
                 <div class="entry-content">
-                  <p><?php echo substr($art->resumen, 0, 300) . ' ...'; ?></p>
-                  <a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>" class="more-link"><?php echo $this->lang->line('leerMas'); ?></a>
+                  <p><?php echo substr($art->resumen, 0, 250) . ' ...    '; ?><a href="<?php echo site_url() . $this->uri->segment(1) . '/' . $art->slug; ?>" class="btn btn-default btn-xs"><?php echo $this->lang->line('leerMas'); ?></a></p>
+
                 </div>
               </div>
 
