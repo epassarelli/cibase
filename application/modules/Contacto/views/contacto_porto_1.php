@@ -1,4 +1,4 @@
-<div role="main" class="main" style="background-color: #f0f0f0;">
+<section class="section section-default bg-color-light-scale-2 mt-0 mb-0">
 
 	<?php if (strlen($this->session->userdata('urlGMap')) > 20) : ?>
 		<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
@@ -72,7 +72,8 @@
 				</form>
 
 			</div>
-			<div class="col-lg-6">
+
+			<div class="col-lg-3">
 
 				<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
 					<h4 class="mt-2 mb-1">Datos de <strong>contacto</strong></h4>
@@ -112,36 +113,14 @@
 					</ul>
 				</div>
 
+			</div>
 
-				<!-- 
-				<h4 class="pt-5">Get in <strong>Touch</strong></h4>
-				<p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-				-->
-
+			<div class="col-lg-3">
+				<img alt="Vitello" src="<?php echo site_url('assets/uploads/3/contacto.jpg'); ?>" class="img-fluid border border-width-10 rounded box-shadow-3 position-absolute appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="700" style="animation-delay: 700ms;">
 			</div>
 
 		</div>
 
 	</div>
 
-</div>
-
-<!-- 
-<section class="call-to-action call-to-action-default with-button-arrow content-align-center call-to-action-in-footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9 col-lg-9">
-				<div class="call-to-action-content">
-					<h2 class="font-weight-normal text-6 mb-0">Porto is <strong class="font-weight-extra-bold">everything</strong> you need to create an <strong class="font-weight-extra-bold">awesome</strong> website!</h2>
-					<p class="mb-0">The <strong class="font-weight-extra-bold">Best</strong> HTML Site Template on ThemeForest</p>
-				</div>
-			</div>
-			<div class="col-md-3 col-lg-3">
-				<div class="call-to-action-btn">
-					<a href="http://themeforest.net/item/porto-responsive-html5-template/4106987" target="_blank" class="btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3">Get Started Now</a><span class="arrow hlb d-none d-md-block" data-appear-animation="rotateInUpLeft" style="top: -40px; left: 70%;"></span>
-				</div>
-			</div>
-		</div>
-	</div>
-</section> 
--->
+</section>

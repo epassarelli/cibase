@@ -40,9 +40,7 @@ class Contenidos extends MX_Controller
 				break;
 		}
 
-
 		$params = array(
-			//'sitio_id' => $this->config->item('sitio_id'),
 			'sitio_id' => $this->session->userdata("idSitio"),
 			'slug'  => $pagIncial,
 			'estado' => 1
@@ -53,16 +51,22 @@ class Contenidos extends MX_Controller
 		if ($secciones) {
 
 			$seccion = $secciones[0];
-			$params2 = array(
-				'b.seccion_id' => $seccion->seccion_id,
-				'b.estado' => 1
-			);
 
-			$data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
-			$data['view'] = 'contenidos_view';
+			if (strlen($seccion->bajada) >= 5) {
+				$data['view'] = $seccion->bajada;
+			} else {
+
+				$params2 = array(
+					'b.seccion_id' => $seccion->seccion_id,
+					'b.estado' => 1
+				);
+				$data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
+				$data['view'] = 'contenidos_view';
+			}
 		} else {
 			$data['view'] = '404' . $this->session->userdata('theme') . '_view';
 		}
+
 
 		$this->load->view('layout_' . $this->session->userdata('theme') . '_view', $data);
 	}
@@ -70,18 +74,14 @@ class Contenidos extends MX_Controller
 
 	public function pagina($slug = '')
 	{
-
 		$params = array(
-			//'sitio_id' => $this->config->item('sitio_id'),
 			'sitio_id' => $this->session->userdata("idSitio"),
 			'slug'  => $slug,
 			'estado' => 1
 		);
 
 		$seccion = $this->Secciones_model->getOneBy('secciones', $campos = '', $params, $orden = '');
-		//$secciones = $this->Secciones_model->getSeccionesPor($params);
 
-		// if($secciones){
 		if ($seccion) {
 			$data['title'] = $seccion->titulo;
 

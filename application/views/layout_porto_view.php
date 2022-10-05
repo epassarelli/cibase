@@ -21,7 +21,6 @@ if (!isset($_SESSION['carrito']) or $_SESSION['carrito'] == null) {
 
 <head>
 
-	<!-- Basic -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -35,17 +34,10 @@ if (!isset($_SESSION['carrito']) or $_SESSION['carrito'] == null) {
 	<meta name="description" content="">
 	<meta name="author" content="webpass.com.ar">
 
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="<?php site_url('assets/uploads/3/favicon.png'); ?>" type="image/x-icon" />
-	<link rel="apple-touch-icon" href="<?php site_url('assets/uploads/3/apple-touch-icon.png'); ?>">
-
-	<!-- Mobile Metas -->
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo site_url('assets/uploads/3/favicon-16x16.png'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-
-	<!-- Web Fonts  -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
-	<!-- Vendor CSS -->
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/vendor/fontawesome-free/css/all.min.css">
 
@@ -59,22 +51,15 @@ if (!isset($_SESSION['carrito']) or $_SESSION['carrito'] == null) {
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/css/star-rating.min.css">
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css">
 
-	<!-- Theme CSS -->
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/css/theme.css">
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/css/theme-elements.css">
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/css/theme-blog.css">
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/css/theme-shop.css">
 
-	<!-- Demo CSS -->
-
-
-	<!-- Skin CSS -->
 	<link href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme') . '76/css/skins/default_sitio_' . $this->config->item('sitio_id') . '.css'); ?>" rel="stylesheet">
 
-	<!-- Theme Custom CSS -->
 	<link rel="stylesheet" href="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/css/custom.css">
 
-	<!-- Head Libs -->
 	<script src="<?php echo site_url('assets/themes/' . $this->session->userdata('theme')); ?>76/vendor/modernizr/modernizr.min.js"></script>
 
 	<?php if (isset($files_css)) {
@@ -85,9 +70,9 @@ if (!isset($_SESSION['carrito']) or $_SESSION['carrito'] == null) {
 		}
 	} ?>
 
-	<!-- Google Recaptcha -->
+
 	<script src="https://www.google.com/recaptcha/api.js?render=<?php echo @$this->data_captcha_google['site_key']; ?>&hl=es-419"></script>
-	<!--FIN Google Recaptcha -->
+
 
 </head>
 
