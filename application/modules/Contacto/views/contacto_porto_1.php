@@ -48,7 +48,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col">
-							<label class="font-weight-bold text-dark text-2">Asunto</label>
+							<label class="required font-weight-bold text-dark text-2">Asunto</label>
 							<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
 							<?php echo form_error('subject', '<p class="field-error">', '</p>'); ?>
 						</div>
