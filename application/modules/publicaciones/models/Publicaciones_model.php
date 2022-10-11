@@ -51,6 +51,7 @@ class Publicaciones_model extends CI_Model
     // Retorna N novedades si N es Mayor a 0 y sinó retorna todas
     public function getNovedades($cant)
     {
+        $this->db->select('p.titulo, p.slug, p.resumen, p.portada, p.publicacion, p.categoria_id');
         $this->db->from('publicaciones p');
         $this->db->join('categorias c', 'p.categoria_id = c.categoria_id');
         $this->db->where('c.slug', 'novedades');

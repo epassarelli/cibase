@@ -11,7 +11,7 @@
 
       <div class="entry clearfix">
         <div class="entry-title">
-          <h2><a href="blog-single.html"><?php echo $novedad->titulo; ?></a></h2>
+          <h2><a href="<?php echo site_url('novedades/') . $novedad->slug; ?>"><?php echo $novedad->titulo; ?></a></h2>
         </div>
         <!-- 
 			<ul class="entry-meta clearfix">
