@@ -18,7 +18,7 @@
 						<div class="entry-content notopmargin">
 
 							<p><?php echo str_replace("\n", '</p><p>', $articulo->resumen); ?></p>
-							<p>Categoria: <?php echo $articulo->categoria_id; ?></p>
+
 							<?php if (intval($articulo->categoria_id) !== 32) : // Categoria 32 = Novedades 
 							?>
 
@@ -67,7 +67,11 @@
 								<?php endif; ?>
 
 								<?php if (strlen($articulo->publicacion) > 5) : ?>
-									<a href="<?php echo site_url('assets/uploads/' . $this->config->item('sitio_id') . '/publicaciones/' . $articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i><?php echo $this->lang->line('leerMas'); ?></a>
+
+									<p class="text-right">
+										<a href="<?php echo site_url('assets/uploads/' . $this->config->item('sitio_id') . '/publicaciones/' . $articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i>::Abrir PDF ::</a>
+									</p>
+
 								<?php endif; ?>
 
 							<?php endif; ?>
