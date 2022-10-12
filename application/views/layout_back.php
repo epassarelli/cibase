@@ -227,7 +227,7 @@
               </a>
               <ul class="treeview-menu" style="display: none;">
             <li>
-                <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
+                <a href="<?php echo site_url('mipanel/impuestos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -236,7 +236,7 @@
             </li>
 
             <li>
-                <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
+                <a href="<?php echo site_url('mipanel/presentaciones');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
                     <span class="pull-right-container">
                       <small class="label pull-right bg-green"></small>
@@ -261,6 +261,16 @@
                     </span>
                 </a>
             </li>              
+            <li>
+                <a href="<?php echo site_url('mipanel/entregas');?>">
+                    <i class="fa fa-fw fa-check"></i> <span>Formas de Entrega</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-green"></small>
+                    </span>
+                </a>
+            </li>              
+           
+            
             <li>
                 <a href="<?php echo site_url('mipanel/pedidos');?>">
                     <i class="fa fa-fw fa-check"></i> <span>Pedidos</span>
