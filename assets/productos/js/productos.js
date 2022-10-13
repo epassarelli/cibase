@@ -197,7 +197,7 @@ $(document).ready(function () {
                     if (response.success == 'OK') {
                         document.getElementsByClassName('cart-qty')[0].textContent=response.items
 
-                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
+                        document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText='$' + response.totallastitem.toFixed(2)
 
                         parcial = parseFloat(
                         document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
@@ -249,7 +249,7 @@ $(document).ready(function () {
                         document.getElementsByClassName('cart-qty')[0].textContent=response.items
                         //este if es por si la cantidad es 1 y quiere decrementar el controlador no calcula
                         if (response.totallastitem > unidadvta) {
-                            document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText=response.totallastitem
+                            document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].lastElementChild.innerText='$' + response.totallastitem.toFixed(2)
 
                             parcial = parseFloat(document.getElementById('shop_table').getElementsByTagName('tbody')[0].getElementsByTagName('tr')[MyRow].getElementsByTagName('td')[5].getElementsByTagName('div')[0].getElementsByTagName('input')[1].value);
                             if (isNaN(parcial)) {parcial= 0;}
