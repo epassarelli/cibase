@@ -361,8 +361,8 @@ public function pedidoValidation()
  public function verPedido($id)
  {
 
-  $data['files_css'] = array('animate.css','sweetalert2.min.css');
-  $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+ //$data['files_css'] = array('animate.css','sweetalert2.min.css');
+ // $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
  
   $parametros['sitio_id'] = $this->config->item('sitio_id');
   $parametros['publicar'] = 1;
@@ -378,9 +378,9 @@ public function pedidoValidation()
   $data['entregas']    = $this->Entregas_model->getEntregas();
   $data['cost_unit_vacio'] = parametro(10);
   
- 
 
-  $vista = "mipanel/pedidos_pdf_view";
+  //$vista = "mipanel/pedidos_pdf_view"; version anterior
+  $vista = "mipanel/pedidos_pdf_view2"; 
   $dompdf = new Dompdf\Dompdf();
   $html = $this->load->view($vista,$data,true);
   $dompdf->loadHtml($html);
