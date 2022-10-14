@@ -41,6 +41,10 @@
         <i class="fa fa-check text-color-primary bg-light rounded-circle box-shadow-4 p-2 mr-3"></i>
         <p class="mb-0"><b class="text-color-dark">Seleccion cuidada -</b> Nuestra selección de carnes es cuidada desde la alimentación de los animales, hasta el producto final, logrando así un sabor inigualable de esa carne genuina desde el campo, para compartir en la mesa familiar.</p>
       </div>
+      <div class="d-flex align-items-center pb-4 mb-4">
+        <i class="fa fa-check text-color-primary bg-light rounded-circle box-shadow-4 p-2 mr-3"></i>
+        <p class="mb-0"><b class="text-color-dark">Cortes premium -</b> Organización de propuestas con cortes premium para eventos privados, con servicio a cargo de Julio Viola Cocinero profesional y chef privado <a target="_blank" href="https://www.instagram.com/juliusviola/">@juliusviola</a></p>
+      </div>
     </div>
     <div class="col-lg-4 offset-lg-2">
       <img class="img-fluid" src="<?php echo site_url('assets/uploads/3/vitello_dots.png'); ?>" alt="" style="position: absolute; bottom: -2%; left: -43%; transform: rotate(90deg)">
