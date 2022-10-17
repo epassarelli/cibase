@@ -358,7 +358,7 @@ public function pedidoValidation()
 
 
   
- public function verPedido($id)
+ public function verPedid_old($id)
  {
 
  //$data['files_css'] = array('animate.css','sweetalert2.min.css');
@@ -382,6 +382,8 @@ public function pedidoValidation()
   //$vista = "mipanel/pedidos_pdf_view"; version anterior
   $vista = "mipanel/pedidos_pdf_view2"; 
   $dompdf = new Dompdf\Dompdf();
+  //$dompdf->setBasePath(base_url('assets/themes/adminlte/css/pedidopdf.min.css'));
+ 
   $html = $this->load->view($vista,$data,true);
   $dompdf->loadHtml($html);
   $dompdf->setPaper('A4', 'portrait');
@@ -390,6 +392,51 @@ public function pedidoValidation()
   $dompdf->stream();
 
  
+
+}
+
+
+
+
+ 
+public function verPedido($id)
+{
+
+//$data['files_css'] = array('animate.css','sweetalert2.min.css');
+// $data['files_js'] = array('pedidos.js?v='.rand(),'sweetalert2.min.js');
+
+ $parametros['sitio_id'] = $this->config->item('sitio_id');
+ $parametros['publicar'] = 1;
+ $productos = $this->Productos_model->getAllBy('v_productos','', $parametros,'titulo');
+ $data['productos'] = $productos;
+ $parametros = [];
+ $data['pedido'] = $this->Pedidos_model->getPedido($id);
+ $data['operacion'] = "E";
+
+ $parametros['provincia_id'] = $data['pedido'][0]->provincia_id;
+ $data['provincias']  = $this->Provincias_model->getAllBy('provincias','provincias.id,provincias.nombre','','provincias.nombre');
+ $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
+ $data['entregas']    = $this->Entregas_model->getEntregas();
+ $data['cost_unit_vacio'] = parametro(10);
+ 
+
+ //$vista = "mipanel/pedidos_pdf_view"; version anterior
+ $vista = "mipanel/pedidos_pdf_view2"; 
+ 
+ 
+ 
+ ob_start();
+  $this->load->view($vista,$data,false);
+ $htmlv = ob_get_clean();
+ $dompdf = new Dompdf\Dompdf(['enable_remote' => true]);
+ $dompdf->loadHtml($htmlv);
+ $dompdf->setPaper('A4', 'portrait');
+ $dompdf->render();
+ $dompdf->output();
+ $dompdf->stream('pedido_'. $id .  '.pdf');
+ 
+
+
 
 }
 
