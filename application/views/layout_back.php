@@ -58,7 +58,8 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>CI</b>B</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>CI</b>Basic</span>
+                <span class="logo-lg"><?php echo $this->session->userdata('sitio'); ?></span>
+                <!-- <span class="logo-lg"><b>CI</b>BasicV</span> -->
             </a>
 
             <!-- Header Navbar: style can be found in header.less -->
