@@ -32,10 +32,10 @@
                                 <th style="width: 30%;text-align: center">Nombre</th>
                                 <th style="width: 30%;text-align: center">Detalle</th>
                                 <th style="width: 5%;text-align: center">Costo</th>
-                                <th style="width: 5%;text-align: center">Direccion</th>
+                                <th style="width: 5%;text-align: center">Dirección</th>
                                 <th style="width: 5%;text-align: center">Estado</th>
 
-                                <th style="width: 5%;text-align: center">Accion</th>
+                                <th style="width: 5%;text-align: center">Acción</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -72,7 +72,7 @@
 
                     
                     <div class="form-group has-feedback">
-                        <label for="entregas_id" class="control-label">Tip de Entrega</label>
+                        <label for="entregas_id" class="control-label">Tipo de Entrega</label>
                         <select id="entregas_id" name="entregas_id" class="form-control">
                         <?php 
                                   echo  "<option value=0>Seleccione un Tipo de Entrega</option>";
@@ -124,15 +124,15 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE5CD;</i>
 				</div>				
-				<h4 class="modal-title">Estas Seguro ?</h4>	
+				<h4 class="modal-title">Estás Seguro ?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Se perderan todos los datos de la seleccion y no habra forma de recuperar la información</p>
+				<p>Se perderán todos los datos de la selección y no habrá forma de recuperar la información</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Eliminar</button>
 			</div>
 		</div>
 	</div>

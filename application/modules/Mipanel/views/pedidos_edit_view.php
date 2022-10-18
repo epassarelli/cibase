@@ -1,7 +1,7 @@
 <section class="content-header">
     <h1>
         Pedidos
-        <small>Edicion</small>
+        <small>Edición</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -149,7 +149,7 @@
                         </div>        
                         <div class="col-md-1 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label id='lblnro' for="del_nro" class="control-label">Numero</label>
+                                    <label id='lblnro' for="del_nro" class="control-label">Número</label>
                                     <input type="text" class="form-control" id="del_nro" name="del_nro" value="<?php echo set_value('nro',@$nro); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <?php if (!empty(form_error('del_nro'))): ?> <?php  echo  form_error('del_nro') ;?> <?php endif;?>
@@ -216,7 +216,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="telefono" class="control-label">Telefono</label>
+                                    <label for="telefono" class="control-label">Teléfono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo set_value('telefono',@$telefono); ?>">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <?php if (!empty(form_error('telefono'))): ?> <?php  echo  form_error('telefono') ;?> <?php endif;?>
@@ -240,12 +240,12 @@
                         <thead>
                             <tr>
                                 <th align="center">Producto</th>
-                                <th align="center">Envasado Vacio</th>
+                                <th align="center">Envasado Vacío</th>
                                 <th align="center">Precio</th>
                                 <th align="center">Cantidad</th>
                                 <th align="center">Total</th>
-                                <th align="center">Accion</th> 
-                                <th align="center"  style="display: none;" >Vacio</th> 
+                                <th align="center">Acción</th> 
+                                <th align="center"  style="display: none;" >Vacío</th> 
                                 <th align="center"  style="display: none;">Producto_id</th> 
                               </tr>
                         </thead>
@@ -284,17 +284,17 @@
                     
                     <input type="hidden" class="form-control" id="cost_unit_vacio" name="cost_unit_vacio" value="<?php echo set_value('cost_unit_vacio',@$cost_unit_vacio); ?>" >
                     
-                    <table style="width: 20%;" class="table table-bordered">
+                    <table style="width: 40%;" class="table table-bordered">
                       <tr>
                         <td align="left" >Subtotal</td>
                         <td align="right"><input  readonly type="text" class="form-control dinero"  name="subtotal" id="subtotal"  value="<?php echo set_value('subtotal',@$subtotal);  ?>"></td>
                       </tr>
                       <tr>
-                        <td>Envio</td>
+                        <td>Envío</td>
                         <td align="right"><input readonly type="text" class="form-control dinero"  name="delivery"  id="delivery" value="<?php echo set_value('delivery',@$delivery);  ?>"></td>
                       </tr>
                       <tr>
-                        <td>Envasado Vacio</td>
+                        <td>Envasado Vacío</td>
                         <td align="right"><input readonly type="text" class="form-control dinero"  name="env_vacio" id="env_vacio" value="<?php echo set_value('env_vacio',@$env_vacio);  ?>"></td>
                       </tr>
                       <tr>
@@ -398,15 +398,15 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE5CD;</i>
 				</div>				
-				<h4 class="modal-title">Estas Seguro ?</h4>	
+				<h4 class="modal-title">Estás Seguro ?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Se perderan todos los datos de la seleccion y no habra forma de recuperar la información</p>
+				<p>Se perderán todos los datos de la selección y no habrá forma de recuperar la información</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Eliminar</button>
 			</div>
 		</div>
 	</div>

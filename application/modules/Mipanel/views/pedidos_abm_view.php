@@ -36,10 +36,10 @@
                                 <th>Apellido</th>
                                 <th>Nombre</th>
                                 <th>E-Mail</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Total</th>
                                 <th>Estado</th>
-                                <th>Action</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,7 +142,7 @@
                         </div>        
                         <div class="col-md-2 col-sm-12">                                                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="del_nro" class="control-label">Numero</label>
+                                    <label for="del_nro" class="control-label">Número</label>
                                     <input type="text" class="form-control" id="del_nro" name="del_nro" value="">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
@@ -187,7 +187,7 @@
 
                         <div class="col-md-6 col-sm-12">                                                        
                                 <div class="form-group has-feedback">
-                                    <label for="telefono" class="control-label">Telefono</label>
+                                    <label for="telefono" class="control-label">Teléfono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" value="">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
@@ -220,15 +220,15 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE5CD;</i>
 				</div>				
-				<h4 class="modal-title">Estas Seguro ?</h4>	
+				<h4 class="modal-title">Estás Seguro ?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Se perderan todos los datos de la seleccion y no habra forma de recuperar la información</p>
+				<p>Se perderán todos los datos de la selección y no habrá forma de recuperar la información</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Eliminar</button>
 			</div>
 		</div>
 	</div>

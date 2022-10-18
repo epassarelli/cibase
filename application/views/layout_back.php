@@ -128,7 +128,7 @@
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-gear"></i> <span>Administracion</span>
+                                <i class="fa fa-gear"></i> <span>Administración</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -139,7 +139,7 @@
                                         <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('mipanel/parametros'); ?>"><i class="fa fa-fw fa-globe"></i> <span>Parametros</span>
+                                    <a href="<?php echo site_url('mipanel/parametros'); ?>"><i class="fa fa-fw fa-globe"></i> <span>Parámetros</span>
                                         <span class="pull-right-container"><small class="label pull-right bg-green"></small></span></a>
                                 </li>
                                 <li>
@@ -185,7 +185,7 @@
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-gear"></i> <span>Paginas</span>
+                                <i class="fa fa-gear"></i> <span>Páginas</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -193,7 +193,7 @@
                             <ul class="treeview-menu" style="display: none;">
                                 <li>
                                     <a href="<?php echo site_url('mipanel/paginas'); ?>">
-                                        <i class="fa fa-fw fa-check"></i> <span>Paginas</span>
+                                        <i class="fa fa-fw fa-check"></i> <span>Páginas</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
@@ -202,7 +202,7 @@
 
                                 <li>
                                     <a href="<?php echo site_url('mipanel/bloques'); ?>">
-                                        <i class="fa fa-fw fa-check"></i> <span>Bloques de paginas</span>
+                                        <i class="fa fa-fw fa-check"></i> <span>Bloques de páginas</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
@@ -259,7 +259,7 @@
 
                                 <li>
                                     <a href="<?php echo site_url('mipanel/categorias/productos'); ?>">
-                                        <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                                        <i class="fa fa-fw fa-check"></i> <span>Categorías</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
@@ -297,7 +297,7 @@
 
                                 <li>
                                     <a href="<?php echo site_url('mipanel/categorias/publicaciones'); ?>">
-                                        <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                                        <i class="fa fa-fw fa-check"></i> <span>Categorías</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
@@ -397,7 +397,7 @@
 
                                 <li>
                                     <a href="<?php echo site_url('mipanel/categorias/productos'); ?>">
-                                        <i class="fa fa-fw fa-check"></i> <span>Categorias</span>
+                                        <i class="fa fa-fw fa-check"></i> <span>Categorías</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
@@ -489,7 +489,7 @@
 
                     <li>
                         <a href="<?php echo site_url('login/logout'); ?>">
-                            <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesion</span>
+                            <i class="fa fa-fw fa-sign-out"></i> <span>Cerrar sesión</span>
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-green"></small>
                             </span>
@@ -546,9 +546,9 @@
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> 2.3.8
+                <b>Version</b> 2.3.9
             </div>
-            <strong>Copyright &copy; <?php echo date('Y', time()); ?> <a href="http://webpass.com.ar">Desarrollo Web</a>.</strong> Todos los derechos reservados.
+            <strong>Copyright &copy; <?php echo date('Y', time()); ?> <a href="http://webpass.com.ar">WEBPASS Desarrollo Web</a>.</strong> Todos los derechos reservados.
         </footer>
 
 

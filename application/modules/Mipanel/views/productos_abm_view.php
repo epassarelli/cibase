@@ -30,14 +30,14 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th style="width: 30%">Titulo</th>
+                                <th style="width: 30%">Título</th>
                                 <th>Imagen</th>
                                 <th>Imagen</th>
                                 <th>Imagen</th>
                                 <th>Precio Lista</th>
                                 <th>Precio Oferta</th>
                                 <th>Publicar</th>
-                                <th>Action</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -75,25 +75,25 @@
                    
                
                     <div class="form-group has-feedback">
-                        <label for="titulo" class="control-label">Titulo</label>
+                        <label for="titulo" class="control-label">Título</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                    
                     <div class="form-group has-feedback">
-                        <label for="descLarga" class="control-label">Descripcion Larga</label>
+                        <label for="descLarga" class="control-label">Descripción Larga</label>
                         <input type="text" class="form-control" id="descLarga" name="descLarga" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="descCorta" class="control-label">Descripcion Corta</label>
+                        <label for="descCorta" class="control-label">Descripción Corta</label>
                         <input type="text" class="form-control" id="descCorta" name="descCorta" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="categoria_id" class="control-label">Categoria</label>
+                        <label for="categoria_id" class="control-label">Categoría</label>
                         <select id="categoria_id" name="categoria_id" class="form-control">
                         <?php 
                                   echo  "<option value=0>Seleccione una Categoria</option>";
@@ -110,7 +110,7 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="codigo" class="control-label">Codigo</label>
+                        <label for="codigo" class="control-label">Código</label>
                         <input type="text" class="form-control" id="codigo" name="codigo" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
@@ -168,13 +168,13 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="OfDesde" class="control-label">Oferta Valida desde</label>
+                        <label for="OfDesde" class="control-label">Oferta válida desde</label>
                         <input type="date" class="form-control" id="OfDesde" name="OfDesde" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="OfHasta" class="control-label">Oferta Valida desde</label>
+                        <label for="OfHasta" class="control-label">Oferta válida hasta</label>
                         <input type="date" class="form-control" id="OfHasta" name="OfHasta" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
@@ -197,7 +197,7 @@
 
 
                     <div class="form-group has-feedback">
-                        <label for="presentacion_id" class="control-label">Presentacion</label>
+                        <label for="presentacion_id" class="control-label">Presentación</label>
                         <select id="presentacion_id" name="presentacion_id" class="form-control">
                         <?php 
                                   echo  "<option value=0>Seleccione una Presentacion</option>";
@@ -283,15 +283,15 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE5CD;</i>
 				</div>				
-				<h4 class="modal-title">Estas Seguro ?</h4>	
+				<h4 class="modal-title">Estás Seguro ?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Se perderan todos los datos de la seleccion y no habra forma de recuperar la información</p>
+				<p>Se perderán todos los datos de la selección y no habrá forma de recuperar la información</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Eliminar</button>
 			</div>
 		</div>
 	</div>

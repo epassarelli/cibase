@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     // Reseteamos el form y asignamos el valor de la opcion
     $(".insertar").click(function() {
-      $('.titulo').html('Agregar Productos');   // Titulo del form   
+      $('.titulo').html('Agregar Producto');   // Titulo del form   
       $("#formSitios").trigger("reset"); // Reseteams el form
       $("#Opcion").val("insertar"); // Asignamos la accion
       $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
@@ -452,7 +452,7 @@ function submit(table,Toast) {
 
       // Abrimos alerta de confirmacion
       swalButtons.fire({
-        title: 'Estas Seguro ?',
+        title: 'Estás Seguro ?',
         text: "No podrás revertir esto!",
         type: 'warning',
         showCancelButton: true,

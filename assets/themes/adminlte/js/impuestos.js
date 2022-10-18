@@ -222,7 +222,7 @@ function submit(table,Toast) {
 
       // Abrimos alerta de confirmacion
       swalButtons.fire({
-        title: 'Estas Seguro ?',
+        title: 'Estás Seguro ?',
         text: "No podrás revertir esto!",
         type: 'warning',
         showCancelButton: true,

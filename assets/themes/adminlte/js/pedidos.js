@@ -41,12 +41,12 @@ function grabarPedido() {
   
   
   if (apellido=='' || nombre=='') {
-     Toast.fire({type: 'error',title: 'Debe ingresar el Apellido y el nombre',})
+     Toast.fire({type: 'error',title: 'Debe ingresar el Apellido y el Nombre',})
      return
   }
   if (domicilio_requerido==1) {
       if (calle=='' || numero=='' || provincia==0 || localidad ==0){
-        Toast.fire({type: 'error',title: 'Debe ingresar calle, numero, provincia y localidad',})
+        Toast.fire({type: 'error',title: 'Debe ingresar calle, número, provincia y localidad',})
         return
       }    
   }
@@ -216,7 +216,7 @@ function eliminar(e) {
 
     // Abrimos alerta de confirmacion
     swalButtons.fire({
-      title: 'Estas Seguro ?',
+      title: 'Estás Seguro ?',
       text: "No podrás revertir esto!",
       type: 'warning',
       showCancelButton: true,
@@ -470,7 +470,7 @@ function cambiaEntrega(e) {
                 }                  
             }else{
                 Toast.fire({type: 'error',
-                    title: 'No se pudo calcular envio',
+                    title: 'No se pudo calcular envío',
                        })
             }
     

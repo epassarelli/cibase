@@ -1,13 +1,13 @@
 
 <section class="content-header">
     <h1>
-        Categorias
-        <small>Listado de Categorias</small>
+        Categorías
+        <small>Listado de Categorías</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <!-- <li><a href="#">Tables</a></li> -->
-        <li class="active">Categorias</li>
+        <li class="active">Categorías</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -28,12 +28,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th style="width: 30%">Descripcion</th>
-                                <th>Descripcion Larga</th>
+                                <th style="width: 30%">Descripción</th>
+                                <th>Descripción Larga</th>
                                 <th>Slug</th>
                                 <th style="width: 10%">Imagen</th>
                                 <th>Activa</th>
-                                <th>Action</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -74,7 +74,7 @@
                
                    
                     <div class="form-group has-feedback">
-                       <label for="catpadre_id" class="control-label">Categoria Padre</label>
+                       <label for="catpadre_id" class="control-label">Categoría Padre</label>
                        <select id="catpadre_id" name="catpadre_id" class="form-control">
                                 <?php 
                                   echo  "<option value=0>Seleccione un Categoria Padre</option>";
@@ -112,13 +112,13 @@
 
 
                     <div class="form-group has-feedback">
-                        <label for="categoria" class="control-label">Descripcion</label>
+                        <label for="categoria" class="control-label">Descripción</label>
                         <input type="text" class="form-control" id="categoria" name="categoria" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
 
                     <div class="form-group has-feedback">
-                        <label for="description" class="control-label">Descripcion Larga</label>
+                        <label for="description" class="control-label">Descripción Larga</label>
                         <input type="text" class="form-control" id="description" name="description" value="">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
@@ -146,7 +146,7 @@
                     <div class="form-group has-feedback">
                         <input type="hidden" class="form-control" id="menu" name="menu" value="">
                         <div class='text-left'>
-                            <label class="control-label">Menu</label>
+                            <label class="control-label">Menú</label>
                             <a class='activo'><i class='fa fa-toggle-off fa-2x text-green llave_menu' id='llave_menu'></i></a>
                         </div>
                     </div>
@@ -188,15 +188,15 @@
 				<div class="icon-box">
 					<i class="material-icons">&#xE5CD;</i>
 				</div>				
-				<h4 class="modal-title">Estas Seguro ?</h4>	
+				<h4 class="modal-title">Estás Seguro ?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Se perderan todos los datos de la seleccion y no habra forma de recuperar la información</p>
+				<p>Se perderán todos los datos de la selección y no habrá forma de recuperar la información</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" id="confirmar">Delete</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmar">Eliminar</button>
 			</div>
 		</div>
 	</div>
