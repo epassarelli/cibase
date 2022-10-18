@@ -77,17 +77,16 @@
 
                 <span class="thumb-info thumb-info-lighten border-radius-0">
                   <span class="thumb-info-wrapper border-radius-0">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Y3CoPtZn-2E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/-blLs2bBOEM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                     <span class="thumb-info-title">
-                      <span class="thumb-info-inner">Mollejas crocantea a la miel</span>
+                      <span class="thumb-info-inner">Ojo de Bife con Horneaditas</span>
                       <span class="thumb-info-type">Recetas</span>
                     </span>
                   </span>
                 </span>
                 <h4>Ingredientes:</h4>
-                <p>Mollejas, Caldo de vegegales, Limon, Cebolla, Cebolla de verdeo, Limas, Miel, Sal, Pimienta,
-                  Tomillo, Laurel
+                <p>Ojo de bife Vitello Carnes, Horneaditas (papas condimentadas), Aceite de Oliva, Manteca, Sal y pimienta.
                 </p>
 
               </div>
