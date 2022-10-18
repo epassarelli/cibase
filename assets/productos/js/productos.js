@@ -347,7 +347,7 @@ $(document).ready(function () {
                         if (response.estado == 1) {
                             objeto.setAttribute('class','vacio fa  fa-toggle-on fa-2x text-green');
                             Toast.fire({type: 'success',
-                                        title: 'Agregado el servicio de Cierre al Vacio',
+                                        title: 'Agregado el servicio de Cierre al Vacío',
                                       })
 
 
@@ -355,14 +355,14 @@ $(document).ready(function () {
                             objeto.setAttribute('class','vacio fa  fa-toggle-off fa-2x text-green');
 
                             Toast.fire({type: 'error',
-                            title: 'Quitado el servicio de Cierre al Vacio',
+                            title: 'Quitado el servicio de Cierre al Vacío',
                           })
 
                         }
                         
          
                     }else{
-                        alert('Servicio cierre al vacio fallo ');
+                        alert('Servicio cierre al vacío falló ');
                         Toast.fire({type: 'error',
                         		title: 'No se pudo modificar el servicio',
                         		   })
@@ -417,7 +417,7 @@ $(document).ready(function () {
                         }                  
                     }else{
                         Toast.fire({type: 'error',
-                        		title: 'No se pudo calcular envio',
+                        		title: 'No se pudo calcular envío',
                         		   })
                     }
             

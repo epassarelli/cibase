@@ -245,7 +245,7 @@
 												Envio
 											</th>
 											<td>
-												Envio Gratis<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
+												Envío Gratis<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
 											</td>
 										</tr>
 										<tr class="total">
@@ -282,16 +282,16 @@
 						</tr>
 						<tr class="shipping">
 							<th>
-								Envio
+								Envío
 							</th>
 							<td id="envio">
-								Envio Gratis<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
+								Envío Gratis<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
 							</td>
 						</tr>
 						<?php if (parametro(9) == 'S') : ?>
 							<tr>
 								<th>
-									Envasado al Vacio
+									Env.al vacío
 								</th>
 								<td id="costovacio">
 									Sin costo de envasado al vacio<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">

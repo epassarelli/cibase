@@ -57,8 +57,8 @@
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 								<strong><i class="fas fa-exclamation-triangle"></i>No!</strong> se encontraron productos.
 								<ul>
-									<li>Revise si viene de una dirección externa</li>
-									<li>Contactenos por alguno de nuestros canales</li>
+									<li>Pruebe con otra búsqueda.</li>
+									<li>Contáctenos por alguno de nuestros canales</li>
 								</ul>
 							</div>
 

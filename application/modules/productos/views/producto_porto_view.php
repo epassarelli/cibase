@@ -86,7 +86,7 @@
 
 								<?php if (isset($catsProducto)) : ?>
 									<div class="product-meta">
-										<span class="posted-in">Categorias:
+										<span class="posted-in">Categorías:
 											<?php foreach ($catsProducto as $cp) : ?>
 												<a rel="tag" href="<?php echo site_url('productos/categorias/' . $cp->slug) ?>"><?php echo $cp->categoria; ?></a>,
 											<?php endforeach; ?>
@@ -104,7 +104,7 @@
 						<div class="col">
 							<div class="tabs tabs-product mb-2">
 								<ul class="nav nav-tabs">
-									<li class="nav-item active"><a class="nav-link py-3 px-4" href="#productDescription" data-toggle="tab">Descripcion</a></li>
+									<li class="nav-item active"><a class="nav-link py-3 px-4" href="#productDescription" data-toggle="tab">Descripción</a></li>
 								</ul>
 								<div class="tab-content p-0">
 									<div class="tab-pane p-4 active" id="productDescription">
@@ -128,7 +128,7 @@
 								<div class="col-12 col-sm-6 col-lg-3 product">
 									<span class="product-thumb-info border-0">
 										<a href="shop-cart.html" class="add-to-cart-product bg-color-primary">
-											<span class="text-uppercase text-1">Add to Cart</span>
+											<span class="text-uppercase text-1">Agregar al carrito</span>
 										</a>
 										<a href="shop-product-sidebar-left.html">
 											<span class="product-thumb-info-image">

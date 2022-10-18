@@ -25,7 +25,7 @@
 													</th>
 													<?php if (parametro(9) == "S") : ?>
 														<th class="product-vacio">
-															Envasado al Vacio
+															Al Vacío
 														</th>
 													<?php endif; ?>
 													<th class="product-price">
@@ -148,10 +148,10 @@
 											<?php if (parametro(9) == 'S') : ?>
 												<tr>
 													<th>
-														Envasado al Vacio
+														Envasado al Vacío
 													</th>
 													<td id="costovacio">
-														Sin costo de envasado al vacio<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
+														Sin costo de envasado al vacío<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
 													</td>
 												</tr>
 											<?php endif; ?>
