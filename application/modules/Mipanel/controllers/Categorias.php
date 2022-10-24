@@ -145,6 +145,9 @@ public function accion()
     $this->form_validation->set_rules('categoria','Categoria', array('required','max_length[255]'), array('required'   => '{field} es obligatorio',
     'max_length' => '{field} no puede exceder {param} caracteres -'));
     
+    $this->form_validation->set_rules('slug','Slug', array('required'), array('required'   => '{field} es obligatorio'));
+  
+    
     $this->form_validation->set_error_delimiters('<p class="text-danger">','</p>');
 
 
