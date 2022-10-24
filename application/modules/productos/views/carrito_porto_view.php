@@ -25,7 +25,7 @@
 													</th>
 													<?php if (parametro(9) == "S") : ?>
 														<th class="product-vacio">
-															Al Vacío
+															Envasado al Vacio
 														</th>
 													<?php endif; ?>
 													<th class="product-price">
@@ -73,7 +73,7 @@
 														<?php endif; ?>
 
 														<td class="product-price">
-															<span class="amount">$<?php echo $_SESSION['carrito'][$i]['precio']; ?></span>
+															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['precio'],2); ?></span>
 														</td>
 														<td class="product-quantity">
 															<form enctype="multipart/form-data" method="post" class="cart">
@@ -91,7 +91,7 @@
 															</form>
 														</td>
 														<td class="product-subtotal">
-															<span class="amount">$<?php echo $_SESSION['carrito'][$i]['totalitem']; ?></span>
+															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['totalitem'],2); ?></span>
 														</td>
 													</tr>
 
@@ -148,10 +148,10 @@
 											<?php if (parametro(9) == 'S') : ?>
 												<tr>
 													<th>
-														Envasado al Vacío
+														Envasado al Vacio
 													</th>
 													<td id="costovacio">
-														Sin costo de envasado al vacío<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
+														Sin costo de envasado al vacio<input type="hidden" value="free_shipping" id="vacio_service" name="vacio_service">
 													</td>
 												</tr>
 											<?php endif; ?>
