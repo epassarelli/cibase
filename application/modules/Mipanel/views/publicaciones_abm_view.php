@@ -1,7 +1,7 @@
 <section class="content-header">
     <h1>
         Backend
-        <small>Listado de bloques</small>
+        <small>Listado de publicaciones</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,11 +27,11 @@
               <thead>
                 <tr>
                   <th width="30">Cod</th>
-                  <th>Categoria</th>
-                  <th>Titulo</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>Categoría</th>
+                  <th>Título</th>
+                  <th>Publicar</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
 
                 </tr>
               </thead>

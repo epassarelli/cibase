@@ -30,7 +30,7 @@
 
       <div class="col-md-3">
         <div class="form-group">
-          <label for="categoria" class="control-label">Categoria</label>
+          <label for="categoria" class="control-label">Categoría <span class="text-danger">*</span></label>
 
           <select class="form-control" id="categoria" name="categoria" required>
             <option value=""> Seleccione una opción</option>
@@ -44,7 +44,7 @@
 
 		  <div class="col-md-9">
 		      <div class="form-group">
-		          <label for="titulo" class="control-label">Titulo</label>
+		          <label for="titulo" class="control-label">Título <span class="text-danger">*</span></label>
 		          <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo set_value('titulo', @$pub->titulo); ?>">
 		          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		      </div>
@@ -100,7 +100,7 @@
 
       <div class="col-md-12">
           <div class="form-group">
-              <label for="resumen" class="control-label">Resumen</label>
+              <label for="resumen" class="control-label">Resumen <span class="text-danger">*</span></label>
               <textarea class="form-control" id="resumen" name="resumen" rows="10"><?php echo set_value('resumen', @strip_tags(html_entity_decode($pub->resumen))); ?></textarea>
               <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
           </div>
@@ -149,7 +149,7 @@
             <div id="subirPublicacion" class="botonFile color-scheme-recursos">
               <label for="publicacion" class="btn btn-success"> 
               <i class="fa fa-upload text-white" aria-hidden="true" title="Subir publicacion" alt="Subir publicacion"></i> 
-              <span class="sr-only"> Adjuntar publicacion</span> </label>
+              <span class="sr-only"> Adjuntar publicación</span> </label>
               <span class="fileIconPublicacion titleAdPublicacion ml-1 text-recursos"> 
                   <!-- trae el nombre de la publicacion en PDF de js/publicaciones.js --> 
               </span><br>
