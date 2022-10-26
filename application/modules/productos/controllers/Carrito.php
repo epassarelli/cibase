@@ -25,6 +25,7 @@ class Carrito extends MX_Controller {
           break;
       }      
 
+      
    
     $this->load->model('Carrito_model');
     $this->load->model('Productos_model');
