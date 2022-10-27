@@ -28,7 +28,7 @@
     
 
 	  $preference->back_urls = array(
-				"success" => base_url("productos/carrito/operacion"),
+				"success" => base_url("productos/carrito/operacion/1"),
 				"failure" => base_url("productos"),
 				"pending" => base_url("productos")
 			);

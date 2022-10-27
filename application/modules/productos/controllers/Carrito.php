@@ -606,7 +606,7 @@ class Carrito extends MX_Controller {
 
 
   
-  public function operacion() {
+  public function operacion($callback) {
 
     $id_mp = $_GET['collection_id'];
     $status = $_GET['collection_status'];
@@ -616,7 +616,12 @@ class Carrito extends MX_Controller {
                        "transac_mp" => $id_mp);
 
     $this->Pedidos_model->update($app_id,$data_mp);
-    redirect('productos');
+    if ($callback==1) {
+        redirect('productos');
+    }else{
+      redirect('mipanel/pedidos');
+    }
+      
 
 
 

@@ -17,13 +17,13 @@
 
    	    $preference->items = $compra;
 
-    
-	  $preference->back_urls = array(
-				"success" => "http://localhost/cibase/mipanel/pedidos",
-				"failure" => "http://localhost/cibase/mipanel/pedidos",
-				"pending" => "http://localhost/cibase/mipanel/pedidos"
-			);
-			$preference->auto_return = "approved";
+
+         $preference->back_urls = array(
+          "success" =>  base_url("productos/carrito/operacion/2"),
+          "failure" => base_url("mipanel/pedidos"),
+          "pending" => base_url("mipanel/pedidos")
+        );
+        $preference->auto_return = "approved";
     
 		
      $preference->external_reference = $pedidonro;
