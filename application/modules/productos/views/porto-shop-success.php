@@ -28,9 +28,9 @@
     
 
 	  $preference->back_urls = array(
-				"success" => "http://localhost/cibase/productos/carrito/operacion",
-				"failure" => "http://localhost/cibase/productos",
-				"pending" => "http://localhost/cibase/productos"
+				"success" => base_url("productos/carrito/operacion"),
+				"failure" => base_url("productos"),
+				"pending" => base_url("productos")
 			);
 			$preference->auto_return = "approved";
     
