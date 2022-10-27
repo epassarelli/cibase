@@ -52,6 +52,7 @@ class Carrito extends MX_Controller {
   }
 
 
+
   public function agregarCarrito() {
        $producto_id = $this->input->post('producto_id');
        $cantidad = $this->input->post('cantidad');
@@ -559,6 +560,14 @@ class Carrito extends MX_Controller {
     // por post. Esta url debe estar definida en webhook de mp
 
     $json = json_decode($this->input->raw_input_stream);
+
+
+   
+    //convierto el json a string para grabar log
+    //$data['log'] = "'" . $json . "'";   //implode(",",$array);
+    $data['log'] = serialize($this->input->raw_input_stream);
+    $this->Pedidos_model->logMercadoPago($data);
+     
     $data = $json->data;
     $id_mp = $data->id;  //id de la transaccion de mercado pago
        
@@ -587,11 +596,32 @@ class Carrito extends MX_Controller {
                      "transac_mp" => $id_mp);
 
     $this->Pedidos_model->update($external_reference,$data_mp);
-    var_dump('status: ',$status);
-    var_dump('status_detail ',$status_detail);
-    var_dump('external reference: ',$external_reference);
-    var_dump('id_mp: ',$id_mp);
+    // var_dump('status: ',$status);
+    // var_dump('status_detail ',$status_detail);
+    // var_dump('external reference: ',$external_reference);
+    // var_dump('id_mp: ',$id_mp);
     
   }
+
+
+
+  
+  public function operacion() {
+
+    $id_mp = $_GET['collection_id'];
+    $status = $_GET['collection_status'];
+    $app_id = $_GET['external_reference'];  
+
+    $data_mp = array("status_mp" => $status,
+                       "transac_mp" => $id_mp);
+
+    $this->Pedidos_model->update($app_id,$data_mp);
+    redirect('productos');
+
+
+
+
+  }
+
 
 }

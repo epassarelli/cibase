@@ -122,5 +122,11 @@ public function respuestaPendientes($id,$data){
         $this->db->update('stocks_pendientes', $data);
 }
 
+
+public function logMercadoPago($data){
+
+    $this->db->insert('log_mercadop', $data);
+}
+
 }
 
