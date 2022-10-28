@@ -45,6 +45,8 @@
                                $env_vacio = $pedido[0]->env_vacio ;
                                $delivery = $pedido[0]->delivery ;
                                $total = $pedido[0]->total ;
+                               $transac_mp = $pedido[0]->transac_mp ;
+
 
                             }else{
                               $id       = '';
@@ -65,6 +67,7 @@
                               $env_vacio = "0.00";
                               $delivery = "0.00";
                               $total = "0.00";
+                              $transacmp = "0";
 
                             }
 
@@ -229,7 +232,14 @@
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <?php if (!empty(form_error('email'))): ?> <?php  echo  form_error('email') ;?> <?php endif;?>
                                 </div>
-                        </div>                                
+                        </div>   
+                        <div class="col-md-2 col-sm-12">                                                                
+                                <div class="form-group has-feedback">
+                                    <label for="transac_mp" class="control-label">Operacion Mercado Pago</label>
+                                    <input  type="text" class="form-control" id="transac_mp" name="transac_mp" value="<?php echo set_value('transac_mp',@$transac_mp); ?>">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                        </div>                             
                     </div>
 
                     <p>

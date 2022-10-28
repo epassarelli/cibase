@@ -59,7 +59,8 @@ public function getPedido($id){
                       pedidos_items.idcolor,
                       colores.descripcion as nomcolor,
                       pedidos_items.idtalle,
-                      talles.descripcion as nomtalle
+                      talles.descripcion as nomtalle,
+                      pedidos.transac_mp
                       FROM pedidos_items
                       LEFT JOIN pedidos  ON pedidos.id = pedidos_items.pedido_id
                       LEFT JOIN localidades on pedidos.localidad_id = localidades.id

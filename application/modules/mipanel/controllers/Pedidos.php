@@ -266,7 +266,8 @@ public function pedidoValidation()
                                  "subtotal" => round($subtotal,2),
                                  "total" => round($total,2),
                                  "cantidad_items" => $rowCount,
-                                 "env_vacio" => round($costo_vacio,2));
+                                 "env_vacio" => round($costo_vacio,2),
+                                 "transac_mp" => $this->input->post("transac_mp"));
          
          if ($operacion=='E') {  //edicion
                   
