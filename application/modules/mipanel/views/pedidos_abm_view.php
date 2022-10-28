@@ -69,6 +69,14 @@
                                                 <?php else:  ?>
                                                     <a href=""  class='btn btn-xs'  ><i class='fa fa-dollar fa-2x text-gray'></i></a>
                                              <?php endif; ?>
+
+                                             <?php if ($a->transac_mp != 0 ): ?>
+                                                <a href="<?php echo site_url('productos/carrito/datospagomp/' . $a->transac_mp); ?>" class='btn btn-xs'  ><i class='fa fa-cloud fa-2x text-yellow'></i></a>
+                                                <?php else:  ?>
+                                                    <a href="" class='btn btn-xs'  ><i class='fa fa-cloud fa-2x text-gray'></i></a>
+                                             <?php endif; ?>
+
+                                             
                                             <a href='javascript:void(0);' class='btn btn-xs'><i class='fa fa-check fa-2x text-blue' onclick="cambioEstado($(this))" ></i></a>
                                         </div>
                                     </td>
