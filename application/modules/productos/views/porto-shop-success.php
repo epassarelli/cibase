@@ -26,6 +26,7 @@
 		$preference->items = $compra;
 
     
+    $preference->notification_url = $this->config->item('url_post'); 
 
 	  $preference->back_urls = array(
 				"success" => base_url("productos/carrito/operacion/1"),
@@ -53,8 +54,6 @@
   <p id='CuentaAtras'></p>
 
 </div>
-
-
 
 
 <!-- SDK MercadoPago.js V2 -->
@@ -90,19 +89,19 @@
  function updateReloj()
  {
      
-     document.getElementById('CuentaAtras').innerHTML = "Tiempo restante para efectuar el pago: "+totalTiempo+" segundos";
+    //  document.getElementById('CuentaAtras').innerHTML = "Tiempo restante para efectuar el pago: "+totalTiempo+" segundos";
 
-     if(totalTiempo==0)
-     {
-         window.location=url;
-     }else{
-         /* Restamos un segundo al tiempo restante */
-         totalTiempo-=1;
-         /* Ejecutamos nuevamente la función al pasar 1000 milisegundos (1 segundo) */
-         setTimeout("updateReloj()",1000);
-     }
+    //  if(totalTiempo==0)
+    //  {
+    //      window.location=url;
+    //  }else{
+    //      /* Restamos un segundo al tiempo restante */
+    //      totalTiempo-=1;
+    //      /* Ejecutamos nuevamente la función al pasar 1000 milisegundos (1 segundo) */
+    //      setTimeout("updateReloj()",1000);
+    //  }
  }
 
- window.onload=updateReloj;
+ //window.onload=updateReloj;
 
  </script>

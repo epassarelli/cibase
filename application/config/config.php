@@ -557,7 +557,9 @@ $config['public_key'] = 'APP_USR-2179df65-2675-4751-9de6-d8a7183ee01e';
 $config['access_token'] = 'APP_USR-2284997509973029-080409-1e1a98f05697a6450e2443886e3aa6a5-1164687999';
 
 //definicion de endpoints
-$config['url_getpago']= 'https://api.mercadopago.com/v1/payments/';
+$config['url_getpago']= 'https://api.mercadopago.com/v1/payments/'; //url para obtener info del pago
+$config['url_post']= 'https://kouro.webpass.online/productos/carrito/idpago'; //url post para recibir el pago en tiempo real
+
 
 
 

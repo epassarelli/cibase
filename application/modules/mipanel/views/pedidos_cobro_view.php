@@ -15,8 +15,9 @@
          $compra[] = $item;
 
 
-   	    $preference->items = $compra;
+   	     $preference->items = $compra;
 
+         $preference->notification_url = $this->config->item('url_post');     
 
          $preference->back_urls = array(
           "success" =>  base_url("productos/carrito/operacion/2"),
@@ -36,7 +37,7 @@
 <section class="content-header">
     <h1>
         Pedidos
-        <small>Cobranza</small>
+        <small>Cobranza MP</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo base_url('mipanel')?>"><i class="fa fa-dashboard"></i> Home</a></li>
