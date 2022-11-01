@@ -17,26 +17,24 @@
       <img src="<?php echo site_url('assets/uploads/3/slider1.jpg'); ?>" width="100%" height="auto" alt="Vitello">
 
       <div class="carousel-caption">
-        <!-- <h4 style="color: white;">Vitello fue creado por la <strong class="font-weight-extra-bold">segunda generación de especialistas en carnes.</strong></h4>
-        <p style="color: orange;">Comercializamos carnes de sabor especial, de altísima calidad con conciencia sobre el bienestar animal y la sostenibilidad del campo.</p> -->
-
+        <h1 style="color: white;"></h1>
+        <p style="color: orange;"></p>
       </div>
     </div>
 
     <div class="carousel-item">
 
-      <img src="http://c2361113.ferozo.com/assets/uploads/3/componentes/4ef2f-slide11.jpg" width="100%" height="auto" alt="Vitello">
+      <img src="<?php echo site_url('assets/uploads/3/slider2.jpg'); ?>" width="100%" height="auto" alt="Vitello">
 
       <div class="carousel-caption">
-        <!-- <h3 style="color: white;">Vitello Carnes</h3>
-        <p style="color: orange;">Conocenos</p> -->
-
+        <h1 style="color: white;"></h1>
+        <p style="color: orange;"></p>
       </div>
     </div>
 
     <div class="carousel-item">
 
-      <img src="http://c2361113.ferozo.com/assets/uploads/3/componentes/4c373-slide10.jpg" width="100%" height="auto" alt="Vitello">
+      <img src="<?php echo site_url('assets/uploads/3/slider3.jpg'); ?>" width="100%" height="auto" alt="Vitello">
 
       <div class="carousel-caption">
         <h1 style="color: white;"></h1>

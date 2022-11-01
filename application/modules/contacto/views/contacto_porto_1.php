@@ -121,6 +121,23 @@
 
 		</div>
 
+		<hr class="gradient">
+
+		<div class="row call-to-action featured featured-secondary mb-5">
+			<!-- <section class="call-to-action featured featured-secondary mb-5"> -->
+			<div class="col-sm-9 col-lg-9">
+				<div class="call-to-action-content">
+					<h3>Escribinos por consultas sobre <strong class="font-weight-extra-bold">Franquicias</strong> </h3>
+					<p class="mb-0">¡Te guíamos y apoyamos en todo el proceso !</p>
+				</div>
+			</div>
+			<div class="col-sm-3 col-lg-3">
+				<div class="call-to-action-btn">
+					<a href="mailto:vitello.carnes.rafaela@gmail.com" class="btn btn-modern text-2 btn-secondary">Consultános</a>
+				</div>
+			</div>
+			<!-- </section> -->
+		</div>
 	</div>
 
 </section>
