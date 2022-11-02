@@ -724,8 +724,8 @@ html .btn-secondary.hover {
 
 html .btn-secondary:focus,
 html .btn-secondary.focus {
-	-webkit-box-shadow: 0 0 0 3px #c4a64e;
-	box-shadow: 0 0 0 3px #c4a64e;
+	-webkit-box-shadow: 0 0 0 3px #7f671a;
+	box-shadow: 0 0 0 3px #7f671a;
 }
 
 html .btn-secondary.disabled,
@@ -5599,7 +5599,7 @@ html .slide-overlay.slide-overlay-gradient .slotholder:after {
 
 .shop .products .product .onsale {
 	background-color: #c4a64e;
-	border-bottom-color:#c4a64e;
+	border-bottom-color: #c4a64e;
 }
 
 .shop .cart-totals tr.total .amount {
