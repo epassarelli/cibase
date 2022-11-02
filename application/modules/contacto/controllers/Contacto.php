@@ -68,11 +68,11 @@ class Contacto extends MX_Controller
 
       // Enviar un correo
 
-      $from = 'info@' . $this->session->userdata('url');
+      $from = 'info@vitello.com.ar';
       $to = $this->session->userdata('correo');
 
       $this->load->library('email');
-      $this->email->from($from, 'Contacto desde el portal Web');
+      $this->email->from($from, 'Contacto desde el portal Web de Vitello Carnes');
       $this->email->to($to, 'consultas@webpass.com.ar');
 
       $this->email->subject($_POST['subject']);
