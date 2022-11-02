@@ -63,7 +63,7 @@
     <div class="row">
 
       <div class="col-md-7 pr-md-5 mb-5 mb-md-0">
-        <h2 class="font-weight-normal text-6 mb-3"><strong class="font-weight-extra-bold">Boutique</strong> Vittelo Carnes</h2>
+        <h2 class="font-weight-normal text-6 mb-3"><strong class="font-weight-extra-bold">Boutique</strong> Vitello Carnes</h2>
         <p class="text-4">Nuestra selección de carnes es cuidada desde la alimentación de los animales, hasta el producto final, logrando así un sabor inigualable de esa carne genuina de campo que queremos compartir.</p>
         <p class="text-4">Comercializamos carnes de sabor especial, de altísima calidad con conciencia sobre el bienestar animal y la sostenibilidad del campo.</p>
       </div>
@@ -127,7 +127,7 @@
             </div>
             <div class="process-step-content">
               <h4 class="mb-0 text-4 font-weight-bold text-white">Medio de pago y entrega</h4>
-              <p class="mb-0 mt-2 text-light">Seleccioná si reitirás en tienda o preferís delivery</p>
+              <p class="mb-0 mt-2 text-light">Seleccioná si retirás en tienda o preferís delivery</p>
             </div>
           </div>
           <div class="process-step col-md-6 col-lg-3 mb-5 mb-md-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800" style="animation-delay: 800ms;">

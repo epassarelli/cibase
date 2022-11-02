@@ -4,11 +4,12 @@
        table, th, td {
              border: 1px solid black;
               border-collapse: collapse;
+              padding: 5px;
       }
 
-      th {
+       th {
         background-color: gray;
-      }
+      } 
      </style>
    </head>
 
@@ -70,9 +71,9 @@
                             
                 <h1 align="center">Pedido</h1>            
                 </p>
-                <table class="table table-bordered">
+                <table style="width: 80%; margin-bottom: 20px" class="table table-bordered">
                   <tr>
-                    <th style="width: 70%;">Numero de Pedido</th>
+                    <th>Número de Pedido</th>
                     <td><?php echo $id; ?></td>
                   </tr>
                   <tr>
@@ -83,57 +84,50 @@
                     <th>Forma de Entrega</th>
                     <td><?php echo $nomentrega; ?></td>
                   </tr>
+                  </table>
+
+                <table style="width: 80%; text-align=left;" class="table table-bordered">
                   <tr>
                     <th>Apellido</th>
                     <td><?php echo $apellido; ?></td>
-                  </tr>
-                  <tr>
                     <th>Nombre</th>
                     <td><?php echo $nombre; ?></td>
-                  </tr>                                  
+                  </tr>                         
                   <tr>
                     <th>Calle</th>
                     <td><?php echo $calle; ?></td>
-                  </tr>                                  
-                  <tr>
-                    <th>Numero</th>
+                    <th>Número</th>
                     <td><?php echo $nro; ?></td>
-                  </tr>            
-                  <tr>
+                  </tr>                                  
+                  <tr>  
                     <th>Piso</th>
                     <td><?php echo $piso; ?></td>
-                  </th>            
-                  <tr>
                     <th>Depto.</td>
                     <td><?php echo $dpto; ?></td>
-                  </tr>            
+                  </tr>                        
                   <tr>
                     <th>Provincia</th>
                     <td><?php echo $provincia; ?></td>
-                  </tr>            
-                  <tr>
                     <th>Localidad</th>
                     <td><?php echo $localidad; ?></td>
-                  </tr>     
+                  </tr>             
                   <tr>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <td><?php echo $telefono; ?></td>
-                  </tr>     
-                  <tr>
                     <th>E-Mail</th>
                     <td><?php echo $email; ?></td>
-                  </tr>     
+                  </tr>          
                 </table>                            
                 </p>
                 <h2 align="center">Detalle de Productos</h2>            
                 </p>
 
 
-                <table id="detallepedidos" class="table table-bordered">
+                <table  id="detallepedidos" style="width: 80%;" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th align="center">Producto</th>
-                                <th align="center">Envasado Vacio</th>
+                                <th align="center">Al Vacío</th>
                                 <th align="center">Precio</th>
                                 <th align="center">Cantidad</th>
                                 <th align="center">Total</th>
@@ -162,25 +156,25 @@
                 </table>
 
                 </p>
-                <h2 align="center">Totales</h2>        
+                <h2 align="left">Totales</h2>        
                 </p>
                    
-                    <table style="width: 20%;" class="table table-bordered">
+                    <table style="width: 40%;" class="table table-bordered">
                       <tr>
-                        <td align="left" >Subtotal</td>
+                        <th align="left" >Subtotal</th>
                         <td align="right"><?php echo $subtotal;  ?></td>
                       </tr>
                       <tr>
-                        <td>Envio</td>
+                        <th align="left">Envio</th>
                         <td align="right"><?php echo $delivery;  ?></td>
                       </tr>
                       <tr>
-                        <td>Envasado Vacio</td>
+                        <th align="left">Envasado Vacío</th>
                         <td align="right"><?php echo $env_vacio;  ?></td>
                       </tr>
                       <tr>
-                        <td><h4><strong>Total</h4></strong></td>
-                        <td align="right"><?php echo $total;  ?></td>
+                        <th align="left"><strong>TOTAL</strong></td>
+                        <td align="right"><h4><strong><?php echo $total;  ?></h4></strong></td>
 
                       </tr>
 
