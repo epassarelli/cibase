@@ -1,4 +1,4 @@
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
 
 
   <ul class="carousel-indicators">
@@ -155,7 +155,7 @@
         <div class="col-md-4 py-1">
           <div class="appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="0" data-appear-animation-duration="750" style="animation-delay: 0ms;">
             <div class="strong-shadow rounded strong-shadow-top-right">
-              <img src="http://c2361113.ferozo.com/assets/uploads/3/bloques/envasado.jpg" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3" alt="Envasado al vacío">
+              <img src="<?php echo site_url('assets/uploads/3/envasado.jpg'); ?>" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3" alt="Envasado al vacío">
             </div>
           </div>
         </div>

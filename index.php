@@ -11,6 +11,10 @@ switch ($_SERVER['HTTP_HOST']) {
 		$enviroment = 'production';
 		break;
 
+	case 'www.vitello.com.ar':
+		$enviroment = 'production';
+		break;
+
 	default:
 		$enviroment = 'development';
 		break;

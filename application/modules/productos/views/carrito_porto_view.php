@@ -73,7 +73,7 @@
 														<?php endif; ?>
 
 														<td class="product-price">
-															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['precio'],2); ?></span>
+															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['precio'], 2); ?></span>
 														</td>
 														<td class="product-quantity">
 															<form enctype="multipart/form-data" method="post" class="cart">
@@ -91,7 +91,7 @@
 															</form>
 														</td>
 														<td class="product-subtotal">
-															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['totalitem'],2); ?></span>
+															<span class="amount">$<?php echo number_format($_SESSION['carrito'][$i]['totalitem'], 2); ?></span>
 														</td>
 													</tr>
 

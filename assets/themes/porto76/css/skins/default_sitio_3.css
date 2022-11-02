@@ -711,21 +711,21 @@ html .show>.btn-primary-scale-2.dropdown-toggle {
 
 html .btn-secondary {
 	background-color: #c4a64e;
-	border-color: #c4a64e #c4a64e #7f671a;
+	border-color: #c4a64e #c4a64e #937d39;
 	color: #FFF;
 }
 
 html .btn-secondary:hover,
 html .btn-secondary.hover {
-	background-color: #c4a64e;
-	border-color: ;
-	color: #FFF;#7f671a #7f671a #7f671a
+	background-color: #937d39;
+	border-color: #c4a64e #c4a64e #937d39;
+	color: #FFF;
 }
 
 html .btn-secondary:focus,
 html .btn-secondary.focus {
-	-webkit-box-shadow: 0 0 0 3px #c4a64e;
-	box-shadow: 0 0 0 3px #c4a64e;
+	-webkit-box-shadow: 0 0 0 3px #7f671a;
+	box-shadow: 0 0 0 3px #7f671a;
 }
 
 html .btn-secondary.disabled,
@@ -5599,7 +5599,7 @@ html .slide-overlay.slide-overlay-gradient .slotholder:after {
 
 .shop .products .product .onsale {
 	background-color: #c4a64e;
-	border-bottom-color:#c4a64e;
+	border-bottom-color: #c4a64e;
 }
 
 .shop .cart-totals tr.total .amount {
