@@ -711,15 +711,15 @@ html .show>.btn-primary-scale-2.dropdown-toggle {
 
 html .btn-secondary {
 	background-color: #c4a64e;
-	border-color: #c4a64e #c4a64e #7f671a;
+	border-color: #c4a64e #c4a64e #937d39;
 	color: #FFF;
 }
 
 html .btn-secondary:hover,
 html .btn-secondary.hover {
-	background-color: #c4a64e;
-	border-color: ;
-	color: #FFF;#7f671a #7f671a #7f671a
+	background-color: #937d39;
+	border-color: #c4a64e #c4a64e #937d39;
+	color: #FFF;
 }
 
 html .btn-secondary:focus,
