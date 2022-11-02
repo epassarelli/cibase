@@ -58,4 +58,16 @@ class MX_Controller
 	{
 		return CI::$APP->$class;
 	}
+
+    public function switchSite($sitio_id='')
+    {        
+        $idSitio = ($sitio_id != "") ? $sitio_id : "1";
+        //$this->config->set_item("sitio_id", $idSitio);
+        $this->session->set_userdata('idSitio', $idSitio);
+        //$this->session->set_flashdata('sitio_id', $idSitio);
+        //var_dump($idSitio . ' sitio_id= ' . $this->config->item("sitio_id"));
+        //echo "<hr>";die();
+        redirect(site_url());       
+    }
+
 }

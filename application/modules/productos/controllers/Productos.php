@@ -1,0 +1,106 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+
+class Productos extends MX_Controller
+{
+
+  public function __construct()
+  {
+
+    parent::__construct();
+
+    switch (ENVIRONMENT) {
+      case 'development':
+        ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false) : $this->output->enable_profiler(true);
+        break;
+      case 'testing':
+        ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false) : $this->output->enable_profiler(true);
+        break;
+      case 'production':
+        ($this->input->is_ajax_request()) ? $this->output->enable_profiler(false) : $this->output->enable_profiler(false);
+        break;
+    }
+
+
+    $this->load->model('Productos_model');
+    $this->load->helper('Productos_helper');
+  }
+
+  public function index()
+  {
+    $data['title'] = 'Productos';
+    $data['categorias'] = $this->Productos_model->getCategorias();
+    $parametros = [];
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+    $parametros['publicar'] = 1;
+
+    $busqueda = $this->input->post("articulobuscado");
+    if ($busqueda != '') {
+      $parametros['titulo'] = $busqueda;
+    }
+
+    $data['articulobuscado'] = $busqueda;
+
+    $productos = $this->Productos_model->getAllBy('v_productos', '', $parametros, 'categoria_id');
+    $data['productos'] = $productos;
+    $data['view']       = 'productos_' . $this->session->userdata('theme') . '_view';
+
+    $data['files_css'] = array('themes/adminlte/css/animate.css', 'themes/adminlte/css/sweetalert2.min.css');
+    $data['files_js'] = array('productos/js/productos.js?v=' . rand(), 'themes/adminlte/js/sweetalert2.min.js');
+
+    $this->load->view('layout_' . $this->session->userdata('theme') . '_view', $data);
+  }
+
+
+  public function categorias($slug = '')
+  {
+    $parametros['slug'] = $slug;
+    $parametros['sitio_id'] = $this->config->item('sitio_id');
+
+    $data['files_css'] = array('themes/adminlte/css/animate.css', 'themes/adminlte/css/sweetalert2.min.css');
+    $data['files_js'] = array('productos/js/productos.js?v=' . rand(), 'themes/adminlte/js/sweetalert2.min.js');
+
+
+    $data['title'] = 'Productos';
+    //obtengo id del slug
+    $row_categoria = $this->Productos_model->getOneBy('categorias', '', $parametros, '');
+
+    $categoria = $row_categoria->categoria_id;
+    $data['categorias'] = $this->Productos_model->getCategorias();
+    $productos = $this->Productos_model->getProductos($categoria);
+    $data['productos'] = $productos;
+
+
+
+    $data['view']       = 'productos_' . $this->session->userdata('theme') . '_view';
+    $this->load->view('layout_' . $this->session->userdata('theme') . '_view', $data);
+  }
+
+
+  public function detalle($id = '')
+  {
+    $data['title'] = 'Productos';
+    // Obtengo el producto con el ID que recibo
+    $parametros['id'] = $id;
+    $producto     = $this->Productos_model->getOneBy('productos', '', $parametros, '');
+
+
+    if ($producto) {
+      $data['producto'] = $producto;
+
+      // Obtengo la /s categoria /s del producto
+      $catsProducto = $this->Productos_model->getCatsDelProducto($producto->id);
+      $data['catsProducto'] = $catsProducto;
+    }
+
+    // Obtengo todas las categorias para el sidebar
+    $data['categorias'] = $this->Productos_model->getCategorias();
+
+    $data['view']       = 'producto_' . $this->session->userdata('theme') . '_view';
+
+    $data['files_css'] = array('themes/adminlte/css/animate.css', 'themes/adminlte/css/sweetalert2.min.css');
+    $data['files_js'] = array('productos/js/productos.js?v=' . rand(), 'themes/adminlte/js/sweetalert2.min.js');
+
+
+    $this->load->view('layout_' . $this->session->userdata('theme') . '_view', $data);
+  }
+}

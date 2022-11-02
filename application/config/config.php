@@ -76,7 +76,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'spanish';
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = './vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -532,49 +532,10 @@ $config['proxy_ips'] = '';
 | 
 | 
 */
+// 1 - CIBASE
+// 2 - Webpass
+// 3 - Vitello
+// 4 - Claudia
+// 5 - Mutual
 
-$config['theme'] 	= 'porto'; // avada, porto
-$config['landing'] 	= TRUE; // TRUE, FALSE
-$config['idiomas'] 	= ('es'); // es, en, pt, fr
-$config['modulos'] 	= array (
-    "slider"    => array(
-    	"activo" => TRUE,
-    	"titulo" => "Slider", 
-    	"slug" => "slider", 
-    	"menu" => FALSE, 
-    	"themeNumero" => '1',
-    	"orden" => "1"
-    ),
-    "nosotros"  => array(
-    	"activo" => TRUE,
-    	"titulo" => "Nosotros", 
-    	"slug" => "nosotros", 
-    	"menu" => TRUE, 
-    	"themeNumero" => '1',
-    	"orden" => "2"
-    ),
-    "servicios" => array(
-    	"activo" => TRUE,
-    	"titulo" => "Servicios", 
-    	"slug" => "servicios", 
-    	"menu" => TRUE, 
-    	"themeNumero" => '2',
-    	"orden" => "3"
-    ),
-	"clientes"  => array(
-		"activo" => TRUE,
-		"titulo" => "Clientes", 
-		"slug" => "clientes", 
-		"menu" => FALSE, 
-		"themeNumero" => '1',
-		"orden" => "4"
-	),
-	"contacto"  => array(
-		"activo" => TRUE,
-		"titulo" => "Contacto", 
-		"slug" => "contacto", 
-		"menu" => TRUE, 
-		"themeNumero" => '1',
-		"orden" => "5"
-	)
-);
+$config['sitio_id'] 	= 3; 
