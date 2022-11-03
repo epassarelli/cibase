@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8f97f60aa6c1967f2f3ab279d622a0b",
+    "content-hash": "ac84d9f72720030428c391860307a7b4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -575,16 +575,16 @@
         },
         {
             "name": "mercadopago/dx-php",
-            "version": "2.4.9",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/sdk-php.git",
-                "reference": "8389608ab859e5f9394910ec1bd74d603d7c17a6"
+                "reference": "9fd5d8842988cdad026a5722696d0784625201ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/8389608ab859e5f9394910ec1bd74d603d7c17a6",
-                "reference": "8389608ab859e5f9394910ec1bd74d603d7c17a6",
+                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/9fd5d8842988cdad026a5722696d0784625201ea",
+                "reference": "9fd5d8842988cdad026a5722696d0784625201ea",
                 "shasum": ""
             },
             "require": {
@@ -620,9 +620,9 @@
             "description": "Mercado Pago PHP SDK",
             "homepage": "https://github.com/mercadopago/sdk-php",
             "support": {
-                "source": "https://github.com/mercadopago/sdk-php/tree/2.4.9"
+                "source": "https://github.com/mercadopago/sdk-php/tree/2.5.1"
             },
-            "time": "2022-07-18T13:33:02+00:00"
+            "time": "2022-09-27T19:06:00+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -2282,5 +2282,5 @@
         "php": ">=5.2.4"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
