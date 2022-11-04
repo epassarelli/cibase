@@ -423,14 +423,14 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="<?php echo site_url('mipanel/admin/contactos'); ?>">
                                         <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
                                     </a>
-                                </li>
+                                </li> -->
 
 
                             <?php
@@ -450,14 +450,14 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="<?php echo site_url('mipanel/admin/contactos'); ?>">
                                         <i class="fa fa-fw fa-check"></i> <span>Contacto</span>
                                         <span class="pull-right-container">
                                             <small class="label pull-right bg-green"></small>
                                         </span>
                                     </a>
-                                </li>
+                                </li> -->
 
                             <?php
                                 break;
