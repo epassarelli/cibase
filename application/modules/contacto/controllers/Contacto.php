@@ -61,19 +61,30 @@ class Contacto extends MX_Controller
       $contacto['mensaje']  = $this->input->post('message');
       $contacto['sitio_id'] = $this->session->userdata('sitio_id');
 
-      //var_dump($contacto);
-
       // Guardar los datos en la BDD
-      $this->Contacto_model->insertar($contacto);
+      //$this->Contacto_model->insertar($contacto);
 
       // Enviar un correo
+      // $config = array(
+      //   'protocol' => 'smtp',
+      //   'smtp_host' => 'smtp.1and1.com',
+      //   'smtp_port' => 25,
+      //   'smtp_user' => 'barackobama@misitio.com',
+      //   'smtp_pass' => '12345',
+      //   'charset' => 'utf-8',
+      //   'priority' => 1
+      // );
+
+      //Establecemos esta configuración
+      //$this->email->initialize($config);
 
       $from = 'info@vitello.com.ar';
-      $to = $this->session->userdata('correo');
+      $to = 'consultas@webpass.com.ar';
 
       $this->load->library('email');
-      $this->email->from($from, 'Contacto desde el portal Web de Vitello Carnes');
-      $this->email->to($to, 'consultas@webpass.com.ar');
+      $this->email->from($from, 'Vitello Carnes');
+      $this->email->to($to);
+      $this->email->bcc('epassarelli@gmail.com');
 
       $this->email->subject($_POST['subject']);
 
@@ -189,5 +200,19 @@ class Contacto extends MX_Controller
     } else {
       return true;
     }
+  }
+
+  // Mensaje de prueba para asegurarse que anda el envio de correo 
+  public function prueba()
+  {
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    $from = "info@vitello.com.ar";
+    $to = "epassarelli@gmail.com";
+    $subject = "Prueba de PHP mail";
+    $message = "PHP mail funciona bien";
+    $headers = "From:" . $from;
+    mail($to, $subject, $message, $headers);
+    echo "El mensaje de correo fue enviado.";
   }
 }
