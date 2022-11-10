@@ -29,6 +29,7 @@ class Carrito extends MX_Controller {
    
     $this->load->model('Carrito_model');
     $this->load->model('Productos_model');
+    $this->load->model('mipanel/Stocks_model');
     $this->load->model('entregas/Entregas_model');
     $this->load->model('mipanel/Provincias_model');
     $this->load->model('mipanel/Localidades_model');
@@ -623,6 +624,33 @@ class Carrito extends MX_Controller {
                        "transac_mp" => $id_mp);
 
     $this->Pedidos_model->update($app_id,$data_mp);
+
+    if($status == 'approved') {
+       $pedidositem = $this->Pedidos_model->getPedido($app_id);
+       foreach ($pedidositem as $items) {
+       
+            $data['idproducto'] = $items->producto_id;
+            $data['idtalle']    = $items->idtalle;
+            $data['idcolor']    = $items->idcolor;
+            $data['cantidad']   = $items->cantidad*(-1);
+
+            $existe = $this->Stocks_model->cuentaStock($data);
+            if ($existe->cuantos != 0 ) {
+                 $this->Stocks_model->actualizarStock($data);
+              }else{
+                 $this->Stocks_model->insertar($data);
+            } 
+
+            $data['usuario']     = $this->session->userdata('username');             
+            $data['idtipomove']  = 2;
+            $data['idpedido']    = $app_id;
+            $this->Stocks_model->historiaStocks($data);
+            $data=[];  
+      }
+    }
+
+
+
     if ($callback==1) {
         redirect('productos');
     }else{

@@ -228,7 +228,8 @@ function VerHistoria(body) {
               { data: "cantidad" },
               { data: "fecha" },
               { data: "usuario" },
-              { data: "tipo" }
+              { data: "tipo" },
+              { data: "idpedido" }
           ],
           language: espanol
         }); 

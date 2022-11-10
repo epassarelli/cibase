@@ -72,7 +72,8 @@
                                 <th style="width: 10%">Cantidad</th> 
                                 <th style="width: 10%">Fecha</th> 
                                 <th style="width: 10%">Usuario</th> 
-                                <th style="width: 30%">Tipo</th> 
+                                <th style="width: 30%">Tipo</th>
+                                <th style="width: 30%">Pedido</th> 
                             </tr>
                         </thead>
                         <tbody></tbody>
