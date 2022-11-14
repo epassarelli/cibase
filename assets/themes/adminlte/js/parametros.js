@@ -1,29 +1,29 @@
 $(document).ready(function () {
 
   // Url Dinamico
-    UrlBase = $('#url').val();
+  UrlBase = $('#url').val();
 
-//Configuramos las alerts
+  //Configuramos las alerts
   const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
 
 
   // Carga de tabla
-    listar(UrlBase,Toast);
+  listar(UrlBase, Toast);
 
   // Reseteamos el form y asignamos el valor de la opcion
-    $(".insertar").click(function() {
-      $('.titulo').html('Agregar ');   // Titulo del form   
-      $("#formParametros").trigger("reset"); // Reseteams el form
-      $("#Opcion").val("insertar"); // Asignamos la accion
-      $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
-      $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
-      $("#valor").val('')
-    });
+  $(".insertar").click(function () {
+    $('.titulo').html('Agregar ');   // Titulo del form   
+    $("#formParametros").trigger("reset"); // Reseteams el form
+    $("#Opcion").val("insertar"); // Asignamos la accion
+    $('.form-group').removeClass('has-error has-success'); // Eliminamos posibles calses de validacion
+    $('.text-dangerm, .editFile').remove() // Eliminamos texto de validacion o imagen de edicion
+    $("#valor").val('')
+  });
 
 });
 
@@ -32,16 +32,16 @@ $(document).ready(function () {
 function readURL(input) {
   if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
     var reader = new FileReader(); //Leemos el contenido
-    reader.onload = function(e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
+    reader.onload = function (e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
       if (input.name === 'File') {
-          $('#im1').attr('src', e.target.result);
-      }else{
+        $('#im1').attr('src', e.target.result);
+      } else {
         if (input.name === 'File1') {
-            $('#im2').attr('src', e.target.result);
-        }else{
+          $('#im2').attr('src', e.target.result);
+        } else {
           $('#im3').attr('src', e.target.result);
         }
-      } 
+      }
     }
     reader.readAsDataURL(input.files[0]);
   }
@@ -57,72 +57,73 @@ function readURL(input) {
 
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
-function listar(base,Toast) {
-    var table = $("#parametrosAbm").DataTable({
-        destroy: true,
-        responsive: true,
-        ajax: {
-            url: base + "mipanel/parametros/getParametros",
-            type: "jsonp"
-        },
-        rowCallback : function( row, data ) {
-          //console.log(data.estado)
-        },
+function listar(base, Toast) {
+  var table = $("#parametrosAbm").DataTable({
+    destroy: true,
+    responsive: true,
+    ajax: {
+      url: base + "mipanel/parametros/getParametros",
+      type: "post",
+      dataType: "json",
+    },
+    rowCallback: function (row, data) {
+      //console.log(data.estado)
+    },
 
-        columns: [
-            { data: "id" },
-            { data: "descripcion" },
-            { data: "detalle" },
-            { data: "default" },
-            { data: "valor"},
-            { data: "relacionados" },
-            {
-                defaultContent:
-                    "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
-            }
-        ],
-        language: espanol
-    });
+    columns: [
+      { data: "id" },
+      { data: "descripcion" },
+      { data: "detalle" },
+      { data: "default" },
+      { data: "valor" },
+      { data: "relacionados" },
+      {
+        defaultContent:
+          "<div class='text-center'><a href='javascript:void(0);' class='editar btn btn-xs'><i class='fa fa-pencil fa-2x text-yellow'></i></a> <a href='javascript:void(0);' class='eliminar btn btn-xs' data-toggle='modal' data-target='#modalEliminar'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
+      }
+    ],
+    language: espanol
+  });
 
-    submit(table,Toast) //Accion de Insertar o Editar
-    Edit("#parametrosAbm tbody", table); //Tomar datos para la Edicion
-    deleteParametros("#parametrosAbm tbody", table); //Eliminar un slide
-        
- }
+  submit(table, Toast) //Accion de Insertar o Editar
+  Edit("#parametrosAbm tbody", table); //Tomar datos para la Edicion
+  deleteParametros("#parametrosAbm tbody", table); //Eliminar un slide
+
+}
 
 
 
 // Funcion de Enviar datos al servidor para insertar o editar datos
-function submit(table,Toast) {
-  $("#formParametros").submit(function(e) {
+function submit(table, Toast) {
+  $("#formParametros").submit(function (e) {
     e.preventDefault(); // evitamos que redireccione el formulario
 
-    
-   // Variable del fomr
+
+    // Variable del fomr
     var me = $(this);
 
     // Envio asincrono
-    $.ajax({  
+    $.ajax({
       url: me.attr("action"),
-      method:"POST",  
+      method: "POST",
       //ESte tipo se usa cuando se envian archivos
-      data:new FormData(this),  //El otro metodo es con me.serialize() pero sin archivos
-      contentType: false,  
-      cache: false,  
-      processData:false,  
+      data: new FormData(this),  //El otro metodo es con me.serialize() pero sin archivos
+      contentType: false,
+      cache: false,
+      processData: false,
       //respuesta del envio
-      success: function(response) {
+      success: function (response) {
         //Convertimos en Json el String, en el caso de me.serialize() no hace falta
         response = JSON.parse(response)
 
         if (response.success == true) {
-          
+
           //Cerramos el modal
-            $("#modalParametros").modal("hide"); 
+          $("#modalParametros").modal("hide");
           //Eliminamos las clases de los errores
-              $(".form-group")
-              .removeClass("has-error has-success")
-              $('.text-danger').remove()    
+          $(".form-group")
+            .removeClass("has-error has-success")
+          $('.text-danger').remove()
           // Mostramos el mensaje de cargado
           Toast.fire({
             type: 'success',
@@ -134,30 +135,30 @@ function submit(table,Toast) {
           table.ajax.reload();
 
         } else {
-         
+
           //Recorremos los mensajes y los asignamos a cada input
-          $.each(response.messages, function(key, value) {
-            
-              //Declaramos los id
+          $.each(response.messages, function (key, value) {
+
+            //Declaramos los id
             var element = $("#" + key);
             //Asignamos las clases a los inputs
             /*Seleccionamos los grupos de imputs que llevaran las clases de error */
-            element.closest('div.form-group') 
-            /*Removemos clase de error por si tuvo uno */
-            .removeClass('has-error') 
-            /* Asignamos la clase dependiendo de lo ingresado */
-            .addClass(value.length > 0 ? 'has-error' : 'has-success')
-            // Evitamos que se repita el mensaje de error al pulsar el submit
-            .find('.text-danger').remove();
+            element.closest('div.form-group')
+              /*Removemos clase de error por si tuvo uno */
+              .removeClass('has-error')
+              /* Asignamos la clase dependiendo de lo ingresado */
+              .addClass(value.length > 0 ? 'has-error' : 'has-success')
+              // Evitamos que se repita el mensaje de error al pulsar el submit
+              .find('.text-danger').remove();
 
             //Mostramos los mensajes de error
             element.after(value);
-            
- 
-            }); // Each
-          }// else
-        }  // success
-      });  //Ajax   l
+
+
+          }); // Each
+        }// else
+      }  // success
+    });  //Ajax   l
   });//submit
 
 }//funcion
@@ -165,146 +166,146 @@ function submit(table,Toast) {
 
 
 // Funcion para tomar los datos de la edicion y asignarlos a los imputs
- function Edit(body, table) {
-   //Tomando desde el boton de edicion
-		$(body).on("click", "a.editar", function() {
-      //Guardamos los datos que tomamos del datatable
-      var datos = table.row($(this).parents("tr")).data();
-      // Removemos las posibles clases de validacion que pueda tener el fomr
-      $('.form-group').removeClass('has-error has-success')
-      $('.text-danger, .editFile').remove()
-			// Asignamos titulo al form y al boton
-      $('.titulo').html('Editar')
-      // Asignamos las accion que realiza el metodo del servidor
-      $("#Opcion").val("editar");
-      //hay que ir a buscar el registro a la tabla porque en el datatable
-      //no tenemos todos los campos 
-     
-     
-                 //// obtener valor asignado
-                 $("#valor").val('')
-                 $.ajax({
-                  type: "POST",
-                  url: UrlBase+'mipanel/parametros/getParametroSitio',
-                  data: { Id: datos.id},
-                  dataType: "json",
-                  success: function (response) {
-                    console.log('respuesto: ',response)
-                    $("#valor").val(response['data_sitio'].valor)
-                  },//success
-                });//ajax  
-                //// obtener valor asignado
-     
-     
-      $.ajax({
-        type: "POST",
-        url: UrlBase+'mipanel/parametros/getParametroJson',
-        data: { Id: datos.id},
-        dataType: "json",
-        success: function (response) {
-            //Asignamos los valores de cada input para que se muestren en el form
-            $("#id").val(response['data'].id)
-            $("#descripcion").val(response['data'].descripcion)
-            $("#detalle").val(response['data'].detalle)
-            $("#default").val(response['data'].default)
-            $("#relacionados").val(response['data'].relacionados)
-          },//success
-            error: function(xhr, textStatus, error){
-            console.log(xhr.statusText);
-            console.log(textStatus);
-            console.log(error);
-        } //error 
-      });//ajax  
-
-      //console.log(datos);
+function Edit(body, table) {
+  //Tomando desde el boton de edicion
+  $(body).on("click", "a.editar", function () {
+    //Guardamos los datos que tomamos del datatable
+    var datos = table.row($(this).parents("tr")).data();
+    // Removemos las posibles clases de validacion que pueda tener el fomr
+    $('.form-group').removeClass('has-error has-success')
+    $('.text-danger, .editFile').remove()
+    // Asignamos titulo al form y al boton
+    $('.titulo').html('Editar')
+    // Asignamos las accion que realiza el metodo del servidor
+    $("#Opcion").val("editar");
+    //hay que ir a buscar el registro a la tabla porque en el datatable
+    //no tenemos todos los campos 
 
 
-    
-        //Abrimos el modal
-      $("#modalParametros").modal("show");
-    });//click
-    
-
- }//funcion
-
-
- // Funcion para eliminar un row
- function deleteParametros(body, table) { 
-    //Tomando desde el boton de edicion
-		$(body).on("click", "a.eliminar", function() {
-      // Obtenemos los datos del row
-      var datos = table.row($(this).parents("tr")).data();
-          
-      //Configuracion de botones del alert con clase de bootstrap
-      const swalButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      })
-
-      // Abrimos alerta de confirmacion
-      swalButtons.fire({
-        title: 'Estas Seguro ?',
-        text: "No podrás revertir esto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar esto!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          // Ejecutamos la accion y la enviamos al servidor 
-          //console.log('ejecutamos');  
-          $.ajax({
-              type: "POST",
-              url: UrlBase+'mipanel/parametros/deleteParametro',
-              data: { Id: datos.id},
-              dataType: "json",
-              success: function (response) {
-                if (response.success == true) {
-                 swalButtons.fire(
-                    'Eliminado!',
-                    'Su archivo ha sido eliminado.',
-                    'success'
-                  );
-                  table.ajax.reload();
-                }
-              }//success
-            });//ajax  
-            //console.log('ejecutamos 3'); 
-          } else if (
-          /* Read more about handling dismissals below */
-           result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalButtons.fire(
-            'Cancelado',
-            'Tu archivo está seguro',
-            'error'
-          )
-        }
-      })
-
-    });//eliminar
-  }//funcion
+    //// obtener valor asignado
+    $("#valor").val('')
+    $.ajax({
+      type: "POST",
+      url: UrlBase + 'mipanel/parametros/getParametroSitio',
+      data: { Id: datos.id },
+      dataType: "json",
+      success: function (response) {
+        console.log('respuesto: ', response)
+        $("#valor").val(response['data_sitio'].valor)
+      },//success
+    });//ajax  
+    //// obtener valor asignado
 
 
- // Declaramos el idioma del Datatable
- let espanol = {
-    sProcessing: "Procesando...",
-    sLengthMenu: "Mostrar _MENU_ resultados",
-    sZeroRecords: "No se encontraron resultados",
-    sEmptyTable: "Ningún dato disponible en esta tabla",
-    sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
-    sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
-    sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-    sSearch: "Buscar:",
-    sLoadingRecords: "Cargando...",
-    oPaginate: {
-        sFirst: "Primero",
-        sLast: "Último",
-        sNext: "Siguiente",
-        sPrevious: "Anterior"
-    }
- }
+    $.ajax({
+      type: "POST",
+      url: UrlBase + 'mipanel/parametros/getParametroJson',
+      data: { Id: datos.id },
+      dataType: "json",
+      success: function (response) {
+        //Asignamos los valores de cada input para que se muestren en el form
+        $("#id").val(response['data'].id)
+        $("#descripcion").val(response['data'].descripcion)
+        $("#detalle").val(response['data'].detalle)
+        $("#default").val(response['data'].default)
+        $("#relacionados").val(response['data'].relacionados)
+      },//success
+      error: function (xhr, textStatus, error) {
+        console.log(xhr.statusText);
+        console.log(textStatus);
+        console.log(error);
+      } //error 
+    });//ajax  
+
+    //console.log(datos);
+
+
+
+    //Abrimos el modal
+    $("#modalParametros").modal("show");
+  });//click
+
+
+}//funcion
+
+
+// Funcion para eliminar un row
+function deleteParametros(body, table) {
+  //Tomando desde el boton de edicion
+  $(body).on("click", "a.eliminar", function () {
+    // Obtenemos los datos del row
+    var datos = table.row($(this).parents("tr")).data();
+
+    //Configuracion de botones del alert con clase de bootstrap
+    const swalButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    // Abrimos alerta de confirmacion
+    swalButtons.fire({
+      title: 'Estas Seguro ?',
+      text: "No podrás revertir esto!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar esto!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        // Ejecutamos la accion y la enviamos al servidor 
+        //console.log('ejecutamos');  
+        $.ajax({
+          type: "POST",
+          url: UrlBase + 'mipanel/parametros/deleteParametro',
+          data: { Id: datos.id },
+          dataType: "json",
+          success: function (response) {
+            if (response.success == true) {
+              swalButtons.fire(
+                'Eliminado!',
+                'Su archivo ha sido eliminado.',
+                'success'
+              );
+              table.ajax.reload();
+            }
+          }//success
+        });//ajax  
+        //console.log('ejecutamos 3'); 
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalButtons.fire(
+          'Cancelado',
+          'Tu archivo está seguro',
+          'error'
+        )
+      }
+    })
+
+  });//eliminar
+}//funcion
+
+
+// Declaramos el idioma del Datatable
+let espanol = {
+  sProcessing: "Procesando...",
+  sLengthMenu: "Mostrar _MENU_ resultados",
+  sZeroRecords: "No se encontraron resultados",
+  sEmptyTable: "Ningún dato disponible en esta tabla",
+  sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
+  sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
+  sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+  sSearch: "Buscar:",
+  sLoadingRecords: "Cargando...",
+  oPaginate: {
+    sFirst: "Primero",
+    sLast: "Último",
+    sNext: "Siguiente",
+    sPrevious: "Anterior"
+  }
+}
