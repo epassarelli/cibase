@@ -221,7 +221,8 @@ function listar(base,Toast) {
         responsive: true,
         ajax: {
             url: base + "mipanel/productos/getProductos",
-            type: "jsonp"
+            type: "POST",
+            dataType: "json"
         },
         rowCallback : function( row, data ) {
           //console.log(data.estado)
@@ -297,8 +298,9 @@ function Detalles(body, table) {
           responsive: true,
           ajax: {
               url: apicolores,
-              type: "jsonp"
-          },
+              type: "POST",
+              dataType: "json"
+            },
           rowCallback : function( row, data ) {
             if ( data.imagen !== null && data.imagen !== '' ) {
               $('td:eq(1)', row).html("<img  src='" + UrlBase + "assets/uploads/7/colores/"+data.imagen + "' class='img-thumbnail' />"); 
@@ -642,7 +644,8 @@ function submit(table,Toast) {
           // Ejecutamos la accion y la enviamos al servidor 
           //console.log('ejecutamos');  
           $.ajax({
-              type: "POST",
+            type: "POST",
+            dataType: "json",
               url: UrlBase+'mipanel/productos/deleteProducto',
               data: { Id: datos.id, 
                       FileName: datos.imagen, 

@@ -307,8 +307,9 @@ function listar(base,Toast) {
       responsive: true,
       ajax: {
           url: base + "mipanel/publicaciones/getPublicaciones",
-          type: "jsonp"
-      },
+          type: "POST",
+          dataType: "json"
+    },
       rowCallback : function( row, data ) {
 
         if ( data.estado == "1" ) {

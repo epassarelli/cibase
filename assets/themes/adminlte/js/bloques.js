@@ -32,8 +32,9 @@ function listar(base,Toast) {
         responsive: true,
         ajax: {
             url: base + "mipanel/bloques/getBloques",
-            type: "jsonp"
-        },
+            type: "post",
+            dataType: "json"
+         },
         rowCallback : function( row, data ) {
           //console.log(data.estado)
           //$('td:eq(1)', row).html("<img src='" + base + "assets/uploads/"+ data.sitio_id + "/" + data.logo + "'width='60' height='30' />"); 
