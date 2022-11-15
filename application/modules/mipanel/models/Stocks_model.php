@@ -22,7 +22,7 @@ public function getStocks() {
 public function getStocksHistoria($producto,$talle,$color) {
 
     $ssql = "SELECT stocks.idproducto,productos.titulo,stocks.idtalle, talles.descripcion as talle,stocks.idcolor,
-                    colores.descripcion as color,stocks.cantidad,stocks.fecha,stocks.usuario,tipo_moves.descripcion as tipo from stocks_historia as stocks left join productos on productos.id = stocks.idproducto
+                    colores.descripcion as color,stocks.cantidad,stocks.fecha,stocks.usuario,tipo_moves.descripcion as tipo,stocks.idpedido from stocks_historia as stocks left join productos on productos.id = stocks.idproducto
                     left join talles on talles.id = stocks.idtalle left join colores on colores.id = stocks.idcolor  
                     left join tipo_moves  on tipo_moves.id = stocks.idtipomove" .
                      " where " . "idproducto=" .  $producto . " and   idtalle=" .  $talle . " and 
@@ -53,6 +53,8 @@ function actualizarStock($data) {
             $query = $this->db->query($ssql);
     return TRUE;
 }
+
+
 
 public function cuentaStock($data) {
     $ssql = "select count(*) as cuantos  from stocks where  " . 

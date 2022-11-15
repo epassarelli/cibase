@@ -70,7 +70,8 @@ function listar(base,Toast) {
         responsive: true,
         ajax: {
             url: base + "mipanel/componentes/getComponentes",
-            type: "jsonp"
+            type: "POST",
+            dataType: "json"
         },
         rowCallback : function( row, data ) {
           //console.log(data);

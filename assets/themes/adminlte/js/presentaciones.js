@@ -77,7 +77,8 @@ function listar(base,Toast) {
         order: [[1, 'asc']],
         ajax: {
             url: base + "mipanel/presentaciones/getPresentaciones",
-            type: "json"
+            type: "POST",
+            dataType: "json"
         },
           rowCallback : function( row, data ) {
           //console.log(data.estado)

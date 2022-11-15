@@ -10,8 +10,20 @@
 		</div>
 	</form> -->
 
+	<h5 class="font-weight-bold pt-3">Buscador</h5>
+	<form action="<?php echo base_url('productos'); ?>" id="formBusqueda" method="post" enctype="multipart/form-data">
+		<div class="input-group">
+			<input type="text" id="articulobuscado" name="articulobuscado" value="<?php echo set_value('articulobuscado', @$articulobuscado); ?>" class="form-control col-sm-10" placeholder="Búsqueda de productos" />
+			<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+		</div>
+	</form>
+
+	
+
+
 	<h5 class="font-weight-bold pt-3">Categorias</h5>
 	<ul class="nav nav-list flex-column">
+
 
       <?php foreach ($categorias as $cat): ?>
 

@@ -37,7 +37,8 @@ $(document).ready(function () {
         responsive: true,
         ajax: {
             url: base + "mipanel/paginas/getPaginas",
-            type: "jsonp"
+            type: "POST",
+            dataType: "json"
         },
         rowCallback : function( row, data ) {
           //console.log(data);

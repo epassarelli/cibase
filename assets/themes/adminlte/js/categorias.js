@@ -114,8 +114,9 @@ function listar(base,Toast) {
         ajax: {
             //url: base + "mipanel/categorias/getCategorias?modulo_id=" + modulo_id,
             url: base + "mipanel/categorias/getCategorias/" + modulo_id,
-            type: "json"
-        },
+            type: "POST",
+            dataType: "json"
+          },
           rowCallback : function( row, data ) {
           //console.log(data.estado)
       

@@ -169,7 +169,9 @@ function listar(base,Toast) {
         responsive: true,
         ajax: {
             url: base + "mipanel/sitios/getSitios",
-            type: "jsonp"
+            //type: "jsonp"
+            type: "post",
+            dataType: "json"
         },
         rowCallback : function( row, data ) {
           //console.log(data.estado)

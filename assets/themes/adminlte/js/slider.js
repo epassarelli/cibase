@@ -41,7 +41,8 @@ function listar(base,Toast) {
         responsive: true,
         ajax: {
             url: base + "mipanel/slider/getSliders",
-            type: "jsonp"
+            type: "POST",
+            dataType: "json"
         },
         rowCallback : function( row, data ) {
           console.log(data.estado)
