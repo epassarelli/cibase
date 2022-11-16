@@ -1,7 +1,7 @@
 <?php  
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-public function slugc()
+function slugc()
   {
     $params = array(
         'estado' => 1
@@ -20,7 +20,7 @@ public function slugc()
 
 
   
-  public function slugp()
+  function slugp()
   {
     $params = array(
         'estado' => 1
@@ -43,7 +43,7 @@ public function slugc()
 
 
 
-  public function eliminar_tildes($cadena){
+  function eliminar_tildes($cadena){
 
       //Codificamos la cadena en formato utf8 en caso de que nos de errores
       //$cadena = utf8_decode($cadena);
