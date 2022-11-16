@@ -312,7 +312,16 @@
                     </li>
 
         </ul>
-            </li>                                                    
+            </li>                                    
+            <li>
+                        <a href="<?php echo site_url('mipanel/entregas');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Entregas</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+                
             
 
             <li class="treeview">
@@ -397,8 +406,17 @@
                 case 3: 
                 ?>
 
+                   <li>
+                        <a href="<?php echo site_url('mipanel/mipanel/entregas');?>">
+                            <i class="fa fa-fw fa-check"></i> <span>Entregas</span>
+                            <span class="pull-right-container">
+                              <small class="label pull-right bg-green"></small>
+                            </span>
+                        </a>
+                    </li>
+
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/impuestos');?>">
+                        <a href="<?php echo site_url('mipanel/mipanel/impuestos');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Impuestos</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
@@ -407,7 +425,7 @@
                     </li>
 
                     <li>
-                        <a href="<?php echo site_url('mipanel/admin/presentaciones');?>">
+                        <a href="<?php echo site_url('mipanel/mipanel/presentaciones');?>">
                             <i class="fa fa-fw fa-check"></i> <span>Presentaciones</span>
                             <span class="pull-right-container">
                               <small class="label pull-right bg-green"></small>
