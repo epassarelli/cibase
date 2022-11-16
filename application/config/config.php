@@ -532,10 +532,28 @@ $config['proxy_ips'] = '';
 | 
 | 
 */
-// 1 - CIBASE
-// 2 - Webpass
-// 3 - Vitello
-// 4 - Claudia
-// 5 - Mutual
 
 $config['sitio_id']   = 3;
+
+
+/*
+|--------------------------------------------------------------------------
+| Configuraciones para el envio de correo 
+|--------------------------------------------------------------------------
+*/
+
+$config['from'] = 'info@vitello.com.ar';
+$config['to']   = 'info@vitello.com.ar';
+$config['cc']   = 'consultas@webpass.com.ar';
+$config['bcc']  = 'epassarelli@webpass.com.ar';
+
+/* Opcionales si se envia por FTP */
+/* en Vitello no lo estamos usando */
+
+$config['protocol']   = 'smtp';
+$config['smtp_host']  = 'smtp.1and1.com';
+$config['smtp_port']  = 25;
+$config['smtp_user']  = 'sarasa@misitio.com.ar';
+$config['smtp_pass']  = 'smtp';
+$config['charset']    = 'utf-8';
+$config['priority']   = 1;
