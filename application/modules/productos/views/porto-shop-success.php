@@ -10,6 +10,7 @@
 
 		// Crea un ítem en la preferencia
 
+    $compra[] = null;
 		$elementos = sizeof($carrito);
 		for  ($i = 0; $i <= $elementos-1   ; $i++) {
 			 if ($carrito[$i]['tipo']=='item'){
