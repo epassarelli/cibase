@@ -477,6 +477,7 @@ class Carrito extends MX_Controller {
       $data['carrito'] = null;
       $data['carrito'] = $_SESSION['carrito'];
       
+      
        ///// borramos carro en session 
        $_SESSION['carrito'] = null;
        
