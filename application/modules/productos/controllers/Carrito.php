@@ -499,6 +499,7 @@ class Carrito extends MX_Controller
         $mensaje .= 'Pedido Nro.: ' . $pedido_id . ' Fecha: ' . date('Y-m-d H:i:s') . ', Cliente: ' . $this->input->post("apellido") . ', ' . $this->input->post("apellido") . ' por un monto de: ' . round($total, 2);
 
         $this->email->message($mensaje);
+        $this->email->send();
       }
 
       $elementos = sizeof($_SESSION['carrito']);

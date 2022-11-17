@@ -545,7 +545,7 @@ $config['sitio_id']   = 3;
 $config['from'] = 'info@vitello.com.ar';
 $config['to']   = 'info@vitello.com.ar';
 $config['cc']   = 'consultas@webpass.com.ar';
-$config['bcc']  = 'epassarelli@webpass.com.ar';
+$config['bcc']  = 'epassarelli@gmail.com';
 
 /* Opcionales si se envia por FTP */
 /* en Vitello no lo estamos usando */
