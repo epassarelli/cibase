@@ -493,10 +493,10 @@ class Carrito extends MX_Controller
         $this->email->cc($cc);
         $this->email->bcc($bcc);
 
-        $this->email->subject($_POST['subject']);
+        $this->email->subject('Nuevo pedido de compra desde la Web');
 
         $mensaje = 'Se ha generado un pedido desde la web con la siguiente información:';
-        $mensaje .= 'Pedido Nro.: ' . $pedido_id . ' Fecha: ' . date('Y-m-d H:i:s') . ', Cliente: ' . $this->input->post("apellido") . ', ' . $this->input->post("apellido") . ' por un monto de: ' . round($total, 2);
+        $mensaje .= 'Pedido Nro.: ' . $pedido_id . ' - Fecha: ' . date('d-m-Y H:i:s') . ', Cliente: ' . $this->input->post("apellido") . ', ' . $this->input->post("nombre") . ' por un monto de $ ' . round($total, 2);
 
         $this->email->message($mensaje);
         $this->email->send();

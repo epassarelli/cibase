@@ -62,7 +62,7 @@ class Contacto extends MX_Controller
       $contacto['sitio_id'] = $this->session->userdata('sitio_id');
 
       // Guardar los datos en la BDD
-      //$this->Contacto_model->insertar($contacto);
+      $this->Contacto_model->insertar($contacto);
 
 
       $from = $this->config->item('from');
