@@ -25,31 +25,22 @@
 			    	<div class="status <?php echo $status['type']; ?>"><?php echo $status['msg']; ?></div>
 			    <?php } ?>
 
-    			<div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
-						<strong>Success!</strong> Your message has been sent to us.
-					</div>
-				
-					<div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">
-						<strong>Error!</strong> There was an error sending your message.
-						<span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
-					</div> -->
-
 					<div class="form-row">
 						<div class="form-group col-lg-6">
 							<label class="required font-weight-bold text-dark text-2">Nombre completo</label>
-							<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+							<input type="text" value="" data-msg-required="Por favor ingrese su nombre." maxlength="100" class="form-control" name="name" id="name" required>
 							<?php echo form_error('name', '<p class="field-error">', '</p>'); ?>
 						</div>
 						<div class="form-group col-lg-6">
 							<label class="required font-weight-bold text-dark text-2">Correo</label>
-							<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+							<input type="email" value="" data-msg-required="Por favor ingrese un correo válido" data-msg-email="Por favor ingrese un correo válido." maxlength="100" class="form-control" name="email" id="email" required>
 							<?php echo form_error('email', '<p class="field-error">', '</p>'); ?>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col">
 							<label class="required font-weight-bold text-dark text-2">Asunto</label>
-							<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+							<input type="text" value="" data-msg-required="Por favor, ingrese el asunto" maxlength="100" class="form-control" name="subject" id="subject" required>
 							<?php echo form_error('subject', '<p class="field-error">', '</p>'); ?>
 						</div>
 					</div>
@@ -66,7 +57,7 @@
 							<?php //echo form_error('g-recaptcha'); 
 							?>
 							<?php echo form_error('g-recaptcha', '<p class="field-error">', '</p>'); ?>
-							<input type="submit" value="Enviar" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+							<input type="submit" value="Enviar" class="btn btn-primary btn-modern" data-loading-text="Cargando...">
 						</div>
 					</div>
 				</form>
@@ -87,57 +78,56 @@
 
 				<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
 					<h4 class="pt-5">Nuestras <strong>redes</strong></h4>
-					<!-- <ul class="list list-icons social-icons"> -->
 					<ul class="list list-icons list-icons-style-2 mt-2">
 						<!-- Facebook -->
-						<li>
-							<a href="https://www.facebook.com/vitellocarnes.rafaela/" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Facebook">
-								<i class="text-dark fab fa-facebook"></i>
-								Facebook
-							</a>
-						</li>
-						<!-- Google+ -->
-						<li>
-							<a href="https://www.instagram.com/vitello.carnes" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Instagram">
-								<i class="text-dark fab fa-instagram"></i>
-								Instagram
-							</a>
-						</li>
-						<!-- Pinterest -->
-						<li>
-							<a href="https://www.youtube.com/channel/UCJuA_udzof0yqMuJEDTu9tA" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Youtube">
-								<i class="text-dark fab fa-youtube"></i>
-								Youtube
-							</a>
-						</li>
+					<li>
+						<a href="https://www.facebook.com/vitellocarnes.rafaela/" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Facebook">
+							<i class="text-dark fab fa-facebook"></i>
+							Facebook
+						</a>
+					</li>
+					<!-- Google+ -->
+					<li>
+						<a href="https://www.instagram.com/vitello.carnes" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Instagram">
+							<i class="text-dark fab fa-instagram"></i>
+							Instagram
+						</a>
+					</li>
+					<!-- Pinterest -->
+					<li>
+						<a href="https://www.youtube.com/channel/UCJuA_udzof0yqMuJEDTu9tA" target="_blank" data-toggle="tooltip" data-placement="top" title="Vitello carnes en Youtube">
+							<i class="text-dark fab fa-youtube"></i>
+							Youtube
+						</a>
+					</li>
 					</ul>
-				</div>
-
-			</div>
-
-			<div class="col-lg-3">
-				<img alt="Vitello" src="<?php echo site_url('assets/uploads/3/contacto.jpg'); ?>" class="img-fluid border border-width-10 rounded box-shadow-3 position-absolute appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="700" style="animation-delay: 700ms;">
 			</div>
 
 		</div>
 
-		<hr class="gradient">
-
-		<div class="row call-to-action featured featured-secondary mb-5">
-			<!-- <section class="call-to-action featured featured-secondary mb-5"> -->
-			<div class="col-sm-9 col-lg-9">
-				<div class="call-to-action-content">
-					<h3>Escribinos por consultas sobre <strong class="font-weight-extra-bold">Franquicias</strong> </h3>
-					<p class="mb-0">¡Te guíamos y apoyamos en todo el proceso !</p>
-				</div>
-			</div>
-			<div class="col-sm-3 col-lg-3">
-				<div class="call-to-action-btn">
-					<a href="mailto:vitello.carnes.rafaela@gmail.com" class="btn btn-modern text-2 btn-secondary">Consultános</a>
-				</div>
-			</div>
-			<!-- </section> -->
+		<div class="col-lg-3">
+			<img alt="Vitello" src="<?php echo site_url('assets/uploads/3/contacto.jpg'); ?>" class="img-fluid border border-width-10 rounded box-shadow-3 position-absolute appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="700" style="animation-delay: 700ms;">
 		</div>
+
+	</div>
+
+	<hr class="gradient">
+
+	<div class="row call-to-action featured featured-secondary mb-5">
+		<!-- <section class="call-to-action featured featured-secondary mb-5"> -->
+		<div class="col-sm-9 col-lg-9">
+			<div class="call-to-action-content">
+				<h3>Escribinos por consultas sobre <strong class="font-weight-extra-bold">Franquicias</strong> </h3>
+				<p class="mb-0">¡Te guíamos y apoyamos en todo el proceso !</p>
+			</div>
+		</div>
+		<div class="col-sm-3 col-lg-3">
+			<div class="call-to-action-btn">
+				<a href="mailto:info@vitello.com.ar" class="btn btn-modern text-2 btn-secondary">Consultános</a>
+			</div>
+		</div>
+		<!-- </section> -->
+	</div>
 	</div>
 
 </section>
