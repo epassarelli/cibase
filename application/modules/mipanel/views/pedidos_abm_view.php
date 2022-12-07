@@ -73,7 +73,7 @@
                                              <?php if ($a->transac_mp != 0 ): ?>
                                                 <a href="<?php echo site_url('productos/carrito/datospagomp/' . $a->transac_mp); ?>" class='btn btn-xs'  ><i class='fa fa-rotate-right fa-2x text-green'></i></a>
                                                 <?php else:  ?>
-                                                    <a href="" class='btn btn-xs'  ><i class='fa fa-cloud fa-2x text-gray'></i></a>
+                                                    <a href="" class='btn btn-xs'  ><i class='fa fa-rotate-right fa-2x text-gray'></i></a>
                                              <?php endif; ?>
 
                                              
