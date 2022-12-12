@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -72,13 +72,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-/* 
-$db['default'] = array(
+
+
+/* $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '185.212.70.154',
-	'username' => 'u376128922_kouroci',
-	'password' => 'Flor12Pitu19',
-	'database' => 'u376128922_kouroci',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => '002-ecom',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,7 +94,7 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-); */
+);*/
 
 $db['default'] = array(
 	'dsn'	=> '',

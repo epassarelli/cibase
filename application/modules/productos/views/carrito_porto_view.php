@@ -29,11 +29,14 @@
 														</th>
 													<?php endif; ?>	
 													<th class="product-color">
-														Color
+															<?php if(parametro(11) == 'S'): ?>
+																	Color
+															<?php endif; ?>		
 													</th>
 													<th class="product-talle">
-														Talle
-													</th>
+													<?php if(parametro(11) == 'S'): ?>
+																	Talle
+															<?php endif; ?>															</th>
 													<th class="product-price">
 														Precio
 													</th>
@@ -81,10 +84,14 @@
 		</td>
 	<?php endif; ?>	
 	<td class="product-name">
-		<span><?php echo $_SESSION['carrito'][$i]['nombre_color']; ?></span>
+		<?php if(parametro(11) == 'S'): ?>
+					<span><?php echo $_SESSION['carrito'][$i]['nombre_color']; ?></span>
+		<?php endif; ?>			
 	</td>
 	<td class="product-name">
-		<span ><?php echo $_SESSION['carrito'][$i]['nombre_talle']; ?></span>
+		<?php if(parametro(11) == 'S'): ?>
+			<span ><?php echo $_SESSION['carrito'][$i]['nombre_talle']; ?></span>
+		<?php endif; ?>			
 	</td>
 	<td class="product-price">
 		<span class="amount">$<?php echo $_SESSION['carrito'][$i]['precio']; ?></span>

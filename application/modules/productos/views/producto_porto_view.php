@@ -67,49 +67,50 @@
 
 							<p class="mb-5"><?php echo $producto->descCorta; ?> </p>
 
+              
 
-
-							<?php if(parametro(1) == 'S'): ?>
+							<?php if(parametro(1) == 'S'): //utiliza carrito?> 
 							<form enctype="multipart/form-data" method="post" class="cart">
 								
 								<div class="row">
 
-
+								<?php if(parametro(11) == 'S'): //usa talle color?>
 									<div class="col-md-6">
-									<?php if(isset($coloresProducto)): ?>
-										<label for="color">Color</label>
-										<select class="form-control" 
-													  name="color" 
-														id="color" 
-														required=""
-														onchange="checkStock()">
-											<option value="0">Seleccione Color</option>
-											<?php foreach ($coloresProducto as $color): ?>
-												<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
-											<?php endforeach; ?>
-										</select>
-									<?php else:  ?>											
-												<?php echo "<h4>Producto sin Stock</h4>"?>	
-									<?php endif; ?>											
+													<?php if(isset($coloresProducto)): ?>
+														<label for="color">Color</label>
+														<select class="form-control" 
+																		name="color" 
+																		id="color" 
+																		required=""
+																		onchange="checkStock()">
+															<option value="0">Seleccione Color</option>
+															<?php foreach ($coloresProducto as $color): ?>
+																<option value="<?php echo $color->id; ?>"><?php echo $color->descripcion; ?></option>
+															<?php endforeach; ?>
+														</select>
+													<?php else:  ?>											
+																<?php echo "<h4>Producto sin Stock</h4>"?>	
+													<?php endif; ?>											
 									</div>
-
+								<?php endif; ?>			
+								<?php if(parametro(11) == 'S'): //usa talle color?>
 									<div class="col-md-6">
-									<?php if(isset($tallesProducto)): ?>
-										<label for="talle">Talle</label>
-										<select class="form-control" 
-												    name="talle" 
-														id="talle" 
-														required=""
-														onchange="checkStock()">
->
-											<option value="0">Seleccione Talle</option>
-											<?php foreach ($tallesProducto as $talle): ?>
-												<option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
-											<?php endforeach; ?>
-										</select>
-									<?php endif; ?>
+													<?php if(isset($tallesProducto)): ?>
+														<label for="talle">Talle</label>
+														<select class="form-control" 
+																		name="talle" 
+																		id="talle" 
+																		required=""
+																		onchange="checkStock()">
+				>
+															<option value="0">Seleccione Talle</option>
+															<?php foreach ($tallesProducto as $talle): ?>
+																<option value="<?php echo $talle->id; ?>"><?php echo $talle->descripcion; ?></option>
+															<?php endforeach; ?>
+														</select>
+													<?php endif; ?>
 									</div>
-
+								<?php endif; ?>											
 
 								</div>
 
@@ -138,8 +139,9 @@
 										   >
 								</div>
 
-								<button id="btnaddcarro" href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase" disabled >Agregar al carrito</button>
-							
+
+							 <button id="btnaddcarro" href="javascript:void(0);" onclick="agregarCarro3(<?php echo $producto->id ?>)" class="btn btn-primary btn-modern text-uppercase" disabled >Agregar al carrito</button>
+
 								<div id="avisarstock" style="display: none;" class="row col-md-12">
 											<div class="input-group">
 												<input type="text" id="emailaviso" class="form-control" placeholder="Tu e-mail y te avisamos cuando haya stock">

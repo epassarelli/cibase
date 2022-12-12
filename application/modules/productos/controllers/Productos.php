@@ -154,14 +154,26 @@ switch (ENVIRONMENT){
     $color = $this->input->post('color');
     $cantidad = $this->input->post('cantidad');
     $producto = $this->input->post('producto');
+    $valida_talle_color = 1;
+    
+    if (parametro(11)=='S'){ //usa talle y color debe venitr talle y color)
+               if ($talle==0 or $color==0) {
+                   $valida_talle_color=0;
+               }
+    }
    
+    if (parametro(12)=='S'){ //controla si debe controlar stock
+        $haystock = $this->Productos_model->getStock($producto, $talle,$color,$cantidad);
+    } else {
+        $haystock = 1;
+    }
+
     
-    $haystock = $this->Productos_model->getStock($producto, $talle,$color,$cantidad);
-    
-    if ($haystock !=0) {
+    //verifica que haya en estock y que si usa talle color venga el talle y el color
+    if ($haystock !=0 && $valida_talle_color==1) {
         $response = array('success' => 'OK');
     }else{
-      $response = array('success' => 'FAIL');
+        $response = array('success' => 'FAIL');
     }
 
     echo json_encode($response);

@@ -5,6 +5,8 @@ $(document).ready(function () {
  
     // Carga de tabla
     calculaPie();
+    //cheque el stock para habilitar el boton de compra
+    checkStock();
 
 
  });
@@ -50,14 +52,30 @@ $(document).ready(function () {
 
         function agregarCarro3(id) { 
 			cantidaddet = document.getElementById('quantity').value;
-            indice_talle=document.getElementById('talle').selectedIndex
-            indice_color=document.getElementById('color').selectedIndex
-            var talle  = document.getElementById('talle').options[indice_talle].value;
-            var color  = document.getElementById('color').options[indice_color].value;
-            var nombre_talle  = document.getElementById('talle').options[indice_talle].text;
-            var nombre_color  = document.getElementById('color').options[indice_color].text;
+          
+            var nombre_talle  = '';
+            var nombre_color  = '';
 
-			
+
+            var talle = 0;
+            var color = 0;
+
+            if (document.getElementById('talle') != null ){
+                    indice_talle=document.getElementById('talle').selectedIndex
+                    talle  = document.getElementById('talle').options[indice_talle].value;
+                    var nombre_talle  = document.getElementById('talle').options[indice_talle].text;
+          
+                }    
+            if (document.getElementById('color') != null){
+                indice_color=document.getElementById('color').selectedIndex
+                color  = document.getElementById('color').options[indice_color].value;
+                var nombre_color  = document.getElementById('color').options[indice_color].text;
+            }
+
+
+
+
+
 				
 			// Ejecutamos la accion y la enviamos al servidor 
 			
@@ -452,13 +470,26 @@ $(document).ready(function () {
         } 
 
         function checkStock() {
-            indice_talle=document.getElementById('talle').selectedIndex
-            indice_color=document.getElementById('color').selectedIndex
-            var talle  = document.getElementById('talle').options[indice_talle].value;
-            var color  = document.getElementById('color').options[indice_color].value;
+            var talle = 0;
+            var color = 0;
+
+            if (document.getElementById('talle') != null ){
+                    indice_talle=document.getElementById('talle').selectedIndex
+                    talle  = document.getElementById('talle').options[indice_talle].value;
+            }    
+            if (document.getElementById('color') != null){
+                indice_color=document.getElementById('color').selectedIndex
+                color  = document.getElementById('color').options[indice_color].value;
+            }
+
             var cantidad = document.getElementById('quantity').value;
             var producto = document.getElementById('idproducto').value;
-           /*  console.log(talle);
+
+            //si no usa talle color le asigno 0
+            if (isNaN(talle)) {talle= 0;}
+            if (isNaN(color)) {color= 0;}
+
+            /*  console.log(talle);
             console.log(color); 
             console.log(cantidad);
             console.log(producto); */
