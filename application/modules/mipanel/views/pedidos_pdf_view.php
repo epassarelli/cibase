@@ -127,7 +127,9 @@
                         <thead>
                             <tr>
                                 <th align="center">Producto</th>
-                                <th align="center">Al Vacío</th>
+                                <?php if ($usa_vacio=="S"): ?> 
+                                    <th align="center">Al Vacío</th>
+                                <?php endif; ?>    
                                 <th align="center">Precio</th>
                                 <th align="center">Cantidad</th>
                                 <th align="center">Total</th>
@@ -138,13 +140,15 @@
                             <?php foreach ($pedido as $a): ?>
                                 <tr>
                                     <td><?php echo $a->titulo; ?></td>
-                                    <td  align="center"> 
-                                       <?php if ($a->vacio==0): ?>	  
-				   		                               <h4>No</h4>
-					                                <?php else:  ?>
-                                            <h4>Si</h4>
-                                        <?php endif; ?>		   
-                                    </td>
+                                    <?php if ($usa_vacio=="S"): ?> 
+                                          <td  align="center"> 
+                                            <?php if ($a->vacio==0): ?>	  
+                                                  <h4>No</h4>
+                                                <?php else:  ?>
+                                                  <h4>Si</h4>
+                                              <?php endif; ?>		   
+                                          </td>
+                                    <?php endif; ?>    
                                     <td  align="right"><?php echo $a->preciounit; ?></td>
                                     <td  align="right"><?php echo $a->cantidad; ?></td>
                                     <td  align="right"><?php echo $a->precioitem; ?></td>
