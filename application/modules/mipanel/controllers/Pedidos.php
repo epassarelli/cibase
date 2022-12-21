@@ -456,6 +456,8 @@ public function pedidoValidation()
   $data['localidades'] = $this->Localidades_model->getAllBy('localidades','localidades.id,localidades.nombre',$parametros,'localidades.nombre');
   $data['entregas']    = $this->Entregas_model->getEntregas();
   $data['cost_unit_vacio'] = parametro(10);
+  $data['usa_vacio'] = parametro(9);
+  $data['usa_talle_color'] = parametro(11);
   
  
 
