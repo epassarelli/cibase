@@ -130,6 +130,10 @@
                                 <?php if ($usa_vacio=="S"): ?> 
                                     <th align="center">Al Vacío</th>
                                 <?php endif; ?>    
+                                <?php if ($usa_talle_color=="S"): ?> 
+                                    <th align="center">Talle</th>
+                                    <th align="center">Color</th>
+                                <?php endif; ?>                                   
                                 <th align="center">Precio</th>
                                 <th align="center">Cantidad</th>
                                 <th align="center">Total</th>
@@ -149,6 +153,10 @@
                                               <?php endif; ?>		   
                                           </td>
                                     <?php endif; ?>    
+                                    <?php if ($usa_talle_color=="S"): ?> 
+                                      <td  align="right"><?php echo $a->nomtalle; ?></td>
+                                      <td  align="right"><?php echo $a->nomcolor; ?></td>
+                                    <?php endif; ?> 
                                     <td  align="right"><?php echo $a->preciounit; ?></td>
                                     <td  align="right"><?php echo $a->cantidad; ?></td>
                                     <td  align="right"><?php echo $a->precioitem; ?></td>
@@ -172,10 +180,12 @@
                         <th align="left">Envio</th>
                         <td align="right"><?php echo $delivery;  ?></td>
                       </tr>
+                      <?php if ($usa_vacio=="S"): ?> 
                       <tr>
                         <th align="left">Envasado Vacío</th>
                         <td align="right"><?php echo $env_vacio;  ?></td>
                       </tr>
+                      <?php endif; ?>		   
                       <tr>
                         <th align="left"><strong>TOTAL</strong></td>
                         <td align="right"><h4><strong><?php echo $total;  ?></h4></strong></td>
