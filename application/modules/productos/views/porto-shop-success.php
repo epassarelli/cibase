@@ -16,7 +16,8 @@
 					$item = new MercadoPago\Item();
 					$item->title = $carrito[$i]['titulo'];
 					$item->quantity = $carrito[$i]['cantidad'];
-					$item->unit_price = $carrito[$i]['totalitem'];
+					//$item->unit_price = $carrito[$i]['totalitem'];
+          $item->unit_price = $carrito[$i]['precio'];
 					$compra[] = $item;
 				}  
 			
