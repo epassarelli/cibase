@@ -49,7 +49,7 @@ class Pedidos  extends MX_Controller {
 
 
 
-public function cobroPedido($pedido,$importe=0) {
+public function _cobroPedido($pedido,$importe=0) {
 /*   		// SDK de Mercado Pago
       require 'vendor/autoload.php';
       // Agrega credenciales
@@ -104,6 +104,64 @@ public function cobroPedido($pedido,$importe=0) {
 }
 
 
+public function cobroPedido($pedido,$importe=0) {
+  /*   		// SDK de Mercado Pago
+        require 'vendor/autoload.php';
+        // Agrega credenciales
+        MercadoPago\SDK::setAccessToken($this->config->item('access_token'));
+    
+        // Crea un objeto de preferencia
+        $preference = new MercadoPago\Preference();
+    
+        // Crea un ítem en la preferencia
+             $item = new MercadoPago\Item();
+             $item->title = 'prueba pago';
+             $item->quantity = 1;
+             $item->unit_price = 15.35;
+             $compra[] = $item;
+    
+        /* $elementos = sizeof($carrito);
+        for  ($i = 0; $i <= $elementos-1   ; $i++) {
+           if ($carrito[$i]['tipo']=='item'){
+              $item = new MercadoPago\Item();
+              $item->title = $carrito[$i]['titulo'];
+              $item->quantity = $carrito[$i]['cantidad'];
+              $item->unit_price = $carrito[$i]['totalitem'];
+              $compra[] = $item;
+            }  
+          
+        }
+        
+    
+          $preference->items = $compra;
+    
+        
+        $preference->back_urls = array(
+            "success" => "http://localhost/cibase/mipanel/pedidos",
+            "failure" => "http://localhost/cibase/mipanel/pedidos",
+            "pending" => "http://localhost/cibase/mipanel/pedidos"
+          );
+          $preference->auto_return = "approved";
+        
+        
+         $preference->external_reference = 142;
+     
+        $preference->save();
+  
+        //$preference->init_point;
+   */
+        $data['pedidonro'] = $pedido;
+        $data['pedidoimporte'] = $importe;
+  
+        $this->template->load('layout_back', 'pedidos_cobro_view', $data);   
+    
+    
+  }
+
+
+  
+
+
   // Datos del ABM
   public function getPedidos()
   {
@@ -114,6 +172,8 @@ public function cobroPedido($pedido,$importe=0) {
 
 // Esta funcion la usamos para enviar datos
 //completos del registro al js para su edicion
+
+
 public function getPedidoJson()
 {
     $id = $this->input->post('Id');

@@ -616,7 +616,7 @@ class Carrito extends MX_Controller {
 
 
   
-  public function operacion($callback) {
+  public function _operacion($callback) {
 
     $id_mp = $_GET['collection_id'];
     $status = $_GET['collection_status'];
@@ -665,10 +665,8 @@ class Carrito extends MX_Controller {
 
   }
 
-
-
 /// recepcion por post de notification url 
-  public function idpago()   {
+  public function _idpago()   {
    
    
     
@@ -731,7 +729,7 @@ class Carrito extends MX_Controller {
 
 /// consulta datos del ´pago a partir de numero de operacion 
 //  de mercado pago
-public function datospagomp($id_mp)   {
+public function _datospagomp($id_mp)   {
           
   
   $peticion =  $this->config->item('url_getpago') . $id_mp . '/?access_token=' .  $this->config->item('access_token');
@@ -765,6 +763,155 @@ public function datospagomp($id_mp)   {
   
 }
 
+
+
+  
+public function operacion($callback) {
+
+  $id_mp = $_GET['collection_id'];
+  $status = $_GET['collection_status'];
+  $app_id = $_GET['external_reference'];  
+
+  $data_mp = array("status_mp" => $status,
+                     "transac_mp" => $id_mp);
+
+  $this->Pedidos_model->update($app_id,$data_mp);
+
+  if($status == 'approved') {
+     $pedidositem = $this->Pedidos_model->getPedido($app_id);
+     foreach ($pedidositem as $items) {
+     
+          $data['idproducto'] = $items->producto_id;
+          $data['idtalle']    = $items->idtalle;
+          $data['idcolor']    = $items->idcolor;
+          $data['cantidad']   = $items->cantidad*(-1);
+
+          $existe = $this->Stocks_model->cuentaStock($data);
+          if ($existe->cuantos != 0 ) {
+               $this->Stocks_model->actualizarStock($data);
+            }else{
+               $this->Stocks_model->insertar($data);
+          } 
+
+          $data['usuario']     = $this->session->userdata('username');             
+          $data['idtipomove']  = 2;
+          $data['idpedido']    = $app_id;
+          $this->Stocks_model->historiaStocks($data);
+          $data=[];  
+    }
+  }
+
+
+
+  if ($callback==1) {
+      redirect('productos');
+  }else{
+    redirect('mipanel/pedidos');
+  }
+    
+
+
+
+
+}
+
+/// recepcion por post de notification url 
+public function idpago()   {
+ 
+ 
+  
+      $resultado = $this->Pedidos_model->logMercadoPago($data);
+      
+      //este metodo recibe el id de mercado pago desde mercado pago 
+      // por post. Esta url debe estar definida en webhook de mp
+
+      $json = json_decode($this->input->raw_input_stream);
+
+
+    
+      //convierto el json a string para grabar log
+      //$data['log'] = "'" . $json . "'";   //implode(",",$array);
+      $data['log'] = serialize($this->input->raw_input_stream);
+      $resultado = $this->Pedidos_model->logMercadoPago($data);
+      
+      //if (!$resultado) {
+      //   $data['log'] = "no grabamos";
+      //  $resultado = $this->Pedidos_model->logMercadoPago($data);
+      //}
+      
+      
+      
+      
+      $data = $json->data;
+      $id_mp = $data->id;  //id de la transaccion de mercado pago
+        
+      
+      $peticion =  $this->config->item('url_getpago') . $id_mp . '/?access_token=' .  $this->config->item('access_token');
+    
+      $curl = curl_init();
+      // Set some options - we are passing in a useragent too here
+      curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          CURLOPT_URL => $peticion ,
+          CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+      ));
+      // Send the request & save response to $resp
+      $response = curl_exec($curl);
+      // Close request to clear up some resources
+      curl_close($curl);
+
+      $json = json_decode($response);
+      $status = $json->status;                            //status mercado pago
+      $status_detail = $json->status_detail;              //detalle del status
+      $external_reference = $json->external_reference;    //numero de pedido webpass
+
+      $data_mp = array("status_mp" => $status,
+                      "detail_mp" => $status_detail,
+                      "transac_mp" => $id_mp);
+
+      $this->Pedidos_model->update($external_reference,$data_mp);
+      // var_dump('status: ',$status);
+      // var_dump('status_detail ',$status_detail);
+      // var_dump('external reference: ',$external_reference);
+      // var_dump('id_mp: ',$id_mp);
+      
+}
+
+/// consulta datos del ´pago a partir de numero de operacion 
+//  de mercado pago
+public function datospagomp($id_mp)   {
+       
+
+      $peticion =  $this->config->item('url_getpago') . $id_mp . '/?access_token=' .  $this->config->item('access_token');
+
+      $curl = curl_init();
+      // Set some options - we are passing in a useragent too here
+      curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          CURLOPT_URL => $peticion ,
+          CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+      ));
+      // Send the request & save response to $resp
+      $response = curl_exec($curl);
+      // Close request to clear up some resources
+      curl_close($curl);
+
+      $json = json_decode($response);
+      $status = $json->status;                            //status mercado pago
+      $status_detail = $json->status_detail;              //detalle del status
+      $external_reference = $json->external_reference;    //numero de pedido webpass
+
+      $data_mp = array("status_mp" => $status,
+                      "detail_mp" => $status_detail);
+
+      $this->Pedidos_model->update($external_reference,$data_mp);
+      //var_dump('status: ',$status);
+      //var_dump('status_detail ',$status_detail);
+      //var_dump('external reference: ',$external_reference);
+      //var_dump('id_mp: ',$id_mp);
+      redirect('mipanel/pedidos');
+
+}
 
 
 }
