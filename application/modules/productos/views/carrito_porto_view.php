@@ -157,7 +157,7 @@
 													<strong class="text-dark">Subtotal</strong>
 												</th>
 												<td>
-													<strong  class="text-dark"><span class="amount" id="subtotal">$431</span></strong>
+													<strong  class="text-dark"><span class="amount" id="subtotal"> </span></strong>
 												</td>
 											</tr>
 											<tr class="shipping">
@@ -185,7 +185,7 @@
 													<strong class="text-dark">Total de la compra</strong>
 												</th>
 												<td>
-													<strong class="text-dark"><span class="amount" id="total">$431</span></strong>
+													<strong class="text-dark"><span class="amount" id="total"> </span></strong>
 												</td>
 											</tr>
 										</tbody>
