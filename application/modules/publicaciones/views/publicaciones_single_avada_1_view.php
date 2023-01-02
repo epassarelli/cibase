@@ -25,7 +25,7 @@
 								<div class="ievent clearfix bottommargin">
 									<div class="row">
 										<div class="col-md-3">
-											<?php if (file_exists('assets/uploads/4/publicaciones/' . $articulo->portada)) : ?>
+											<?php if ((strlen($articulo->portada) > 5) and (file_exists('assets/uploads/4/publicaciones/' . $articulo->portada))) : ?>
 
 												<img src="<?php echo site_url('assets/uploads/4/publicaciones/') . $articulo->portada; ?>">
 
@@ -49,7 +49,7 @@
 
 										<div class="col-md-3">
 
-											<?php if (strlen($articulo->publicacion) > 5) : ?>
+											<?php if ((strlen($articulo->publicacion) > 5) and (file_exists('assets/uploads/4/publicaciones/' . $articulo->publicacion))) : ?>
 												<a href="<?php echo site_url('assets/uploads/' . $this->config->item('sitio_id') . '/publicaciones/' . $articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i><?php echo $this->lang->line('leerMas'); ?></a>
 											<?php endif; ?>
 
@@ -60,13 +60,13 @@
 
 							<?php else : ?>
 
-								<?php if (file_exists('assets/uploads/4/publicaciones/' . $articulo->portada)) : ?>
+								<?php if ((strlen($articulo->portada) > 5) and (file_exists('assets/uploads/4/publicaciones/' . $articulo->portada))) : ?>
 
 									<img src="<?php echo site_url('assets/uploads/4/publicaciones/') . $articulo->portada; ?>">
 
 								<?php endif; ?>
 
-								<?php if (strlen($articulo->publicacion) > 5) : ?>
+								<?php if ((strlen($articulo->publicacion) > 5) and (file_exists('assets/uploads/4/publicaciones/' . $articulo->publicacion))) : ?>
 
 									<p class="text-right">
 										<a href="<?php echo site_url('assets/uploads/' . $this->config->item('sitio_id') . '/publicaciones/' . $articulo->publicacion); ?>" target="_blank" class="button button-mini"><i class="icon-gift"></i>::Abrir PDF ::</a>
