@@ -37,19 +37,19 @@
 					<div class="form-row">
 						<div class="form-group col-lg-6">
 							<label class="required font-weight-bold text-dark text-2">Nombre completo</label>
-							<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+							<input type="text" value="" data-msg-required="Por favor ingrese su nombre" maxlength="100" class="form-control" name="name" id="name" required>
 							<?php echo form_error('name', '<p class="field-error">', '</p>'); ?>
 						</div>
 						<div class="form-group col-lg-6">
 							<label class="required font-weight-bold text-dark text-2">Correo</label>
-							<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+							<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Por favor ingrese un correo valido" maxlength="100" class="form-control" name="email" id="email" required>
 							<?php echo form_error('email', '<p class="field-error">', '</p>'); ?>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col">
 							<label class="required font-weight-bold text-dark text-2">Asunto</label>
-							<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+							<input type="text" value="" data-msg-required="Por favor ingrese el asunto" maxlength="100" class="form-control" name="subject" id="subject" required>
 							<?php echo form_error('subject', '<p class="field-error">', '</p>'); ?>
 						</div>
 					</div>
@@ -66,7 +66,7 @@
 							<?php //echo form_error('g-recaptcha'); 
 							?>
 							<?php echo form_error('g-recaptcha', '<p class="field-error">', '</p>'); ?>
-							<input type="submit" value="Enviar" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+							<input type="submit" value="Enviar" class="btn btn-primary btn-modern" data-loading-text="Cargando...">
 						</div>
 					</div>
 				</form>
@@ -133,7 +133,7 @@
 			</div>
 			<div class="col-sm-3 col-lg-3">
 				<div class="call-to-action-btn">
-					<a href="mailto:vitello.carnes.rafaela@gmail.com" class="btn btn-modern text-2 btn-secondary">Consultános</a>
+					<a href="mailto:info@vitello.com.ar" class="btn btn-modern text-2 btn-secondary">Consultános</a>
 				</div>
 			</div>
 			<!-- </section> -->

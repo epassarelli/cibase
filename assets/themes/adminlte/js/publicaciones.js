@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
   // Url dinamica
   url = $('#url').val();
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
   });
 
   // Carga de tabla
-  listar(url, Toast); 
+  listar(url, Toast);
 
 
 
@@ -52,108 +52,108 @@ $(document).ready(function () {
   if ($('#NamePortada').val()) {
     $('#subirPortada').hide()
     $('#borrarPortada').show()
-  }else{
-      $('#subirPortada').show()
-      $('#borrarPortada').hide()
+  } else {
+    $('#subirPortada').show()
+    $('#borrarPortada').hide()
   }
 
   // Mostrando publicacion segun se el caso: Editar/Insertar
   if ($('#NamePublicacion').val()) {
     $('#subirPublicacion').hide()
     $('#borrarPublicacion').show()
-  }else{
-      $('#subirPublicacion').show()
-      $('#borrarPublicacion').hide()
+  } else {
+    $('#subirPublicacion').show()
+    $('#borrarPublicacion').hide()
   }
 
 
 
 
 
-  
+
 
   // Funcionalidad al seleccionar el adjunto
-  $(document).on('change', '#publicacion',function() {
-      name = $(this).val();
-      fic = name.split('\\');
-      var allowedExtensions = /(.pdf)$/i;
-      console.log(fic);
-      // Validamos el tipo de archivo
-      if (!allowedExtensions.exec(name)) {
-          $(this).val('');
-          Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: `El archivo ${fic[fic.length-1]} es invalido !`,
-            footer: '<div class="txt-alimentos">Solo se permiten archivos .PDF</div>'
-          })
-          $('.fileIconPublicacion').fadeOut('slow');
-      }else{
-          if (name) {
-            $('.fileIconPublicacion').fadeIn('slow');
-            $('.titleAdPublicacion').text(' '+fic[fic.length-1]);
-          
-          }else{
-             $('.fileIconPublicacion').fadeOut('slow');
-          }
-      }      
+  $(document).on('change', '#publicacion', function () {
+    name = $(this).val();
+    fic = name.split('\\');
+    var allowedExtensions = /(.pdf)$/i;
+    console.log(fic);
+    // Validamos el tipo de archivo
+    if (!allowedExtensions.exec(name)) {
+      $(this).val('');
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: `El archivo ${fic[fic.length - 1]} es invalido !`,
+        footer: '<div class="txt-alimentos">Solo se permiten archivos .PDF</div>'
+      })
+      $('.fileIconPublicacion').fadeOut('slow');
+    } else {
+      if (name) {
+        $('.fileIconPublicacion').fadeIn('slow');
+        $('.titleAdPublicacion').text(' ' + fic[fic.length - 1]);
+
+      } else {
+        $('.fileIconPublicacion').fadeOut('slow');
+      }
+    }
   });
 
 
 
   // Funcionalidad al seleccionar el adjunto
-  $(document).on('change', '#portada',function() {
-    
-      name = $(this).val();
-      fic = name.split('\\');
-      var allowedExtensions = /(.jpg)$/i;
-      console.log(fic);
-      // Validamos el tipo de archivo
-      if (!allowedExtensions.exec(name)) {
-          $(this).val('');
-          Swal.fire({
-              type:  'error',
-              title: 'Oops...',
-              text:  `El archivo ${fic[fic.length-1]} es invalido !`,
-              footer: '<div class="txt-alimentos">Solo se permiten archivos .jpg</div>'
-            })
-            $('.fileIconPortada').fadeOut('slow');
-      }else{
-          if (name) {
-              $('.fileIconPortada').fadeIn('slow');
-              $('.titleAdPortada').text(' '+fic[fic.length-1]);
-          
-          }else{
-              $('.fileIconPortada').fadeOut('slow');
-          }
-      }    
+  $(document).on('change', '#portada', function () {
+
+    name = $(this).val();
+    fic = name.split('\\');
+    var allowedExtensions = /(.jpg)$/i;
+    console.log(fic);
+    // Validamos el tipo de archivo
+    if (!allowedExtensions.exec(name)) {
+      $(this).val('');
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: `El archivo ${fic[fic.length - 1]} es invalido !`,
+        footer: '<div class="txt-alimentos">Solo se permiten archivos .jpg</div>'
+      })
+      $('.fileIconPortada').fadeOut('slow');
+    } else {
+      if (name) {
+        $('.fileIconPortada').fadeIn('slow');
+        $('.titleAdPortada').text(' ' + fic[fic.length - 1]);
+
+      } else {
+        $('.fileIconPortada').fadeOut('slow');
+      }
+    }
   });
 
-  
+
   //Funcionalidad de boton eliminar
-  $(document).on('click','.eliminar',function () {
+  $(document).on('click', '.eliminar', function () {
     // id = $('#id').val();
     campo = this.dataset.campo;
     // nameFile = this.dataset.file;
     // console.log(id + ' - ' + nameFile + ' - ' + campo);
-    if(campo == 'publicacion'){
+    if (campo == 'publicacion') {
       console.log('tengo que resetear publicacion');
       document.getElementById("NamePublicacion").value = "";
       $('#subirPublicacion').show();
       $('#borrarPublicacion').hide();
-    }else{
+    } else {
       console.log('tengo que resetear portada');
       document.getElementById("NamePortada").value = "";
       $('#subirPortada').show();
       $('#borrarPortada').hide();
-    }      
+    }
   });
 
 
-  
+
 
   // Funcion para eliminar un row
-  function eliminarQWE(id,Toast) { 
+  function eliminarQWE(id, Toast) {
     //Configuracion de botones del alert con clase de bootstrap
     console.log('Eliminar pub: ' + id);
     const swalButtons = Swal.mixin({
@@ -176,47 +176,47 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.value) {
         // Ejecutamos la accion y la enviamos al servidor 
-          $.ajax({
-            type: "POST",
-            url: UrlBase + 'mipanel/publicaciones/eliminar',
-            data: { id : id },
-            dataType: "json",
-            success: function(response) {
-              //alert(JSON.stringify(response));
+        $.ajax({
+          type: "POST",
+          url: UrlBase + 'mipanel/publicaciones/eliminar',
+          data: { id: id },
+          dataType: "json",
+          success: function (response) {
+            //alert(JSON.stringify(response));
 
-              if (response.status) {
-                console.log('Se puede eliminar');
-                swalButtons.fire({
-                  title: 'Eliminado',
-                  text: 'La publicación ha sido eliminada',
-                  type: 'success',
-                  confirmButtonText: 'Aceptar',
-                  allowOutsideClick: false
-                })
+            if (response.status) {
+              console.log('Se puede eliminar');
+              swalButtons.fire({
+                title: 'Eliminado',
+                text: 'La publicación ha sido eliminada',
+                type: 'success',
+                confirmButtonText: 'Aceptar',
+                allowOutsideClick: false
+              })
                 .then((result) => {
                   $(location).prop('href', window.location.href)
                 });
-                //tableOP.ajax.reload();
-                //window.location.replace(url + "convenios");
-              }
-              else{
-                console.log('Message: ' + response.message);
-                //console.log('No se puede eliminar');
-                swalButtons.fire({
-                  title: 'Atención',
-                  text: 'La publicación no puede ser eliminada',
-                  type: 'warning'
-                  // confirmButtonText: 'Aceptar',
-                  // allowOutsideClick: false,
-                });
-              }
+              //tableOP.ajax.reload();
+              //window.location.replace(url + "convenios");
+            }
+            else {
+              console.log('Message: ' + response.message);
+              //console.log('No se puede eliminar');
+              swalButtons.fire({
+                title: 'Atención',
+                text: 'La publicación no puede ser eliminada',
+                type: 'warning'
+                // confirmButtonText: 'Aceptar',
+                // allowOutsideClick: false,
+              });
+            }
 
-            }, //success
-            error: function(response){
-                //imprime a consola el response con detalles del error
-                console.log('Error: ' + response.message);
-            }              
-          });//ajax  
+          }, //success
+          error: function (response) {
+            //imprime a consola el response con detalles del error
+            console.log('Error: ' + response.message);
+          }
+        });//ajax  
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
@@ -232,45 +232,45 @@ $(document).ready(function () {
 
 
 
-//Funcion para cambiar estado
-// function cambiarEstado(body,table,Toast) { 
-//   // Mostrar un alert con el dato de la row
-//   $(body).on("click", "a.cambiarEstado", function () {
-//     //var me = $(this);
-//     var datos = table.row($(this).parents("tr")).data();
-    
-//     //console.log(me);
-//     //console.log(datos);
+  //Funcion para cambiar estado
+  // function cambiarEstado(body,table,Toast) { 
+  //   // Mostrar un alert con el dato de la row
+  //   $(body).on("click", "a.cambiarEstado", function () {
+  //     //var me = $(this);
+  //     var datos = table.row($(this).parents("tr")).data();
 
-//     // Ejecutamos la accion y la enviamos al servidor 
-//        $.ajax({
-//         type: "POST",
-//         url: UrlBase+'mipanel/publicaciones/cambiarEstado',
-//         data: { Estado: datos.estado, Id: datos.publicacion_id },
-//         dataType: "json",
-//         success: function (response) {
-//           if (response.success == true) {
-             
-//             if(response.estado == "1"){
-//               // alert('Activo');
-//               Toast.fire({
-//                 type: 'success',
-//                 title: 'Elemento Activado',
-//               })
-//             }else{
-//               // alert('inactivo');
-//               Toast.fire({
-//                 type: 'error',
-//                 title: 'Elemento Desactivado',
-//               })
-//             }
+  //     //console.log(me);
+  //     //console.log(datos);
 
-//             table.ajax.reload();
-//           }
-//         } //success         
-//       });//ajax
-//   });
-// }
+  //     // Ejecutamos la accion y la enviamos al servidor 
+  //        $.ajax({
+  //         type: "POST",
+  //         url: UrlBase+'mipanel/publicaciones/cambiarEstado',
+  //         data: { Estado: datos.estado, Id: datos.publicacion_id },
+  //         dataType: "json",
+  //         success: function (response) {
+  //           if (response.success == true) {
+
+  //             if(response.estado == "1"){
+  //               // alert('Activo');
+  //               Toast.fire({
+  //                 type: 'success',
+  //                 title: 'Elemento Activado',
+  //               })
+  //             }else{
+  //               // alert('inactivo');
+  //               Toast.fire({
+  //                 type: 'error',
+  //                 title: 'Elemento Desactivado',
+  //               })
+  //             }
+
+  //             table.ajax.reload();
+  //           }
+  //         } //success         
+  //       });//ajax
+  //   });
+  // }
 
 
   // 
@@ -301,38 +301,39 @@ $(document).ready(function () {
 
 
 // Listamos los datos de la tabla via AJAX y sus configuraciones (insertar/editar/eliminar)
-function listar(base,Toast) {
+function listar(base, Toast) {
   var table = $("#publicacionesAbm").DataTable({
-      destroy: true,
-      responsive: true,
-      ajax: {
-          url: base + "mipanel/publicaciones/getPublicaciones",
-          type: "jsonp"
-      },
-      rowCallback : function( row, data ) {
+    destroy: true,
+    responsive: true,
+    ajax: {
+      url: base + "mipanel/publicaciones/getPublicaciones",
+      type: "post",
+      dataType: "json",
+    },
+    rowCallback: function (row, data) {
 
-        if ( data.estado == "1" ) {
-          $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>" ); 
-        }else{
-          $('td:eq(3)', row).html( "<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>" ); 
+      if (data.estado == "1") {
+        $('td:eq(3)', row).html("<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-on fa-2x text-green'></i></a></div>");
+      } else {
+        $('td:eq(3)', row).html("<div class='text-center'><a href='javascript:void(0);' class='cambiarEstado'><i class='fa  fa-toggle-off fa-2x text-green'></i></a></div>");
 
-        }
-        
-        $('td:eq(4)', row).html( "<div class='text-center'><a href='" + url + "mipanel/publicaciones/editar/" + data.publicacion_id + "' class='activo'><i class='fa fa-pencil fa-2x text-yellow'></a></div>" ); 
-        
-      },
-      columns: [
-          { data: "publicacion_id" },
-          { data: "categoria" },
-          { data: "titulo" },
-          { data: "estado"},
-          { data: "estado"},
-          {
-            defaultContent:
-              "<a href='javascript:void(0);' class='eliminarPub btn btn-xs'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
-          }
-      ],
-      language: espanol
+      }
+
+      $('td:eq(4)', row).html("<div class='text-center'><a href='" + url + "mipanel/publicaciones/editar/" + data.publicacion_id + "' class='activo'><i class='fa fa-pencil fa-2x text-yellow'></a></div>");
+
+    },
+    columns: [
+      { data: "publicacion_id" },
+      { data: "categoria" },
+      { data: "titulo" },
+      { data: "estado" },
+      { data: "estado" },
+      {
+        defaultContent:
+          "<a href='javascript:void(0);' class='eliminarPub btn btn-xs'><i class='fa fa-trash fa-2x text-red'></i></a></div>"
+      }
+    ],
+    language: espanol
   });
 
   // submit(table,Toast) //Accion de Insertar o Editar
@@ -344,10 +345,10 @@ function listar(base,Toast) {
 
 
 
- // Funcion para eliminar un row
- function eliminarPub(body, table) { 
+// Funcion para eliminar un row
+function eliminarPub(body, table) {
   //Tomando desde el boton de edicion
-  $(body).on("click", "a.eliminarPub", function() {
+  $(body).on("click", "a.eliminarPub", function () {
     // Obtenemos los datos del row
     var datos = table.row($(this).parents("tr")).data();
     //Configuracion de botones del alert con clase de bootstrap
@@ -372,24 +373,24 @@ function listar(base,Toast) {
       if (result.value) {
         // Ejecutamos la accion y la enviamos al servidor 
         $.ajax({
-            type: "POST",
-            url: UrlBase+'mipanel/publicaciones/eliminar',
-            data: { Id: datos.publicacion_id },
-            dataType: "json",
-            success: function (response) {
-              if (response.status == true) {
-               swalButtons.fire(
-                  'Eliminado!',
-                  'Su archivo ha sido eliminado.',
-                  'success'
-                );
-                table.ajax.reload();
-              }
-            }//success
-          });//ajax  
-        } else if (
+          type: "POST",
+          url: UrlBase + 'mipanel/publicaciones/eliminar',
+          data: { Id: datos.publicacion_id },
+          dataType: "json",
+          success: function (response) {
+            if (response.status == true) {
+              swalButtons.fire(
+                'Eliminado!',
+                'Su archivo ha sido eliminado.',
+                'success'
+              );
+              table.ajax.reload();
+            }
+          }//success
+        });//ajax  
+      } else if (
         /* Read more about handling dismissals below */
-         result.dismiss === Swal.DismissReason.cancel
+        result.dismiss === Swal.DismissReason.cancel
       ) {
         swalButtons.fire(
           'Cancelado',
@@ -406,36 +407,36 @@ function listar(base,Toast) {
 
 
 //Funcion para cambiar estado
-function cambiarEstado(body,table,Toast) { 
+function cambiarEstado(body, table, Toast) {
   // Mostrar un alert con el dato de la row
   $(body).on("click", "a.cambiarEstado", function () {
     var datos = table.row($(this).parents("tr")).data();
 
     // Ejecutamos la accion y la enviamos al servidor 
-       $.ajax({
-        type: "POST",
-        url: UrlBase+'mipanel/publicaciones/cambiarEstado',
-        data: { Estado: datos.estado, Id: datos.publicacion_id },
-        dataType: "json",
-        success: function (response) {
-          if (response.status == true) {
-             
-            if(response.estado == "1"){
-              Toast.fire({
-                type: 'success',
-                title: 'Elemento Activado',
-              })
-            }else{
-              Toast.fire({
-                type: 'error',
-                title: 'Elemento Desactivado',
-              })
-            }
+    $.ajax({
+      type: "POST",
+      url: UrlBase + 'mipanel/publicaciones/cambiarEstado',
+      data: { Estado: datos.estado, Id: datos.publicacion_id },
+      dataType: "json",
+      success: function (response) {
+        if (response.status == true) {
 
-            table.ajax.reload();
+          if (response.estado == "1") {
+            Toast.fire({
+              type: 'success',
+              title: 'Elemento Activado',
+            })
+          } else {
+            Toast.fire({
+              type: 'error',
+              title: 'Elemento Desactivado',
+            })
           }
-        } //success         
-      });//ajax
+
+          table.ajax.reload();
+        }
+      } //success         
+    });//ajax
   });
 }
 
@@ -443,19 +444,19 @@ function cambiarEstado(body,table,Toast) {
 
 // Declaramos el idioma del Datatable
 let espanol = {
-    sProcessing: "Procesando...",
-    sLengthMenu: "Mostrar _MENU_ resultados",
-    sZeroRecords: "No se encontraron resultados",
-    sEmptyTable: "Ningún dato disponible en esta tabla",
-    sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
-    sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
-    sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-    sSearch: "Buscar:",
-    sLoadingRecords: "Cargando...",
-    oPaginate: {
-        sFirst: "Primero",
-        sLast: "Último",
-        sNext: "Siguiente",
-        sPrevious: "Anterior"
-    }
+  sProcessing: "Procesando...",
+  sLengthMenu: "Mostrar _MENU_ resultados",
+  sZeroRecords: "No se encontraron resultados",
+  sEmptyTable: "Ningún dato disponible en esta tabla",
+  sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
+  sInfoEmpty: "Mostrando resultados del 0 al 0 de un total de 0 registros",
+  sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+  sSearch: "Buscar:",
+  sLoadingRecords: "Cargando...",
+  oPaginate: {
+    sFirst: "Primero",
+    sLast: "Último",
+    sNext: "Siguiente",
+    sPrevious: "Anterior"
+  }
 }

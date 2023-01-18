@@ -62,33 +62,22 @@ class Contacto extends MX_Controller
       $contacto['sitio_id'] = $this->session->userdata('sitio_id');
 
       // Guardar los datos en la BDD
-      //$this->Contacto_model->insertar($contacto);
+      $this->Contacto_model->insertar($contacto);
 
-      // Enviar un correo
-      // $config = array(
-      //   'protocol' => 'smtp',
-      //   'smtp_host' => 'smtp.1and1.com',
-      //   'smtp_port' => 25,
-      //   'smtp_user' => 'barackobama@misitio.com',
-      //   'smtp_pass' => '12345',
-      //   'charset' => 'utf-8',
-      //   'priority' => 1
-      // );
 
-      //Establecemos esta configuración
-      //$this->email->initialize($config);
-
-      $from = 'info@vitello.com.ar';
-      $to = 'consultas@webpass.com.ar';
+      $from = $this->config->item('from');
+      $to = $this->config->item('to');
+      $cc = $this->config->item('cc');
+      $bcc = $this->config->item('bcc');
 
       $this->load->library('email');
-      $this->email->from($from, 'Vitello Carnes');
+
+      $this->email->from($from, 'Vitello Carnes desde la Web');
       $this->email->to($to);
-      $this->email->bcc('epassarelli@gmail.com');
+      $this->email->cc($cc);
+      $this->email->bcc($bcc);
 
       $this->email->subject($_POST['subject']);
-
-
       $this->email->message($_POST['name'] . " con e-mail: " . $_POST['email'] . ", se ha puesto en contacto contigo y te ha dicho: " . $_POST['message']);
 
       // Send email
@@ -130,62 +119,12 @@ class Contacto extends MX_Controller
         );
         $this->session->set_flashdata('message', $message);
       }
-      // else{
-      //   $message = array(
-      //     'message' => 'Entro x 1ra vez',
-      //     'alert' => 'danger'
-      //   ); 
-      // }
-      //$this->session->set_flashdata('message',$message);
+
       $this->load->view('layout_' . $this->session->userdata('theme') . '_view', $data);
     }
   }
 
 
-
-  public function partial($seccion_id, $slug, $titulo, $bajada, $bloque)
-  {
-    $data['slug']   = $slug;
-    $data['titulo'] = $titulo;
-    $data['bajada'] = $bajada;
-
-    $modulos = $this->config->item('modulos');
-
-    $viewTheme = 'contacto_' . $this->session->userdata('theme') . '_' . $bloque;
-    $this->load->view($viewTheme, $data);
-  }
-
-
-  private function sendEmail($mailData)
-  {
-    // Load the email library
-    $this->load->library('email');
-
-    // Mail config
-    $to           = 'recipient@gmail.com';
-    $from         = 'codexworld@gmail.com';
-    $fromName     = 'CodexWorld';
-    $mailSubject  = 'Contact Request Submitted by ' . $mailData['name'];
-
-    // Mail content
-    $mailContent  = '
-            <h2>Contact Request Submitted</h2>
-            <p><b>Name: </b>' . $mailData['name'] . '</p>
-            <p><b>Email: </b>' . $mailData['email'] . '</p>
-            <p><b>Subject: </b>' . $mailData['subject'] . '</p>
-            <p><b>Message: </b>' . $mailData['message'] . '</p>
-        ';
-
-    $config['mailtype'] = 'html';
-    $this->email->initialize($config);
-    $this->email->to($to);
-    $this->email->from($from, $fromName);
-    $this->email->subject($mailSubject);
-    $this->email->message($mailContent);
-
-    // Send email & return status
-    return $this->email->send() ? true : false;
-  }
 
 
 
@@ -200,19 +139,5 @@ class Contacto extends MX_Controller
     } else {
       return true;
     }
-  }
-
-  // Mensaje de prueba para asegurarse que anda el envio de correo 
-  public function prueba()
-  {
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-    $from = "info@vitello.com.ar";
-    $to = "epassarelli@gmail.com";
-    $subject = "Prueba de PHP mail";
-    $message = "PHP mail funciona bien";
-    $headers = "From:" . $from;
-    mail($to, $subject, $message, $headers);
-    echo "El mensaje de correo fue enviado.";
   }
 }

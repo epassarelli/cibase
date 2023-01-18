@@ -549,7 +549,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.3.9
             </div>
-            <strong>Copyright &copy; <?php echo date('Y', time()); ?> <a href="http://webpass.com.ar">WEBPASS Desarrollo Web</a>.</strong> Todos los derechos reservados.
+            <strong>Copyright &copy; <?php echo date('Y', time()); ?> <a href="https://webpass.com.ar">WEBPASS Desarrollo Web</a>.</strong> Todos los derechos reservados.
         </footer>
 
 

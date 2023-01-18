@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+$config['base_url']  = 'https://' . $_SERVER['HTTP_HOST'] . str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']  = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'spanish';
+$config['language']  = 'spanish';
 
 /*
 |--------------------------------------------------------------------------
@@ -400,11 +400,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix']  = '';
+$config['cookie_domain']  = '';
+$config['cookie_path']    = '/';
+$config['cookie_secure']  = FALSE;
+$config['cookie_httponly']   = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -453,7 +453,7 @@ $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array('mipanel/slider/accion','mipanel/slider/deleteSlide','mipanel/slider/cambioEstado','mipanel/nosotros/accion','mipanel/servicios/accion','mipanel/servicios/deleteServicio','mipanel/servicios/cambioEstado','mipanel/empresa/accion');
+$config['csrf_exclude_uris'] = array('mipanel/slider/accion', 'mipanel/slider/deleteSlide', 'mipanel/slider/cambioEstado', 'mipanel/nosotros/accion', 'mipanel/servicios/accion', 'mipanel/servicios/deleteServicio', 'mipanel/servicios/cambioEstado', 'mipanel/empresa/accion');
 
 /*
 |--------------------------------------------------------------------------
@@ -532,10 +532,28 @@ $config['proxy_ips'] = '';
 | 
 | 
 */
-// 1 - CIBASE
-// 2 - Webpass
-// 3 - Vitello
-// 4 - Claudia
-// 5 - Mutual
 
-$config['sitio_id'] 	= 3; 
+$config['sitio_id']   = 3;
+
+
+/*
+|--------------------------------------------------------------------------
+| Configuraciones para el envio de correo 
+|--------------------------------------------------------------------------
+*/
+
+$config['from'] = 'info@vitello.com.ar';
+$config['to']   = 'info@vitello.com.ar';
+$config['cc']   = 'consultas@webpass.com.ar';
+$config['bcc']  = 'epassarelli@gmail.com';
+
+/* Opcionales si se envia por FTP */
+/* en Vitello no lo estamos usando */
+
+$config['protocol']   = 'smtp';
+$config['smtp_host']  = 'smtp.1and1.com';
+$config['smtp_port']  = 25;
+$config['smtp_user']  = 'sarasa@misitio.com.ar';
+$config['smtp_pass']  = 'smtp';
+$config['charset']    = 'utf-8';
+$config['priority']   = 1;
