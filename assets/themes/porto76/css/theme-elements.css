@@ -9437,7 +9437,6 @@ ul.nav-list li {
 	padding: 0;
 	display: block;
 	position: relative;
-	background-color: #b89f1330;
 }
 
 ul.nav-list li a {
@@ -10863,8 +10862,8 @@ section.section.section-front {
 }
 /* Sidebar */
 aside ul.nav-list > li > a {
-	color: #666;
-	font-size: 0.9em;
+	color: #d7231f;
+	font-size: 1.2em;
 	padding: 8px 0 8px 22px;
 }
 aside .twitter [class*="fa-"], aside .twitter .icons {

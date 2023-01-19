@@ -1,5 +1,5 @@
 a {
-	color: #99110f;
+	color: #d7231f;
 }
 
 a:hover {
@@ -11,7 +11,7 @@ a:focus {
 }
 
 a:active {
-	color: #606161;
+	color: #0077b3;
 }
 
 html .text-color-primary,
@@ -638,7 +638,7 @@ html .overlay-color-light:not(.no-skin):before {
 
 html .btn-primary {
 	background-color: #d7231f;
-	border-color: #d7231f #d7231f #d7231f;
+	border-color: #d7231f #d7231f #006699;
 	color: #FFF;
 }
 
@@ -1031,7 +1031,7 @@ html .btn-light-scale-2 {
 
 html .btn-light-scale-2:hover,
 html .btn-light-scale-2.hover {
-	background-color: #31313030;
+	background-color: #f9f9f9;
 	border-color: #ffffff #ffffff #e6e6e6;
 	color: #777;
 }
@@ -1932,7 +1932,7 @@ section.section.section-overlay-opacity-gradient:before {
 }
 
 html .bg-color-light-scale-1 {
-	background-color: #31313030 !important;
+	background-color: #b89f1330 !important;
 }
 
 html .section.bg-color-light-scale-1,
