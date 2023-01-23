@@ -4,7 +4,7 @@
       <div class="col-md-4 px-5 px-md-3">
         <div class="appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="0" data-appear-animation-duration="750" style="animation-delay: 0ms;">
           <div class="strong-shadow rounded strong-shadow-top-right">
-            <img src="<?php echo site_url('assets/uploads/3/local4.jpg'); ?>" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3" alt="Porto Admin">
+            <img src="<?php echo site_url('assets/uploads/7/local1.jpg'); ?>" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3" alt="Porto Admin">
           </div>
         </div>
       </div>
@@ -26,8 +26,7 @@
 <div class="container pb-5 mb-5">
   <div class="row align-items-center mb-5">
     <div class="col-lg-6 pr-xl-5 mb-5 mb-lg-0">
-      <h2 class="font-weight-normal text-6 mb-3">¿Qué <strong class="font-weight-extra-bold">ofrecemos</strong> hoy?</h2>
-      <h5 class="font-weight-semibold positive-ls-2 text-3 text-primary mb-3">Zapatos de cuero, hermosas sandalias para el verano, un gran surtido de carteras/bolsos y Valijas/h5>
+      <h2 class="font-weight-normal text-6 mb-3">¿Qué <strong class="font-weight-extra-bold">ofrecemos</strong>?</h2>
       <p class="ls-0 text-default fw-400 mb-5">Atención personalizada y especializada.</p>
       <div class="d-flex align-items-center border border-top-0 border-right-0 border-left-0 pb-4 mb-4">
         <i class="fa fa-check text-color-primary bg-light rounded-circle box-shadow-4 p-2 mr-3"></i>
@@ -41,22 +40,14 @@
         <i class="fa fa-check text-color-primary bg-light rounded-circle box-shadow-4 p-2 mr-3"></i>
         <p class="mb-0"><b class="text-color-dark">Siempre a la Vanguardia -</b> Cuidamos nuestra selección de productos conservando la calidad pero adaptándonos a los colores y formas según las tendencias de cada temporada. .</p>
       </div>
-      <div class="d-flex align-items-center pb-4 mb-4">
-        <i class="fa fa-check text-color-primary bg-light rounded-circle box-shadow-4 p-2 mr-3"></i>
-        <p class="mb-0"><b class="text-color-dark">Cortes premium -</b> Organización de propuestas con cortes premium para eventos privados, con servicio a cargo de Julio Viola Cocinero profesional y chef privado <a target="_blank" href="https://www.instagram.com/juliusviola/">@juliusviola</a></p>
-      </div>
     </div>
     <div class="col-lg-4 offset-lg-2">
       <img class="img-fluid" src="<?php echo site_url('assets/uploads/3/vitello_dots.png'); ?>" alt="" style="position: absolute; bottom: -2%; left: -43%; transform: rotate(90deg)">
-      <img alt="Que ofrecemos" src="<?php echo site_url('assets/uploads/3/ofrecemos2.jpg'); ?>" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3 ml-5 appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="200" style="width: 690px; max-width: none; animation-delay: 200ms;">
-      <img alt="Vitello" src="<?php echo site_url('assets/uploads/3/ofrecemos.jpg'); ?>" class="img-fluid border border-width-10 rounded box-shadow-3 position-absolute appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="700" style="left: -190px; bottom: 90px; animation-delay: 700ms;">
+      <img alt="Que ofrecemos" src="<?php echo site_url('assets/uploads/7/local2.jpg'); ?>" class="img-fluid border border-width-10 border-color-light rounded box-shadow-3 ml-5 appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="200" style="width: 690px; max-width: none; animation-delay: 200ms;">
+      <img alt="Vitello" src="<?php echo site_url('assets/uploads/7/localH.jpg'); ?>" class="img-fluid border border-width-10 rounded box-shadow-3 position-absolute appear-animation animated fadeInUp appear-animation-visible" data-appear-animation="fadeInUp" data-appear-animation-delay="700" style="left: -190px; bottom: 90px; animation-delay: 700ms;">
     </div>
   </div>
 </div>
-
-
-
-
 
 <div class="container pb-3 mb-3">
   <div class="row">
@@ -97,12 +88,22 @@
             </div>
             <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
               <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/3/gallery7.jpg'); ?>">
+                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery7.jpg'); ?>">
               </div>
             </div>
             <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
               <div>
                 <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery8.jpg'); ?>">
+              </div>
+            </div>
+            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
+              <div>
+                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery9.jpg'); ?>">
+              </div>
+            </div>
+            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
+              <div>
+                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery10.jpg'); ?>">
               </div>
             </div>
           </div>

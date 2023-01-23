@@ -35,9 +35,7 @@ class Contenidos extends MX_Controller {
             default:
                 $pagIncial = 'inicio';
                 break;
-        }
-        
-        
+        }     
         $params = array(
             //'sitio_id' => $this->config->item('sitio_id'),
             'sitio_id' => $this->session->userdata("idSitio"),
@@ -50,6 +48,10 @@ class Contenidos extends MX_Controller {
         if($secciones){
             
             $seccion = $secciones[0];
+            if (strlen($seccion->bajada) >= 5) {
+				$data['view'] = $seccion->bajada;
+			} else {
+
             $params2 = array(
                 'b.seccion_id' => $seccion->seccion_id,
                 'b.estado' => 1
@@ -57,11 +59,11 @@ class Contenidos extends MX_Controller {
 
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
             $data['view'] = 'contenidos_view';
+            }
         }
-        else{
+       else {
             $data['view'] = '404'.$this->session->userdata('theme').'_view';
         }
-
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
 	}
 
@@ -82,22 +84,24 @@ class Contenidos extends MX_Controller {
         if($seccion){    
             $data['title'] = $seccion->titulo;
             //$seccion = $secciones[0];
+ 		    if (strlen($seccion->bajada) >= 5) {
+				$data['view'] = $seccion->bajada;
+			} else {
             $params2 = array(
                 'b.seccion_id' => $seccion->seccion_id,
                 'b.estado' => 1
             );
-
             $data['bloques']    = $this->Bloques_model->getBloquesPor($params2);
             //$data['bloques']    = $this->Bloques_model-getAllBy('bloques', $campos='', $params1, $orden='');
             $data['view'] = 'contenidos_view';
-        }
-        else{
+            }
+        } else{
             $data['view'] = '404_'.$this->session->userdata('theme').'_view';
         }
         
         $this->load->view('layout_'.$this->session->userdata('theme').'_view', $data);
     }
-    
+
 
     public function bloque($bloque_id='', $vista=''){
 
@@ -114,5 +118,4 @@ class Contenidos extends MX_Controller {
         $this->load->view($vista, $data);
 
     }
-
 }

@@ -69,7 +69,7 @@ class Contacto extends MX_Controller {
 
       $this->load->library('email');
       $this->email->from($from, 'Contacto desde el portal Web');
-      $this->email->to($to, 'info@webpass.com.ar');
+      $this->email->to($to, 'consulta@webpass.com.ar');
         
       $this->email->subject($_POST['subject']);
       
@@ -111,7 +111,7 @@ class Contacto extends MX_Controller {
         $data['view']     = 'contacto_claudia_' . $this->session->userdata('theme') . '_1'; 
       }
       else{
-        $data['view']     = 'contacto_' . $this->session->userdata('theme') . '_1'; 
+        $data['view']     = 'contacto_' . $this->session->userdata('theme') . '_K'; 
       }
       
 
