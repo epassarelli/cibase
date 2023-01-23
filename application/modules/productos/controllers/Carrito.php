@@ -94,7 +94,7 @@ class Carrito extends MX_Controller {
           }else{
             $precioventa  = $producto->precioLista;
           }
-          $imagen = base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/productos/' . $imagenes[0]->imagen;
+          $imagen = base_url() . 'assets/uploads/' . $this->config->item('sitio_id') . '/colores/' . $imagenes[0]->imagen;
           $_SESSION['carrito'][] = 
           array('tipo' => 'item',
                 'cantidad' => $cantidad, 
