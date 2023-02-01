@@ -1,3 +1,67 @@
+<div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
+
+
+  <ul class="carousel-indicators">
+
+    <li data-target="#demo" data-slide-to="0" class=""></li>
+
+    <li data-target="#demo" data-slide-to="1" class="active"></li>
+    <li data-target="#demo" data-slide-to="2" class=""></li>
+  </ul>
+
+
+  <div class="carousel-inner">
+
+    <div class="carousel-item">
+
+      <img src="https://vitello.com.ar/assets/uploads/3/slider1.jpg" width="100%" height="auto" alt="Vitello">
+
+      <div class="carousel-caption">
+        <h1 style="color: white;"></h1>
+        <p style="color: orange;"></p>
+      </div>
+    </div>
+
+    <div class="carousel-item active">
+
+      <img src="https://vitello.com.ar/assets/uploads/3/slider2.jpg" width="100%" height="auto" alt="Vitello">
+
+      <div class="carousel-caption">
+        <h1 style="color: white;"></h1>
+        <p style="color: orange;"></p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+
+      <img src="https://vitello.com.ar/assets/uploads/3/slider3.jpg" width="100%" height="auto" alt="Vitello">
+
+      <div class="carousel-caption">
+        <h1 style="color: white;"></h1>
+        <p style="color: orange;"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 <section class="section section-no-border m-0">
   <div class="container py-3 my-3">
     <div class="row">
@@ -13,7 +77,7 @@
       <div class="col-md-7 pr-md-5 mb-5 mb-md-0">
         <h2 class="font-weight-normal text-6 mb-3">¿Cómo surge <strong class="font-weight-extra-bold">Kouro Linea Fina</strong> y con qué propósito? </h2>
         <p class="text-4">A principio de los 90, Kouro fue comenzó con la confección de productos xxxx en forma artesanal que se comercialiban xxxx. En una segunda etapa, se creó o abrió el local</p>
-        <p class="text-4">Nuestros productos son reconocidos por xxx xxxxx  xxxxxxxxxxx  xxxxxxxxxxx  xxxxxx Atencion personalizada y conservando siempre la calidad   xxxxxx .</p>
+        <p class="text-4">Nuestros productos son reconocidos por xxx xxxxx xxxxxxxxxxx xxxxxxxxxxx xxxxxx Atencion personalizada y conservando siempre la calidad xxxxxx .</p>
       </div>
     </div>
   </div>
@@ -49,68 +113,35 @@
   </div>
 </div>
 
-<div class="container pb-3 mb-3">
-  <div class="row">
-    <div class="col">
-      <h4 class="text-center">Alguno de nuestros productos</h4>
-      <div class="owl-carousel owl-theme show-nav-title show-nav-title-both-sides owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': 6, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}" style="height: auto;">
 
-        <div class="owl-stage-outer">
-          <div class="owl-stage" style="transform: translate3d(-373px, 0px, 0px); transition: all 0.25s ease 0s; width: 1867px;">
-            <div class="owl-item" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery1.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item" style="width: 176.667px; margin-right: 10px;">
-              <div>                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery2.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery3.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery4.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery5.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery6.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery7.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery8.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery9.jpg'); ?>">
-              </div>
-            </div>
-            <div class="owl-item active" style="width: 176.667px; margin-right: 10px;">
-              <div>
-                <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery10.jpg'); ?>">
-              </div>
+<?php if (isset($destacados)) : ?>
+
+  <div class="container pb-3 mb-3">
+    <div class="row">
+      <div class="col">
+        <h4 class="text-center">Alguno de nuestros productos destacados</h4>
+        <div class="owl-carousel owl-theme show-nav-title show-nav-title-both-sides owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': 6, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}" style="height: auto;">
+
+          <div class="owl-stage-outer">
+            <div class="owl-stage" style="transform: translate3d(-373px, 0px, 0px); transition: all 0.25s ease 0s; width: 1867px;">
+
+              <?php foreach ($destacados as $item) : ?>
+
+                <div class="owl-item" style="width: 176.667px; margin-right: 10px;">
+                  <div>
+                    <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery1.jpg'); ?>">
+                  </div>
+                </div>
+
+              <?php endforeach; ?>
+
             </div>
           </div>
+          <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"></button></div>
+          <div class="owl-dots disabled"></div>
         </div>
-        <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"></button></div>
-        <div class="owl-dots disabled"></div>
       </div>
     </div>
   </div>
-</div>
+
+<?php endif; ?>
