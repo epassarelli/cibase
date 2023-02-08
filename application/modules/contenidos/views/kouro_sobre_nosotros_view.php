@@ -1,59 +1,60 @@
-<div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
+<section class="section section-no-border m-0">
+  <div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
 
 
-  <ul class="carousel-indicators">
+    <ul class="carousel-indicators">
 
-    <li data-target="#demo" data-slide-to="0" class=""></li>
+      <li data-target="#demo" data-slide-to="0" class=""></li>
 
-    <li data-target="#demo" data-slide-to="1" class="active"></li>
-    <li data-target="#demo" data-slide-to="2" class=""></li>
-  </ul>
+      <li data-target="#demo" data-slide-to="1" class="active"></li>
+      <li data-target="#demo" data-slide-to="2" class=""></li>
+    </ul>
 
 
-  <div class="carousel-inner">
+    <div class="carousel-inner">
 
-    <div class="carousel-item">
+      <div class="carousel-item">
 
-      <img src="https://vitello.com.ar/assets/uploads/3/slider1.jpg" width="100%" height="auto" alt="Vitello">
+        <img src="<?php echo site_url('assets/uploads/7/slider1.jpg'); ?>" width="100%" height="auto" alt="Slider">
 
-      <div class="carousel-caption">
-        <h1 style="color: white;"></h1>
-        <p style="color: orange;"></p>
+        <div class="carousel-caption">
+          <h1 style="color: white;"></h1>
+          <p style="color: orange;"></p>
+        </div>
       </div>
+
+      <div class="carousel-item active">
+
+        <img src="<?php echo site_url('assets/uploads/7/slider2.jpg'); ?>" width="100%" height="auto" alt="Slider">
+
+        <div class="carousel-caption">
+          <h1 style="color: white;"></h1>
+          <p style="color: orange;"></p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+
+        <img src="<?php echo site_url('assets/uploads/7/slider3.jpg'); ?>" width="100%" height="auto" alt="Slider">
+
+        <div class="carousel-caption">
+          <h1 style="color: white;"></h1>
+          <p style="color: orange;"></p>
+        </div>
+      </div>
+
     </div>
 
-    <div class="carousel-item active">
-
-      <img src="https://vitello.com.ar/assets/uploads/3/slider2.jpg" width="100%" height="auto" alt="Vitello">
-
-      <div class="carousel-caption">
-        <h1 style="color: white;"></h1>
-        <p style="color: orange;"></p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-
-      <img src="https://vitello.com.ar/assets/uploads/3/slider3.jpg" width="100%" height="auto" alt="Vitello">
-
-      <div class="carousel-caption">
-        <h1 style="color: white;"></h1>
-        <p style="color: orange;"></p>
-      </div>
-    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
 
   </div>
 
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-
-</div>
-
-
+</section>
 
 
 
@@ -120,14 +121,14 @@
     <div class="row">
       <div class="col">
         <h4 class="text-center">Alguno de nuestros productos destacados</h4>
-        <div class="owl-carousel owl-theme show-nav-title show-nav-title-both-sides owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': 6, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}" style="height: auto;">
+        <div class="owl-carousel owl-theme show-nav-title show-nav-title-both-sides owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}" style="height: auto;">
 
           <div class="owl-stage-outer">
             <div class="owl-stage" style="transform: translate3d(-373px, 0px, 0px); transition: all 0.25s ease 0s; width: 1867px;">
 
               <?php foreach ($destacados as $item) : ?>
 
-                <div class="owl-item" style="width: 176.667px; margin-right: 10px;">
+                <div class="owl-item" style="margin-right: 10px;">
                   <div>
                     <img alt="" class="img-fluid rounded" src="<?php echo site_url('assets/uploads/7/gallery1.jpg'); ?>">
                   </div>
@@ -143,5 +144,4 @@
       </div>
     </div>
   </div>
-
 <?php endif; ?>
