@@ -208,7 +208,7 @@ function VerHistoria(body) {
           responsive: true,
           ajax: {
               url: apicolores,
-              type: "jsonp"
+              type: "json"
           },
           rowCallback : function( row, data ) {
           },
