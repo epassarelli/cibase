@@ -73,12 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-/* $db['default'] = array(
+$db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'eduardop_w3bp4ss',
-	'password' => 'GSroM5FjvP4d',
-	'database' => 'eduardop_cibase',
+	'hostname' => '185.212.70.154',
+	'username' => 'u376128922_kouroci',
+	'password' => 'Flor12Pitu19',
+	'database' => 'u376128922_kouroci',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,5 +93,4 @@ $query_builder = TRUE;
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-); 
- */
+);
